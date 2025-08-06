@@ -20,7 +20,8 @@ export default function Orders() {
   const [formData, setFormData] = useState({
     customerId: '',
     items: [] as OrderItem[],
-    status: 'pending' as Order['status'],
+    status: 'processing' as Order['status'],
+    deliveryType: 'delivery' as Order['deliveryType'],
     notes: ''
   });
 
