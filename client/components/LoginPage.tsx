@@ -70,11 +70,11 @@ export default function LoginPage() {
               {error && (
                 <p className="text-red-500 text-sm text-center">{error}</p>
               )}
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-dashboard-primary hover:bg-dashboard-primary-light transition-colors"
               >
-                Access Dashboard
+                {t('login.signIn')}
               </Button>
             </form>
             <div className="mt-6 text-center">
