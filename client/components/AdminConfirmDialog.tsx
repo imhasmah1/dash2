@@ -81,7 +81,7 @@ export default function AdminConfirmDialog({
             variant="outline"
             className="px-6 py-2.5 text-sm font-medium border-gray-300 hover:bg-gray-50 rounded-md"
           >
-            {cancelText}
+            {finalCancelText}
           </Button>
           <Button
             onClick={handleConfirm}
