@@ -72,8 +72,8 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
       onImagesChange([...images, ...uploadedUrls]);
     } catch (error) {
       showAlert({
-        title: 'Upload Failed',
-        message: 'Failed to upload images. Please check your internet connection and try again.',
+        title: t('message.error'),
+        message: t('message.error'),
         type: 'error'
       });
     } finally {
