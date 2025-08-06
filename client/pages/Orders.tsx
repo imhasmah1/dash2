@@ -71,7 +71,7 @@ export default function Orders() {
   const addProductToOrder = () => {
     setFormData(prev => ({
       ...prev,
-      items: [...prev.items, { productId: '', variantId: '', quantity: 1, price: 0 }]
+      items: [...prev.items, { productId: '', variantId: 'no-variant', quantity: 1, price: 0 }]
     }));
   };
 
