@@ -403,10 +403,10 @@ export default function Orders() {
               </div>
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={closeDialog}>
-                  Cancel
+                  {t('common.cancel')}
                 </Button>
                 <Button type="submit" className="bg-dashboard-primary hover:bg-dashboard-primary-light">
-                  {editingOrder ? 'Update Order' : 'Create Order'}
+                  {editingOrder ? t('orders.save') : t('orders.addOrder')}
                 </Button>
               </DialogFooter>
             </form>
