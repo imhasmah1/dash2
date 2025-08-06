@@ -45,63 +45,36 @@ export default function AdminAlertDialog({
     }
   };
 
-  const getTitleBarColor = () => {
-    switch (type) {
-      case 'error':
-        return 'from-red-600 to-red-700';
-      case 'success':
-        return 'from-green-600 to-green-700';
-      case 'warning':
-        return 'from-yellow-600 to-yellow-700';
-      default:
-        return 'from-blue-600 to-blue-700';
-    }
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-white border-2 border-gray-300 shadow-2xl">
-        {/* Windows-style title bar */}
-        <div className={`flex items-center justify-between px-4 py-2 bg-gradient-to-r ${getTitleBarColor()} text-white text-sm font-medium -m-6 mb-4`}>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-white/20 rounded-full"></div>
-            <span>System Administrator</span>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-6 h-6 flex items-center justify-center hover:bg-white/20 rounded-sm transition-colors"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-
+      <DialogContent className="max-w-md bg-white rounded-lg shadow-xl border border-gray-200">
         <DialogHeader className="space-y-4">
           <div className="flex items-start gap-4">
-            <div className={`p-2 rounded-full ${getIconBg()}`}>
+            <div className={`p-3 rounded-full ${getIconBg()}`}>
               {getIcon()}
             </div>
-            <div className="flex-1 space-y-2">
-              <DialogTitle className="text-base font-semibold text-gray-900 text-left">
+            <div className="flex-1 space-y-3">
+              <DialogTitle className="text-lg font-semibold text-gray-900 text-left">
                 {title}
               </DialogTitle>
-              <DialogDescription className="text-sm text-gray-700 text-left leading-relaxed">
+              <DialogDescription className="text-sm text-gray-600 text-left leading-relaxed">
                 {message}
               </DialogDescription>
             </div>
           </div>
         </DialogHeader>
 
-        <DialogFooter className="flex justify-center pt-4 border-t border-gray-200">
+        <DialogFooter className="flex justify-center pt-6">
           <Button
             onClick={onClose}
-            className={`px-8 py-2 text-sm text-white ${
-              type === 'error' 
-                ? 'bg-red-600 hover:bg-red-700' 
+            className={`px-8 py-2.5 text-sm font-medium text-white rounded-md transition-colors ${
+              type === 'error'
+                ? 'bg-red-600 hover:bg-red-700'
                 : type === 'success'
                 ? 'bg-green-600 hover:bg-green-700'
                 : type === 'warning'
                 ? 'bg-yellow-600 hover:bg-yellow-700'
-                : 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-dashboard-primary hover:bg-dashboard-primary-light'
             }`}
           >
             {buttonText}
