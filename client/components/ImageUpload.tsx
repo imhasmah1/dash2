@@ -55,7 +55,11 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
 
   const handleFiles = async (files: File[]) => {
     if (images.length + files.length > maxImages) {
-      alert(`Maximum ${maxImages} images allowed`);
+      showAlert({
+        title: 'Upload Limit Exceeded',
+        message: `Maximum ${maxImages} images allowed. Please remove some images before uploading more.`,
+        type: 'warning'
+      });
       return;
     }
 
