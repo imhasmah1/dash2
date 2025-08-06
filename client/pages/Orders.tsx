@@ -585,8 +585,14 @@ export default function Orders() {
                 <div className="flex justify-between items-center mb-2">
                   <span>Status:</span>
                   <Badge className={getStatusColor(viewingOrder.status)}>
-                    {viewingOrder.status.charAt(0).toUpperCase() + viewingOrder.status.slice(1)}
+                    {viewingOrder.status === 'picked-up' ? 'Picked Up' : viewingOrder.status.charAt(0).toUpperCase() + viewingOrder.status.slice(1)}
                   </Badge>
+                </div>
+                <div className="flex justify-between items-center mb-2">
+                  <span>Delivery Type:</span>
+                  <span className="capitalize font-medium text-dashboard-primary">
+                    {viewingOrder.deliveryType}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <span>Created:</span>
