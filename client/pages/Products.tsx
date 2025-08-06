@@ -184,17 +184,17 @@ export default function Products() {
                 <TabsContent value="details" className="space-y-4">
                   <div className="grid gap-4">
                     <div className="grid gap-2">
-                      <Label htmlFor="name">Product Name</Label>
+                      <Label htmlFor="name">{t('products.productName')}</Label>
                       <Input
                         id="name"
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        placeholder="Product name"
+                        placeholder={t('products.productName')}
                         required
                       />
                     </div>
                     <div className="grid gap-2">
-                      <Label htmlFor="description">Description</Label>
+                      <Label htmlFor="description">{t('products.productDescription')}</Label>
                       <Textarea
                         id="description"
                         value={formData.description}
