@@ -212,10 +212,10 @@ export default function Revenue() {
       {/* Charts */}
       <Tabs defaultValue="monthly" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="monthly">Monthly Trends</TabsTrigger>
-          <TabsTrigger value="daily">Daily Revenue</TabsTrigger>
-          <TabsTrigger value="products">Top Products</TabsTrigger>
-          <TabsTrigger value="delivery">Delivery Types</TabsTrigger>
+          <TabsTrigger value="monthly">{t('revenue.monthlyTrend')}</TabsTrigger>
+          <TabsTrigger value="daily">{t('revenue.dailyRevenue')}</TabsTrigger>
+          <TabsTrigger value="products">{t('revenue.topProducts')}</TabsTrigger>
+          <TabsTrigger value="delivery">{t('revenue.deliveryType')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="monthly" className="space-y-4">
