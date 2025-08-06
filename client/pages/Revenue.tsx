@@ -149,20 +149,20 @@ export default function Revenue() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">{t('revenue.totalRevenue')}</CardTitle>
             <DollarSign className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gray-900">
               {formatCurrency(revenueMetrics.totalRevenue)}
             </div>
-            <p className="text-xs text-gray-600 mt-1">All time revenue</p>
+            <p className="text-xs text-gray-600 mt-1">{t('revenue.totalRevenue')}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">This Month</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">{t('revenue.month')}</CardTitle>
             <Calendar className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
@@ -176,7 +176,7 @@ export default function Revenue() {
                 <TrendingDown className="w-3 h-3 text-red-600" />
               )}
               <p className={`text-xs ${revenueMetrics.monthlyGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {Math.abs(revenueMetrics.monthlyGrowth).toFixed(1)}% vs last month
+                {Math.abs(revenueMetrics.monthlyGrowth).toFixed(1)}% {t('revenue.month')}
               </p>
             </div>
           </CardContent>
@@ -184,27 +184,27 @@ export default function Revenue() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Avg Order Value</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">{t('revenue.avgOrderValue')}</CardTitle>
             <Target className="w-4 h-4 text-purple-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gray-900">
               {formatCurrency(revenueMetrics.avgOrderValue)}
             </div>
-            <p className="text-xs text-gray-600 mt-1">Per order average</p>
+            <p className="text-xs text-gray-600 mt-1">{t('revenue.avgOrderValue')}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Revenue Goal</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">{t('revenue.revenue')}</CardTitle>
             <Award className="w-4 h-4 text-orange-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gray-900">
               {((revenueMetrics.currentMonthRevenue / 100) * 100).toFixed(0)}%
             </div>
-            <p className="text-xs text-gray-600 mt-1">Of BD 100 monthly goal</p>
+            <p className="text-xs text-gray-600 mt-1">BD 100 {t('revenue.month')}</p>
           </CardContent>
         </Card>
       </div>
