@@ -419,8 +419,8 @@ export default function Revenue() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Goals & Targets</CardTitle>
-            <CardDescription>Progress towards revenue objectives</CardDescription>
+            <CardTitle>{t('revenue.revenue')}</CardTitle>
+            <CardDescription>{t('revenue.overview')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
