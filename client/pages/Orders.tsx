@@ -535,7 +535,7 @@ export default function Orders() {
                 <div className="space-y-2">
                   {viewingOrder.items.map((item, index) => {
                     const product = getProductById(item.productId);
-                    const variant = item.variantId ? getVariantById(item.productId, item.variantId) : null;
+                    const variant = (item.variantId && item.variantId !== 'no-variant') ? getVariantById(item.productId, item.variantId) : null;
                     return (
                       <div key={index} className="flex justify-between items-center p-3 border rounded">
                         <div>
