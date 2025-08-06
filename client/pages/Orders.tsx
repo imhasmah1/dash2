@@ -477,7 +477,7 @@ export default function Orders() {
                   <div>
                     <h4 className="font-medium mb-2 flex items-center gap-2">
                       <Package className="w-4 h-4" />
-                      Products ({order.items.length})
+                      {t('nav.products')} ({order.items.length})
                     </h4>
                     <div className="space-y-2">
                       {order.items.slice(0, 2).map((item, index) => {
