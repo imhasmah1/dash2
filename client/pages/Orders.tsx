@@ -92,7 +92,7 @@ export default function Orders() {
             const product = getProductById(value as string);
             if (product) {
               updatedItem.price = product.price;
-              updatedItem.variantId = ''; // Reset variant when product changes
+              updatedItem.variantId = 'no-variant'; // Reset variant when product changes
             }
           }
           return updatedItem;
