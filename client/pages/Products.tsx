@@ -295,9 +295,9 @@ export default function Products() {
 
                     {formData.variants.length > 0 && (
                       <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg mt-4">
-                        <span className="font-medium">Total Stock:</span>
+                        <span className="font-medium">{t('products.stock')}:</span>
                         <span className="text-xl font-bold text-dashboard-primary">
-                          {getTotalStock()} units
+                          {getTotalStock()}
                         </span>
                       </div>
                     )}
