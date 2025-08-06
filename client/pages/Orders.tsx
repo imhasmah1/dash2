@@ -497,7 +497,7 @@ export default function Orders() {
                       })}
                       {order.items.length > 2 && (
                         <div className="text-sm text-gray-600 text-center">
-                          +{order.items.length - 2} more items
+                          +{order.items.length - 2} {t('orders.items')}
                         </div>
                       )}
                     </div>
