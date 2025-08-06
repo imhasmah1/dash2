@@ -54,7 +54,7 @@ export const getAllOrders: RequestHandler = (req, res) => {
 };
 
 export const createOrder: RequestHandler = (req, res) => {
-  const { customerId, items, status } = req.body;
+  const { customerId, items, status, deliveryType, notes } = req.body;
   
   if (!customerId || !items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'Customer ID and items are required' });
