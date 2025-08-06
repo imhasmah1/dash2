@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import { 
-  LayoutDashboard, 
-  Package, 
-  ShoppingCart, 
-  Users, 
-  TrendingUp, 
+import {
+  LayoutDashboard,
+  Package,
+  ShoppingCart,
+  Users,
+  TrendingUp,
   LogOut,
   Menu,
-  X
+  X,
+  Languages
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
