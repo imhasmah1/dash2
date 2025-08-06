@@ -1,46 +1,55 @@
 import "./global.css";
 
-// Suppress defaultProps warnings from Recharts library
+// Suppress defaultProps warnings from Recharts library - Complete override
 const originalWarn = console.warn;
 const originalError = console.error;
 
-console.warn = (...args) => {
+// Override console.warn completely to suppress Recharts warnings
+console.warn = function(...args) {
+  // Convert all arguments to strings for checking
   const message = String(args[0] || '');
-  const allArgs = args.join(' ');
+  const allArgsString = args.map(arg => String(arg)).join(' ');
 
-  // Comprehensive check for Recharts defaultProps warnings
-  const isRechartsWarning =
-    message.includes('defaultProps will be removed') ||
-    message.includes('Support for defaultProps will be removed') ||
-    message.includes('%s: Support for defaultProps') ||
-    allArgs.includes('XAxis') ||
-    allArgs.includes('YAxis') ||
-    allArgs.includes('defaultProps will be removed from function components') ||
-    allArgs.includes('recharts');
+  // Extensive checks for all possible Recharts warning formats
+  const suppressPatterns = [
+    'defaultProps will be removed',
+    'Support for defaultProps',
+    '%s: Support for defaultProps',
+    'XAxis',
+    'YAxis',
+    'recharts',
+    'function components in a future major release',
+    'Use JavaScript default parameters instead'
+  ];
 
-  if (isRechartsWarning) {
-    return; // Suppress the warning
+  const shouldSuppress = suppressPatterns.some(pattern =>
+    message.includes(pattern) || allArgsString.includes(pattern)
+  );
+
+  if (!shouldSuppress) {
+    originalWarn.apply(console, args);
   }
-
-  originalWarn(...args);
 };
 
-console.error = (...args) => {
+// Also override console.error for completeness
+console.error = function(...args) {
   const message = String(args[0] || '');
-  const allArgs = args.join(' ');
+  const allArgsString = args.map(arg => String(arg)).join(' ');
 
-  // Also suppress if they appear as errors
-  const isRechartsError =
-    message.includes('defaultProps will be removed') ||
-    allArgs.includes('XAxis') ||
-    allArgs.includes('YAxis') ||
-    allArgs.includes('recharts');
+  const suppressPatterns = [
+    'defaultProps will be removed',
+    'XAxis',
+    'YAxis',
+    'recharts'
+  ];
 
-  if (isRechartsError) {
-    return; // Suppress the error
+  const shouldSuppress = suppressPatterns.some(pattern =>
+    message.includes(pattern) || allArgsString.includes(pattern)
+  );
+
+  if (!shouldSuppress) {
+    originalError.apply(console, args);
   }
-
-  originalError(...args);
 };
 
 import { Toaster } from "@/components/ui/toaster";
