@@ -136,6 +136,12 @@ export default function Revenue() {
     };
   }, [orders, products, getProductById]);
 
+  // Create translated delivery type data
+  const translatedDeliveryTypeData = [
+    { name: t('orders.delivery'), value: revenueMetrics.deliveryTypeData[0]?.value || 0 },
+    { name: t('orders.pickup'), value: revenueMetrics.deliveryTypeData[1]?.value || 0 }
+  ];
+
   const formatCurrency = (amount: number) => `BD ${amount.toFixed(2)}`;
 
   return (
