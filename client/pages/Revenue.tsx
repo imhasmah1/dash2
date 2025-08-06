@@ -425,33 +425,33 @@ export default function Revenue() {
           <CardContent className="space-y-4">
             <div>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium">Monthly Target</span>
+                <span className="text-sm font-medium">{t('revenue.month')}</span>
                 <span className="text-sm text-gray-600">BD 100.00</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-dashboard-primary h-2 rounded-full" 
+                <div
+                  className="bg-dashboard-primary h-2 rounded-full"
                   style={{ width: `${Math.min((revenueMetrics.currentMonthRevenue / 100) * 100, 100)}%` }}
                 ></div>
               </div>
               <p className="text-xs text-gray-600 mt-1">
-                {formatCurrency(revenueMetrics.currentMonthRevenue)} achieved
+                {formatCurrency(revenueMetrics.currentMonthRevenue)} {t('revenue.revenue')}
               </p>
             </div>
 
             <div>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium">Quarterly Target</span>
+                <span className="text-sm font-medium">{t('revenue.revenue')}</span>
                 <span className="text-sm text-gray-600">BD 300.00</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-dashboard-secondary h-2 rounded-full" 
+                <div
+                  className="bg-dashboard-secondary h-2 rounded-full"
                   style={{ width: `${Math.min((revenueMetrics.totalRevenue / 300) * 100, 100)}%` }}
                 ></div>
               </div>
               <p className="text-xs text-gray-600 mt-1">
-                {formatCurrency(revenueMetrics.totalRevenue)} achieved
+                {formatCurrency(revenueMetrics.totalRevenue)} {t('revenue.revenue')}
               </p>
             </div>
 
