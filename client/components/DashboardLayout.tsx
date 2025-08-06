@@ -20,12 +20,12 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-const navigation = [
-  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Products', href: '/products', icon: Package },
-  { name: 'Orders', href: '/orders', icon: ShoppingCart },
-  { name: 'Customers', href: '/customers', icon: Users },
-  { name: 'Revenue', href: '/revenue', icon: TrendingUp },
+const getNavigation = (t: (key: string) => string) => [
+  { name: t('nav.dashboard'), href: '/', icon: LayoutDashboard },
+  { name: t('nav.products'), href: '/products', icon: Package },
+  { name: t('nav.orders'), href: '/orders', icon: ShoppingCart },
+  { name: t('nav.customers'), href: '/customers', icon: Users },
+  { name: t('nav.revenue'), href: '/revenue', icon: TrendingUp },
 ];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
