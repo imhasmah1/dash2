@@ -114,9 +114,13 @@ export default function Orders() {
     }
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this order?')) {
-      deleteOrder(id);
+      try {
+        await deleteOrder(id);
+      } catch (error) {
+        alert('Failed to delete order. Please try again.');
+      }
     }
   };
 
