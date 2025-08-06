@@ -4,16 +4,14 @@ import { useData } from '@/contexts/DataContext';
 
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
-    case 'completed':
-      return 'text-green-700 bg-green-100';
     case 'processing':
-      return 'text-yellow-700 bg-yellow-100';
-    case 'shipped':
       return 'text-blue-700 bg-blue-100';
-    case 'pending':
-      return 'text-orange-700 bg-orange-100';
-    case 'cancelled':
-      return 'text-red-700 bg-red-100';
+    case 'ready':
+      return 'text-yellow-700 bg-yellow-100';
+    case 'delivered':
+      return 'text-green-700 bg-green-100';
+    case 'picked-up':
+      return 'text-purple-700 bg-purple-100';
     default:
       return 'text-gray-700 bg-gray-100';
   }
