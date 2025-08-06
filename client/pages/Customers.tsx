@@ -63,9 +63,13 @@ export default function Customers() {
     }
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this customer?')) {
-      deleteCustomer(id);
+      try {
+        await deleteCustomer(id);
+      } catch (error) {
+        alert('Failed to delete customer. Please try again.');
+      }
     }
   };
 
