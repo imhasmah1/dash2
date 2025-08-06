@@ -351,7 +351,7 @@ export default function Orders() {
                 <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                   <span className="font-medium">Total:</span>
                   <span className="text-xl font-bold text-dashboard-primary">
-                    ${calculateTotal().toFixed(2)}
+                    BD {calculateTotal().toFixed(2)}
                   </span>
                 </div>
               </div>
