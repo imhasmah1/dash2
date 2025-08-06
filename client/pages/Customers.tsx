@@ -195,7 +195,7 @@ export default function Customers() {
                   {customer.name}
                 </CardTitle>
                 <Badge variant="outline" className="text-xs">
-                  Customer
+                  {t('customers.title')}
                 </Badge>
               </div>
             </CardHeader>
