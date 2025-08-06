@@ -217,7 +217,7 @@ export default function Orders() {
                     {formData.items.map((item, index) => {
                       const product = getProductById(item.productId);
                       const availableVariants = getAvailableVariants(item.productId);
-                      const selectedVariant = item.variantId ? getVariantById(item.productId, item.variantId) : null;
+                      const selectedVariant = (item.variantId && item.variantId !== 'no-variant') ? getVariantById(item.productId, item.variantId) : null;
                       
                       return (
                         <div key={index} className="flex gap-2 items-end p-4 border rounded-lg">
