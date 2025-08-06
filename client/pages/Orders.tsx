@@ -405,7 +405,7 @@ export default function Orders() {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-dashboard-primary">
-                      ${order.total.toFixed(2)}
+                      BD {order.total.toFixed(2)}
                     </div>
                     <div className="flex items-center gap-2 mt-1">
                       <Select
