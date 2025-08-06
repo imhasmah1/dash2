@@ -102,8 +102,8 @@ export default function Revenue() {
     }, {} as Record<string, number>);
 
     const deliveryTypeData = [
-      { name: t('orders.delivery'), value: deliveryRevenue.delivery || 0 },
-      { name: t('orders.pickup'), value: deliveryRevenue.pickup || 0 }
+      { name: 'Delivery', value: deliveryRevenue.delivery || 0 },
+      { name: 'Pickup', value: deliveryRevenue.pickup || 0 }
     ];
 
     // Revenue by product
