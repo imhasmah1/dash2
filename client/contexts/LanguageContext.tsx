@@ -190,7 +190,7 @@ const translations = {
     'products.title': 'المنتجات',
     'products.addNew': 'إضافة منتج جديد',
     'products.search': 'البحث في المنتجات...',
-    'products.name': 'الاس��',
+    'products.name': 'الاسم',
     'products.price': 'السعر',
     'products.stock': 'المخزون',
     'products.variants': 'الأنواع',
@@ -248,6 +248,7 @@ const translations = {
     'orders.orderDetails': 'تفاصيل الطلب',
     'orders.items': 'العناصر',
     'orders.orderTotal': 'إجمالي الطلب',
+    'orders.save': 'حفظ',
     
     // Customers
     'customers.title': 'العملاء',
@@ -276,7 +277,7 @@ const translations = {
     'revenue.dailyRevenue': 'الإيرادات اليومية (هذا الشهر)',
     'revenue.topProducts': 'أفضل المنتجات من حيث الإيرادات',
     'revenue.deliveryAnalysis': 'تحليل نوع التسليم',
-    'revenue.revenueByStatus': 'الإيرادات حسب حالة ��لطلب',
+    'revenue.revenueByStatus': 'الإيرادات حسب حالة الطلب',
     'revenue.month': 'الشهر',
     'revenue.revenue': 'الإيرادات',
     'revenue.day': 'اليوم',
