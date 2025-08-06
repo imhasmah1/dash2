@@ -244,7 +244,7 @@ export default function Orders() {
                             <div className="flex-1">
                               <Label>Variant</Label>
                               <Select
-                                value={item.variantId || ''}
+                                value={item.variantId || 'no-variant'}
                                 onValueChange={(value) => updateOrderItem(index, 'variantId', value)}
                               >
                                 <SelectTrigger>
