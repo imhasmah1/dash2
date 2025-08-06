@@ -370,21 +370,21 @@ export default function Orders() {
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="deliveryType">Delivery Type</Label>
+                    <Label htmlFor="deliveryType">{t('orders.deliveryType')}</Label>
                     <Select value={formData.deliveryType} onValueChange={(value: Order['deliveryType']) => setFormData(prev => ({ ...prev, deliveryType: value }))}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="delivery">Delivery</SelectItem>
-                        <SelectItem value="pickup">Pickup</SelectItem>
+                        <SelectItem value="delivery">{t('orders.delivery')}</SelectItem>
+                        <SelectItem value="pickup">{t('orders.pickup')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="notes">Notes (Optional)</Label>
+                  <Label htmlFor="notes">{t('orders.notes')}</Label>
                   <Textarea
                     id="notes"
                     value={formData.notes}
