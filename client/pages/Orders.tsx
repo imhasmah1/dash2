@@ -15,6 +15,7 @@ import { Plus, Search, Edit, Trash2, ShoppingCart, User, Package, Minus, Eye, Ph
 export default function Orders() {
   const { orders, customers, products, addOrder, updateOrder, deleteOrder, updateOrderStatus, getCustomerById, getProductById, getVariantById } = useData();
   const { showConfirm, showAlert } = useDialog();
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
