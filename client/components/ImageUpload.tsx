@@ -116,10 +116,10 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
               )}
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {uploading ? 'Uploading...' : 'Upload Images'}
+              {uploading ? t('common.loading') : t('products.productImages')}
             </h3>
             <p className="text-gray-600 mb-4">
-              Drag and drop your images here, or click to browse
+              {t('products.dragImages')}
             </p>
             <input
               type="file"
