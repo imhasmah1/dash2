@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Search, Edit, Trash2, Users, Phone, Mail, MapPin } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Users, Phone, MapPin } from 'lucide-react';
 
 export default function Customers() {
   const { customers, addCustomer, updateCustomer, deleteCustomer } = useData();
