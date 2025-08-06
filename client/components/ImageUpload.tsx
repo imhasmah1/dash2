@@ -35,7 +35,11 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
     const imageFiles = files.filter(file => file.type.startsWith('image/'));
     
     if (imageFiles.length === 0) {
-      alert('Please drop only image files');
+      showAlert({
+        title: 'Invalid File Type',
+        message: 'Please drop only image files (PNG, JPG, JPEG).',
+        type: 'warning'
+      });
       return;
     }
 
