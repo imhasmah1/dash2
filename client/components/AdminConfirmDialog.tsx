@@ -93,7 +93,7 @@ export default function AdminConfirmDialog({
                 : 'bg-yellow-600 hover:bg-yellow-700'
             }`}
           >
-            {confirmText}
+            {finalConfirmText}
           </Button>
         </DialogFooter>
       </DialogContent>
