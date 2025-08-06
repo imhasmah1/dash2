@@ -20,6 +20,7 @@ const getStatusColor = (status: string) => {
 
 export default function Dashboard() {
   const { orders, customers, products, getCustomerById, getProductById } = useData();
+  const { t } = useLanguage();
 
   const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
   const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
