@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
   const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
-  const pendingOrders = orders.filter(order => order.status === 'pending').length;
+  const pendingOrders = orders.filter(order => order.status === 'processing').length;
 
   const stats = [
     {
