@@ -84,7 +84,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                         : "text-gray-700 hover:bg-gray-100"
                     )}
                   >
-                    <item.icon className={cn("w-5 h-5", isRTL ? "ml-3" : "mr-3")} />
+                    <item.icon className={cn("w-5 h-5", isRTL ? "mr-3" : "mr-3")} />
                     {item.name}
                   </Link>
                 </li>
