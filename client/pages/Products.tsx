@@ -236,12 +236,12 @@ export default function Products() {
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <Label className="text-base font-medium">Product Variants</Label>
-                        <p className="text-sm text-gray-600">Add different variants with individual stock quantities</p>
+                        <Label className="text-base font-medium">{t('products.variants')}</Label>
+                        <p className="text-sm text-gray-600">{t('products.variants')}</p>
                       </div>
                       <Button type="button" onClick={addVariant} size="sm" variant="outline">
                         <Plus className="w-4 h-4 mr-2" />
-                        Add Variant
+                        {t('products.addVariant')}
                       </Button>
                     </div>
                     
