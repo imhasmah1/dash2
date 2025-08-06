@@ -35,6 +35,7 @@ const COLORS = ['#742370', '#401951', '#8b4d89', '#5a2972', '#b366a7', '#c785bb'
 
 export default function Revenue() {
   const { orders, products, getProductById } = useData();
+  const { t } = useLanguage();
 
   // Calculate revenue metrics
   const revenueMetrics = useMemo(() => {
