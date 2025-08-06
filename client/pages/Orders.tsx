@@ -361,10 +361,10 @@ export default function Orders() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="processing">Processing</SelectItem>
-                        <SelectItem value="ready">Ready</SelectItem>
-                        <SelectItem value="delivered">Delivered</SelectItem>
-                        <SelectItem value="picked-up">Picked Up</SelectItem>
+                        <SelectItem value="processing">{t('orders.processing')}</SelectItem>
+                        <SelectItem value="ready">{t('orders.ready')}</SelectItem>
+                        <SelectItem value="delivered">{t('orders.delivered')}</SelectItem>
+                        <SelectItem value="picked-up">{t('orders.pickedUp')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
