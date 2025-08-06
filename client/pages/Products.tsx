@@ -389,12 +389,12 @@ export default function Products() {
                   
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Package className="w-4 h-4" />
-                    <span>{product.totalStock} total units</span>
+                    <span>{product.totalStock} {t('products.stock')}</span>
                   </div>
 
                   {product.variants.length > 0 && (
                     <div className="space-y-1">
-                      <p className="text-sm font-medium text-gray-700">Variants:</p>
+                      <p className="text-sm font-medium text-gray-700">{t('products.variants')}:</p>
                       <div className="flex flex-wrap gap-1">
                         {product.variants.slice(0, 3).map((variant) => (
                           <Badge key={variant.id} variant="outline" className="text-xs">
