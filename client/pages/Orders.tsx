@@ -198,6 +198,21 @@ export default function Orders() {
     }
   };
 
+  const getStatusText = (status: Order['status']) => {
+    switch (status) {
+      case 'processing':
+        return t('orders.processing');
+      case 'ready':
+        return t('orders.ready');
+      case 'delivered':
+        return t('orders.delivered');
+      case 'picked-up':
+        return t('orders.pickedUp');
+      default:
+        return status;
+    }
+  };
+
   const getAvailableVariants = (productId: string) => {
     const product = getProductById(productId);
     return product?.variants || [];
