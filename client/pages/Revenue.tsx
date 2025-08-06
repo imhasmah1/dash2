@@ -307,7 +307,7 @@ export default function Revenue() {
                 <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
                     <Pie
-                      data={revenueMetrics.deliveryTypeData}
+                      data={translatedDeliveryTypeData}
                       cx="50%"
                       cy="50%"
                       labelLine={false}
@@ -316,7 +316,7 @@ export default function Revenue() {
                       fill="#8884d8"
                       dataKey="value"
                     >
-                      {revenueMetrics.deliveryTypeData.map((entry, index) => (
+                      {translatedDeliveryTypeData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
