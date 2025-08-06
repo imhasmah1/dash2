@@ -110,9 +110,9 @@ export default function Dashboard() {
       {/* Recent Orders */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-gray-900">Recent Orders</CardTitle>
+          <CardTitle className="text-xl font-semibold text-gray-900">{t('dashboard.recentOrders')}</CardTitle>
           <CardDescription>
-            Latest orders from your customers
+            {t('dashboard.recentOrders')}
           </CardDescription>
         </CardHeader>
         <CardContent>
