@@ -81,9 +81,13 @@ export default function Products() {
     }
   };
 
-  const handleDeleteProduct = (id: string) => {
+  const handleDeleteProduct = async (id: string) => {
     if (confirm('Are you sure you want to delete this product?')) {
-      deleteProduct(id);
+      try {
+        await deleteProduct(id);
+      } catch (error) {
+        alert('Failed to delete product. Please try again.');
+      }
     }
   };
 
