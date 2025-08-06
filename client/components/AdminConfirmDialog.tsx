@@ -22,9 +22,13 @@ export default function AdminConfirmDialog({
   title,
   message,
   type = 'warning',
-  confirmText = 'Yes',
-  cancelText = 'Cancel'
+  confirmText,
+  cancelText
 }: AdminConfirmDialogProps) {
+  const { t } = useLanguage();
+
+  const finalConfirmText = confirmText || t('common.yes');
+  const finalCancelText = cancelText || t('common.cancel');
   const getIcon = () => {
     switch (type) {
       case 'danger':
