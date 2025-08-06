@@ -11,6 +11,11 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ar' : 'en');
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
