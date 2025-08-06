@@ -307,20 +307,34 @@ export default function Orders() {
                   </div>
                 </div>
 
-                <div className="grid gap-2">
-                  <Label htmlFor="status">Status</Label>
-                  <Select value={formData.status} onValueChange={(value: Order['status']) => setFormData(prev => ({ ...prev, status: value }))}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="pending">Pending</SelectItem>
-                      <SelectItem value="processing">Processing</SelectItem>
-                      <SelectItem value="shipped">Shipped</SelectItem>
-                      <SelectItem value="completed">Completed</SelectItem>
-                      <SelectItem value="cancelled">Cancelled</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="status">Status</Label>
+                    <Select value={formData.status} onValueChange={(value: Order['status']) => setFormData(prev => ({ ...prev, status: value }))}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="processing">Processing</SelectItem>
+                        <SelectItem value="ready">Ready</SelectItem>
+                        <SelectItem value="delivered">Delivered</SelectItem>
+                        <SelectItem value="picked-up">Picked Up</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="grid gap-2">
+                    <Label htmlFor="deliveryType">Delivery Type</Label>
+                    <Select value={formData.deliveryType} onValueChange={(value: Order['deliveryType']) => setFormData(prev => ({ ...prev, deliveryType: value }))}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="delivery">Delivery</SelectItem>
+                        <SelectItem value="pickup">Pickup</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <div className="grid gap-2">
