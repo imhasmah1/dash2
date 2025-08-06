@@ -568,10 +568,10 @@ export default function Orders() {
                         </div>
                         <div className="text-right">
                           <div>
-                            {item.quantity} × ${item.price.toFixed(2)}
+                            {item.quantity} × BD {item.price.toFixed(2)}
                           </div>
                           <div className="font-medium">
-                            ${(item.quantity * item.price).toFixed(2)}
+                            BD {(item.quantity * item.price).toFixed(2)}
                           </div>
                         </div>
                       </div>
