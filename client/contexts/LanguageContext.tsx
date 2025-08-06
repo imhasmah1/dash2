@@ -220,7 +220,7 @@ const translations = {
     'orders.search': 'البحث في الطلبات...',
     'orders.orderId': 'رقم الطلب',
     'orders.customer': 'العميل',
-    'orders.total': 'الإ��مالي',
+    'orders.total': 'الإجمالي',
     'orders.status': 'الحالة',
     'orders.deliveryType': 'نوع التسليم',
     'orders.date': 'التاريخ',
@@ -267,6 +267,7 @@ const translations = {
     'customers.customerName': 'اسم العميل',
     'customers.customerPhone': 'هاتف العميل',
     'customers.customerAddress': 'عنوان العميل',
+    'customers.save': 'حفظ',
     
     // Revenue
     'revenue.title': 'تحليلات الإيرادات',
