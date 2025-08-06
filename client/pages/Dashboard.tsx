@@ -1,5 +1,6 @@
 import { DollarSign, ShoppingBag, TrendingUp, Clock } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useData } from '@/contexts/DataContext';
 
 const stats = [
   {
