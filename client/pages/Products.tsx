@@ -136,8 +136,8 @@ export default function Products() {
         });
       } catch (error) {
         showAlert({
-          title: 'Error',
-          message: 'Failed to delete product. Please try again.',
+          title: t('message.error'),
+          message: t('message.error'),
           type: 'error'
         });
       }
