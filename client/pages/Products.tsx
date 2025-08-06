@@ -355,7 +355,7 @@ export default function Products() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-dashboard-primary">
-                      ${product.price.toFixed(2)}
+                      BD {product.price.toFixed(2)}
                     </span>
                     <Badge className={stockStatus.color}>
                       {stockStatus.text}
