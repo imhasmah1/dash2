@@ -67,9 +67,11 @@ export const createOrder: RequestHandler = (req, res) => {
     customerId,
     items,
     total,
-    status: status || 'pending',
+    status: status || 'processing',
+    deliveryType: deliveryType || 'delivery',
     createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
+    updatedAt: new Date().toISOString(),
+    notes
   };
 
   orders.push(newOrder);
