@@ -31,7 +31,14 @@ const getNavigation = (t: (key: string) => string) => [
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { logout } = useAuth();
+  const { language, setLanguage, isRTL, t } = useLanguage();
   const location = useLocation();
+
+  const navigation = getNavigation(t);
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ar' : 'en');
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
