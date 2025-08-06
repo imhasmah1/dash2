@@ -46,6 +46,7 @@ export default function Orders() {
         customerId: order.customerId,
         items: [...order.items],
         status: order.status,
+        deliveryType: order.deliveryType,
         notes: order.notes || ''
       });
     } else {
