@@ -4,12 +4,22 @@ import "./global.css";
 const originalWarn = console.warn;
 console.warn = (...args) => {
   const message = args[0];
+  // Handle React warning format with %s placeholders
   if (typeof message === 'string' && (
     message.includes('defaultProps will be removed from function components') ||
-    message.includes('Support for defaultProps will be removed from function components')
+    message.includes('Support for defaultProps will be removed from function components') ||
+    message.includes('%s: Support for defaultProps will be removed')
   )) {
     return;
   }
+
+  // Also check formatted message by joining all args
+  const fullMessage = args.join(' ');
+  if (fullMessage.includes('Support for defaultProps will be removed from function components') ||
+      fullMessage.includes('XAxis') || fullMessage.includes('YAxis')) {
+    return;
+  }
+
   originalWarn(...args);
 };
 
