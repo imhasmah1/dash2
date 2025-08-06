@@ -107,7 +107,11 @@ export default function Products() {
       }
       closeDialog();
     } catch (error) {
-      alert('Failed to save product. Please try again.');
+      showAlert({
+        title: 'Error',
+        message: 'Failed to save product. Please try again.',
+        type: 'error'
+      });
     }
   };
 
