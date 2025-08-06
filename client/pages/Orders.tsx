@@ -251,7 +251,7 @@ export default function Orders() {
                                   <SelectValue placeholder="Select variant" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="">No variant</SelectItem>
+                                  <SelectItem value="no-variant">No variant</SelectItem>
                                   {availableVariants.map((variant) => (
                                     <SelectItem key={variant.id} value={variant.id}>
                                       {variant.name} (Stock: {variant.stock})
