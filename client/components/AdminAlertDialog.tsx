@@ -18,8 +18,11 @@ export default function AdminAlertDialog({
   title,
   message,
   type = 'info',
-  buttonText = 'OK'
+  buttonText
 }: AdminAlertDialogProps) {
+  const { t } = useLanguage();
+
+  const finalButtonText = buttonText || t('common.close');
   const getIcon = () => {
     switch (type) {
       case 'success':
