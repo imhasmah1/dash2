@@ -154,8 +154,8 @@ export default function Products() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Products</h1>
-          <p className="text-gray-600 mt-2">Manage your product inventory with variants and images</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('products.title')}</h1>
+          <p className="text-gray-600 mt-2">{t('products.title')}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
