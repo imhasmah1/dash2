@@ -88,7 +88,7 @@ export default function Dashboard() {
         customer: customer?.name || 'Unknown Customer',
         product: itemsCount > 1 ? `${mainProduct?.name || 'Product'} +${itemsCount - 1} more` : (mainProduct?.name || 'Unknown Product'),
         amount: `BD ${order.total.toFixed(2)}`,
-        status: getStatusText(order.status),
+        status: getStatusText(order.status, t),
         date: new Date(order.createdAt).toISOString().split('T')[0]
       };
     });
