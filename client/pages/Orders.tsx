@@ -462,7 +462,12 @@ export default function Orders() {
                       <Clock className="w-4 h-4" />
                       {new Date(order.createdAt).toLocaleDateString()}
                     </span>
-                    <span>Updated: {new Date(order.updatedAt).toLocaleDateString()}</span>
+                    <div className="flex items-center gap-4">
+                      <span className="capitalize font-medium text-dashboard-primary">
+                        {order.deliveryType}
+                      </span>
+                      <span>Updated: {new Date(order.updatedAt).toLocaleDateString()}</span>
+                    </div>
                   </div>
 
                   <div className="flex gap-2 pt-2">
