@@ -510,9 +510,9 @@ export default function Orders() {
                     </span>
                     <div className="flex items-center gap-4">
                       <span className="capitalize font-medium text-dashboard-primary">
-                        {order.deliveryType}
+                        {order.deliveryType === 'delivery' ? t('orders.delivery') : t('orders.pickup')}
                       </span>
-                      <span>Updated: {new Date(order.updatedAt).toLocaleDateString()}</span>
+                      <span>{t('orders.date')}: {new Date(order.updatedAt).toLocaleDateString()}</span>
                     </div>
                   </div>
 
