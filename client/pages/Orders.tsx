@@ -134,7 +134,11 @@ export default function Orders() {
       }
       closeDialog();
     } catch (error) {
-      alert('Failed to save order. Please try again.');
+      showAlert({
+        title: 'Error',
+        message: 'Failed to save order. Please try again.',
+        type: 'error'
+      });
     }
   };
 
