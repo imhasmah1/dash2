@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useData } from '@/contexts/DataContext';
+import { useDialog } from '@/contexts/DialogContext';
 import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
 
 interface ImageUploadProps {
