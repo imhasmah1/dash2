@@ -391,11 +391,11 @@ export default function Revenue() {
 
             <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <div>
-                <h4 className="font-medium text-blue-900">Best Performing Day</h4>
+                <h4 className="font-medium text-blue-900">{t('revenue.day')}</h4>
                 <p className="text-sm text-blue-700">
-                  Day {revenueMetrics.dailyRevenue.reduce((max, day, index) => 
+                  {t('revenue.day')} {revenueMetrics.dailyRevenue.reduce((max, day, index) =>
                     day.revenue > revenueMetrics.dailyRevenue[max].revenue ? index : max, 0
-                  ) + 1} of this month
+                  ) + 1} {t('revenue.month')}
                 </p>
               </div>
               <Badge className="bg-blue-100 text-blue-700">
