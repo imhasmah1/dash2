@@ -27,38 +27,49 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dashboard-primary/10 to-dashboard-secondary/10">
-      <div className="w-full max-w-md">
-        <Card className="shadow-2xl border-0">
-          <CardHeader className="text-center space-y-4">
-            <div className="mx-auto mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dashboard-primary/10 to-dashboard-secondary/10 relative">
+      {/* Language Switcher - Top Right */}
+      <div className="absolute top-6 right-6">
+        <Button
+          onClick={toggleLanguage}
+          variant="outline"
+          size="lg"
+          className="bg-white/80 backdrop-blur-sm border-dashboard-primary/20 hover:bg-white hover:border-dashboard-primary shadow-lg"
+        >
+          <Languages className="w-5 h-5 mr-2" />
+          <span className="font-medium">
+            {language === 'en' ? t('language.arabic') : t('language.english')}
+          </span>
+        </Button>
+      </div>
+
+      <div className="w-full max-w-lg px-6">
+        <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur-sm">
+          <CardHeader className="text-center space-y-6 pt-8 pb-6">
+            {/* Larger Logo */}
+            <div className="mx-auto mb-6">
               {language === 'ar' ? (
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F9ce73522cb8c4a6bae702c071e0fcfce?format=webp&width=800"
                   alt="Azhar Store Logo Arabic"
-                  className="h-20 w-auto"
+                  className="h-32 w-auto mx-auto"
                 />
               ) : (
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2Fd71ec3ff267e450e915617d640199433?format=webp&width=800"
                   alt="Azhar Store Logo English"
-                  className="h-20 w-auto"
+                  className="h-32 w-auto mx-auto"
                 />
               )}
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900">{t('login.title')}</CardTitle>
-            <CardDescription className="text-gray-600">
-              {t('login.password')}
-            </CardDescription>
-            <Button
-              onClick={toggleLanguage}
-              variant="ghost"
-              size="sm"
-              className="mx-auto"
-            >
-              <Languages className="w-4 h-4 mr-2" />
-              {language === 'en' ? t('language.arabic') : t('language.english')}
-            </Button>
+
+            {/* Welcome Text */}
+            <div className="space-y-2">
+              <CardTitle className="text-3xl font-bold text-gray-900">{t('login.title')}</CardTitle>
+              <CardDescription className="text-gray-600 text-lg">
+                {t('dashboard.welcome')}
+              </CardDescription>
+            </div>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
