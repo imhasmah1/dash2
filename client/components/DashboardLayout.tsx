@@ -93,14 +93,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </ul>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
+          <Button
+            onClick={toggleLanguage}
+            variant="outline"
+            className="w-full justify-start"
+          >
+            <Languages className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
+            {t('language.switch')}
+          </Button>
           <Button
             onClick={logout}
             variant="outline"
             className="w-full justify-start"
           >
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
+            <LogOut className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
+            {t('nav.logout')}
           </Button>
         </div>
       </div>
