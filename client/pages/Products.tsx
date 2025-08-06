@@ -119,19 +119,19 @@ export default function Products() {
 
   const handleDeleteProduct = async (id: string) => {
     const confirmed = await showConfirm({
-      title: 'Delete Product',
-      message: 'Are you sure you want to delete this product? This action cannot be undone and will affect any existing orders.',
+      title: t('products.delete'),
+      message: t('message.deleteConfirm'),
       type: 'danger',
-      confirmText: 'Delete',
-      cancelText: 'Cancel'
+      confirmText: t('products.delete'),
+      cancelText: t('common.cancel')
     });
 
     if (confirmed) {
       try {
         await deleteProduct(id);
         showAlert({
-          title: 'Success',
-          message: 'Product deleted successfully.',
+          title: t('message.success'),
+          message: t('message.productDeleted'),
           type: 'success'
         });
       } catch (error) {
