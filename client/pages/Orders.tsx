@@ -90,24 +90,28 @@ export default function Orders() {
     return formData.items.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.customerId || formData.items.length === 0) {
       alert('Please select a customer and add at least one product');
       return;
     }
 
-    const orderData = {
-      ...formData,
-      total: calculateTotal()
-    };
+    try {
+      const orderData = {
+        ...formData,
+        total: calculateTotal()
+      };
 
-    if (editingOrder) {
-      updateOrder(editingOrder.id, orderData);
-    } else {
-      addOrder(orderData);
+      if (editingOrder) {
+        await updateOrder(editingOrder.id, orderData);
+      } else {
+        await addOrder(orderData);
+      }
+      closeDialog();
+    } catch (error) {
+      alert('Failed to save order. Please try again.');
     }
-    closeDialog();
   };
 
   const handleDelete = (id: string) => {
