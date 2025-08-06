@@ -235,19 +235,19 @@ export default function Orders() {
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
-                {editingOrder ? 'Edit Order' : 'Create New Order'}
+                {editingOrder ? t('orders.editOrder') : t('orders.addOrder')}
               </DialogTitle>
               <DialogDescription>
-                {editingOrder ? 'Update order details below.' : 'Select a customer and add products to create a new order.'}
+                {editingOrder ? t('orders.editOrder') : t('orders.addOrder')}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-6 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="customer">Customer</Label>
+                  <Label htmlFor="customer">{t('orders.customer')}</Label>
                   <Select value={formData.customerId} onValueChange={(value) => setFormData(prev => ({ ...prev, customerId: value }))}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a customer" />
+                      <SelectValue placeholder={t('orders.selectCustomer')} />
                     </SelectTrigger>
                     <SelectContent>
                       {customers.map((customer) => (
