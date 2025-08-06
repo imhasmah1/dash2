@@ -444,7 +444,7 @@ export default function Orders() {
                               {variant && ` (${variant.name})`}
                             </span>
                             <span className="text-sm text-gray-600">
-                              {item.quantity}x ${item.price.toFixed(2)} = ${(item.quantity * item.price).toFixed(2)}
+                              {item.quantity}x BD {item.price.toFixed(2)} = BD {(item.quantity * item.price).toFixed(2)}
                             </span>
                           </div>
                         );
