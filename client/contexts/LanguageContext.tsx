@@ -92,6 +92,7 @@ const translations = {
     'orders.orderDetails': 'Order Details',
     'orders.items': 'Items',
     'orders.orderTotal': 'Order Total',
+    'orders.save': 'Save',
     
     // Customers
     'customers.title': 'Customers',
@@ -189,7 +190,7 @@ const translations = {
     'products.title': 'المنتجات',
     'products.addNew': 'إضافة منتج جديد',
     'products.search': 'البحث في المنتجات...',
-    'products.name': 'الاسم',
+    'products.name': 'الاس��',
     'products.price': 'السعر',
     'products.stock': 'المخزون',
     'products.variants': 'الأنواع',
@@ -275,7 +276,7 @@ const translations = {
     'revenue.dailyRevenue': 'الإيرادات اليومية (هذا الشهر)',
     'revenue.topProducts': 'أفضل المنتجات من حيث الإيرادات',
     'revenue.deliveryAnalysis': 'تحليل نوع التسليم',
-    'revenue.revenueByStatus': 'الإيرادات حسب حالة الطلب',
+    'revenue.revenueByStatus': 'الإيرادات حسب حالة ��لطلب',
     'revenue.month': 'الشهر',
     'revenue.revenue': 'الإيرادات',
     'revenue.day': 'اليوم',
@@ -316,7 +317,7 @@ const translations = {
     'login.title': 'تسجيل دخول الإدارة',
     'login.password': 'كلمة المرور',
     'login.signIn': 'تسجيل الدخول',
-    'login.invalidPassword': 'كلمة مرور غير صح��حة',
+    'login.invalidPassword': 'كلمة مرور غير صحيحة',
     
     // Language
     'language.english': 'English',
