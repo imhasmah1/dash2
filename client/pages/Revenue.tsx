@@ -405,9 +405,9 @@ export default function Revenue() {
 
             <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
               <div>
-                <h4 className="font-medium text-purple-900">Order Efficiency</h4>
+                <h4 className="font-medium text-purple-900">{t('revenue.avgOrderValue')}</h4>
                 <p className="text-sm text-purple-700">
-                  Average revenue per order
+                  {t('revenue.avgOrderValue')}
                 </p>
               </div>
               <Badge className="bg-purple-100 text-purple-700">
