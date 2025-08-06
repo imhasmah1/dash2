@@ -113,7 +113,11 @@ export default function Orders() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.customerId || formData.items.length === 0) {
-      alert('Please select a customer and add at least one product');
+      showAlert({
+        title: 'Validation Error',
+        message: 'Please select a customer and add at least one product to create an order.',
+        type: 'warning'
+      });
       return;
     }
 
