@@ -1,61 +1,13 @@
 import { useState } from 'react';
+import { useData } from '@/contexts/DataContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Search, Edit, Trash2, Package } from 'lucide-react';
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  stock: number;
-  image: string;
-  variants: string[];
-}
-
-const sampleProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Wireless Bluetooth Headphones',
-    description: 'Premium quality headphones with noise cancellation',
-    price: 89.99,
-    stock: 45,
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop',
-    variants: ['Black', 'White', 'Silver']
-  },
-  {
-    id: '2',
-    name: 'Adjustable Laptop Stand',
-    description: 'Ergonomic laptop stand for better posture',
-    price: 45.00,
-    stock: 23,
-    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=200&h=200&fit=crop',
-    variants: ['Natural Wood', 'Black']
-  },
-  {
-    id: '3',
-    name: 'USB-C Cable 6ft',
-    description: 'Fast charging USB-C to USB-C cable',
-    price: 12.99,
-    stock: 120,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=200&fit=crop',
-    variants: ['Black', 'White']
-  },
-  {
-    id: '4',
-    name: 'Portable Bluetooth Speaker',
-    description: 'Waterproof speaker with 12-hour battery life',
-    price: 129.99,
-    stock: 8,
-    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop',
-    variants: ['Red', 'Blue', 'Black']
-  },
-];
-
 export default function Products() {
-  const [products, setProducts] = useState<Product[]>(sampleProducts);
+  const { products, deleteProduct } = useData();
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredProducts = products.filter(product =>
