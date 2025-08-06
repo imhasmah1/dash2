@@ -73,7 +73,7 @@ export default function Dashboard() {
         customer: customer?.name || 'Unknown Customer',
         product: itemsCount > 1 ? `${mainProduct?.name || 'Product'} +${itemsCount - 1} more` : (mainProduct?.name || 'Unknown Product'),
         amount: `BD ${order.total.toFixed(2)}`,
-        status: order.status === 'picked-up' ? 'Picked Up' : order.status.charAt(0).toUpperCase() + order.status.slice(1),
+        status: getStatusText(order.status),
         date: new Date(order.createdAt).toISOString().split('T')[0]
       };
     });
