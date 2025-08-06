@@ -486,7 +486,7 @@ export default function Orders() {
                         return (
                           <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                             <span>
-                              {product?.name || 'Unknown Product'}
+                              {product?.name || t('products.title')}
                               {variant && ` (${variant.name})`}
                             </span>
                             <span className="text-sm text-gray-600">
