@@ -221,8 +221,8 @@ export default function Revenue() {
         <TabsContent value="monthly" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Monthly Revenue Trend</CardTitle>
-              <CardDescription>Revenue performance over the last 12 months</CardDescription>
+              <CardTitle>{t('revenue.monthlyTrend')}</CardTitle>
+              <CardDescription>{t('revenue.monthlyTrend')}</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
