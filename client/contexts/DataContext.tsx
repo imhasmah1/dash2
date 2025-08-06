@@ -3,7 +3,6 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 export interface Customer {
   id: string;
   name: string;
-  email: string;
   phone: string;
   address: string;
   createdAt: string;
