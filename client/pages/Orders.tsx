@@ -442,10 +442,10 @@ export default function Orders() {
                       <ShoppingCart className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">Order #{order.id}</CardTitle>
+                      <CardTitle className="text-lg">{t('orders.orderId')} #{order.id}</CardTitle>
                       <CardDescription className="flex items-center gap-2">
                         <User className="w-4 h-4" />
-                        {customer?.name || 'Unknown Customer'}
+                        {customer?.name || t('orders.customer')}
                       </CardDescription>
                     </div>
                   </div>
