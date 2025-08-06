@@ -14,6 +14,7 @@ import { Plus, Search, Edit, Trash2, Package, X } from 'lucide-react';
 
 export default function Products() {
   const { products, addProduct, updateProduct, deleteProduct } = useData();
+  const { showConfirm, showAlert } = useDialog();
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
