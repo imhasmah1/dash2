@@ -1,12 +1,464 @@
-import PlaceholderPage from './PlaceholderPage';
-import { TrendingUp } from 'lucide-react';
+import { useMemo } from 'react';
+import { useData } from '@/contexts/DataContext';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  Area,
+  AreaChart
+} from 'recharts';
+import { 
+  TrendingUp, 
+  TrendingDown, 
+  DollarSign, 
+  Calendar,
+  Target,
+  Award,
+  Truck,
+  Store
+} from 'lucide-react';
+
+const COLORS = ['#742370', '#401951', '#8b4d89', '#5a2972', '#b366a7', '#c785bb'];
 
 export default function Revenue() {
+  const { orders, products, getProductById } = useData();
+
+  // Calculate revenue metrics
+  const revenueMetrics = useMemo(() => {
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+    const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+    const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+
+    const currentMonthOrders = orders.filter(order => {
+      const orderDate = new Date(order.createdAt);
+      return orderDate.getMonth() === currentMonth && orderDate.getFullYear() === currentYear;
+    });
+
+    const lastMonthOrders = orders.filter(order => {
+      const orderDate = new Date(order.createdAt);
+      return orderDate.getMonth() === lastMonth && orderDate.getFullYear() === lastMonthYear;
+    });
+
+    const currentMonthRevenue = currentMonthOrders.reduce((sum, order) => sum + order.total, 0);
+    const lastMonthRevenue = lastMonthOrders.reduce((sum, order) => sum + order.total, 0);
+    const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+    const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
+
+    const monthlyGrowth = lastMonthRevenue > 0 
+      ? ((currentMonthRevenue - lastMonthRevenue) / lastMonthRevenue) * 100 
+      : 0;
+
+    // Daily revenue for current month
+    const dailyRevenue = Array.from({ length: 30 }, (_, i) => {
+      const date = new Date(currentYear, currentMonth, i + 1);
+      const dayOrders = currentMonthOrders.filter(order => {
+        const orderDate = new Date(order.createdAt);
+        return orderDate.getDate() === date.getDate();
+      });
+      return {
+        day: i + 1,
+        revenue: dayOrders.reduce((sum, order) => sum + order.total, 0),
+        orders: dayOrders.length
+      };
+    });
+
+    // Monthly revenue for last 12 months
+    const monthlyRevenue = Array.from({ length: 12 }, (_, i) => {
+      const date = new Date(currentYear, currentMonth - i, 1);
+      const month = date.getMonth();
+      const year = date.getFullYear();
+      
+      const monthOrders = orders.filter(order => {
+        const orderDate = new Date(order.createdAt);
+        return orderDate.getMonth() === month && orderDate.getFullYear() === year;
+      });
+
+      return {
+        month: date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' }),
+        revenue: monthOrders.reduce((sum, order) => sum + order.total, 0),
+        orders: monthOrders.length
+      };
+    }).reverse();
+
+    // Revenue by delivery type
+    const deliveryRevenue = orders.reduce((acc, order) => {
+      acc[order.deliveryType] = (acc[order.deliveryType] || 0) + order.total;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const deliveryTypeData = [
+      { name: 'Delivery', value: deliveryRevenue.delivery || 0 },
+      { name: 'Pickup', value: deliveryRevenue.pickup || 0 }
+    ];
+
+    // Revenue by product
+    const productRevenue = orders.reduce((acc, order) => {
+      order.items.forEach(item => {
+        const product = getProductById(item.productId);
+        if (product) {
+          const key = product.name;
+          acc[key] = (acc[key] || 0) + (item.price * item.quantity);
+        }
+      });
+      return acc;
+    }, {} as Record<string, number>);
+
+    const topProducts = Object.entries(productRevenue)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 5)
+      .map(([name, revenue]) => ({ name, revenue }));
+
+    return {
+      totalRevenue,
+      currentMonthRevenue,
+      lastMonthRevenue,
+      monthlyGrowth,
+      avgOrderValue,
+      dailyRevenue,
+      monthlyRevenue,
+      deliveryTypeData,
+      topProducts
+    };
+  }, [orders, products, getProductById]);
+
+  const formatCurrency = (amount: number) => `BD ${amount.toFixed(2)}`;
+
   return (
-    <PlaceholderPage
-      title="Revenue"
-      description="View analytics and revenue insights"
-      icon={TrendingUp}
-    />
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900">Revenue Analytics</h1>
+        <p className="text-gray-600 mt-2">Comprehensive revenue insights and performance metrics</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-gray-600">Total Revenue</CardTitle>
+            <DollarSign className="w-4 h-4 text-green-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-gray-900">
+              {formatCurrency(revenueMetrics.totalRevenue)}
+            </div>
+            <p className="text-xs text-gray-600 mt-1">All time revenue</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-gray-600">This Month</CardTitle>
+            <Calendar className="w-4 h-4 text-blue-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-gray-900">
+              {formatCurrency(revenueMetrics.currentMonthRevenue)}
+            </div>
+            <div className="flex items-center gap-1 mt-1">
+              {revenueMetrics.monthlyGrowth >= 0 ? (
+                <TrendingUp className="w-3 h-3 text-green-600" />
+              ) : (
+                <TrendingDown className="w-3 h-3 text-red-600" />
+              )}
+              <p className={`text-xs ${revenueMetrics.monthlyGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {Math.abs(revenueMetrics.monthlyGrowth).toFixed(1)}% vs last month
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-gray-600">Avg Order Value</CardTitle>
+            <Target className="w-4 h-4 text-purple-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-gray-900">
+              {formatCurrency(revenueMetrics.avgOrderValue)}
+            </div>
+            <p className="text-xs text-gray-600 mt-1">Per order average</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-gray-600">Revenue Goal</CardTitle>
+            <Award className="w-4 h-4 text-orange-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-gray-900">
+              {((revenueMetrics.currentMonthRevenue / 100) * 100).toFixed(0)}%
+            </div>
+            <p className="text-xs text-gray-600 mt-1">Of BD 100 monthly goal</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Charts */}
+      <Tabs defaultValue="monthly" className="w-full">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="monthly">Monthly Trends</TabsTrigger>
+          <TabsTrigger value="daily">Daily Revenue</TabsTrigger>
+          <TabsTrigger value="products">Top Products</TabsTrigger>
+          <TabsTrigger value="delivery">Delivery Types</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="monthly" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Monthly Revenue Trend</CardTitle>
+              <CardDescription>Revenue performance over the last 12 months</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <AreaChart data={revenueMetrics.monthlyRevenue}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis tickFormatter={(value) => `BD ${value}`} />
+                  <Tooltip 
+                    formatter={(value: any) => [formatCurrency(value), 'Revenue']}
+                    labelFormatter={(label) => `Month: ${label}`}
+                  />
+                  <Area 
+                    type="monotone" 
+                    dataKey="revenue" 
+                    stroke="#742370" 
+                    fill="#742370" 
+                    fillOpacity={0.2}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="daily" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Daily Revenue - Current Month</CardTitle>
+              <CardDescription>Daily revenue breakdown for this month</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={revenueMetrics.dailyRevenue}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="day" />
+                  <YAxis tickFormatter={(value) => `BD ${value}`} />
+                  <Tooltip 
+                    formatter={(value: any) => [formatCurrency(value), 'Revenue']}
+                    labelFormatter={(label) => `Day ${label}`}
+                  />
+                  <Bar dataKey="revenue" fill="#742370" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="products" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Performing Products</CardTitle>
+              <CardDescription>Revenue generated by each product</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={revenueMetrics.topProducts} layout="horizontal">
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis type="number" tickFormatter={(value) => `BD ${value}`} />
+                  <YAxis dataKey="name" type="category" width={150} />
+                  <Tooltip formatter={(value: any) => [formatCurrency(value), 'Revenue']} />
+                  <Bar dataKey="revenue" fill="#742370" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="delivery" className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Revenue by Delivery Type</CardTitle>
+                <CardDescription>Distribution of revenue between delivery and pickup</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={250}>
+                  <PieChart>
+                    <Pie
+                      data={revenueMetrics.deliveryTypeData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {revenueMetrics.deliveryTypeData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip formatter={(value: any) => formatCurrency(value)} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Delivery Type Breakdown</CardTitle>
+                <CardDescription>Revenue and order statistics by delivery method</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {revenueMetrics.deliveryTypeData.map((item, index) => {
+                  const percentage = revenueMetrics.totalRevenue > 0 
+                    ? (item.value / revenueMetrics.totalRevenue) * 100 
+                    : 0;
+                  const orderCount = orders.filter(order => order.deliveryType === item.name.toLowerCase()).length;
+                  
+                  return (
+                    <div key={item.name} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        {item.name === 'Delivery' ? (
+                          <Truck className="w-5 h-5 text-dashboard-primary" />
+                        ) : (
+                          <Store className="w-5 h-5 text-dashboard-secondary" />
+                        )}
+                        <div>
+                          <h4 className="font-medium">{item.name}</h4>
+                          <p className="text-sm text-gray-600">{orderCount} orders</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-dashboard-primary">
+                          {formatCurrency(item.value)}
+                        </div>
+                        <Badge variant="outline" className="text-xs">
+                          {percentage.toFixed(1)}%
+                        </Badge>
+                      </div>
+                    </div>
+                  );
+                })}
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+      </Tabs>
+
+      {/* Additional Insights */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Revenue Insights</CardTitle>
+            <CardDescription>Key performance indicators and trends</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+              <div>
+                <h4 className="font-medium text-green-900">Revenue Growth</h4>
+                <p className="text-sm text-green-700">
+                  {revenueMetrics.monthlyGrowth >= 0 ? 'Positive' : 'Negative'} growth this month
+                </p>
+              </div>
+              <Badge className={revenueMetrics.monthlyGrowth >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
+                {revenueMetrics.monthlyGrowth.toFixed(1)}%
+              </Badge>
+            </div>
+
+            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+              <div>
+                <h4 className="font-medium text-blue-900">Best Performing Day</h4>
+                <p className="text-sm text-blue-700">
+                  Day {revenueMetrics.dailyRevenue.reduce((max, day, index) => 
+                    day.revenue > revenueMetrics.dailyRevenue[max].revenue ? index : max, 0
+                  ) + 1} of this month
+                </p>
+              </div>
+              <Badge className="bg-blue-100 text-blue-700">
+                {formatCurrency(Math.max(...revenueMetrics.dailyRevenue.map(d => d.revenue)))}
+              </Badge>
+            </div>
+
+            <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+              <div>
+                <h4 className="font-medium text-purple-900">Order Efficiency</h4>
+                <p className="text-sm text-purple-700">
+                  Average revenue per order
+                </p>
+              </div>
+              <Badge className="bg-purple-100 text-purple-700">
+                {formatCurrency(revenueMetrics.avgOrderValue)}
+              </Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Goals & Targets</CardTitle>
+            <CardDescription>Progress towards revenue objectives</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium">Monthly Target</span>
+                <span className="text-sm text-gray-600">BD 100.00</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-dashboard-primary h-2 rounded-full" 
+                  style={{ width: `${Math.min((revenueMetrics.currentMonthRevenue / 100) * 100, 100)}%` }}
+                ></div>
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                {formatCurrency(revenueMetrics.currentMonthRevenue)} achieved
+              </p>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium">Quarterly Target</span>
+                <span className="text-sm text-gray-600">BD 300.00</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-dashboard-secondary h-2 rounded-full" 
+                  style={{ width: `${Math.min((revenueMetrics.totalRevenue / 300) * 100, 100)}%` }}
+                ></div>
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                {formatCurrency(revenueMetrics.totalRevenue)} achieved
+              </p>
+            </div>
+
+            <div className="pt-4 border-t">
+              <h4 className="font-medium mb-2">Recommendations</h4>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Focus on {revenueMetrics.topProducts[0]?.name || 'top products'} - highest revenue generator</li>
+                <li>• {revenueMetrics.deliveryTypeData[0]?.value > revenueMetrics.deliveryTypeData[1]?.value 
+                  ? 'Delivery orders generate more revenue' 
+                  : 'Pickup orders are performing well'}</li>
+                <li>• Target BD {(100 - revenueMetrics.currentMonthRevenue).toFixed(2)} more this month to reach goal</li>
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 }
