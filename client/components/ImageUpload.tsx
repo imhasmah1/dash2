@@ -15,6 +15,7 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
   const [dragActive, setDragActive] = useState(false);
   const [uploading, setUploading] = useState(false);
   const { uploadImage } = useData();
+  const { showAlert } = useDialog();
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
