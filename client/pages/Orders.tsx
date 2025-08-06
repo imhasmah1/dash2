@@ -173,7 +173,11 @@ export default function Orders() {
     try {
       await updateOrderStatus(orderId, newStatus);
     } catch (error) {
-      alert('Failed to update order status. Please try again.');
+      showAlert({
+        title: 'Error',
+        message: 'Failed to update order status. Please try again.',
+        type: 'error'
+      });
     }
   };
 
