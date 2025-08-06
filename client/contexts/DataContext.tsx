@@ -9,18 +9,25 @@ export interface Customer {
   createdAt: string;
 }
 
+export interface ProductVariant {
+  id: string;
+  name: string;
+  stock: number;
+}
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   price: number;
-  stock: number;
-  image: string;
-  variants: string[];
+  images: string[];
+  variants: ProductVariant[];
+  totalStock: number; // Calculated from all variants
 }
 
 export interface OrderItem {
   productId: string;
+  variantId?: string;
   quantity: number;
   price: number;
 }
@@ -33,6 +40,7 @@ export interface Order {
   status: 'pending' | 'processing' | 'shipped' | 'completed' | 'cancelled';
   createdAt: string;
   updatedAt: string;
+  notes?: string;
 }
 
 interface DataContextType {
@@ -49,9 +57,12 @@ interface DataContextType {
   addOrder: (order: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
   updateOrder: (id: string, order: Partial<Order>) => Promise<void>;
   deleteOrder: (id: string) => Promise<void>;
+  updateOrderStatus: (id: string, status: Order['status']) => Promise<void>;
   getCustomerById: (id: string) => Customer | undefined;
   getProductById: (id: string) => Product | undefined;
+  getVariantById: (productId: string, variantId: string) => ProductVariant | undefined;
   refetchData: () => Promise<void>;
+  uploadImage: (file: File) => Promise<string>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -83,6 +94,28 @@ export function DataProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     loadData();
   }, []);
+
+  const uploadImage = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+      
+      const data = await response.json();
+      return data.url;
+    } catch (error) {
+      console.error('Failed to upload image:', error);
+      throw error;
+    }
+  };
 
   const addCustomer = async (customerData: Omit<Customer, 'id' | 'createdAt'>) => {
     try {
@@ -170,6 +203,15 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const updateOrderStatus = async (id: string, status: Order['status']) => {
+    try {
+      await updateOrder(id, { status });
+    } catch (error) {
+      console.error('Failed to update order status:', error);
+      throw error;
+    }
+  };
+
   const deleteOrder = async (id: string) => {
     try {
       await orderApi.delete(id);
@@ -182,6 +224,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
   const getCustomerById = (id: string) => customers.find(customer => customer.id === id);
   const getProductById = (id: string) => products.find(product => product.id === id);
+  const getVariantById = (productId: string, variantId: string) => {
+    const product = getProductById(productId);
+    return product?.variants.find(variant => variant.id === variantId);
+  };
 
   const refetchData = async () => {
     await loadData();
@@ -202,9 +248,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
       addOrder,
       updateOrder,
       deleteOrder,
+      updateOrderStatus,
       getCustomerById,
       getProductById,
-      refetchData
+      getVariantById,
+      refetchData,
+      uploadImage
     }}>
       {children}
     </DataContext.Provider>
