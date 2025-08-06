@@ -141,8 +141,8 @@ export default function Revenue() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Revenue Analytics</h1>
-        <p className="text-gray-600 mt-2">Comprehensive revenue insights and performance metrics</p>
+        <h1 className="text-3xl font-bold text-gray-900">{t('revenue.title')}</h1>
+        <p className="text-gray-600 mt-2">{t('revenue.overview')}</p>
       </div>
 
       {/* Key Metrics */}
