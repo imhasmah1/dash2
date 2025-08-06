@@ -121,12 +121,12 @@ export default function Dashboard() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">Order ID</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">Customer</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">Products</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">Amount</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">Status</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">Date</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.orderId')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.customer')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('nav.products')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.total')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.status')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.date')}</th>
                   </tr>
                 </thead>
                 <tbody>
