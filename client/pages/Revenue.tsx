@@ -456,13 +456,13 @@ export default function Revenue() {
             </div>
 
             <div className="pt-4 border-t">
-              <h4 className="font-medium mb-2">Recommendations</h4>
+              <h4 className="font-medium mb-2">{t('revenue.overview')}</h4>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Focus on {revenueMetrics.topProducts[0]?.name || 'top products'} - highest revenue generator</li>
-                <li>• {revenueMetrics.deliveryTypeData[0]?.value > revenueMetrics.deliveryTypeData[1]?.value 
-                  ? 'Delivery orders generate more revenue' 
-                  : 'Pickup orders are performing well'}</li>
-                <li>• Target BD {(100 - revenueMetrics.currentMonthRevenue).toFixed(2)} more this month to reach goal</li>
+                <li>• {revenueMetrics.topProducts[0]?.name || t('revenue.topProducts')} - {t('revenue.revenue')}</li>
+                <li>• {revenueMetrics.deliveryTypeData[0]?.value > revenueMetrics.deliveryTypeData[1]?.value
+                  ? t('orders.delivery') + ' ' + t('revenue.revenue')
+                  : t('orders.pickup') + ' ' + t('revenue.revenue')}</li>
+                <li>• BD {(100 - revenueMetrics.currentMonthRevenue).toFixed(2)} {t('revenue.month')}</li>
               </ul>
             </div>
           </CardContent>
