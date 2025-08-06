@@ -532,7 +532,7 @@ export default function Orders() {
                       onClick={() => openDialog(order)}
                     >
                       <Edit className="w-4 h-4 mr-1" />
-                      Edit
+                      {t('orders.edit')}
                     </Button>
                     <Button 
                       size="sm" 
