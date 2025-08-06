@@ -517,14 +517,14 @@ export default function Orders() {
                   </div>
 
                   <div className="flex gap-2 pt-2">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
+                    <Button
+                      size="sm"
+                      variant="outline"
                       onClick={() => openViewDialog(order)}
                       className="flex-1"
                     >
                       <Eye className="w-4 h-4 mr-1" />
-                      View Details
+                      {t('orders.view')}
                     </Button>
                     <Button 
                       size="sm" 
