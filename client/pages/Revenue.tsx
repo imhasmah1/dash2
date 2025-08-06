@@ -322,8 +322,8 @@ export default function Revenue() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Delivery Type Breakdown</CardTitle>
-                <CardDescription>Revenue and order statistics by delivery method</CardDescription>
+                <CardTitle>{t('revenue.deliveryType')}</CardTitle>
+                <CardDescription>{t('revenue.deliveryAnalysis')}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {revenueMetrics.deliveryTypeData.map((item, index) => {
