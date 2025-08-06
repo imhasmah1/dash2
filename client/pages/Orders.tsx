@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useData, Order, OrderItem } from '@/contexts/DataContext';
 import { useDialog } from '@/contexts/DialogContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
