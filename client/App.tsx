@@ -49,7 +49,9 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <DataProvider>
-            <AppContent />
+            <DialogProvider>
+              <AppContent />
+            </DialogProvider>
           </DataProvider>
         </AuthProvider>
       </BrowserRouter>
