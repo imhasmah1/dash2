@@ -116,11 +116,28 @@ export default function Products() {
   };
 
   const handleDeleteProduct = async (id: string) => {
-    if (confirm('Are you sure you want to delete this product?')) {
+    const confirmed = await showConfirm({
+      title: 'Delete Product',
+      message: 'Are you sure you want to delete this product? This action cannot be undone and will affect any existing orders.',
+      type: 'danger',
+      confirmText: 'Delete',
+      cancelText: 'Cancel'
+    });
+
+    if (confirmed) {
       try {
         await deleteProduct(id);
+        showAlert({
+          title: 'Success',
+          message: 'Product deleted successfully.',
+          type: 'success'
+        });
       } catch (error) {
-        alert('Failed to delete product. Please try again.');
+        showAlert({
+          title: 'Error',
+          message: 'Failed to delete product. Please try again.',
+          type: 'error'
+        });
       }
     }
   };
