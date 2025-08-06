@@ -250,17 +250,17 @@ export default function Products() {
                         <Card key={variant.id || index} className="p-4">
                           <div className="flex gap-4 items-end">
                             <div className="flex-1">
-                              <Label htmlFor={`variant-name-${index}`}>Variant Name</Label>
+                              <Label htmlFor={`variant-name-${index}`}>{t('products.variantName')}</Label>
                               <Input
                                 id={`variant-name-${index}`}
                                 value={variant.name}
                                 onChange={(e) => updateVariant(index, 'name', e.target.value)}
-                                placeholder="e.g., Black, Large, etc."
+                                placeholder={t('products.variantName')}
                                 required
                               />
                             </div>
                             <div className="w-32">
-                              <Label htmlFor={`variant-stock-${index}`}>Stock</Label>
+                              <Label htmlFor={`variant-stock-${index}`}>{t('products.variantStock')}</Label>
                               <Input
                                 id={`variant-stock-${index}`}
                                 type="number"
