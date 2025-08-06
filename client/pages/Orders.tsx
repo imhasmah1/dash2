@@ -421,7 +421,7 @@ export default function Orders() {
                     <div className="space-y-2">
                       {order.items.slice(0, 2).map((item, index) => {
                         const product = getProductById(item.productId);
-                        const variant = item.variantId ? getVariantById(item.productId, item.variantId) : null;
+                        const variant = (item.variantId && item.variantId !== 'no-variant') ? getVariantById(item.productId, item.variantId) : null;
                         return (
                           <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                             <span>
