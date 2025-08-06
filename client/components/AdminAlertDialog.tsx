@@ -81,7 +81,7 @@ export default function AdminAlertDialog({
                 : 'bg-dashboard-primary hover:bg-dashboard-primary-light'
             }`}
           >
-            {buttonText}
+            {finalButtonText}
           </Button>
         </DialogFooter>
       </DialogContent>
