@@ -52,11 +52,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Sidebar */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+        isRTL ? "right-0" : "left-0",
+        sidebarOpen
+          ? "translate-x-0"
+          : isRTL ? "translate-x-full" : "-translate-x-full"
       )}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-          <h1 className="text-xl font-bold text-dashboard-primary">Admin Panel</h1>
+          <h1 className="text-xl font-bold text-dashboard-primary">{t('nav.adminPanel')}</h1>
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden text-gray-400 hover:text-gray-600"
