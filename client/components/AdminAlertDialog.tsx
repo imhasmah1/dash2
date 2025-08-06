@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { AlertTriangle, X, CheckCircle, XCircle, Info } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AdminAlertDialogProps {
   isOpen: boolean;
