@@ -71,32 +71,46 @@ export default function LoginPage() {
               </CardDescription>
             </div>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="relative">
-                <Input
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder={t('login.password')}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pr-10"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
+          <CardContent className="pt-0 pb-8 px-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Password Input */}
+              <div className="space-y-2">
+                <label htmlFor="password" className="text-sm font-medium text-gray-700 block">
+                  {t('login.password')}
+                </label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder={t('login.password')}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pr-12 h-12 text-lg border-gray-300 focus:border-dashboard-primary focus:ring-dashboard-primary"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
               </div>
+
+              {/* Error Message */}
               {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                  <p className="text-red-600 text-sm text-center font-medium">{error}</p>
+                </div>
               )}
+
+              {/* Sign In Button */}
               <Button
                 type="submit"
-                className="w-full bg-dashboard-primary hover:bg-dashboard-primary-light transition-colors"
+                className="w-full h-12 bg-dashboard-primary hover:bg-dashboard-secondary transition-all duration-200 text-lg font-semibold shadow-lg hover:shadow-xl"
               >
+                <Lock className="w-5 h-5 mr-2" />
                 {t('login.signIn')}
               </Button>
             </form>
