@@ -22,5 +22,23 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Customer routes
+  app.get("/api/customers", getAllCustomers);
+  app.post("/api/customers", createCustomer);
+  app.put("/api/customers/:id", updateCustomer);
+  app.delete("/api/customers/:id", deleteCustomer);
+
+  // Product routes
+  app.get("/api/products", getAllProducts);
+  app.post("/api/products", createProduct);
+  app.put("/api/products/:id", updateProduct);
+  app.delete("/api/products/:id", deleteProduct);
+
+  // Order routes
+  app.get("/api/orders", getAllOrders);
+  app.post("/api/orders", createOrder);
+  app.put("/api/orders/:id", updateOrder);
+  app.delete("/api/orders/:id", deleteOrder);
+
   return app;
 }
