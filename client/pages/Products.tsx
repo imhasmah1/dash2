@@ -16,7 +16,9 @@ export default function Products() {
   );
 
   const handleDeleteProduct = (id: string) => {
-    setProducts(products.filter(product => product.id !== id));
+    if (confirm('Are you sure you want to delete this product?')) {
+      deleteProduct(id);
+    }
   };
 
   const getStockStatus = (stock: number) => {
