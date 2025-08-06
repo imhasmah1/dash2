@@ -74,7 +74,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const loadData = async () => {
+  const loadData = async (retryCount = 0) => {
+    const maxRetries = 3;
+    const delay = Math.min(1000 * Math.pow(2, retryCount), 5000); // Exponential backoff with max 5s
+
     try {
       setLoading(true);
       const [customersData, productsData, ordersData] = await Promise.all([
@@ -86,7 +89,19 @@ export function DataProvider({ children }: { children: ReactNode }) {
       setProducts(productsData);
       setOrders(ordersData);
     } catch (error) {
-      console.error('Failed to load data:', error);
+      console.error(`Failed to load data (attempt ${retryCount + 1}):`, error);
+
+      if (retryCount < maxRetries) {
+        console.log(`Retrying in ${delay}ms...`);
+        setTimeout(() => loadData(retryCount + 1), delay);
+        return;
+      } else {
+        console.error('Max retries reached. Using empty data.');
+        // Set empty arrays to allow UI to function
+        setCustomers([]);
+        setProducts([]);
+        setOrders([]);
+      }
     } finally {
       setLoading(false);
     }
