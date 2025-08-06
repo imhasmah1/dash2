@@ -199,13 +199,13 @@ export default function Products() {
                         id="description"
                         value={formData.description}
                         onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                        placeholder="Product description"
+                        placeholder={t('products.productDescription')}
                         required
                         rows={3}
                       />
                     </div>
                     <div className="grid gap-2">
-                    <Label htmlFor="price">Price (BD)</Label>
+                    <Label htmlFor="price">{t('products.productPrice')} (BD)</Label>
                       <Input
                         id="price"
                         type="number"
