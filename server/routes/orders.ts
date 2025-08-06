@@ -15,6 +15,7 @@ export interface Order {
   status: 'pending' | 'processing' | 'shipped' | 'completed' | 'cancelled';
   createdAt: string;
   updatedAt: string;
+  notes?: string;
 }
 
 // In-memory storage (replace with database in production)
