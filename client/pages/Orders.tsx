@@ -611,7 +611,7 @@ export default function Orders() {
                 <div className="border-t pt-3 flex justify-between items-center">
                   <span className="text-lg font-medium">Total:</span>
                   <span className="text-2xl font-bold text-dashboard-primary">
-                    ${viewingOrder.total.toFixed(2)}
+                    BD {viewingOrder.total.toFixed(2)}
                   </span>
                 </div>
               </div>
