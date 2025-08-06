@@ -109,27 +109,27 @@ export default function Customers() {
           <DialogTrigger asChild>
             <Button onClick={() => openDialog()} className="bg-dashboard-primary hover:bg-dashboard-primary-light">
               <Plus className="w-4 h-4 mr-2" />
-              Add Customer
+              {t('customers.addNew')}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>
-                {editingCustomer ? 'Edit Customer' : 'Add New Customer'}
+                {editingCustomer ? t('customers.editCustomer') : t('customers.addCustomer')}
               </DialogTitle>
               <DialogDescription>
-                {editingCustomer ? 'Update customer information below.' : 'Enter customer details to add them to your database.'}
+                {editingCustomer ? t('customers.editCustomer') : t('customers.addCustomer')}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">{t('customers.customerName')}</Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder="Customer name"
+                    placeholder={t('customers.customerName')}
                     required
                   />
                 </div>
