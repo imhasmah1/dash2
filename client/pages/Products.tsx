@@ -145,9 +145,9 @@ export default function Products() {
   };
 
   const getStockStatus = (stock: number) => {
-    if (stock === 0) return { text: 'Out of Stock', color: 'bg-red-100 text-red-700' };
-    if (stock < 10) return { text: 'Low Stock', color: 'bg-yellow-100 text-yellow-700' };
-    return { text: 'In Stock', color: 'bg-green-100 text-green-700' };
+    if (stock === 0) return { text: t('products.stock'), color: 'bg-red-100 text-red-700' };
+    if (stock < 10) return { text: t('products.stock'), color: 'bg-yellow-100 text-yellow-700' };
+    return { text: t('products.stock'), color: 'bg-green-100 text-green-700' };
   };
 
   return (
