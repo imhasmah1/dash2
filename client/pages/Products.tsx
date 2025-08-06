@@ -287,8 +287,8 @@ export default function Products() {
                       {formData.variants.length === 0 && (
                         <div className="text-center py-8 text-gray-500 border-2 border-dashed border-gray-300 rounded-lg">
                           <Package className="w-12 h-12 mx-auto mb-2 text-gray-400" />
-                          <p>No variants added yet</p>
-                          <p className="text-sm">Click "Add Variant" to create different product options</p>
+                          <p>{t('products.variants')}</p>
+                          <p className="text-sm">{t('products.addVariant')}</p>
                         </div>
                       )}
                     </div>
