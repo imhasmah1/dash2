@@ -215,7 +215,7 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
       {images.length === 0 && (
         <div className="text-center py-8 text-gray-500">
           <ImageIcon className="w-12 h-12 mx-auto mb-2 text-gray-400" />
-          <p>No images uploaded yet</p>
+          <p>{t('products.productImages')}</p>
         </div>
       )}
     </div>
