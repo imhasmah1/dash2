@@ -2,25 +2,45 @@ import "./global.css";
 
 // Suppress defaultProps warnings from Recharts library
 const originalWarn = console.warn;
-console.warn = (...args) => {
-  const message = args[0];
-  // Handle React warning format with %s placeholders
-  if (typeof message === 'string' && (
-    message.includes('defaultProps will be removed from function components') ||
-    message.includes('Support for defaultProps will be removed from function components') ||
-    message.includes('%s: Support for defaultProps will be removed')
-  )) {
-    return;
-  }
+const originalError = console.error;
 
-  // Also check formatted message by joining all args
-  const fullMessage = args.join(' ');
-  if (fullMessage.includes('Support for defaultProps will be removed from function components') ||
-      fullMessage.includes('XAxis') || fullMessage.includes('YAxis')) {
-    return;
+console.warn = (...args) => {
+  const message = String(args[0] || '');
+  const allArgs = args.join(' ');
+
+  // Comprehensive check for Recharts defaultProps warnings
+  const isRechartsWarning =
+    message.includes('defaultProps will be removed') ||
+    message.includes('Support for defaultProps will be removed') ||
+    message.includes('%s: Support for defaultProps') ||
+    allArgs.includes('XAxis') ||
+    allArgs.includes('YAxis') ||
+    allArgs.includes('defaultProps will be removed from function components') ||
+    allArgs.includes('recharts');
+
+  if (isRechartsWarning) {
+    return; // Suppress the warning
   }
 
   originalWarn(...args);
+};
+
+console.error = (...args) => {
+  const message = String(args[0] || '');
+  const allArgs = args.join(' ');
+
+  // Also suppress if they appear as errors
+  const isRechartsError =
+    message.includes('defaultProps will be removed') ||
+    allArgs.includes('XAxis') ||
+    allArgs.includes('YAxis') ||
+    allArgs.includes('recharts');
+
+  if (isRechartsError) {
+    return; // Suppress the error
+  }
+
+  originalError(...args);
 };
 
 import { Toaster } from "@/components/ui/toaster";
