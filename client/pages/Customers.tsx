@@ -49,14 +49,18 @@ export default function Customers() {
     resetForm();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingCustomer) {
-      updateCustomer(editingCustomer.id, formData);
-    } else {
-      addCustomer(formData);
+    try {
+      if (editingCustomer) {
+        await updateCustomer(editingCustomer.id, formData);
+      } else {
+        await addCustomer(formData);
+      }
+      closeDialog();
+    } catch (error) {
+      alert('Failed to save customer. Please try again.');
     }
-    closeDialog();
   };
 
   const handleDelete = (id: string) => {
