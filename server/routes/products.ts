@@ -22,7 +22,7 @@ let products: Product[] = [
     id: '1',
     name: 'Wireless Bluetooth Headphones',
     description: 'Premium quality headphones with noise cancellation',
-    price: 89.99,
+    price: 35.0,
     images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop'],
     variants: [
       { id: 'v1', name: 'Black', stock: 25 },
@@ -35,7 +35,7 @@ let products: Product[] = [
     id: '2',
     name: 'Adjustable Laptop Stand',
     description: 'Ergonomic laptop stand for better posture',
-    price: 45.00,
+    price: 17.5,
     images: ['https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop'],
     variants: [
       { id: 'v1', name: 'Natural Wood', stock: 13 },
@@ -47,7 +47,7 @@ let products: Product[] = [
     id: '3',
     name: 'USB-C Cable 6ft',
     description: 'Fast charging USB-C to USB-C cable',
-    price: 12.99,
+    price: 5.0,
     images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'],
     variants: [
       { id: 'v1', name: 'Black', stock: 70 },
@@ -59,7 +59,7 @@ let products: Product[] = [
     id: '4',
     name: 'Portable Bluetooth Speaker',
     description: 'Waterproof speaker with 12-hour battery life',
-    price: 129.99,
+    price: 50.0,
     images: ['https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop'],
     variants: [
       { id: 'v1', name: 'Red', stock: 3 },
