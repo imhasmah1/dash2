@@ -21,7 +21,7 @@ export default function LoginPage() {
     e.preventDefault();
     const success = login(password);
     if (!success) {
-      setError('Invalid password');
+      setError(t('login.invalidPassword'));
       setPassword('');
     }
   };
