@@ -373,15 +373,15 @@ export default function Revenue() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Revenue Insights</CardTitle>
-            <CardDescription>Key performance indicators and trends</CardDescription>
+            <CardTitle>{t('revenue.overview')}</CardTitle>
+            <CardDescription>{t('revenue.overview')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
               <div>
-                <h4 className="font-medium text-green-900">Revenue Growth</h4>
+                <h4 className="font-medium text-green-900">{t('revenue.revenue')}</h4>
                 <p className="text-sm text-green-700">
-                  {revenueMetrics.monthlyGrowth >= 0 ? 'Positive' : 'Negative'} growth this month
+                  {revenueMetrics.monthlyGrowth >= 0 ? t('revenue.revenue') : t('revenue.revenue')} {t('revenue.month')}
                 </p>
               </div>
               <Badge className={revenueMetrics.monthlyGrowth >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
