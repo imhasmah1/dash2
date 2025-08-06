@@ -176,9 +176,9 @@ export default function Products() {
             <form onSubmit={handleSubmit}>
               <Tabs defaultValue="details" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="details">Details</TabsTrigger>
-                  <TabsTrigger value="images">Images</TabsTrigger>
-                  <TabsTrigger value="variants">Variants</TabsTrigger>
+                  <TabsTrigger value="details">{t('products.productName')}</TabsTrigger>
+                  <TabsTrigger value="images">{t('products.productImages')}</TabsTrigger>
+                  <TabsTrigger value="variants">{t('products.variants')}</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="details" className="space-y-4">
