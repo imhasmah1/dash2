@@ -16,19 +16,17 @@ export default function Customers() {
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
     address: ''
   });
 
   const filteredCustomers = customers.filter(customer =>
     customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     customer.phone.includes(searchTerm)
   );
 
   const resetForm = () => {
-    setFormData({ name: '', email: '', phone: '', address: '' });
+    setFormData({ name: '', phone: '', address: '' });
     setEditingCustomer(null);
   };
 
@@ -37,7 +35,6 @@ export default function Customers() {
       setEditingCustomer(customer);
       setFormData({
         name: customer.name,
-        email: customer.email,
         phone: customer.phone,
         address: customer.address
       });
@@ -100,17 +97,6 @@ export default function Customers() {
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     placeholder="Customer name"
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    placeholder="customer@example.com"
                     required
                   />
                 </div>
@@ -182,10 +168,6 @@ export default function Customers() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Mail className="w-4 h-4" />
-                  <span className="truncate">{customer.email}</span>
-                </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Phone className="w-4 h-4" />
                   <span>{customer.phone}</span>
