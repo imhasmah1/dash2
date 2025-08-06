@@ -25,10 +25,11 @@ let orders: Order[] = [
     id: '1',
     customerId: '1',
     items: [
-      { productId: '1', quantity: 1, price: 89.99 }
+      { productId: '1', quantity: 1, price: 35.0 }
     ],
-    total: 89.99,
-    status: 'completed',
+    total: 35.0,
+    status: 'delivered',
+    deliveryType: 'delivery',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T15:30:00Z'
   },
@@ -36,10 +37,11 @@ let orders: Order[] = [
     id: '2',
     customerId: '2',
     items: [
-      { productId: '2', quantity: 1, price: 45.00 }
+      { productId: '2', quantity: 1, price: 17.5 }
     ],
-    total: 45.00,
+    total: 17.5,
     status: 'processing',
+    deliveryType: 'pickup',
     createdAt: '2024-01-15T11:00:00Z',
     updatedAt: '2024-01-15T11:00:00Z'
   }
