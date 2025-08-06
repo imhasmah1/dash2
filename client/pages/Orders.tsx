@@ -167,7 +167,7 @@ export default function Orders() {
                     <SelectContent>
                       {customers.map((customer) => (
                         <SelectItem key={customer.id} value={customer.id}>
-                          {customer.name} - {customer.email}
+                          {customer.name} - {customer.phone}
                         </SelectItem>
                       ))}
                     </SelectContent>
