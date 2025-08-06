@@ -31,8 +31,20 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <Card className="shadow-2xl border-0">
           <CardHeader className="text-center space-y-4">
-            <div className="mx-auto w-16 h-16 bg-dashboard-primary rounded-full flex items-center justify-center">
-              <Lock className="w-8 h-8 text-white" />
+            <div className="mx-auto mb-4">
+              {language === 'ar' ? (
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F9ce73522cb8c4a6bae702c071e0fcfce?format=webp&width=800"
+                  alt="Azhar Store Logo Arabic"
+                  className="h-20 w-auto"
+                />
+              ) : (
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2Fd71ec3ff267e450e915617d640199433?format=webp&width=800"
+                  alt="Azhar Store Logo English"
+                  className="h-20 w-auto"
+                />
+              )}
             </div>
             <CardTitle className="text-2xl font-bold text-gray-900">{t('login.title')}</CardTitle>
             <CardDescription className="text-gray-600">
