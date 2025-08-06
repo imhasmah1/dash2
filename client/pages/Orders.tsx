@@ -35,7 +35,7 @@ export default function Orders() {
   });
 
   const resetForm = () => {
-    setFormData({ customerId: '', items: [], status: 'pending', notes: '' });
+    setFormData({ customerId: '', items: [], status: 'processing', deliveryType: 'delivery', notes: '' });
     setEditingOrder(null);
   };
 
