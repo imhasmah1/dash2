@@ -69,7 +69,11 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
       const uploadedUrls = await Promise.all(uploadPromises);
       onImagesChange([...images, ...uploadedUrls]);
     } catch (error) {
-      alert('Failed to upload images. Please try again.');
+      showAlert({
+        title: 'Upload Failed',
+        message: 'Failed to upload images. Please check your internet connection and try again.',
+        type: 'error'
+      });
     } finally {
       setUploading(false);
     }
