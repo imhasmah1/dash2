@@ -12,6 +12,7 @@ import { Plus, Search, Edit, Trash2, Users, Phone, MapPin } from 'lucide-react';
 
 export default function Customers() {
   const { customers, addCustomer, updateCustomer, deleteCustomer } = useData();
+  const { showConfirm, showAlert } = useDialog();
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
