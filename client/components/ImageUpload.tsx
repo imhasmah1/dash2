@@ -38,8 +38,8 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
     
     if (imageFiles.length === 0) {
       showAlert({
-        title: 'Invalid File Type',
-        message: 'Please drop only image files (PNG, JPG, JPEG).',
+        title: t('message.error'),
+        message: t('products.dragImages'),
         type: 'warning'
       });
       return;
