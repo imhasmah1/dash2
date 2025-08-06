@@ -131,18 +131,18 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
               disabled={uploading || images.length >= maxImages}
             />
             <label htmlFor="image-upload">
-              <Button 
-                type="button" 
-                variant="outline" 
+              <Button
+                type="button"
+                variant="outline"
                 disabled={uploading || images.length >= maxImages}
                 className="cursor-pointer"
               >
                 <Upload className="w-4 h-4 mr-2" />
-                Choose Files
+                {t('products.productImages')}
               </Button>
             </label>
             <p className="text-xs text-gray-500 mt-2">
-              {images.length}/{maxImages} images • PNG, JPG, JPEG up to 10MB each
+              {images.length}/{maxImages} {t('products.productImages')} • {t('products.maxImages')}
             </p>
           </div>
         </CardContent>
