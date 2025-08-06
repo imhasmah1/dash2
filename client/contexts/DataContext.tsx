@@ -57,7 +57,6 @@ const sampleCustomers: Customer[] = [
   {
     id: '1',
     name: 'Alice Johnson',
-    email: 'alice@example.com',
     phone: '+1 (555) 123-4567',
     address: '123 Main St, Springfield, IL 62701',
     createdAt: '2024-01-10T10:00:00Z'
@@ -65,7 +64,6 @@ const sampleCustomers: Customer[] = [
   {
     id: '2',
     name: 'Bob Smith',
-    email: 'bob@example.com',
     phone: '+1 (555) 234-5678',
     address: '456 Oak Ave, Springfield, IL 62702',
     createdAt: '2024-01-12T14:30:00Z'
@@ -73,7 +71,6 @@ const sampleCustomers: Customer[] = [
   {
     id: '3',
     name: 'Carol Davis',
-    email: 'carol@example.com',
     phone: '+1 (555) 345-6789',
     address: '789 Pine Rd, Springfield, IL 62703',
     createdAt: '2024-01-14T09:15:00Z'
