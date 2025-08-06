@@ -62,19 +62,23 @@ export default function Products() {
     resetForm();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const productData = {
-      ...formData,
-      variants: formData.variants.split(',').map(v => v.trim()).filter(v => v.length > 0)
-    };
+    try {
+      const productData = {
+        ...formData,
+        variants: formData.variants.split(',').map(v => v.trim()).filter(v => v.length > 0)
+      };
 
-    if (editingProduct) {
-      updateProduct(editingProduct.id, productData);
-    } else {
-      addProduct(productData);
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, productData);
+      } else {
+        await addProduct(productData);
+      }
+      closeDialog();
+    } catch (error) {
+      alert('Failed to save product. Please try again.');
     }
-    closeDialog();
   };
 
   const handleDeleteProduct = (id: string) => {
