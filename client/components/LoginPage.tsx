@@ -34,10 +34,19 @@ export default function LoginPage() {
             <div className="mx-auto w-16 h-16 bg-dashboard-primary rounded-full flex items-center justify-center">
               <Lock className="w-8 h-8 text-white" />
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900">Admin Dashboard</CardTitle>
+            <CardTitle className="text-2xl font-bold text-gray-900">{t('login.title')}</CardTitle>
             <CardDescription className="text-gray-600">
-              Enter the admin password to access the dashboard
+              {t('login.password')}
             </CardDescription>
+            <Button
+              onClick={toggleLanguage}
+              variant="ghost"
+              size="sm"
+              className="mx-auto"
+            >
+              <Languages className="w-4 h-4 mr-2" />
+              {language === 'en' ? t('language.arabic') : t('language.english')}
+            </Button>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
