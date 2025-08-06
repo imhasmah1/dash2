@@ -29,7 +29,7 @@ export default function Dashboard() {
   const stats = [
     {
       title: 'Total Revenue',
-      value: `$${totalRevenue.toFixed(2)}`,
+      value: `BD ${totalRevenue.toFixed(2)}`,
       description: `From ${orders.length} orders`,
       icon: DollarSign,
       color: 'text-green-600',
@@ -45,14 +45,14 @@ export default function Dashboard() {
     },
     {
       title: 'Avg Order Value',
-      value: `$${avgOrderValue.toFixed(2)}`,
+      value: `BD ${avgOrderValue.toFixed(2)}`,
       description: `Across all orders`,
       icon: TrendingUp,
       color: 'text-purple-600',
       bgColor: 'bg-purple-100',
     },
     {
-      title: 'Pending Orders',
+      title: 'Processing Orders',
       value: pendingOrders.toString(),
       description: 'Need attention',
       icon: Clock,
