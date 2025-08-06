@@ -124,7 +124,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <Menu className="w-6 h-6" />
             </button>
-            <h1 className="text-lg font-semibold text-gray-900">Dashboard</h1>
+            <h1 className="text-lg font-semibold text-gray-900">{t('dashboard.title')}</h1>
             <div className="w-6" /> {/* Spacer */}
           </div>
         </header>
