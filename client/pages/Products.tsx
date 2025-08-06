@@ -167,10 +167,10 @@ export default function Products() {
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
-                {editingProduct ? 'Edit Product' : 'Add New Product'}
+                {editingProduct ? t('products.editProduct') : t('products.addProduct')}
               </DialogTitle>
               <DialogDescription>
-                {editingProduct ? 'Update product information below.' : 'Enter product details, upload images, and manage variants.'}
+                {editingProduct ? t('products.editProduct') : t('products.addProduct')}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
