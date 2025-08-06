@@ -134,32 +134,32 @@ export default function Customers() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="phone">Phone</Label>
+                  <Label htmlFor="phone">{t('customers.customerPhone')}</Label>
                   <Input
                     id="phone"
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    placeholder="+1 (555) 123-4567"
+                    placeholder={t('customers.customerPhone')}
                     required
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="address">Address</Label>
+                  <Label htmlFor="address">{t('customers.customerAddress')}</Label>
                   <Textarea
                     id="address"
                     value={formData.address}
                     onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                    placeholder="Full address"
+                    placeholder={t('customers.customerAddress')}
                     required
                   />
                 </div>
               </div>
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={closeDialog}>
-                  Cancel
+                  {t('common.cancel')}
                 </Button>
                 <Button type="submit" className="bg-dashboard-primary hover:bg-dashboard-primary-light">
-                  {editingCustomer ? 'Update Customer' : 'Add Customer'}
+                  {editingCustomer ? t('customers.save') : t('customers.addCustomer')}
                 </Button>
               </DialogFooter>
             </form>
