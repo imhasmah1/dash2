@@ -294,8 +294,8 @@ export default function Revenue() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>Revenue by Delivery Type</CardTitle>
-                <CardDescription>Distribution of revenue between delivery and pickup</CardDescription>
+                <CardTitle>{t('revenue.deliveryAnalysis')}</CardTitle>
+                <CardDescription>{t('revenue.deliveryType')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={250}>
