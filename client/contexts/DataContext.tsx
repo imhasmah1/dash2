@@ -108,7 +108,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    loadData();
+    // Small delay to allow server to start up in development
+    const timer = setTimeout(() => {
+      loadData();
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const uploadImage = async (file: File): Promise<string> => {
