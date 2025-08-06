@@ -222,8 +222,8 @@ export default function Products() {
 
                 <TabsContent value="images" className="space-y-4">
                   <div>
-                    <Label className="text-base font-medium">Product Images</Label>
-                    <p className="text-sm text-gray-600 mb-4">Upload multiple images. The first image will be the primary image.</p>
+                    <Label className="text-base font-medium">{t('products.productImages')}</Label>
+                    <p className="text-sm text-gray-600 mb-4">{t('products.productImages')}</p>
                     <ImageUpload
                       images={formData.images}
                       onImagesChange={(images) => setFormData(prev => ({ ...prev, images }))}
