@@ -216,14 +216,14 @@ export default function Customers() {
               </div>
 
               <div className="flex gap-2 pt-2">
-                <Button 
-                  size="sm" 
-                  variant="outline" 
+                <Button
+                  size="sm"
+                  variant="outline"
                   className="flex-1"
                   onClick={() => openDialog(customer)}
                 >
                   <Edit className="w-4 h-4 mr-1" />
-                  Edit
+                  {t('customers.edit')}
                 </Button>
                 <Button 
                   size="sm" 
