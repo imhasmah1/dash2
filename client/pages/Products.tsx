@@ -411,14 +411,14 @@ export default function Products() {
                   )}
 
                   <div className="flex gap-2 pt-2">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
+                    <Button
+                      size="sm"
+                      variant="outline"
                       className="flex-1"
                       onClick={() => openDialog(product)}
                     >
                       <Edit className="w-4 h-4 mr-1" />
-                      Edit
+                      {t('products.edit')}
                     </Button>
                     <Button 
                       size="sm" 
