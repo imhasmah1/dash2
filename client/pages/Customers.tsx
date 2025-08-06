@@ -102,8 +102,8 @@ export default function Customers() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Customers</h1>
-          <p className="text-gray-600 mt-2">Manage your customer database</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('customers.title')}</h1>
+          <p className="text-gray-600 mt-2">{t('customers.title')}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
