@@ -348,14 +348,14 @@ export default function Orders() {
                       className="w-full"
                     >
                       <Plus className="w-4 h-4 mr-2" />
-                      Add Product
+                      {t('orders.addItem')}
                     </Button>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="status">Status</Label>
+                    <Label htmlFor="status">{t('orders.status')}</Label>
                     <Select value={formData.status} onValueChange={(value: Order['status']) => setFormData(prev => ({ ...prev, status: value }))}>
                       <SelectTrigger>
                         <SelectValue />
