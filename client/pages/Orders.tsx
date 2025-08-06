@@ -146,25 +146,25 @@ export default function Orders() {
 
   const handleDelete = async (id: string) => {
     const confirmed = await showConfirm({
-      title: 'Delete Order',
-      message: 'Are you sure you want to delete this order? This action cannot be undone.',
+      title: t('orders.delete'),
+      message: t('message.deleteConfirm'),
       type: 'danger',
-      confirmText: 'Delete',
-      cancelText: 'Cancel'
+      confirmText: t('orders.delete'),
+      cancelText: t('common.cancel')
     });
 
     if (confirmed) {
       try {
         await deleteOrder(id);
         showAlert({
-          title: 'Success',
-          message: 'Order deleted successfully.',
+          title: t('message.success'),
+          message: t('message.orderDeleted'),
           type: 'success'
         });
       } catch (error) {
         showAlert({
-          title: 'Error',
-          message: 'Failed to delete order. Please try again.',
+          title: t('message.error'),
+          message: t('message.error'),
           type: 'error'
         });
       }
