@@ -311,7 +311,7 @@ export default function Orders() {
                           )}
                           
                           <div className="w-24">
-                            <Label>Quantity</Label>
+                            <Label>{t('orders.quantity')}</Label>
                             <Input
                               type="number"
                               min="1"
@@ -321,7 +321,7 @@ export default function Orders() {
                             />
                           </div>
                           <div className="w-24">
-                            <Label>Price</Label>
+                            <Label>{t('orders.price')}</Label>
                             <Input
                               type="number"
                               step="0.01"
