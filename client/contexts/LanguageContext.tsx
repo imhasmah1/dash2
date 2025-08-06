@@ -110,6 +110,7 @@ const translations = {
     'customers.customerName': 'Customer Name',
     'customers.customerPhone': 'Customer Phone',
     'customers.customerAddress': 'Customer Address',
+    'customers.save': 'Save',
     
     // Revenue
     'revenue.title': 'Revenue Analytics',
@@ -219,7 +220,7 @@ const translations = {
     'orders.search': 'البحث في الطلبات...',
     'orders.orderId': 'رقم الطلب',
     'orders.customer': 'العميل',
-    'orders.total': 'الإجمالي',
+    'orders.total': 'الإ��مالي',
     'orders.status': 'الحالة',
     'orders.deliveryType': 'نوع التسليم',
     'orders.date': 'التاريخ',
