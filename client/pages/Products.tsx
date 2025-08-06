@@ -307,10 +307,10 @@ export default function Products() {
 
               <DialogFooter className="mt-6">
                 <Button type="button" variant="outline" onClick={closeDialog}>
-                  Cancel
+                  {t('products.cancel')}
                 </Button>
                 <Button type="submit" className="bg-dashboard-primary hover:bg-dashboard-primary-light">
-                  {editingProduct ? 'Update Product' : 'Add Product'}
+                  {editingProduct ? t('products.save') : t('products.addProduct')}
                 </Button>
               </DialogFooter>
             </form>
