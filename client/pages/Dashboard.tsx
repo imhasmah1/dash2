@@ -18,6 +18,21 @@ const getStatusColor = (status: string) => {
   }
 };
 
+const getStatusText = (status: string, t: (key: string) => string) => {
+  switch (status) {
+    case 'processing':
+      return t('orders.processing');
+    case 'ready':
+      return t('orders.ready');
+    case 'delivered':
+      return t('orders.delivered');
+    case 'picked-up':
+      return t('orders.pickedUp');
+    default:
+      return status;
+  }
+};
+
 export default function Dashboard() {
   const { orders, customers, products, getCustomerById, getProductById } = useData();
   const { t } = useLanguage();
