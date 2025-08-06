@@ -332,11 +332,12 @@ export default function Revenue() {
                 <CardDescription>{t('revenue.deliveryAnalysis')}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {revenueMetrics.deliveryTypeData.map((item, index) => {
-                  const percentage = revenueMetrics.totalRevenue > 0 
-                    ? (item.value / revenueMetrics.totalRevenue) * 100 
+                {translatedDeliveryTypeData.map((item, index) => {
+                  const percentage = revenueMetrics.totalRevenue > 0
+                    ? (item.value / revenueMetrics.totalRevenue) * 100
                     : 0;
-                  const orderCount = orders.filter(order => order.deliveryType === item.name.toLowerCase()).length;
+                  const deliveryKey = index === 0 ? 'delivery' : 'pickup';
+                  const orderCount = orders.filter(order => order.deliveryType === deliveryKey).length;
                   
                   return (
                     <div key={item.name} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
