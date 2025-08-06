@@ -3,7 +3,11 @@ import "./global.css";
 // Suppress defaultProps warnings from Recharts library
 const originalWarn = console.warn;
 console.warn = (...args) => {
-  if (args[0]?.includes('defaultProps will be removed from function components')) {
+  const message = args[0];
+  if (typeof message === 'string' && (
+    message.includes('defaultProps will be removed from function components') ||
+    message.includes('Support for defaultProps will be removed from function components')
+  )) {
     return;
   }
   originalWarn(...args);
