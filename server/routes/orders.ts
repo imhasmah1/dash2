@@ -12,7 +12,8 @@ export interface Order {
   customerId: string;
   items: OrderItem[];
   total: number;
-  status: 'pending' | 'processing' | 'shipped' | 'completed' | 'cancelled';
+  status: 'processing' | 'ready' | 'delivered' | 'picked-up';
+  deliveryType: 'delivery' | 'pickup';
   createdAt: string;
   updatedAt: string;
   notes?: string;
