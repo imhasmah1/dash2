@@ -70,11 +70,28 @@ export default function Customers() {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this customer?')) {
+    const confirmed = await showConfirm({
+      title: 'Delete Customer',
+      message: 'Are you sure you want to delete this customer? This action cannot be undone.',
+      type: 'danger',
+      confirmText: 'Delete',
+      cancelText: 'Cancel'
+    });
+
+    if (confirmed) {
       try {
         await deleteCustomer(id);
+        showAlert({
+          title: 'Success',
+          message: 'Customer deleted successfully.',
+          type: 'success'
+        });
       } catch (error) {
-        alert('Failed to delete customer. Please try again.');
+        showAlert({
+          title: 'Error',
+          message: 'Failed to delete customer. Please try again.',
+          type: 'error'
+        });
       }
     }
   };
