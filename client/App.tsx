@@ -18,6 +18,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { DataProvider } from "@/contexts/DataContext";
 import { DialogProvider } from "@/contexts/DialogContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import LoginPage from "@/components/LoginPage";
 import DashboardLayout from "@/components/DashboardLayout";
 import Dashboard from "@/pages/Dashboard";
