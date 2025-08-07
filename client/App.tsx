@@ -19,12 +19,20 @@ console.warn = function(...args) {
     'YAxis',
     'recharts',
     'function components in a future major release',
-    'Use JavaScript default parameters instead'
+    'Use JavaScript default parameters instead',
+    'XAxis2',
+    'YAxis2',
+    'ChartLayoutContextProvider',
+    'CategoricalChartWrapper'
   ];
 
+  // Check if any of the arguments contain Recharts-related content
   const shouldSuppress = suppressPatterns.some(pattern =>
-    message.includes(pattern) || allArgsString.includes(pattern)
-  );
+    args.some(arg => String(arg).includes(pattern))
+  ) ||
+  // Also check for the specific warning pattern with %s formatting
+  (message.includes('Support for defaultProps will be removed') &&
+   (allArgsString.includes('XAxis') || allArgsString.includes('YAxis')));
 
   if (!shouldSuppress) {
     originalWarn.apply(console, args);
