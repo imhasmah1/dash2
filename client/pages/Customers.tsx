@@ -1,36 +1,51 @@
-import { useState } from 'react';
-import { useData, Customer } from '@/contexts/DataContext';
-import { useDialog } from '@/contexts/DialogContext';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Plus, Search, Edit, Trash2, Users, Phone, MapPin } from 'lucide-react';
+import { useState } from "react";
+import { useData, Customer } from "@/contexts/DataContext";
+import { useDialog } from "@/contexts/DialogContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Plus, Search, Edit, Trash2, Users, Phone, MapPin } from "lucide-react";
 
 export default function Customers() {
   const { customers, addCustomer, updateCustomer, deleteCustomer } = useData();
   const { showConfirm, showAlert } = useDialog();
   const { t } = useLanguage();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    address: ''
+    name: "",
+    phone: "",
+    address: "",
   });
 
-  const filteredCustomers = customers.filter(customer =>
-    customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    customer.phone.includes(searchTerm)
+  const filteredCustomers = customers.filter(
+    (customer) =>
+      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.phone.includes(searchTerm),
   );
 
   const resetForm = () => {
-    setFormData({ name: '', phone: '', address: '' });
+    setFormData({ name: "", phone: "", address: "" });
     setEditingCustomer(null);
   };
 
@@ -40,7 +55,7 @@ export default function Customers() {
       setFormData({
         name: customer.name,
         phone: customer.phone,
-        address: customer.address
+        address: customer.address,
       });
     } else {
       resetForm();
@@ -64,35 +79,35 @@ export default function Customers() {
       closeDialog();
     } catch (error) {
       showAlert({
-        title: 'Error',
-        message: 'Failed to save customer. Please try again.',
-        type: 'error'
+        title: "Error",
+        message: "Failed to save customer. Please try again.",
+        type: "error",
       });
     }
   };
 
   const handleDelete = async (id: string) => {
     const confirmed = await showConfirm({
-      title: t('customers.delete'),
-      message: t('message.deleteConfirm'),
-      type: 'danger',
-      confirmText: t('customers.delete'),
-      cancelText: t('common.cancel')
+      title: t("customers.delete"),
+      message: t("message.deleteConfirm"),
+      type: "danger",
+      confirmText: t("customers.delete"),
+      cancelText: t("common.cancel"),
     });
 
     if (confirmed) {
       try {
         await deleteCustomer(id);
         showAlert({
-          title: t('message.success'),
-          message: t('message.customerDeleted'),
-          type: 'success'
+          title: t("message.success"),
+          message: t("message.customerDeleted"),
+          type: "success",
         });
       } catch (error) {
         showAlert({
-          title: t('message.error'),
-          message: t('message.error'),
-          type: 'error'
+          title: t("message.error"),
+          message: t("message.error"),
+          type: "error",
         });
       }
     }
@@ -102,64 +117,92 @@ export default function Customers() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('customers.title')}</h1>
-          <p className="text-gray-600 mt-2">{t('customers.title')}</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            {t("customers.title")}
+          </h1>
+          <p className="text-gray-600 mt-2">{t("customers.title")}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button onClick={() => openDialog()} className="bg-dashboard-primary hover:bg-dashboard-primary-light">
+            <Button
+              onClick={() => openDialog()}
+              className="bg-dashboard-primary hover:bg-dashboard-primary-light"
+            >
               <Plus className="w-4 h-4 mr-2" />
-              {t('customers.addNew')}
+              {t("customers.addNew")}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>
-                {editingCustomer ? t('customers.editCustomer') : t('customers.addCustomer')}
+                {editingCustomer
+                  ? t("customers.editCustomer")
+                  : t("customers.addCustomer")}
               </DialogTitle>
               <DialogDescription>
-                {editingCustomer ? t('customers.editCustomer') : t('customers.addCustomer')}
+                {editingCustomer
+                  ? t("customers.editCustomer")
+                  : t("customers.addCustomer")}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">{t('customers.customerName')}</Label>
+                  <Label htmlFor="name">{t("customers.customerName")}</Label>
                   <Input
                     id="name"
                     value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder={t('customers.customerName')}
+                    onChange={(e) =>
+                      setFormData((prev) => ({ ...prev, name: e.target.value }))
+                    }
+                    placeholder={t("customers.customerName")}
                     required
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="phone">{t('customers.customerPhone')}</Label>
+                  <Label htmlFor="phone">{t("customers.customerPhone")}</Label>
                   <Input
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    placeholder={t('customers.customerPhone')}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        phone: e.target.value,
+                      }))
+                    }
+                    placeholder={t("customers.customerPhone")}
                     required
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="address">{t('customers.customerAddress')}</Label>
+                  <Label htmlFor="address">
+                    {t("customers.customerAddress")}
+                  </Label>
                   <Textarea
                     id="address"
                     value={formData.address}
-                    onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                    placeholder={t('customers.customerAddress')}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        address: e.target.value,
+                      }))
+                    }
+                    placeholder={t("customers.customerAddress")}
                     required
                   />
                 </div>
               </div>
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={closeDialog}>
-                  {t('common.cancel')}
+                  {t("common.cancel")}
                 </Button>
-                <Button type="submit" className="bg-dashboard-primary hover:bg-dashboard-primary-light">
-                  {editingCustomer ? t('customers.save') : t('customers.addCustomer')}
+                <Button
+                  type="submit"
+                  className="bg-dashboard-primary hover:bg-dashboard-primary-light"
+                >
+                  {editingCustomer
+                    ? t("customers.save")
+                    : t("customers.addCustomer")}
                 </Button>
               </DialogFooter>
             </form>
@@ -173,7 +216,7 @@ export default function Customers() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input
-              placeholder={t('customers.search')}
+              placeholder={t("customers.search")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -195,7 +238,7 @@ export default function Customers() {
                   {customer.name}
                 </CardTitle>
                 <Badge variant="outline" className="text-xs">
-                  {t('customers.title')}
+                  {t("customers.title")}
                 </Badge>
               </div>
             </CardHeader>
@@ -210,7 +253,7 @@ export default function Customers() {
                   <span className="line-clamp-2">{customer.address}</span>
                 </div>
               </div>
-              
+
               <div className="text-xs text-gray-500">
                 Added: {new Date(customer.createdAt).toLocaleDateString()}
               </div>
@@ -223,11 +266,11 @@ export default function Customers() {
                   onClick={() => openDialog(customer)}
                 >
                   <Edit className="w-4 h-4 mr-1" />
-                  {t('customers.edit')}
+                  {t("customers.edit")}
                 </Button>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
+                <Button
+                  size="sm"
+                  variant="outline"
                   className="text-red-600 hover:text-red-700 hover:bg-red-50"
                   onClick={() => handleDelete(customer.id)}
                 >
@@ -243,16 +286,20 @@ export default function Customers() {
         <Card>
           <CardContent className="text-center py-12">
             <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('empty.noCustomersFound')}</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              {t("empty.noCustomersFound")}
+            </h3>
             <p className="text-gray-600">
-              {searchTerm ? t('empty.adjustSearch') : t('empty.addFirstCustomer')}
+              {searchTerm
+                ? t("empty.adjustSearch")
+                : t("empty.addFirstCustomer")}
             </p>
             <Button
               className="mt-4 bg-dashboard-primary hover:bg-dashboard-primary-light"
               onClick={() => openDialog()}
             >
               <Plus className="w-4 h-4 mr-2" />
-              {t('empty.addCustomer')}
+              {t("empty.addCustomer")}
             </Button>
           </CardContent>
         </Card>
