@@ -335,7 +335,7 @@ export default function Orders() {
                 </div>
 
                 <div className="grid gap-2">
-                  <Label>Products</Label>
+                  <Label>{t('nav.products')}</Label>
                   <div className="space-y-4">
                     {formData.items.map((item, index) => {
                       const product = getProductById(item.productId);
