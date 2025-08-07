@@ -835,12 +835,12 @@ export default function Orders() {
                 </div>
                 {viewingOrder.notes && (
                   <div className="mb-3">
-                    <span className="font-medium">Notes:</span>
+                    <span className="font-medium">{t('orders.notes')}:</span>
                     <p className="text-gray-600 mt-1">{viewingOrder.notes}</p>
                   </div>
                 )}
                 <div className="border-t pt-3 flex justify-between items-center">
-                  <span className="text-lg font-medium">Total:</span>
+                  <span className="text-lg font-medium">{t('orders.total')}:</span>
                   <span className="text-2xl font-bold text-dashboard-primary">
                     BD {viewingOrder.total.toFixed(2)}
                   </span>
