@@ -149,9 +149,28 @@ const data: MyRouteResponse = await response.json();
 
 ## Production Deployment
 
+### Vercel (Recommended)
+The project is pre-configured for Vercel deployment:
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy to Vercel
+vercel
+
+# Or connect to GitHub and deploy automatically
+```
+
+Configuration files included:
+- `vercel.json` - Deployment configuration
+- `api/index.js` - Serverless API handler
+- `DEPLOYMENT.md` - Detailed deployment guide
+
+### Other Options
 - **Standard**: `npm run build` + `npm start`
+- **Netlify**: Use existing `netlify.toml` configuration
 - **Binary**: Self-contained executables (Linux, macOS, Windows)
-- **Cloud Deployment**: Use either Netlify or Vercel via their MCP integrations for easy deployment. Both providers work well with this starter template.
 
 ## Architecture Notes
 
