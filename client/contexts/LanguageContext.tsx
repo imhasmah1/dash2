@@ -241,7 +241,7 @@ const translations = {
     "products.productName": "اسم المنتج",
     "products.productPrice": "سعر المنتج",
     "products.productDescription": "وصف المنتج",
-    "products.productImages": "ص��ر المنتج",
+    "products.productImages": "صور المنتج",
     "products.addVariant": "إضافة نوع",
     "products.variantName": "اسم النوع",
     "products.variantStock": "مخزون النوع",
@@ -294,7 +294,7 @@ const translations = {
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
-    "orders.customerNotFound": "العميل غير موج��د",
+    "orders.customerNotFound": "العميل غير موجود",
     "orders.orderItems": "عناصر الطلب",
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
@@ -323,7 +323,7 @@ const translations = {
 
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
-    "revenue.overview": "نظرة عامة على الإيرادات",
+    "revenue.overview": "نظرة عامة على ��لإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
@@ -350,7 +350,7 @@ const translations = {
     "common.loading": "جارٍ التحميل...",
     "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
-    "common.close": "إغل��ق",
+    "common.close": "إغلاق",
     "common.yes": "نعم",
     "common.no": "لا",
 
