@@ -268,7 +268,7 @@ const translations = {
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
-    "orders.editOrder": "تعديل ��لب",
+    "orders.editOrder": "تعديل طلب",
     "orders.selectCustomer": "اختر العميل",
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
@@ -294,7 +294,7 @@ const translations = {
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
-    "orders.customerNotFound": "العمي�� غير موجود",
+    "orders.customerNotFound": "العميل غير موجود",
     "orders.orderItems": "عناصر الطلب",
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
@@ -322,7 +322,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلات ا��إيرادات",
+    "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -341,7 +341,7 @@ const translations = {
 
     // Common
     "common.save": "حفظ",
-    "common.cancel": "إ��غاء",
+    "common.cancel": "إلغاء",
     "common.delete": "حذف",
     "common.edit": "تعديل",
     "common.add": "إضافة",
