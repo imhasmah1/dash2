@@ -174,7 +174,7 @@ export default function Store() {
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-lg font-bold text-primary">
-                        ${product.price.toFixed(2)}
+                        BD {product.price.toFixed(2)}
                       </span>
                       {product.totalStock > 0 && (
                         <p className="text-xs text-muted-foreground">
