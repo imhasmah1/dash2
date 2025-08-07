@@ -143,7 +143,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                         </div>
 
                         <div className="text-lg font-bold">
-                          ${(item.price * item.quantity).toFixed(2)}
+                          BD {(item.price * item.quantity).toFixed(2)}
                         </div>
                       </div>
                     </div>
