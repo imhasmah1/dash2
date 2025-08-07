@@ -311,6 +311,8 @@ const translations = {
     "orders.created": "تاريخ الإنشاء",
     "orders.lastUpdated": "آخر تحديث",
     "orders.close": "إغلاق",
+    "orders.selectProduct": "اختر المنتج",
+    "orders.selectVariant": "اختر النوع",
 
     // Customers
     "customers.title": "العملاء",
@@ -345,7 +347,7 @@ const translations = {
     "revenue.month": "الشهر",
     "revenue.revenue": "الإيرادات",
     "revenue.day": "اليوم",
-    "revenue.productRevenue": "إيرادات الم��تج",
+    "revenue.productRevenue": "إيرادات المنتج",
     "revenue.deliveryType": "نوع التسليم",
     "revenue.orderStatus": "حالة الطلب",
 
