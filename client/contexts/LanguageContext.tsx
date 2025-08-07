@@ -116,7 +116,6 @@ const translations = {
     "orders.created": "Created",
     "orders.lastUpdated": "Last Updated",
     "orders.close": "Close",
-    "orders.editOrder": "Edit Order",
 
     // Customers
     "customers.title": "Customers",
