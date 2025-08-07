@@ -810,25 +810,25 @@ export default function Orders() {
               {/* Order Summary */}
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex justify-between items-center mb-2">
-                  <span>Status:</span>
+                  <span>{t('orders.status')}:</span>
                   <Badge className={getStatusColor(viewingOrder.status)}>
                     {getStatusText(viewingOrder.status)}
                   </Badge>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span>Delivery Type:</span>
+                  <span>{t('orders.deliveryType')}:</span>
                   <span className="capitalize font-medium text-dashboard-primary">
-                    {viewingOrder.deliveryType}
+                    {viewingOrder.deliveryType === 'delivery' ? t('orders.delivery') : t('orders.pickup')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span>Created:</span>
+                  <span>{t('orders.created')}:</span>
                   <span>
                     {new Date(viewingOrder.createdAt).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between items-center mb-3">
-                  <span>Last Updated:</span>
+                  <span>{t('orders.lastUpdated')}:</span>
                   <span>
                     {new Date(viewingOrder.updatedAt).toLocaleString()}
                   </span>
