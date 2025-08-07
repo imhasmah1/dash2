@@ -239,7 +239,7 @@ const translations = {
     "products.edit": "تعديل",
     "products.delete": "حذف",
     "products.noProducts": "لا توجد منتجات",
-    "products.addProduct": "إضافة من��ج",
+    "products.addProduct": "إضافة منتج",
     "products.editProduct": "تعديل منتج",
     "products.productName": "اسم المنتج",
     "products.productPrice": "سعر المنتج",
@@ -255,6 +255,7 @@ const translations = {
     "products.maxImages": "الحد الأقصى 10 صور",
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
+    "products.images": "صور",
 
     // Orders
     "orders.title": "الطلبات",
