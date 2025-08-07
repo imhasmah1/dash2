@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
-import { useNavigate } from 'react-router-dom';
 import {
   Sheet,
   SheetContent,
@@ -13,6 +13,7 @@ import { Input } from './ui/input';
 import { ScrollArea } from './ui/scroll-area';
 import { Separator } from './ui/separator';
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import CheckoutDialog from './CheckoutDialog';
 
 interface CartSidebarProps {
   open: boolean;
