@@ -238,10 +238,18 @@ export default function Revenue() {
                 </div>
               }>
                 <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={revenueMetrics.monthlyRevenue}>
+                  <AreaChart data={revenueMetrics.monthlyRevenue || []}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis tickFormatter={(value) => `BD ${value}`} />
+                    <XAxis
+                      dataKey="month"
+                      axisLine={false}
+                      tickLine={false}
+                    />
+                    <YAxis
+                      tickFormatter={(value) => `BD ${value}`}
+                      axisLine={false}
+                      tickLine={false}
+                    />
                     <Tooltip
                       formatter={(value: any) => [formatCurrency(value), 'Revenue']}
                       labelFormatter={(label) => `Month: ${label}`}
