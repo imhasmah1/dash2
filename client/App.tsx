@@ -69,6 +69,7 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { DataProvider } from "@/contexts/DataContext";
 import { DialogProvider } from "@/contexts/DialogContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { CartProvider } from "@/contexts/CartContext";
 import LoginPage from "@/components/LoginPage";
 import DashboardLayout from "@/components/DashboardLayout";
 import Dashboard from "@/pages/Dashboard";
@@ -76,6 +77,8 @@ import Products from "@/pages/Products";
 import Orders from "@/pages/Orders";
 import Customers from "@/pages/Customers";
 import Revenue from "@/pages/Revenue";
+import Store from "@/pages/Store";
+import Checkout from "@/pages/Checkout";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -83,21 +86,30 @@ const queryClient = new QueryClient();
 function AppContent() {
   const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated) {
-    return <LoginPage />;
-  }
-
   return (
-    <DashboardLayout>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/revenue" element={<Revenue />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </DashboardLayout>
+    <Routes>
+      {/* Store routes - no authentication required */}
+      <Route path="/store" element={<Store />} />
+      <Route path="/checkout" element={<Checkout />} />
+
+      {/* Admin routes - authentication required */}
+      <Route path="/*" element={
+        isAuthenticated ? (
+          <DashboardLayout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/revenue" element={<Revenue />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </DashboardLayout>
+        ) : (
+          <LoginPage />
+        )
+      } />
+    </Routes>
   );
 }
 
@@ -108,13 +120,15 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <LanguageProvider>
-          <AuthProvider>
-            <DataProvider>
-              <DialogProvider>
-                <AppContent />
-              </DialogProvider>
-            </DataProvider>
-          </AuthProvider>
+          <CartProvider>
+            <AuthProvider>
+              <DataProvider>
+                <DialogProvider>
+                  <AppContent />
+                </DialogProvider>
+              </DataProvider>
+            </AuthProvider>
+          </CartProvider>
         </LanguageProvider>
       </BrowserRouter>
     </TooltipProvider>
