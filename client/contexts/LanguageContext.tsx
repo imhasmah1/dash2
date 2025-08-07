@@ -273,7 +273,7 @@ const translations = {
 
     // Products
     "products.title": "المنتجات",
-    "products.subtitle": "إدارة مخزون المنتجات",
+    "products.subtitle": "إدارة مخزون ��لمنتجات",
     "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
@@ -431,7 +431,7 @@ const translations = {
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
     "message.customerUpdated": "تم تحديث العميل بنجاح",
-    "message.customerDeleted": "تم حذف الع��يل بنجاح",
+    "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
     "message.success": "تمت العملية بنجاح",
 
@@ -485,7 +485,7 @@ const translations = {
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
-    "store.productDetails": "��فاصيل المنتج",
+    "store.productDetails": "تفاصيل المنتج",
   },
 } as const;
 
