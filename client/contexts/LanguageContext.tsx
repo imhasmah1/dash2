@@ -236,10 +236,11 @@ const translations = {
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
-    "products.maxImages": "الحد الأقصى 10 صور",
+    "products.maxImages": "الحد الأ��صى 10 صور",
 
     // Orders
     "orders.title": "الطلبات",
+    "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
     "orders.orderId": "رقم الطلب",
@@ -344,7 +345,7 @@ const translations = {
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
-    "message.orderUpdated": "تم تحديث الطلب بنجاح",
+    "message.orderUpdated": "ت�� تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
     "message.customerUpdated": "تم تحديث العميل بنجاح",
