@@ -116,6 +116,9 @@ export default function Products() {
   };
 
   const getTotalStock = () => {
+    if (formData.variants.length === 0) {
+      return formData.stock;
+    }
     return formData.variants.reduce((sum, variant) => sum + variant.stock, 0);
   };
 
