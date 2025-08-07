@@ -77,30 +77,7 @@ interface DataContextType {
   uploadImage: (file: File) => Promise<string>;
 }
 
-// Create default context value to prevent undefined context errors
-const defaultDataContext: DataContextType = {
-  customers: [],
-  products: [],
-  orders: [],
-  loading: true,
-  addCustomer: async () => {},
-  updateCustomer: async () => {},
-  deleteCustomer: async () => {},
-  addProduct: async () => {},
-  updateProduct: async () => {},
-  deleteProduct: async () => {},
-  addOrder: async () => {},
-  updateOrder: async () => {},
-  deleteOrder: async () => {},
-  updateOrderStatus: async () => {},
-  getCustomerById: () => undefined,
-  getProductById: () => undefined,
-  getVariantById: () => undefined,
-  refetchData: async () => {},
-  uploadImage: async () => "",
-};
-
-const DataContext = createContext<DataContextType>(defaultDataContext);
+const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: ReactNode }) {
   const [customers, setCustomers] = useState<Customer[]>([]);
