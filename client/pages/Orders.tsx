@@ -785,7 +785,7 @@ export default function Orders() {
                       >
                         <div>
                           <span className="font-medium">
-                            {product?.name || "Unknown Product"}
+                            {product?.name || t('orders.unknownProduct')}
                           </span>
                           {variant && (
                             <span className="text-sm text-gray-600 ml-2">
