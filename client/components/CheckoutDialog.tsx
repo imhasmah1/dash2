@@ -315,14 +315,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     {/* Order Items */}
                     <div className="space-y-3">
-                      <h4 className="font-medium">{t('orders.items')}</h4>
+                      <h4 className="font-medium text-right [dir=ltr]:text-left">{t('orders.items')}</h4>
                       {items.map((item) => (
-                        <div key={`${item.productId}-${item.variantId}`} className="flex justify-between items-center text-sm py-2 border-b">
+                        <div key={`${item.productId}-${item.variantId}`} className="flex justify-between items-center text-sm py-2 border-b [dir=rtl]:flex-row-reverse">
                           <div className="flex-1">
-                            <p className="font-medium">{item.productName}</p>
-                            <p className="text-muted-foreground">{item.variantName} × {item.quantity}</p>
+                            <p className="font-medium text-right [dir=ltr]:text-left">{item.productName}</p>
+                            <p className="text-muted-foreground text-right [dir=ltr]:text-left">{item.variantName} × {item.quantity}</p>
                           </div>
-                          <p className="font-medium">
+                          <p className="font-medium text-right [dir=ltr]:text-left">
                             BD {(item.price * item.quantity).toFixed(2)}
                           </p>
                         </div>
@@ -352,7 +352,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   className="flex-1"
                 >
                   <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-                  {t('language.switch') === 'تغيير اللغ��' ? 'السابق' : 'Back'}
+                  {t('language.switch') === 'تغيير اللغة' ? 'السابق' : 'Back'}
                 </Button>
               )}
               
