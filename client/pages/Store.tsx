@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useCart } from '../contexts/CartContext';
-import { getProducts } from '../services/api';
-import { Button } from '../components/ui/button';
-import { ShoppingCart, Plus, Globe, Store as StoreIcon } from 'lucide-react';
-import { Badge } from '../components/ui/badge';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
+import { useCart } from "../contexts/CartContext";
+import { getProducts } from "../services/api";
+import { Button } from "../components/ui/button";
+import { ShoppingCart, Plus, Globe, Store as StoreIcon } from "lucide-react";
+import { Badge } from "../components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../components/ui/dropdown-menu';
-import AddToCartDialog from '../components/AddToCartDialog';
-import CartSidebar from '../components/CartSidebar';
+} from "../components/ui/dropdown-menu";
+import AddToCartDialog from "../components/AddToCartDialog";
+import CartSidebar from "../components/CartSidebar";
 
 interface Product {
   id: string;
@@ -44,7 +44,7 @@ export default function Store() {
         const data = await getProducts();
         setProducts(data);
       } catch (error) {
-        console.error('Failed to fetch products:', error);
+        console.error("Failed to fetch products:", error);
       } finally {
         setLoading(false);
       }
@@ -63,7 +63,7 @@ export default function Store() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">{t('common.loading')}</div>
+        <div className="text-lg">{t("common.loading")}</div>
       </div>
     );
   }
@@ -77,11 +77,12 @@ export default function Store() {
           <div className="flex items-center gap-3">
             <div className="h-20 flex items-center">
               <img
-                src={language === 'ar'
-                  ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
-                  : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
+                src={
+                  language === "ar"
+                    ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
+                    : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
                 }
-                alt={t('store.title')}
+                alt={t("store.title")}
                 className="h-20 w-auto object-contain"
               />
             </div>
@@ -94,14 +95,14 @@ export default function Store() {
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2">
                   <Globe className="h-4 w-4" />
-                  {language === 'ar' ? 'العربية' : 'English'}
+                  {language === "ar" ? "العربية" : "English"}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                <DropdownMenuItem onClick={() => setLanguage("en")}>
                   English
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage('ar')}>
+                <DropdownMenuItem onClick={() => setLanguage("ar")}>
                   العربية
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -114,7 +115,7 @@ export default function Store() {
               className="relative hover:bg-primary/5 hover:border-primary transition-colors"
             >
               <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-              {t('store.cart')}
+              {t("store.cart")}
               {cartItemsCount > 0 && (
                 <Badge
                   variant="destructive"
@@ -132,7 +133,9 @@ export default function Store() {
       <main className="container mx-auto px-4 py-8">
         {products.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4">{t('empty.noProductsFound')}</p>
+            <p className="text-muted-foreground mb-4">
+              {t("empty.noProductsFound")}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -154,7 +157,7 @@ export default function Store() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                      <span className="text-sm">{t('products.noImages')}</span>
+                      <span className="text-sm">{t("products.noImages")}</span>
                     </div>
                   )}
                 </div>
@@ -178,7 +181,7 @@ export default function Store() {
                       </span>
                       {product.totalStock > 0 && (
                         <p className="text-xs text-muted-foreground">
-                          {product.totalStock} {t('products.stock')}
+                          {product.totalStock} {t("products.stock")}
                         </p>
                       )}
                     </div>
@@ -194,8 +197,11 @@ export default function Store() {
                   </div>
 
                   {product.totalStock === 0 && (
-                    <Badge variant="secondary" className="w-full mt-2 justify-center">
-                      {t('store.outOfStock')}
+                    <Badge
+                      variant="secondary"
+                      className="w-full mt-2 justify-center"
+                    >
+                      {t("store.outOfStock")}
                     </Badge>
                   )}
                 </div>
@@ -218,10 +224,7 @@ export default function Store() {
       )}
 
       {/* Cart Sidebar */}
-      <CartSidebar 
-        open={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
-      />
+      <CartSidebar open={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }

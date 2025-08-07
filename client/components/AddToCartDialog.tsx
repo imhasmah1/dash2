@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useCart } from '../contexts/CartContext';
+import { useState, useEffect } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { useCart } from "../contexts/CartContext";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from './ui/dialog';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
+} from "./ui/dialog";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
-import { Minus, Plus } from 'lucide-react';
+} from "./ui/select";
+import { Minus, Plus } from "lucide-react";
 
 interface Product {
   id: string;
@@ -40,19 +40,25 @@ interface AddToCartDialogProps {
   onClose: () => void;
 }
 
-export default function AddToCartDialog({ product, open, onClose }: AddToCartDialogProps) {
+export default function AddToCartDialog({
+  product,
+  open,
+  onClose,
+}: AddToCartDialogProps) {
   const { t } = useLanguage();
   const { addItem } = useCart();
-  const [selectedVariantId, setSelectedVariantId] = useState<string>('');
+  const [selectedVariantId, setSelectedVariantId] = useState<string>("");
   const [quantity, setQuantity] = useState(1);
 
-  const selectedVariant = product.variants.find(v => v.id === selectedVariantId);
+  const selectedVariant = product.variants.find(
+    (v) => v.id === selectedVariantId,
+  );
   const maxQuantity = selectedVariant?.stock || 0;
 
   // Reset form when dialog opens
   useEffect(() => {
     if (open) {
-      setSelectedVariantId('');
+      setSelectedVariantId("");
       setQuantity(1);
     }
   }, [open]);
@@ -79,7 +85,8 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
     }
   };
 
-  const isValidSelection = selectedVariant && quantity > 0 && quantity <= maxQuantity;
+  const isValidSelection =
+    selectedVariant && quantity > 0 && quantity <= maxQuantity;
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -101,9 +108,7 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
           )}
 
           {/* Product Description */}
-          <p className="text-sm text-muted-foreground">
-            {product.description}
-          </p>
+          <p className="text-sm text-muted-foreground">{product.description}</p>
 
           {/* Price */}
           <div className="text-lg font-bold text-primary">
@@ -113,17 +118,20 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
           {/* Variant Selection */}
           {product.variants.length > 0 && (
             <div className="space-y-2">
-              <Label htmlFor="variant">{t('store.variant')}</Label>
-              <Select value={selectedVariantId} onValueChange={setSelectedVariantId}>
+              <Label htmlFor="variant">{t("store.variant")}</Label>
+              <Select
+                value={selectedVariantId}
+                onValueChange={setSelectedVariantId}
+              >
                 <SelectTrigger>
-                  <SelectValue placeholder={t('store.selectVariant')} />
+                  <SelectValue placeholder={t("store.selectVariant")} />
                 </SelectTrigger>
                 <SelectContent>
                   {product.variants
-                    .filter(variant => variant.stock > 0)
+                    .filter((variant) => variant.stock > 0)
                     .map((variant) => (
                       <SelectItem key={variant.id} value={variant.id}>
-                        {variant.name} ({variant.stock} {t('products.stock')})
+                        {variant.name} ({variant.stock} {t("products.stock")})
                       </SelectItem>
                     ))}
                 </SelectContent>
@@ -134,7 +142,7 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
           {/* Quantity Selection */}
           {selectedVariant && (
             <div className="space-y-2">
-              <Label htmlFor="quantity">{t('store.quantity')}</Label>
+              <Label htmlFor="quantity">{t("store.quantity")}</Label>
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
@@ -144,17 +152,19 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
-                
+
                 <Input
                   id="quantity"
                   type="number"
                   value={quantity}
-                  onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                  onChange={(e) =>
+                    handleQuantityChange(parseInt(e.target.value) || 1)
+                  }
                   min={1}
                   max={maxQuantity}
                   className="w-20 text-center"
                 />
-                
+
                 <Button
                   variant="outline"
                   size="sm"
@@ -164,10 +174,10 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               {selectedVariant && (
                 <p className="text-xs text-muted-foreground">
-                  {t('products.stock')}: {selectedVariant.stock}
+                  {t("products.stock")}: {selectedVariant.stock}
                 </p>
               )}
             </div>
@@ -177,7 +187,7 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
           {isValidSelection && (
             <div className="border-t pt-4">
               <div className="flex justify-between items-center font-semibold">
-                <span>{t('orders.subtotal')}:</span>
+                <span>{t("orders.subtotal")}:</span>
                 <span>BD {(product.price * quantity).toFixed(2)}</span>
               </div>
             </div>
@@ -186,13 +196,10 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
 
         <DialogFooter className="gap-2">
           <Button variant="outline" onClick={onClose}>
-            {t('common.cancel')}
+            {t("common.cancel")}
           </Button>
-          <Button 
-            onClick={handleAddToCart} 
-            disabled={!isValidSelection}
-          >
-            {t('store.addToCart')}
+          <Button onClick={handleAddToCart} disabled={!isValidSelection}>
+            {t("store.addToCart")}
           </Button>
         </DialogFooter>
       </DialogContent>

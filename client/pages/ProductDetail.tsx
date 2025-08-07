@@ -1,20 +1,26 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useCart } from '../contexts/CartContext';
-import { getProducts } from '../services/api';
-import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
-import { Card, CardContent } from '../components/ui/card';
-import { ArrowLeft, ShoppingCart, Plus, Globe, Store as StoreIcon } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
+import { useCart } from "../contexts/CartContext";
+import { getProducts } from "../services/api";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
+import { Card, CardContent } from "../components/ui/card";
+import {
+  ArrowLeft,
+  ShoppingCart,
+  Plus,
+  Globe,
+  Store as StoreIcon,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../components/ui/dropdown-menu';
-import AddToCartDialog from '../components/AddToCartDialog';
-import CartSidebar from '../components/CartSidebar';
+} from "../components/ui/dropdown-menu";
+import AddToCartDialog from "../components/AddToCartDialog";
+import CartSidebar from "../components/CartSidebar";
 
 interface Product {
   id: string;
@@ -35,7 +41,7 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
-  
+
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -47,10 +53,10 @@ export default function ProductDetail() {
     const fetchProduct = async () => {
       try {
         const products = await getProducts();
-        const foundProduct = products.find(p => p.id === id);
+        const foundProduct = products.find((p) => p.id === id);
         setProduct(foundProduct || null);
       } catch (error) {
-        console.error('Failed to fetch product:', error);
+        console.error("Failed to fetch product:", error);
       } finally {
         setLoading(false);
       }
@@ -70,7 +76,7 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">{t('common.loading')}</div>
+        <div className="text-lg">{t("common.loading")}</div>
       </div>
     );
   }
@@ -79,9 +85,9 @@ export default function ProductDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-lg">{t('empty.noProductsFound')}</p>
-          <Button onClick={() => navigate('/')} variant="outline">
-            {t('store.continueShopping')}
+          <p className="text-lg">{t("empty.noProductsFound")}</p>
+          <Button onClick={() => navigate("/")} variant="outline">
+            {t("store.continueShopping")}
           </Button>
         </div>
       </div>
@@ -97,16 +103,17 @@ export default function ProductDetail() {
           <div className="flex items-center gap-3">
             <div className="h-20 flex items-center">
               <img
-                src={language === 'ar'
-                  ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
-                  : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
+                src={
+                  language === "ar"
+                    ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
+                    : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
                 }
-                alt={t('store.title')}
+                alt={t("store.title")}
                 className="h-20 w-auto object-contain"
               />
             </div>
           </div>
-          
+
           {/* Right side buttons */}
           <div className="flex items-center gap-3">
             {/* Language Switch */}
@@ -114,14 +121,14 @@ export default function ProductDetail() {
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2">
                   <Globe className="h-4 w-4" />
-                  {language === 'ar' ? 'العربية' : 'English'}
+                  {language === "ar" ? "العربية" : "English"}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                <DropdownMenuItem onClick={() => setLanguage("en")}>
                   English
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage('ar')}>
+                <DropdownMenuItem onClick={() => setLanguage("ar")}>
                   العربية
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -134,10 +141,10 @@ export default function ProductDetail() {
               className="relative hover:bg-primary/5 hover:border-primary transition-colors"
             >
               <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-              {t('store.cart')}
+              {t("store.cart")}
               {cartItemsCount > 0 && (
-                <Badge 
-                  variant="destructive" 
+                <Badge
+                  variant="destructive"
                   className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs animate-pulse"
                 >
                   {cartItemsCount}
@@ -153,11 +160,11 @@ export default function ProductDetail() {
         {/* Back Button */}
         <Button
           variant="ghost"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
           className="mb-6 gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          {t('store.continueShopping')}
+          {t("store.continueShopping")}
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -173,7 +180,7 @@ export default function ProductDetail() {
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <span>{t('products.noImages')}</span>
+                  <span>{t("products.noImages")}</span>
                 </div>
               )}
             </div>
@@ -186,9 +193,9 @@ export default function ProductDetail() {
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
                     className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
-                      selectedImageIndex === index 
-                        ? 'border-primary ring-2 ring-primary/20' 
-                        : 'border-gray-200 hover:border-gray-300'
+                      selectedImageIndex === index
+                        ? "border-primary ring-2 ring-primary/20"
+                        : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
                     <img
@@ -206,20 +213,23 @@ export default function ProductDetail() {
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-              <p className="text-lg text-muted-foreground mb-4">{product.description}</p>
-              
+              <p className="text-lg text-muted-foreground mb-4">
+                {product.description}
+              </p>
+
               <div className="text-3xl font-bold text-primary mb-4">
                 BD {product.price.toFixed(2)}
               </div>
 
               {product.totalStock > 0 ? (
-                <Badge variant="outline" className="text-green-600 border-green-600">
-                  {product.totalStock} {t('products.stock')}
+                <Badge
+                  variant="outline"
+                  className="text-green-600 border-green-600"
+                >
+                  {product.totalStock} {t("products.stock")}
                 </Badge>
               ) : (
-                <Badge variant="secondary">
-                  {t('store.outOfStock')}
-                </Badge>
+                <Badge variant="secondary">{t("store.outOfStock")}</Badge>
               )}
             </div>
 
@@ -227,7 +237,9 @@ export default function ProductDetail() {
             {product.variants.length > 0 && (
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-4">{t('products.variants')}:</h3>
+                  <h3 className="font-semibold mb-4">
+                    {t("products.variants")}:
+                  </h3>
                   <div className="grid grid-cols-2 gap-2">
                     {product.variants.map((variant) => (
                       <div
@@ -236,7 +248,7 @@ export default function ProductDetail() {
                       >
                         <div className="font-medium">{variant.name}</div>
                         <div className="text-sm text-muted-foreground">
-                          {variant.stock} {t('products.stock')}
+                          {variant.stock} {t("products.stock")}
                         </div>
                       </div>
                     ))}
@@ -253,7 +265,7 @@ export default function ProductDetail() {
               className="w-full"
             >
               <Plus className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-              {t('store.addToCart')}
+              {t("store.addToCart")}
             </Button>
           </div>
         </div>
@@ -267,10 +279,7 @@ export default function ProductDetail() {
       />
 
       {/* Cart Sidebar */}
-      <CartSidebar 
-        open={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
-      />
+      <CartSidebar open={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }

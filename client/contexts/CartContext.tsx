@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from "react";
 
 export interface CartItem {
   productId: string;
@@ -14,7 +14,11 @@ interface CartContextType {
   items: CartItem[];
   addItem: (item: CartItem) => void;
   removeItem: (productId: string, variantId: string) => void;
-  updateQuantity: (productId: string, variantId: string, quantity: number) => void;
+  updateQuantity: (
+    productId: string,
+    variantId: string,
+    quantity: number,
+  ) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -27,7 +31,7 @@ const CartContext = createContext<CartContextType | null>(null);
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 }
@@ -37,39 +41,48 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const addItem = (newItem: CartItem) => {
-    setItems(prev => {
+    setItems((prev) => {
       const existingIndex = prev.findIndex(
-        item => item.productId === newItem.productId && item.variantId === newItem.variantId
+        (item) =>
+          item.productId === newItem.productId &&
+          item.variantId === newItem.variantId,
       );
-      
+
       if (existingIndex >= 0) {
         const updated = [...prev];
         updated[existingIndex].quantity += newItem.quantity;
         return updated;
       }
-      
+
       return [...prev, newItem];
     });
   };
 
   const removeItem = (productId: string, variantId: string) => {
-    setItems(prev => 
-      prev.filter(item => !(item.productId === productId && item.variantId === variantId))
+    setItems((prev) =>
+      prev.filter(
+        (item) =>
+          !(item.productId === productId && item.variantId === variantId),
+      ),
     );
   };
 
-  const updateQuantity = (productId: string, variantId: string, quantity: number) => {
+  const updateQuantity = (
+    productId: string,
+    variantId: string,
+    quantity: number,
+  ) => {
     if (quantity <= 0) {
       removeItem(productId, variantId);
       return;
     }
-    
-    setItems(prev => 
-      prev.map(item => 
+
+    setItems((prev) =>
+      prev.map((item) =>
         item.productId === productId && item.variantId === variantId
           ? { ...item, quantity }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -82,21 +95,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const getTotalPrice = () => {
-    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
-    <CartContext.Provider value={{
-      items,
-      addItem,
-      removeItem,
-      updateQuantity,
-      clearCart,
-      getTotalItems,
-      getTotalPrice,
-      isCartOpen,
-      setIsCartOpen
-    }}>
+    <CartContext.Provider
+      value={{
+        items,
+        addItem,
+        removeItem,
+        updateQuantity,
+        clearCart,
+        getTotalItems,
+        getTotalPrice,
+        isCartOpen,
+        setIsCartOpen,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

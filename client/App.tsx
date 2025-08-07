@@ -93,22 +93,25 @@ function AppContent() {
       <Route path="/product/:id" element={<ProductDetail />} />
 
       {/* Admin routes - authentication required (now at /admin) */}
-      <Route path="/admin/*" element={
-        isAuthenticated ? (
-          <DashboardLayout>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/customers" element={<Customers />} />
-              <Route path="/revenue" element={<Revenue />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </DashboardLayout>
-        ) : (
-          <LoginPage />
-        )
-      } />
+      <Route
+        path="/admin/*"
+        element={
+          isAuthenticated ? (
+            <DashboardLayout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/customers" element={<Customers />} />
+                <Route path="/revenue" element={<Revenue />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </DashboardLayout>
+          ) : (
+            <LoginPage />
+          )
+        }
+      />
     </Routes>
   );
 }
