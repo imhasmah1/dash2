@@ -219,7 +219,7 @@ export default function ProductDetail() {
                 </Badge>
               ) : (
                 <Badge variant="secondary">
-                  Out of Stock
+                  {t('store.outOfStock')}
                 </Badge>
               )}
             </div>
