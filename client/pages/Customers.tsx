@@ -120,7 +120,7 @@ export default function Customers() {
           <h1 className="text-3xl font-bold text-gray-900">
             {t("customers.title")}
           </h1>
-          <p className="text-gray-600 mt-2">{t("customers.title")}</p>
+          <p className="text-gray-600 mt-2">{t("customers.subtitle")}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
