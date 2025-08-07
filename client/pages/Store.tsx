@@ -140,15 +140,18 @@ export default function Store() {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden cursor-pointer group"
               >
                 {/* Product Image */}
-                <div className="aspect-square overflow-hidden bg-gray-100">
+                <div
+                  className="aspect-square overflow-hidden bg-gray-100"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
                   {product.images.length > 0 ? (
                     <img
                       src={product.images[0]}
                       alt={product.name}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
