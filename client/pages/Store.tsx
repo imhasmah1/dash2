@@ -75,14 +75,14 @@ export default function Store() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center gap-3">
-            <div className="h-12 flex items-center">
+            <div className="h-16 flex items-center">
               <img
                 src={language === 'ar'
                   ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
                   : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
                 }
                 alt={t('store.title')}
-                className="h-12 w-auto object-contain"
+                className="h-16 w-auto object-contain"
               />
             </div>
           </div>
