@@ -850,7 +850,7 @@ export default function Orders() {
           )}
           <DialogFooter>
             <Button variant="outline" onClick={closeViewDialog}>
-              Close
+              {t('orders.close')}
             </Button>
             <Button
               onClick={() => {
@@ -858,7 +858,7 @@ export default function Orders() {
                 if (viewingOrder) openDialog(viewingOrder);
               }}
             >
-              Edit Order
+              {t('orders.editOrder')}
             </Button>
           </DialogFooter>
         </DialogContent>
