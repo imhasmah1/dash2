@@ -172,7 +172,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             
             {/* Step indicator */}
             <div className="flex justify-center mt-4">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse">
                 {[1, 2, 3].map((stepNum) => (
                   <div key={stepNum} className="flex items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
