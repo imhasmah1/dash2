@@ -131,9 +131,10 @@ export default function Products() {
       }
       closeDialog();
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Failed to save product. Please try again.";
       showAlert({
-        title: "Error",
-        message: "Failed to save product. Please try again.",
+        title: t("message.error"),
+        message: errorMessage,
         type: "error",
       });
     }
