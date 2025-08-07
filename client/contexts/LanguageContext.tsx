@@ -214,7 +214,7 @@ const translations = {
     "nav.customers": "العملاء",
     "nav.revenue": "الإيرادات",
     "nav.logout": "تسجيل الخروج",
-    "nav.adminPanel": "لوحة الإدارة",
+    "nav.adminPanel": "لوحة الإ��ارة",
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
@@ -346,7 +346,7 @@ const translations = {
     "common.edit": "تعديل",
     "common.add": "إضافة",
     "common.search": "بحث",
-    "common.actions": "ا��إجراءات",
+    "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
     "common.noData": "ل�� توجد بيانات",
     "common.confirm": "تأكيد",
