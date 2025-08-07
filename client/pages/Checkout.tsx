@@ -71,6 +71,7 @@ export default function Checkout() {
       const order = await createOrder({
         customerId: customer.id,
         items: orderItems,
+        total: totalPrice,
         status: 'processing',
         deliveryType,
         notes: '',
