@@ -108,7 +108,8 @@ const translations = {
     "orders.orderTotal": "Order Total",
     "orders.save": "Save",
     "orders.orderDetailsTitle": "Order Details",
-    "orders.orderDetailsDesc": "Complete order information for delivery and tracking",
+    "orders.orderDetailsDesc":
+      "Complete order information for delivery and tracking",
     "orders.customerInfo": "Customer Information",
     "orders.customerName": "Name",
     "orders.customerPhone": "Phone",

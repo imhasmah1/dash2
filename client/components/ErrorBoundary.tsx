@@ -1,6 +1,6 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { AlertTriangle } from 'lucide-react';
+import React, { Component, ErrorInfo, ReactNode } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlertTriangle } from "lucide-react";
 
 interface Props {
   children: ReactNode;
@@ -14,7 +14,7 @@ interface State {
 
 export class ErrorBoundary extends Component<Props, State> {
   public state: State = {
-    hasError: false
+    hasError: false,
   };
 
   public static getDerivedStateFromError(error: Error): State {
@@ -22,7 +22,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error:', error, errorInfo);
+    console.error("Uncaught error:", error, errorInfo);
   }
 
   public render() {
@@ -41,11 +41,13 @@ export class ErrorBoundary extends Component<Props, State> {
           </CardHeader>
           <CardContent>
             <p className="text-red-600 text-sm">
-              {this.state.error?.message || 'An unexpected error occurred.'}
+              {this.state.error?.message || "An unexpected error occurred."}
             </p>
             <button
               className="mt-3 text-sm text-red-700 underline hover:no-underline"
-              onClick={() => this.setState({ hasError: false, error: undefined })}
+              onClick={() =>
+                this.setState({ hasError: false, error: undefined })
+              }
             >
               Try again
             </button>

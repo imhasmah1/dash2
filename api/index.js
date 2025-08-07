@@ -3,117 +3,135 @@
 
 export default function handler(req, res) {
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS",
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     res.status(200).end();
     return;
   }
 
   const { url, method } = req;
-  const path = url.replace('/api', '');
+  const path = url.replace("/api", "");
 
   try {
     // Route handling
-    if (path === '/ping') {
-      return res.json({ message: process.env.PING_MESSAGE ?? 'ping' });
+    if (path === "/ping") {
+      return res.json({ message: process.env.PING_MESSAGE ?? "ping" });
     }
 
-    if (path === '/demo') {
-      return res.json({ message: 'Demo endpoint from Vercel!' });
+    if (path === "/demo") {
+      return res.json({ message: "Demo endpoint from Vercel!" });
     }
 
     // Customers routes
-    if (path === '/customers') {
-      if (method === 'GET') return handleGetCustomers(req, res);
-      if (method === 'POST') return handleCreateCustomer(req, res);
+    if (path === "/customers") {
+      if (method === "GET") return handleGetCustomers(req, res);
+      if (method === "POST") return handleCreateCustomer(req, res);
     }
 
-    if (path.startsWith('/customers/')) {
-      const id = path.split('/')[2];
-      if (method === 'PUT') return handleUpdateCustomer(req, res, id);
-      if (method === 'DELETE') return handleDeleteCustomer(req, res, id);
+    if (path.startsWith("/customers/")) {
+      const id = path.split("/")[2];
+      if (method === "PUT") return handleUpdateCustomer(req, res, id);
+      if (method === "DELETE") return handleDeleteCustomer(req, res, id);
     }
 
     // Products routes
-    if (path === '/products') {
-      if (method === 'GET') return handleGetProducts(req, res);
-      if (method === 'POST') return handleCreateProduct(req, res);
+    if (path === "/products") {
+      if (method === "GET") return handleGetProducts(req, res);
+      if (method === "POST") return handleCreateProduct(req, res);
     }
 
-    if (path.startsWith('/products/')) {
-      const id = path.split('/')[2];
-      if (method === 'PUT') return handleUpdateProduct(req, res, id);
-      if (method === 'DELETE') return handleDeleteProduct(req, res, id);
+    if (path.startsWith("/products/")) {
+      const id = path.split("/")[2];
+      if (method === "PUT") return handleUpdateProduct(req, res, id);
+      if (method === "DELETE") return handleDeleteProduct(req, res, id);
     }
 
     // Orders routes
-    if (path === '/orders') {
-      if (method === 'GET') return handleGetOrders(req, res);
-      if (method === 'POST') return handleCreateOrder(req, res);
+    if (path === "/orders") {
+      if (method === "GET") return handleGetOrders(req, res);
+      if (method === "POST") return handleCreateOrder(req, res);
     }
 
-    if (path.startsWith('/orders/')) {
-      const id = path.split('/')[2];
-      if (method === 'PUT') return handleUpdateOrder(req, res, id);
-      if (method === 'DELETE') return handleDeleteOrder(req, res, id);
+    if (path.startsWith("/orders/")) {
+      const id = path.split("/")[2];
+      if (method === "PUT") return handleUpdateOrder(req, res, id);
+      if (method === "DELETE") return handleDeleteOrder(req, res, id);
     }
 
     // Upload endpoint (Note: In production, consider using cloud storage)
-    if (path === '/upload') {
+    if (path === "/upload") {
       return res.status(501).json({
-        error: 'File upload not implemented for Vercel deployment. Please use cloud storage.'
+        error:
+          "File upload not implemented for Vercel deployment. Please use cloud storage.",
       });
     }
 
     // 404 for unknown routes
-    res.status(404).json({ error: 'Not found' });
-
+    res.status(404).json({ error: "Not found" });
   } catch (error) {
-    console.error('API Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("API Error:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
 // In-memory data stores (replace with database in production)
 let customers = [
-  { id: '1', name: 'Ahmed Al-Rashid', phone: '+973-3456-7890', address: 'Manama, Bahrain', createdAt: new Date().toISOString() },
-  { id: '2', name: 'Fatima Al-Zahra', phone: '+973-3456-7891', address: 'Riffa, Bahrain', createdAt: new Date().toISOString() }
+  {
+    id: "1",
+    name: "Ahmed Al-Rashid",
+    phone: "+973-3456-7890",
+    address: "Manama, Bahrain",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "2",
+    name: "Fatima Al-Zahra",
+    phone: "+973-3456-7891",
+    address: "Riffa, Bahrain",
+    createdAt: new Date().toISOString(),
+  },
 ];
 
 let products = [
   {
-    id: '1',
-    name: 'Wireless Bluetooth Headphones',
-    description: 'Premium quality headphones with noise cancellation',
+    id: "1",
+    name: "Wireless Bluetooth Headphones",
+    description: "Premium quality headphones with noise cancellation",
     price: 35.0,
-    images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop'],
-    variants: [
-      { id: 'v1', name: 'Black', stock: 25 },
-      { id: 'v2', name: 'White', stock: 15 }
+    images: [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
     ],
-    totalStock: 40
-  }
+    variants: [
+      { id: "v1", name: "Black", stock: 25 },
+      { id: "v2", name: "White", stock: 15 },
+    ],
+    totalStock: 40,
+  },
 ];
 
 let orders = [
   {
-    id: '1',
-    customerId: '1',
-    items: [{ productId: '1', variantId: 'v1', quantity: 1, price: 35.0 }],
+    id: "1",
+    customerId: "1",
+    items: [{ productId: "1", variantId: "v1", quantity: 1, price: 35.0 }],
     total: 35.0,
-    status: 'processing',
-    deliveryType: 'delivery',
+    status: "processing",
+    deliveryType: "delivery",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    notes: 'Please deliver before 6 PM'
-  }
+    notes: "Please deliver before 6 PM",
+  },
 ];
 
 // Helper functions
-const generateId = () => Date.now().toString() + Math.random().toString(36).substr(2, 9);
+const generateId = () =>
+  Date.now().toString() + Math.random().toString(36).substr(2, 9);
 
 // Customer handlers
 function handleGetCustomers(req, res) {
@@ -123,7 +141,9 @@ function handleGetCustomers(req, res) {
 function handleCreateCustomer(req, res) {
   const { name, phone, address } = req.body;
   if (!name || !phone || !address) {
-    return res.status(400).json({ error: 'Name, phone, and address are required' });
+    return res
+      .status(400)
+      .json({ error: "Name, phone, and address are required" });
   }
 
   const newCustomer = {
@@ -131,7 +151,7 @@ function handleCreateCustomer(req, res) {
     name,
     phone,
     address,
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   };
 
   customers.push(newCustomer);
@@ -139,9 +159,9 @@ function handleCreateCustomer(req, res) {
 }
 
 function handleUpdateCustomer(req, res, id) {
-  const index = customers.findIndex(c => c.id === id);
+  const index = customers.findIndex((c) => c.id === id);
   if (index === -1) {
-    return res.status(404).json({ error: 'Customer not found' });
+    return res.status(404).json({ error: "Customer not found" });
   }
 
   customers[index] = { ...customers[index], ...req.body };
@@ -149,9 +169,9 @@ function handleUpdateCustomer(req, res, id) {
 }
 
 function handleDeleteCustomer(req, res, id) {
-  const index = customers.findIndex(c => c.id === id);
+  const index = customers.findIndex((c) => c.id === id);
   if (index === -1) {
-    return res.status(404).json({ error: 'Customer not found' });
+    return res.status(404).json({ error: "Customer not found" });
   }
 
   customers.splice(index, 1);
@@ -166,10 +186,14 @@ function handleGetProducts(req, res) {
 function handleCreateProduct(req, res) {
   const { name, description, price, images, variants } = req.body;
   if (!name || !description || price === undefined) {
-    return res.status(400).json({ error: 'Name, description, and price are required' });
+    return res
+      .status(400)
+      .json({ error: "Name, description, and price are required" });
   }
 
-  const totalStock = variants ? variants.reduce((sum, variant) => sum + variant.stock, 0) : 0;
+  const totalStock = variants
+    ? variants.reduce((sum, variant) => sum + variant.stock, 0)
+    : 0;
 
   const newProduct = {
     id: generateId(),
@@ -177,12 +201,14 @@ function handleCreateProduct(req, res) {
     description,
     price: parseFloat(price),
     images: Array.isArray(images) ? images : [],
-    variants: Array.isArray(variants) ? variants.map(v => ({
-      id: v.id || generateId(),
-      name: v.name,
-      stock: parseInt(v.stock) || 0
-    })) : [],
-    totalStock
+    variants: Array.isArray(variants)
+      ? variants.map((v) => ({
+          id: v.id || generateId(),
+          name: v.name,
+          stock: parseInt(v.stock) || 0,
+        }))
+      : [],
+    totalStock,
   };
 
   products.push(newProduct);
@@ -190,16 +216,19 @@ function handleCreateProduct(req, res) {
 }
 
 function handleUpdateProduct(req, res, id) {
-  const index = products.findIndex(p => p.id === id);
+  const index = products.findIndex((p) => p.id === id);
   if (index === -1) {
-    return res.status(404).json({ error: 'Product not found' });
+    return res.status(404).json({ error: "Product not found" });
   }
 
   const updates = req.body;
   if (updates.price !== undefined) updates.price = parseFloat(updates.price);
 
   if (updates.variants) {
-    updates.totalStock = updates.variants.reduce((sum, variant) => sum + variant.stock, 0);
+    updates.totalStock = updates.variants.reduce(
+      (sum, variant) => sum + variant.stock,
+      0,
+    );
   }
 
   products[index] = { ...products[index], ...updates };
@@ -207,9 +236,9 @@ function handleUpdateProduct(req, res, id) {
 }
 
 function handleDeleteProduct(req, res, id) {
-  const index = products.findIndex(p => p.id === id);
+  const index = products.findIndex((p) => p.id === id);
   if (index === -1) {
-    return res.status(404).json({ error: 'Product not found' });
+    return res.status(404).json({ error: "Product not found" });
   }
 
   products.splice(index, 1);
@@ -224,21 +253,26 @@ function handleGetOrders(req, res) {
 function handleCreateOrder(req, res) {
   const { customerId, items, status, deliveryType, notes } = req.body;
   if (!customerId || !items || items.length === 0) {
-    return res.status(400).json({ error: 'Customer ID and items are required' });
+    return res
+      .status(400)
+      .json({ error: "Customer ID and items are required" });
   }
 
-  const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
   const newOrder = {
     id: generateId(),
     customerId,
     items,
     total,
-    status: status || 'processing',
-    deliveryType: deliveryType || 'delivery',
+    status: status || "processing",
+    deliveryType: deliveryType || "delivery",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    notes: notes || ''
+    notes: notes || "",
   };
 
   orders.push(newOrder);
@@ -246,15 +280,18 @@ function handleCreateOrder(req, res) {
 }
 
 function handleUpdateOrder(req, res, id) {
-  const index = orders.findIndex(o => o.id === id);
+  const index = orders.findIndex((o) => o.id === id);
   if (index === -1) {
-    return res.status(404).json({ error: 'Order not found' });
+    return res.status(404).json({ error: "Order not found" });
   }
 
   const updates = { ...req.body, updatedAt: new Date().toISOString() };
 
   if (updates.items) {
-    updates.total = updates.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    updates.total = updates.items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
   }
 
   orders[index] = { ...orders[index], ...updates };
@@ -262,9 +299,9 @@ function handleUpdateOrder(req, res, id) {
 }
 
 function handleDeleteOrder(req, res, id) {
-  const index = orders.findIndex(o => o.id === id);
+  const index = orders.findIndex((o) => o.id === id);
   if (index === -1) {
-    return res.status(404).json({ error: 'Order not found' });
+    return res.status(404).json({ error: "Order not found" });
   }
 
   orders.splice(index, 1);

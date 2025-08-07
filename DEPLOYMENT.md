@@ -19,16 +19,19 @@ This project is configured for deployment on Vercel with a React frontend and se
 ### Option 2: Deploy using Vercel CLI
 
 1. Install Vercel CLI globally:
+
    ```bash
    npm i -g vercel
    ```
 
 2. Login to your Vercel account:
+
    ```bash
    vercel login
    ```
 
 3. From your project root, run:
+
    ```bash
    vercel
    ```
@@ -53,6 +56,7 @@ Set the following environment variables in Vercel dashboard:
 ## Features
 
 ### ✅ Configured Features
+
 - React SPA with routing
 - Serverless API endpoints
 - Arabic/English language support
@@ -61,6 +65,7 @@ Set the following environment variables in Vercel dashboard:
 - Error handling
 
 ### ⚠️ Limitations in Vercel
+
 - File uploads are disabled (use cloud storage like Cloudinary/AWS S3)
 - Data is stored in memory (use a database for production)
 
@@ -94,10 +99,12 @@ Set the following environment variables in Vercel dashboard:
 ### Common Issues
 
 1. **API Routes Not Working**
+
    - Check that `api/index.js` is properly configured
    - Verify API endpoints in Vercel dashboard
 
 2. **Build Failures**
+
    - Check build logs in Vercel dashboard
    - Ensure all dependencies are listed in `package.json`
 
@@ -108,6 +115,7 @@ Set the following environment variables in Vercel dashboard:
 ### Support
 
 For deployment issues:
+
 - Check Vercel documentation: https://vercel.com/docs
 - Review build logs in Vercel dashboard
 - Contact Vercel support for platform-specific issues

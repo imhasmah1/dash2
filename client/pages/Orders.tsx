@@ -335,7 +335,7 @@ export default function Orders() {
                 </div>
 
                 <div className="grid gap-2">
-                  <Label>{t('nav.products')}</Label>
+                  <Label>{t("nav.products")}</Label>
                   <div className="space-y-4">
                     {formData.items.map((item, index) => {
                       const product = getProductById(item.productId);
@@ -353,7 +353,7 @@ export default function Orders() {
                           className="flex gap-2 items-end p-4 border rounded-lg"
                         >
                           <div className="flex-1">
-                            <Label>{t('orders.product')}</Label>
+                            <Label>{t("orders.product")}</Label>
                             <Select
                               value={item.productId}
                               onValueChange={(value) =>
@@ -361,7 +361,9 @@ export default function Orders() {
                               }
                             >
                               <SelectTrigger>
-                                <SelectValue placeholder={t('orders.selectProduct')} />
+                                <SelectValue
+                                  placeholder={t("orders.selectProduct")}
+                                />
                               </SelectTrigger>
                               <SelectContent>
                                 {products.map((product) => (
@@ -378,7 +380,7 @@ export default function Orders() {
 
                           {availableVariants.length > 0 && (
                             <div className="flex-1">
-                              <Label>{t('orders.variant')}</Label>
+                              <Label>{t("orders.variant")}</Label>
                               <Select
                                 value={item.variantId || "no-variant"}
                                 onValueChange={(value) =>
@@ -386,7 +388,9 @@ export default function Orders() {
                                 }
                               >
                                 <SelectTrigger>
-                                  <SelectValue placeholder={t('orders.selectVariant')} />
+                                  <SelectValue
+                                    placeholder={t("orders.selectVariant")}
+                                  />
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectItem value="no-variant">
@@ -533,7 +537,7 @@ export default function Orders() {
                         notes: e.target.value,
                       }))
                     }
-                    placeholder={t('orders.notesPlaceholder')}
+                    placeholder={t("orders.notesPlaceholder")}
                     rows={3}
                   />
                 </div>
@@ -725,9 +729,11 @@ export default function Orders() {
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>{t('orders.orderDetailsTitle')} #{viewingOrder?.id}</DialogTitle>
+            <DialogTitle>
+              {t("orders.orderDetailsTitle")} #{viewingOrder?.id}
+            </DialogTitle>
             <DialogDescription>
-              {t('orders.orderDetailsDesc')}
+              {t("orders.orderDetailsDesc")}
             </DialogDescription>
           </DialogHeader>
           {viewingOrder && (
@@ -736,31 +742,39 @@ export default function Orders() {
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h3 className="font-medium text-blue-900 mb-3 flex items-center gap-2">
                   <User className="w-5 h-5" />
-                  {t('orders.customerInfo')}
+                  {t("orders.customerInfo")}
                 </h3>
                 {(() => {
                   const customer = getCustomerById(viewingOrder.customerId);
                   return customer ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="font-medium">{t('orders.customerName')}:</span>{" "}
+                        <span className="font-medium">
+                          {t("orders.customerName")}:
+                        </span>{" "}
                         {customer.name}
                       </div>
                       <div className="flex items-center gap-1">
                         <Phone className="w-4 h-4" />
-                        <span className="font-medium">{t('orders.customerPhone')}:</span>{" "}
+                        <span className="font-medium">
+                          {t("orders.customerPhone")}:
+                        </span>{" "}
                         {customer.phone}
                       </div>
                       <div className="md:col-span-2 flex items-start gap-1">
                         <MapPin className="w-4 h-4 mt-0.5" />
                         <div>
-                          <span className="font-medium">{t('orders.deliveryAddress')}:</span>
+                          <span className="font-medium">
+                            {t("orders.deliveryAddress")}:
+                          </span>
                           <p>{customer.address}</p>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <p className="text-red-600">{t('orders.customerNotFound')}</p>
+                    <p className="text-red-600">
+                      {t("orders.customerNotFound")}
+                    </p>
                   );
                 })()}
               </div>
@@ -769,7 +783,7 @@ export default function Orders() {
               <div>
                 <h3 className="font-medium mb-3 flex items-center gap-2">
                   <Package className="w-5 h-5" />
-                  {t('orders.orderItems')}
+                  {t("orders.orderItems")}
                 </h3>
                 <div className="space-y-2">
                   {viewingOrder.items.map((item, index) => {
@@ -785,7 +799,7 @@ export default function Orders() {
                       >
                         <div>
                           <span className="font-medium">
-                            {product?.name || t('orders.unknownProduct')}
+                            {product?.name || t("orders.unknownProduct")}
                           </span>
                           {variant && (
                             <span className="text-sm text-gray-600 ml-2">
@@ -810,37 +824,41 @@ export default function Orders() {
               {/* Order Summary */}
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex justify-between items-center mb-2">
-                  <span>{t('orders.status')}:</span>
+                  <span>{t("orders.status")}:</span>
                   <Badge className={getStatusColor(viewingOrder.status)}>
                     {getStatusText(viewingOrder.status)}
                   </Badge>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span>{t('orders.deliveryType')}:</span>
+                  <span>{t("orders.deliveryType")}:</span>
                   <span className="capitalize font-medium text-dashboard-primary">
-                    {viewingOrder.deliveryType === 'delivery' ? t('orders.delivery') : t('orders.pickup')}
+                    {viewingOrder.deliveryType === "delivery"
+                      ? t("orders.delivery")
+                      : t("orders.pickup")}
                   </span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span>{t('orders.created')}:</span>
+                  <span>{t("orders.created")}:</span>
                   <span>
                     {new Date(viewingOrder.createdAt).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between items-center mb-3">
-                  <span>{t('orders.lastUpdated')}:</span>
+                  <span>{t("orders.lastUpdated")}:</span>
                   <span>
                     {new Date(viewingOrder.updatedAt).toLocaleString()}
                   </span>
                 </div>
                 {viewingOrder.notes && (
                   <div className="mb-3">
-                    <span className="font-medium">{t('orders.notes')}:</span>
+                    <span className="font-medium">{t("orders.notes")}:</span>
                     <p className="text-gray-600 mt-1">{viewingOrder.notes}</p>
                   </div>
                 )}
                 <div className="border-t pt-3 flex justify-between items-center">
-                  <span className="text-lg font-medium">{t('orders.total')}:</span>
+                  <span className="text-lg font-medium">
+                    {t("orders.total")}:
+                  </span>
                   <span className="text-2xl font-bold text-dashboard-primary">
                     BD {viewingOrder.total.toFixed(2)}
                   </span>
@@ -850,7 +868,7 @@ export default function Orders() {
           )}
           <DialogFooter>
             <Button variant="outline" onClick={closeViewDialog}>
-              {t('orders.close')}
+              {t("orders.close")}
             </Button>
             <Button
               onClick={() => {
@@ -858,7 +876,7 @@ export default function Orders() {
                 if (viewingOrder) openDialog(viewingOrder);
               }}
             >
-              {t('orders.editOrder')}
+              {t("orders.editOrder")}
             </Button>
           </DialogFooter>
         </DialogContent>

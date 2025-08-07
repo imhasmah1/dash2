@@ -81,7 +81,10 @@ export default function ImageUpload({
       const uploadedUrls = await Promise.all(uploadPromises);
       onImagesChange([...images, ...uploadedUrls]);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to upload images. Please try again.";
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Failed to upload images. Please try again.";
       showAlert({
         title: t("message.error"),
         message: errorMessage,
@@ -155,7 +158,8 @@ export default function ImageUpload({
               {t("products.uploadImages")}
             </Button>
             <p className="text-xs text-gray-500 mt-2">
-              {images.length}/{maxImages} {t("products.images")} • {t("products.maxImages")}
+              {images.length}/{maxImages} {t("products.images")} •{" "}
+              {t("products.maxImages")}
             </p>
           </div>
         </CardContent>

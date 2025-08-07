@@ -1,5 +1,11 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { customerApi, productApi, orderApi } from '@/services/api';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { customerApi, productApi, orderApi } from "@/services/api";
 
 export interface Customer {
   id: string;
@@ -37,8 +43,8 @@ export interface Order {
   customerId: string;
   items: OrderItem[];
   total: number;
-  status: 'processing' | 'ready' | 'delivered' | 'picked-up';
-  deliveryType: 'delivery' | 'pickup';
+  status: "processing" | "ready" | "delivered" | "picked-up";
+  deliveryType: "delivery" | "pickup";
   createdAt: string;
   updatedAt: string;
   notes?: string;
@@ -49,19 +55,24 @@ interface DataContextType {
   products: Product[];
   orders: Order[];
   loading: boolean;
-  addCustomer: (customer: Omit<Customer, 'id' | 'createdAt'>) => Promise<void>;
+  addCustomer: (customer: Omit<Customer, "id" | "createdAt">) => Promise<void>;
   updateCustomer: (id: string, customer: Partial<Customer>) => Promise<void>;
   deleteCustomer: (id: string) => Promise<void>;
-  addProduct: (product: Omit<Product, 'id'>) => Promise<void>;
+  addProduct: (product: Omit<Product, "id">) => Promise<void>;
   updateProduct: (id: string, product: Partial<Product>) => Promise<void>;
   deleteProduct: (id: string) => Promise<void>;
-  addOrder: (order: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
+  addOrder: (
+    order: Omit<Order, "id" | "createdAt" | "updatedAt">,
+  ) => Promise<void>;
   updateOrder: (id: string, order: Partial<Order>) => Promise<void>;
   deleteOrder: (id: string) => Promise<void>;
-  updateOrderStatus: (id: string, status: Order['status']) => Promise<void>;
+  updateOrderStatus: (id: string, status: Order["status"]) => Promise<void>;
   getCustomerById: (id: string) => Customer | undefined;
   getProductById: (id: string) => Product | undefined;
-  getVariantById: (productId: string, variantId: string) => ProductVariant | undefined;
+  getVariantById: (
+    productId: string,
+    variantId: string,
+  ) => ProductVariant | undefined;
   refetchData: () => Promise<void>;
   uploadImage: (file: File) => Promise<string>;
 }
@@ -96,7 +107,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         setTimeout(() => loadData(retryCount + 1), delay);
         return;
       } else {
-        console.error('Max retries reached. Using empty data.');
+        console.error("Max retries reached. Using empty data.");
         // Set empty arrays to allow UI to function
         setCustomers([]);
         setProducts([]);
@@ -118,17 +129,17 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
   const uploadImage = async (file: File): Promise<string> => {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append("image", file);
 
     try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
+      const response = await fetch("/api/upload", {
+        method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
         const errorText = await response.text();
-        let errorMessage = 'Upload failed';
+        let errorMessage = "Upload failed";
 
         try {
           const errorData = JSON.parse(errorText);
@@ -144,32 +155,43 @@ export function DataProvider({ children }: { children: ReactNode }) {
       const data = await response.json();
       return data.url;
     } catch (error) {
-      console.error('Failed to upload image:', error);
+      console.error("Failed to upload image:", error);
       if (error instanceof Error) {
-        throw new Error(error.message.includes('upload') ? error.message : `Failed to upload image: ${error.message}`);
+        throw new Error(
+          error.message.includes("upload")
+            ? error.message
+            : `Failed to upload image: ${error.message}`,
+        );
       }
-      throw new Error('Failed to upload image: Unknown error');
+      throw new Error("Failed to upload image: Unknown error");
     }
   };
 
-  const addCustomer = async (customerData: Omit<Customer, 'id' | 'createdAt'>) => {
+  const addCustomer = async (
+    customerData: Omit<Customer, "id" | "createdAt">,
+  ) => {
     try {
       const newCustomer = await customerApi.create(customerData);
-      setCustomers(prev => [...prev, newCustomer]);
+      setCustomers((prev) => [...prev, newCustomer]);
     } catch (error) {
-      console.error('Failed to add customer:', error);
+      console.error("Failed to add customer:", error);
       throw error;
     }
   };
 
-  const updateCustomer = async (id: string, customerData: Partial<Customer>) => {
+  const updateCustomer = async (
+    id: string,
+    customerData: Partial<Customer>,
+  ) => {
     try {
       const updatedCustomer = await customerApi.update(id, customerData);
-      setCustomers(prev => prev.map(customer => 
-        customer.id === id ? updatedCustomer : customer
-      ));
+      setCustomers((prev) =>
+        prev.map((customer) =>
+          customer.id === id ? updatedCustomer : customer,
+        ),
+      );
     } catch (error) {
-      console.error('Failed to update customer:', error);
+      console.error("Failed to update customer:", error);
       throw error;
     }
   };
@@ -177,19 +199,19 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const deleteCustomer = async (id: string) => {
     try {
       await customerApi.delete(id);
-      setCustomers(prev => prev.filter(customer => customer.id !== id));
+      setCustomers((prev) => prev.filter((customer) => customer.id !== id));
     } catch (error) {
-      console.error('Failed to delete customer:', error);
+      console.error("Failed to delete customer:", error);
       throw error;
     }
   };
 
-  const addProduct = async (productData: Omit<Product, 'id'>) => {
+  const addProduct = async (productData: Omit<Product, "id">) => {
     try {
       const newProduct = await productApi.create(productData);
-      setProducts(prev => [...prev, newProduct]);
+      setProducts((prev) => [...prev, newProduct]);
     } catch (error) {
-      console.error('Failed to add product:', error);
+      console.error("Failed to add product:", error);
       throw error;
     }
   };
@@ -197,11 +219,11 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const updateProduct = async (id: string, productData: Partial<Product>) => {
     try {
       const updatedProduct = await productApi.update(id, productData);
-      setProducts(prev => prev.map(product => 
-        product.id === id ? updatedProduct : product
-      ));
+      setProducts((prev) =>
+        prev.map((product) => (product.id === id ? updatedProduct : product)),
+      );
     } catch (error) {
-      console.error('Failed to update product:', error);
+      console.error("Failed to update product:", error);
       throw error;
     }
   };
@@ -209,19 +231,21 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const deleteProduct = async (id: string) => {
     try {
       await productApi.delete(id);
-      setProducts(prev => prev.filter(product => product.id !== id));
+      setProducts((prev) => prev.filter((product) => product.id !== id));
     } catch (error) {
-      console.error('Failed to delete product:', error);
+      console.error("Failed to delete product:", error);
       throw error;
     }
   };
 
-  const addOrder = async (orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>) => {
+  const addOrder = async (
+    orderData: Omit<Order, "id" | "createdAt" | "updatedAt">,
+  ) => {
     try {
       const newOrder = await orderApi.create(orderData);
-      setOrders(prev => [...prev, newOrder]);
+      setOrders((prev) => [...prev, newOrder]);
     } catch (error) {
-      console.error('Failed to add order:', error);
+      console.error("Failed to add order:", error);
       throw error;
     }
   };
@@ -229,20 +253,20 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const updateOrder = async (id: string, orderData: Partial<Order>) => {
     try {
       const updatedOrder = await orderApi.update(id, orderData);
-      setOrders(prev => prev.map(order => 
-        order.id === id ? updatedOrder : order
-      ));
+      setOrders((prev) =>
+        prev.map((order) => (order.id === id ? updatedOrder : order)),
+      );
     } catch (error) {
-      console.error('Failed to update order:', error);
+      console.error("Failed to update order:", error);
       throw error;
     }
   };
 
-  const updateOrderStatus = async (id: string, status: Order['status']) => {
+  const updateOrderStatus = async (id: string, status: Order["status"]) => {
     try {
       await updateOrder(id, { status });
     } catch (error) {
-      console.error('Failed to update order status:', error);
+      console.error("Failed to update order status:", error);
       throw error;
     }
   };
@@ -250,18 +274,20 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const deleteOrder = async (id: string) => {
     try {
       await orderApi.delete(id);
-      setOrders(prev => prev.filter(order => order.id !== id));
+      setOrders((prev) => prev.filter((order) => order.id !== id));
     } catch (error) {
-      console.error('Failed to delete order:', error);
+      console.error("Failed to delete order:", error);
       throw error;
     }
   };
 
-  const getCustomerById = (id: string) => customers.find(customer => customer.id === id);
-  const getProductById = (id: string) => products.find(product => product.id === id);
+  const getCustomerById = (id: string) =>
+    customers.find((customer) => customer.id === id);
+  const getProductById = (id: string) =>
+    products.find((product) => product.id === id);
   const getVariantById = (productId: string, variantId: string) => {
     const product = getProductById(productId);
-    return product?.variants.find(variant => variant.id === variantId);
+    return product?.variants.find((variant) => variant.id === variantId);
   };
 
   const refetchData = async () => {
@@ -269,27 +295,29 @@ export function DataProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <DataContext.Provider value={{
-      customers,
-      products,
-      orders,
-      loading,
-      addCustomer,
-      updateCustomer,
-      deleteCustomer,
-      addProduct,
-      updateProduct,
-      deleteProduct,
-      addOrder,
-      updateOrder,
-      deleteOrder,
-      updateOrderStatus,
-      getCustomerById,
-      getProductById,
-      getVariantById,
-      refetchData,
-      uploadImage
-    }}>
+    <DataContext.Provider
+      value={{
+        customers,
+        products,
+        orders,
+        loading,
+        addCustomer,
+        updateCustomer,
+        deleteCustomer,
+        addProduct,
+        updateProduct,
+        deleteProduct,
+        addOrder,
+        updateOrder,
+        deleteOrder,
+        updateOrderStatus,
+        getCustomerById,
+        getProductById,
+        getVariantById,
+        refetchData,
+        uploadImage,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );
@@ -298,7 +326,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
 export function useData() {
   const context = useContext(DataContext);
   if (context === undefined) {
-    throw new Error('useData must be used within a DataProvider');
+    throw new Error("useData must be used within a DataProvider");
   }
   return context;
 }
