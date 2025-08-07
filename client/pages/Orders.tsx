@@ -760,7 +760,7 @@ export default function Orders() {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-red-600">Customer not found</p>
+                    <p className="text-red-600">{t('orders.customerNotFound')}</p>
                   );
                 })()}
               </div>
