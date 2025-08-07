@@ -81,9 +81,10 @@ export default function ImageUpload({
       const uploadedUrls = await Promise.all(uploadPromises);
       onImagesChange([...images, ...uploadedUrls]);
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Failed to upload images. Please try again.";
       showAlert({
         title: t("message.error"),
-        message: t("message.error"),
+        message: errorMessage,
         type: "error",
       });
     } finally {
