@@ -725,9 +725,9 @@ export default function Orders() {
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Order Details #{viewingOrder?.id}</DialogTitle>
+            <DialogTitle>{t('orders.orderDetailsTitle')} #{viewingOrder?.id}</DialogTitle>
             <DialogDescription>
-              Complete order information for delivery and tracking
+              {t('orders.orderDetailsDesc')}
             </DialogDescription>
           </DialogHeader>
           {viewingOrder && (
