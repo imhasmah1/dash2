@@ -139,7 +139,7 @@ export default function Checkout() {
             <Button 
               variant="ghost" 
               size="sm"
-              onClick={() => navigate('/store')}
+              onClick={() => navigate('/')}
             >
               <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
               {t('store.continueShopping')}
