@@ -278,6 +278,7 @@ const translations = {
 
     // Customers
     "customers.title": "العملاء",
+    "customers.subtitle": "إدارة قاعدة بيانات العملاء",
     "customers.addNew": "إضافة عميل جديد",
     "customers.search": "البحث في العملاء...",
     "customers.name": "الاسم",
@@ -291,7 +292,7 @@ const translations = {
     "customers.editCustomer": "تعديل عميل",
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
-    "customers.customerAddress": "عنوان العميل",
+    "customers.customerAddress": "عنوان ا��عميل",
     "customers.save": "حفظ",
 
     // Revenue
@@ -343,10 +344,10 @@ const translations = {
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
-    "message.productDeleted": "تم حذف المنتج بنجاح",
+    "message.productDeleted": "تم حذف المنتج بنج��ح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "ت�� تحديث الطلب بنجاح",
-    "message.orderDeleted": "تم حذف الطلب بنجاح",
+    "message.orderDeleted": "تم حذف الط��ب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
     "message.customerUpdated": "تم تحديث العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
