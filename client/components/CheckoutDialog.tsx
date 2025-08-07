@@ -304,11 +304,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <CardContent className="space-y-4">
                     {/* Customer Summary */}
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-medium mb-2">{t('checkout.customerInfo')}</h4>
-                      <p className="text-sm">{customerInfo.name}</p>
-                      <p className="text-sm">{customerInfo.phone}</p>
-                      <p className="text-sm">{customerInfo.address}</p>
-                      <p className="text-sm font-medium mt-2">
+                      <h4 className="font-medium mb-2 text-right [dir=ltr]:text-left">{t('checkout.customerInfo')}</h4>
+                      <p className="text-sm text-right [dir=ltr]:text-left">{customerInfo.name}</p>
+                      <p className="text-sm text-right [dir=ltr]:text-left">{customerInfo.phone}</p>
+                      <p className="text-sm text-right [dir=ltr]:text-left">{customerInfo.address}</p>
+                      <p className="text-sm font-medium mt-2 text-right [dir=ltr]:text-left">
                         {deliveryType === 'delivery' ? t('checkout.delivery') : t('checkout.pickup')}
                       </p>
                     </div>
@@ -352,7 +352,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   className="flex-1"
                 >
                   <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-                  {t('language.switch') === 'تغيير اللغة' ? 'السابق' : 'Back'}
+                  {t('language.switch') === 'تغيير اللغ��' ? 'السابق' : 'Back'}
                 </Button>
               )}
               
