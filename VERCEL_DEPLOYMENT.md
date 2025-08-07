@@ -39,8 +39,8 @@ This project is fully configured for Vercel deployment. Here's what's been prepa
    - Database: In-memory (for demo purposes)
 
 3. **Domain Setup**:
-   - Admin panel: `your-domain.com/` (requires login)
-   - Store: `your-domain.com/store` (public access)
+   - Store: `your-domain.com/` (public access - homepage)
+   - Admin panel: `your-domain.com/admin` (requires login)
 
 ### ⚠️ Production Notes
 - Current setup uses in-memory storage
