@@ -71,9 +71,6 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
     });
 
     onClose();
-    // Reset form
-    setQuantity(1);
-    setSelectedVariantId('');
   };
 
   const handleQuantityChange = (newQuantity: number) => {
