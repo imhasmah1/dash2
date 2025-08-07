@@ -49,6 +49,14 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
   const selectedVariant = product.variants.find(v => v.id === selectedVariantId);
   const maxQuantity = selectedVariant?.stock || 0;
 
+  // Reset form when dialog opens
+  useEffect(() => {
+    if (open) {
+      setSelectedVariantId('');
+      setQuantity(1);
+    }
+  }, [open]);
+
   const handleAddToCart = () => {
     if (!selectedVariant) return;
 
