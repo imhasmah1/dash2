@@ -90,6 +90,7 @@ function AppContent() {
     <Routes>
       {/* Store routes - no authentication required */}
       <Route path="/store" element={<Store />} />
+      <Route path="/product/:id" element={<ProductDetail />} />
 
       {/* Admin routes - authentication required */}
       <Route path="/*" element={
