@@ -220,8 +220,8 @@ const translations = {
     "dashboard.title": "لوحة التحكم",
     "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
-    "dashboard.recentOrders": "الطلبات الأخ��رة",
-    "dashboard.welcome": "مرحبا�� بك في لوحة الإدارة",
+    "dashboard.recentOrders": "الطلبات الأخيرة",
+    "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
 
     // Products
     "products.title": "المنتجات",
@@ -314,7 +314,7 @@ const translations = {
     "customers.edit": "تعديل",
     "customers.delete": "حذف",
     "customers.noCustomers": "لا يوجد عملاء",
-    "customers.addCustomer": "إضافة عميل",
+    "customers.addCustomer": "��ضافة عميل",
     "customers.editCustomer": "تعديل عميل",
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
