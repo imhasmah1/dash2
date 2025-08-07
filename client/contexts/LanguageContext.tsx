@@ -244,6 +244,7 @@ const translations = {
     "checkout.thankYou": "Thank you for your order",
     "checkout.orderNumber": "Order Number",
     "checkout.backToStore": "Back to Store",
+    "checkout.processingMessage": "The order will be processed in 1-3 days, we will contact you when delivery",
 
     // Additional store keys
     "store.outOfStock": "Out of Stock",
@@ -398,7 +399,7 @@ const translations = {
     "common.edit": "تعديل",
     "common.add": "إضافة",
     "common.search": "بحث",
-    "common.actions": "الإجراءات",
+    "common.actions": "الإجراءا��",
     "common.loading": "جارٍ التحميل...",
     "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
@@ -423,7 +424,7 @@ const translations = {
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
-    "message.orderAdded": "تم إضافة الطلب بنجاح",
+    "message.orderAdded": "تم إضافة الطلب ب��جاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
