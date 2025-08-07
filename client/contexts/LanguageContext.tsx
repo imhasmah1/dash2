@@ -257,6 +257,7 @@ const translations = {
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
     "products.images": "صور",
+    "products.noImages": "لم يتم رفع أي صور بعد",
 
     // Orders
     "orders.title": "الطلبات",
