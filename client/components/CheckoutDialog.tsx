@@ -266,8 +266,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <RadioGroupItem value="delivery" id="delivery" />
                             <Truck className="h-6 w-6" />
                           </div>
-                          <div className="font-medium text-lg">{t('checkout.delivery')}</div>
-                          <div className="text-sm text-muted-foreground mt-1">
+                          <div className="font-medium text-lg text-right [dir=ltr]:text-left">{t('checkout.delivery')}</div>
+                          <div className="text-sm text-muted-foreground mt-1 text-right [dir=ltr]:text-left">
                             {t('language.switch') === 'تغيير اللغة' ? 'يتم التوصيل لباب المنزل' : 'Delivered to your door'}
                           </div>
                         </div>
