@@ -122,6 +122,7 @@ const translations = {
     "orders.close": "Close",
     "orders.selectProduct": "Select product",
     "orders.selectVariant": "Select variant",
+    "orders.notesPlaceholder": "Special instructions or notes...",
 
     // Customers
     "customers.title": "Customers",
@@ -317,7 +318,7 @@ const translations = {
     // Customers
     "customers.title": "العملاء",
     "customers.subtitle": "إدارة قاعدة بيانات العملاء",
-    "customers.addNew": "إضافة عميل جديد",
+    "customers.addNew": "��ضافة عميل جديد",
     "customers.search": "البحث في العملاء...",
     "customers.name": "الاسم",
     "customers.phone": "الهاتف",
