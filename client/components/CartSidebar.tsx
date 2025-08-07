@@ -40,7 +40,8 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
   const totalPrice = getTotalPrice();
 
   return (
-    <Sheet open={open} onOpenChange={onClose}>
+    <>
+      <Sheet open={open} onOpenChange={onClose}>
       <SheetContent className="w-[400px] sm:w-[540px] flex flex-col">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
@@ -187,5 +188,11 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
         )}
       </SheetContent>
     </Sheet>
+
+      <CheckoutDialog
+        open={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+      />
+    </>
   );
 }
