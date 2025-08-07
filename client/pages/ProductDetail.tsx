@@ -151,9 +151,9 @@ export default function ProductDetail() {
       {/* Product Detail Content */}
       <main className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/store')}
+        <Button
+          variant="ghost"
+          onClick={() => navigate('/')}
           className="mb-6 gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
