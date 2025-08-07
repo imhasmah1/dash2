@@ -4,7 +4,7 @@ import cors from "cors";
 import path from "path";
 import { handleDemo } from "./routes/demo";
 import { getAllCustomers, createCustomer, updateCustomer, deleteCustomer } from "./routes/customers";
-import { getAllProducts, createProduct, updateProduct, deleteProduct } from "./routes/products";
+import { getAllProducts, createProduct, updateProduct, deleteProduct, getProductById } from "./routes/products";
 import { getAllOrders, createOrder, updateOrder, deleteOrder } from "./routes/orders";
 import { uploadMiddleware, handleImageUpload, deleteImage } from "./routes/upload";
 
