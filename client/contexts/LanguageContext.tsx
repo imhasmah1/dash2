@@ -120,6 +120,8 @@ const translations = {
     "orders.created": "Created",
     "orders.lastUpdated": "Last Updated",
     "orders.close": "Close",
+    "orders.selectProduct": "Select product",
+    "orders.selectVariant": "Select variant",
 
     // Customers
     "customers.title": "Customers",
@@ -343,7 +345,7 @@ const translations = {
     "revenue.month": "الشهر",
     "revenue.revenue": "الإيرادات",
     "revenue.day": "اليوم",
-    "revenue.productRevenue": "إيرادات المنتج",
+    "revenue.productRevenue": "إيرادات الم��تج",
     "revenue.deliveryType": "نوع التسليم",
     "revenue.orderStatus": "حالة الطلب",
 
