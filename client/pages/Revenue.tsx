@@ -341,7 +341,7 @@ export default function Revenue() {
                 <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
                     <Pie
-                      data={translatedDeliveryTypeData}
+                      data={translatedDeliveryTypeData || []}
                       cx="50%"
                       cy="50%"
                       labelLine={false}
