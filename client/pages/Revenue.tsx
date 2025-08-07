@@ -307,10 +307,21 @@ export default function Revenue() {
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={revenueMetrics.topProducts} layout="horizontal">
+                <BarChart data={revenueMetrics.topProducts || []} layout="horizontal">
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" tickFormatter={(value) => `BD ${value}`} />
-                  <YAxis dataKey="name" type="category" width={150} />
+                  <XAxis
+                    type="number"
+                    tickFormatter={(value) => `BD ${value}`}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    dataKey="name"
+                    type="category"
+                    width={150}
+                    axisLine={false}
+                    tickLine={false}
+                  />
                   <Tooltip formatter={(value: any) => [formatCurrency(value), 'Revenue']} />
                   <Bar dataKey="revenue" fill="#742370" />
                 </BarChart>
