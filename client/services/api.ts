@@ -4,23 +4,42 @@ const API_BASE = '/api';
 
 // Helper function for API calls
 async function apiCall<T>(url: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${url}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers,
-    },
-    ...options,
-  });
+  try {
+    const response = await fetch(`${API_BASE}${url}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+      ...options,
+    });
 
-  if (!response.ok) {
-    throw new Error(`API Error: ${response.status}`);
+    if (!response.ok) {
+      let errorMessage = `API Error: ${response.status} ${response.statusText}`;
+
+      try {
+        const errorData = await response.json();
+        if (errorData.error) {
+          errorMessage = errorData.error;
+        }
+      } catch {
+        // If response isn't JSON, use status text
+        errorMessage = response.statusText || errorMessage;
+      }
+
+      throw new Error(errorMessage);
+    }
+
+    if (response.status === 204) {
+      return {} as T;
+    }
+
+    return response.json();
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('Network error or server is unavailable');
   }
-
-  if (response.status === 204) {
-    return {} as T;
-  }
-
-  return response.json();
 }
 
 // Customer API
