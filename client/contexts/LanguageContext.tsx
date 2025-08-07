@@ -210,7 +210,8 @@ const translations = {
 
     // Products
     "products.title": "المنتجات",
-    "products.addNew": "إضافة منتج ج��يد",
+    "products.subtitle": "إدارة مخزون المنتجات",
+    "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
     "products.price": "السعر",
@@ -233,7 +234,7 @@ const translations = {
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
-    "products.maxImages": "الحد الأقصى 10 صور",
+    "products.maxImages": "الحد ال��قصى 10 صور",
 
     // Orders
     "orders.title": "الطلبات",
@@ -263,7 +264,7 @@ const translations = {
     "orders.notes": "ملاحظات",
     "orders.delivery": "توصيل",
     "orders.pickup": "استلام",
-    "orders.processing": "قيد المعالجة",
+    "orders.processing": "قيد المعال��ة",
     "orders.ready": "جاهز",
     "orders.delivered": "تم التسليم",
     "orders.pickedUp": "تم الاستلام",
@@ -292,7 +293,7 @@ const translations = {
 
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
-    "revenue.overview": "نظرة عامة على الإيرادات",
+    "revenue.overview": "نظرة عامة على الإيرا��ات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
