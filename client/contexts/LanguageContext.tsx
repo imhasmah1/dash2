@@ -324,7 +324,7 @@ const translations = {
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
-    "orders.quantity": "الكمية",
+    "orders.quantity": "الك��ية",
     "orders.price": "السعر",
     "orders.subtotal": "المجموع الفرعي",
     "orders.remove": "إزالة",
@@ -458,6 +458,7 @@ const translations = {
     "store.continueShopping": "متابعة التسوق",
     "store.removeFromCart": "إزالة من السلة",
     "store.updateQuantity": "تحديث الكمية",
+    "store.clearCart": "إفراغ السلة",
 
     // Checkout
     "checkout.title": "إتمام الطلب",
