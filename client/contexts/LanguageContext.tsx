@@ -66,6 +66,7 @@ const translations = {
     "products.dragImages": "Drag and drop images here, or click to select",
     "products.maxImages": "Maximum 10 images allowed",
     "products.primaryImage": "Primary",
+    "products.uploadImages": "Upload Images",
 
     // Orders
     "orders.title": "Orders",
@@ -346,7 +347,7 @@ const translations = {
     "common.cancel": "إلغاء",
     "common.delete": "حذف",
     "common.edit": "تعديل",
-    "common.add": "إض��فة",
+    "common.add": "إضافة",
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
