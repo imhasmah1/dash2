@@ -234,6 +234,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("name", e.target.value)
                           }
                           placeholder={t("checkout.customerName")}
+                          className="text-right [dir=ltr]:text-left"
                           required
                         />
                       </div>
@@ -252,6 +253,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("phone", e.target.value)
                           }
                           placeholder={t("checkout.customerPhone")}
+                          className="text-right [dir=ltr]:text-left"
                           required
                         />
                       </div>
@@ -270,9 +272,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         onChange={(e) =>
                           handleInputChange("address", e.target.value)
                         }
-                        placeholder={t("checkout.customerAddress")}
+                        placeholder={t("language.switch") === "تغيير اللغة" ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304" : "Example: House 1234, Road 321, Block 304"}
+                        className="text-right [dir=ltr]:text-left"
                         required
                       />
+                      <p className="text-xs text-muted-foreground text-right [dir=ltr]:text-left">
+                        {t("language.switch") === "تغيير اللغة" ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304" : "Example: House 1234, Road 321, Block 304"}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
