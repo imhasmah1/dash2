@@ -124,14 +124,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="bg-white shadow-sm border-b border-gray-200 lg:hidden">
-          <div className="flex items-center justify-between h-16 px-4">
+          <div className="flex items-center justify-between h-16 px-4 [dir=rtl]:flex-row-reverse">
             <button
               onClick={() => setSidebarOpen(true)}
               className="text-gray-400 hover:text-gray-600"
             >
               <Menu className="w-6 h-6" />
             </button>
-            <h1 className="text-lg font-semibold text-gray-900">{t('dashboard.title')}</h1>
+            <h1 className="text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">{t('dashboard.title')}</h1>
             <div className="w-6" /> {/* Spacer */}
           </div>
         </header>
