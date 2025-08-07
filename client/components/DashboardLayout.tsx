@@ -104,7 +104,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Button
             onClick={toggleLanguage}
             variant="outline"
-            className="w-full justify-start"
+            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
           >
             <Languages className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
             {t('language.switch')}
