@@ -285,12 +285,14 @@ export default function Orders() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">
             {t("orders.title")}
           </h1>
-          <p className="text-gray-600 mt-2">{t("orders.subtitle")}</p>
+          <p className="text-gray-600 mt-2 [dir=rtl]:text-right [dir=ltr]:text-left">
+            {t("orders.subtitle")}
+          </p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -587,16 +589,16 @@ export default function Orders() {
           return (
             <Card key={order.id} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                     <div className="w-10 h-10 bg-dashboard-primary rounded-full flex items-center justify-center">
                       <ShoppingCart className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">
+                      <CardTitle className="text-lg [dir=rtl]:text-right [dir=ltr]:text-left">
                         {t("orders.orderId")} #{order.id}
                       </CardTitle>
-                      <CardDescription className="flex items-center gap-2">
+                      <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left">
                         <User className="w-4 h-4" />
                         {customer?.name || t("orders.customer")}
                       </CardDescription>

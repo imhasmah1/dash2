@@ -266,4 +266,24 @@
   [dir="rtl"] label {
     text-align: right;
   }
+
+  /* RTL Text alignment for key content */
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    text-align: right;
+  }
+
+  [dir="rtl"] p {
+    text-align: right;
+  }
+
+  /* RTL Table headers and cells */
+  [dir="rtl"] th,
+  [dir="rtl"] td {
+    text-align: right;
+  }
 }

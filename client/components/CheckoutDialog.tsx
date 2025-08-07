@@ -137,19 +137,74 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   if (orderSuccess) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="w-[95vw] sm:max-w-md rounded-lg sm:rounded-md">
           <div className="text-center space-y-6 py-4">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
               <Check className="h-10 w-10 text-green-600" />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-green-600">
                 {t("checkout.orderSuccess")}
               </h2>
               <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
-              <p className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-2 bg-blue-50 rounded">
-                {t("checkout.processingMessage")}
-              </p>
+
+              {/* Delivery-specific instructions */}
+              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded text-right [dir=ltr]:text-left [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
+                {deliveryType === "pickup" ? (
+                  <div className="space-y-2">
+                    <p className="font-medium">
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "يمكنك استلام طلبك بعد 24 ساعة من الآن على العنوان التالي:"
+                        : "You can pick up your order 24 hours from now at the following address:"}
+                    </p>
+                    <p className="font-mono bg-white p-2 rounded border">
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "المنزل 1348، الطريق 416، البلوك 604"
+                        : "Home 1348, Road 416, Block 604"}
+                    </p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "عند الوصول، يرجى التواصل معنا عبر الواتساب على:"
+                        : "When you arrive, please contact us on WhatsApp at:"}
+                    </p>
+                    <p
+                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
+                      dir="ltr"
+                    >
+                      +973 3628 3381
+                    </p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
+                        : "You can also use this number to edit, cancel, or add products to your order."}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <p className="font-medium">
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "سنقوم بتوصيل طلبك خلال 1 إلى 3 أيام."
+                        : "We will deliver your order within 1 to 3 days."}
+                    </p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
+                        : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
+                    </p>
+                    <p
+                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
+                      dir="ltr"
+                    >
+                      +973 3628 3381
+                    </p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
+                        : "You can also use this number to edit, cancel, or add products to your order."}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">
@@ -170,21 +225,21 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] p-0">
+      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[90vh] p-0 rounded-lg sm:rounded-md">
         <div className="flex flex-col h-full text-right [dir=ltr]:text-left">
           {/* Header */}
-          <DialogHeader className="px-6 py-4 border-b">
+          <DialogHeader className="px-4 sm:px-6 py-4 border-b">
             <DialogTitle className="text-2xl font-bold text-center">
               {t("checkout.title")}
             </DialogTitle>
 
             {/* Step indicator */}
             <div className="flex justify-center mt-4">
-              <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse">
+              <div className="flex items-center space-x-2 sm:space-x-4 [dir=rtl]:space-x-reverse">
                 {[1, 2, 3].map((stepNum) => (
                   <div key={stepNum} className="flex items-center">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                      className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium ${
                         step >= stepNum
                           ? "bg-primary text-white"
                           : "bg-gray-200 text-gray-600"
@@ -194,7 +249,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
                     {stepNum < 3 && (
                       <div
-                        className={`w-12 h-0.5 mx-2 ${
+                        className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 ${
                           step > stepNum ? "bg-primary" : "bg-gray-200"
                         }`}
                       />
@@ -206,7 +261,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           </DialogHeader>
 
           <ScrollArea className="flex-1">
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {/* Step 1: Customer Information */}
               {step === 1 && (
                 <Card className="border-2">
@@ -219,7 +274,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4">
                       <div className="space-y-2">
                         <Label
                           htmlFor="name"
@@ -234,6 +289,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("name", e.target.value)
                           }
                           placeholder={t("checkout.customerName")}
+                          className="text-right [dir=ltr]:text-left"
                           required
                         />
                       </div>
@@ -252,6 +308,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("phone", e.target.value)
                           }
                           placeholder={t("checkout.customerPhone")}
+                          className="text-right [dir=ltr]:text-left"
                           required
                         />
                       </div>
@@ -270,7 +327,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         onChange={(e) =>
                           handleInputChange("address", e.target.value)
                         }
-                        placeholder={t("checkout.customerAddress")}
+                        placeholder={
+                          t("language.switch") === "تغيير اللغة"
+                            ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304"
+                            : "Example: House 1234, Road 321, Block 304"
+                        }
+                        className="text-right [dir=ltr]:text-left placeholder:text-xs"
                         required
                       />
                     </div>
@@ -295,7 +357,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       onValueChange={(value) =>
                         setDeliveryType(value as "delivery" | "pickup")
                       }
-                      className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                      className="grid grid-cols-1 gap-4"
                     >
                       <Label htmlFor="delivery" className="cursor-pointer">
                         <div
@@ -415,13 +477,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           </ScrollArea>
 
           {/* Footer */}
-          <div className="p-6 border-t bg-muted/20">
-            <div className="flex gap-3">
+          <div className="p-4 sm:p-6 border-t bg-muted/20">
+            <div className="flex flex-col sm:flex-row gap-3">
               {step > 1 && (
                 <Button
                   variant="outline"
                   onClick={handleBack}
-                  className="flex-1"
+                  className="w-full sm:flex-1"
+                  size="lg"
                 >
                   <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
                   {t("language.switch") === "تغيير اللغة" ? "السابق" : "Back"}
@@ -431,7 +494,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <Button
                 variant="outline"
                 onClick={handleClose}
-                className={step === 1 ? "flex-1" : ""}
+                className={step === 1 ? "w-full sm:flex-1" : "w-full sm:w-auto"}
+                size="lg"
               >
                 {t("common.cancel")}
               </Button>
@@ -440,7 +504,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <Button
                   onClick={handleNext}
                   disabled={step === 1 && !isStep1Valid()}
-                  className="flex-1"
+                  className="w-full sm:flex-1"
                   size="lg"
                 >
                   {t("language.switch") === "تغيير اللغة" ? "التالي" : "Next"}
@@ -450,7 +514,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <Button
                   onClick={handlePlaceOrder}
                   disabled={!isFormValid() || isSubmitting}
-                  className="flex-1"
+                  className="w-full sm:flex-1"
                   size="lg"
                 >
                   <CreditCard className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />

@@ -40,6 +40,7 @@ export default function Products() {
     price: 0,
     images: [] as string[],
     variants: [] as ProductVariant[],
+    stock: 0,
   });
 
   const filteredProducts = products.filter(
@@ -57,6 +58,7 @@ export default function Products() {
       price: 0,
       images: [],
       variants: [],
+      stock: 0,
     });
     setEditingProduct(null);
   };
@@ -70,6 +72,7 @@ export default function Products() {
         price: product.price,
         images: [...product.images],
         variants: [...product.variants],
+        stock: product.variants.length === 0 ? product.totalStock : 0,
       });
     } else {
       resetForm();
@@ -113,6 +116,9 @@ export default function Products() {
   };
 
   const getTotalStock = () => {
+    if (formData.variants.length === 0) {
+      return formData.stock;
+    }
     return formData.variants.reduce((sum, variant) => sum + variant.stock, 0);
   };
 
@@ -200,7 +206,7 @@ export default function Products() {
               {t("products.addNew")}
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg sm:rounded-md">
             <DialogHeader>
               <DialogTitle>
                 {editingProduct
@@ -282,6 +288,25 @@ export default function Products() {
                         required
                       />
                     </div>
+                    {formData.variants.length === 0 && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="stock">{t("products.stock")}</Label>
+                        <Input
+                          id="stock"
+                          type="number"
+                          min="0"
+                          value={formData.stock}
+                          onChange={(e) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              stock: parseInt(e.target.value) || 0,
+                            }))
+                          }
+                          placeholder="0"
+                          required
+                        />
+                      </div>
+                    )}
                   </div>
                 </TabsContent>
 
@@ -385,16 +410,14 @@ export default function Products() {
                       )}
                     </div>
 
-                    {formData.variants.length > 0 && (
-                      <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg mt-4">
-                        <span className="font-medium">
-                          {t("products.stock")}:
-                        </span>
-                        <span className="text-xl font-bold text-dashboard-primary">
-                          {getTotalStock()}
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg mt-4">
+                      <span className="font-medium">
+                        {t("products.stock")}:
+                      </span>
+                      <span className="text-xl font-bold text-dashboard-primary">
+                        {getTotalStock()}
+                      </span>
+                    </div>
                   </div>
                 </TabsContent>
               </Tabs>

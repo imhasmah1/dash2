@@ -72,9 +72,9 @@ export default function Store() {
     <div className="min-h-screen bg-background">
       {/* Header touching the roof */}
       <header className="border-b bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between [dir=rtl]:flex-row-reverse">
           {/* Logo and Title */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <div className="h-20 flex items-center">
               <img
                 src={
@@ -89,7 +89,7 @@ export default function Store() {
           </div>
 
           {/* Right side buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -119,7 +119,7 @@ export default function Store() {
               {cartItemsCount > 0 && (
                 <Badge
                   variant="destructive"
-                  className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs animate-pulse"
+                  className="absolute -top-2 -right-2 [dir=rtl]:-left-2 [dir=rtl]:right-auto h-5 w-5 flex items-center justify-center p-0 text-xs animate-pulse"
                 >
                   {cartItemsCount}
                 </Badge>
@@ -165,22 +165,22 @@ export default function Store() {
                 {/* Product Info */}
                 <div className="p-4">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors [dir=rtl]:text-right [dir=ltr]:text-left">
                       {product.name}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 [dir=rtl]:text-right [dir=ltr]:text-left">
                       {product.description}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
                     <div>
-                      <span className="text-lg font-bold text-primary">
+                      <span className="text-lg font-bold text-primary [dir=rtl]:text-right [dir=ltr]:text-left">
                         BD {product.price.toFixed(2)}
                       </span>
                       {product.totalStock > 0 && (
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-muted-foreground [dir=rtl]:text-right [dir=ltr]:text-left">
                           {product.totalStock} {t("products.stock")}
                         </p>
                       )}
@@ -199,7 +199,7 @@ export default function Store() {
                   {product.totalStock === 0 && (
                     <Badge
                       variant="secondary"
-                      className="w-full mt-2 justify-center"
+                      className="w-full mt-2 justify-center [dir=rtl]:text-right [dir=ltr]:text-left"
                     >
                       {t("store.outOfStock")}
                     </Badge>
