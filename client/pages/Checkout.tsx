@@ -241,7 +241,7 @@ export default function Checkout() {
                         </p>
                       </div>
                       <p className="font-medium">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        BD {(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   ))}
