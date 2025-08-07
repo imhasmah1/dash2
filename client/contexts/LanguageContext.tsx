@@ -210,7 +210,7 @@ const translations = {
     // Navigation
     "nav.dashboard": "لوحة التحكم",
     "nav.products": "المنتجات",
-    "nav.orders": "��لطلبات",
+    "nav.orders": "الطلبات",
     "nav.customers": "العملاء",
     "nav.revenue": "الإيرادات",
     "nav.logout": "تسجيل الخروج",
@@ -238,7 +238,7 @@ const translations = {
     "products.noProducts": "لا توجد منتجات",
     "products.addProduct": "إضافة منتج",
     "products.editProduct": "تعديل منتج",
-    "products.productName": "اس�� المنتج",
+    "products.productName": "اسم المنتج",
     "products.productPrice": "سعر المنتج",
     "products.productDescription": "وصف المنتج",
     "products.productImages": "صور المنتج",
@@ -268,7 +268,7 @@ const translations = {
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
-    "orders.editOrder": "تعديل طلب",
+    "orders.editOrder": "تعديل طل��",
     "orders.selectCustomer": "اختر العميل",
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
@@ -322,7 +322,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلات الإيرادات",
+    "revenue.title": "تحليلات الإ��رادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -347,7 +347,7 @@ const translations = {
     "common.add": "إضافة",
     "common.search": "بحث",
     "common.actions": "الإجراءات",
-    "common.loading": "جارٍ التحميل...",
+    "common.loading": "جارٍ التحم��ل...",
     "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
@@ -378,7 +378,7 @@ const translations = {
     "message.customerUpdated": "تم تحديث العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
-    "message.success": "تمت العمل��ة بنجاح",
+    "message.success": "تمت العملية بنجاح",
 
     // Login
     "login.title": "تسجيل دخول الإدارة",
