@@ -87,7 +87,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                             {item.variantName}
                           </p>
                           <p className="text-lg font-bold text-primary">
-                            ${item.price.toFixed(2)}
+                            BD {item.price.toFixed(2)}
                           </p>
                         </div>
 
