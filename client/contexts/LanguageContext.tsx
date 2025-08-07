@@ -221,7 +221,7 @@ const translations = {
     "dashboard.title": "لوحة التحكم",
     "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
-    "dashboard.recentOrders": "الطلبات الأخيرة",
+    "dashboard.recentOrders": "الطلبات الأخ��رة",
     "dashboard.welcome": "مرحبا�� بك في لوحة الإدارة",
 
     // Products
@@ -289,6 +289,20 @@ const translations = {
     "orders.items": "العناصر",
     "orders.orderTotal": "إجمالي الطلب",
     "orders.save": "حفظ",
+    "orders.orderDetailsTitle": "تفاصيل الطلب",
+    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
+    "orders.customerInfo": "معلومات العميل",
+    "orders.customerName": "الاسم",
+    "orders.customerPhone": "الهاتف",
+    "orders.deliveryAddress": "عنوان التوصيل",
+    "orders.customerNotFound": "العميل غير موجود",
+    "orders.orderItems": "عناصر الطلب",
+    "orders.unknownProduct": "منتج غير معروف",
+    "orders.orderSummary": "ملخص الطلب",
+    "orders.created": "تاريخ الإنشاء",
+    "orders.lastUpdated": "آخر تحديث",
+    "orders.close": "إغلاق",
+    "orders.editOrder": "تعديل الطلب",
 
     // Customers
     "customers.title": "العملاء",
@@ -366,7 +380,7 @@ const translations = {
     "message.customerUpdated": "تم تحديث العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
-    "message.success": "تمت العملية بنجاح",
+    "message.success": "تمت العمل��ة بنجاح",
 
     // Login
     "login.title": "تسجيل دخول الإدارة",
