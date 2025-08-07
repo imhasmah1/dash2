@@ -378,7 +378,7 @@ export default function Orders() {
 
                           {availableVariants.length > 0 && (
                             <div className="flex-1">
-                              <Label>Variant</Label>
+                              <Label>{t('orders.variant')}</Label>
                               <Select
                                 value={item.variantId || "no-variant"}
                                 onValueChange={(value) =>
@@ -386,7 +386,7 @@ export default function Orders() {
                                 }
                               >
                                 <SelectTrigger>
-                                  <SelectValue placeholder="Select variant" />
+                                  <SelectValue placeholder={t('orders.selectVariant')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectItem value="no-variant">
