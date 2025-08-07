@@ -301,7 +301,6 @@ const translations = {
     "orders.created": "تاريخ الإنشاء",
     "orders.lastUpdated": "آخر تحديث",
     "orders.close": "إغلاق",
-    "orders.editOrder": "تعديل الطلب",
 
     // Customers
     "customers.title": "العملاء",
@@ -342,7 +341,7 @@ const translations = {
 
     // Common
     "common.save": "حفظ",
-    "common.cancel": "إلغاء",
+    "common.cancel": "إ��غاء",
     "common.delete": "حذف",
     "common.edit": "تعديل",
     "common.add": "إضافة",
