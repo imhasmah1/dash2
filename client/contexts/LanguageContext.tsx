@@ -40,6 +40,7 @@ const translations = {
 
     // Products
     "products.title": "Products",
+    "products.subtitle": "Manage your product inventory",
     "products.addNew": "Add New Product",
     "products.search": "Search products...",
     "products.name": "Name",
