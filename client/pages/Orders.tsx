@@ -769,7 +769,7 @@ export default function Orders() {
               <div>
                 <h3 className="font-medium mb-3 flex items-center gap-2">
                   <Package className="w-5 h-5" />
-                  Order Items
+                  {t('orders.orderItems')}
                 </h3>
                 <div className="space-y-2">
                   {viewingOrder.items.map((item, index) => {
