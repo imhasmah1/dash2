@@ -314,11 +314,12 @@ const translations = {
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
     "orders.selectVariant": "اختر النوع",
+    "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
 
     // Customers
     "customers.title": "العملاء",
     "customers.subtitle": "إدارة قاعدة بيانات العملاء",
-    "customers.addNew": "��ضافة عميل جديد",
+    "customers.addNew": "إضافة عميل جديد",
     "customers.search": "البحث في العملاء...",
     "customers.name": "الاسم",
     "customers.phone": "الهاتف",
