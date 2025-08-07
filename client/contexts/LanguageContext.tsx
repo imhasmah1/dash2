@@ -249,7 +249,7 @@ const translations = {
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
-    "products.maxImages": "الحد الأ��صى 10 صور",
+    "products.maxImages": "الحد الأقصى 10 صور",
 
     // Orders
     "orders.title": "الطلبات",
@@ -314,7 +314,7 @@ const translations = {
     "customers.edit": "تعديل",
     "customers.delete": "حذف",
     "customers.noCustomers": "لا يوجد عملاء",
-    "customers.addCustomer": "��ضافة عميل",
+    "customers.addCustomer": "إضافة عميل",
     "customers.editCustomer": "تعديل عميل",
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
@@ -322,7 +322,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلات الإيرادات",
+    "revenue.title": "تحليلات الإ��رادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -347,7 +347,7 @@ const translations = {
     "common.add": "إضافة",
     "common.search": "بحث",
     "common.actions": "ا��إجراءات",
-    "common.loading": "جارٍ التحميل...",
+    "common.loading": "جارٍ ا��تحميل...",
     "common.noData": "ل�� توجد بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغل��ق",
