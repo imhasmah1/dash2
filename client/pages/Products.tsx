@@ -288,6 +288,27 @@ export default function Products() {
                         required
                       />
                     </div>
+                    {formData.variants.length === 0 && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="stock">
+                          {t("products.stock")}
+                        </Label>
+                        <Input
+                          id="stock"
+                          type="number"
+                          min="0"
+                          value={formData.stock}
+                          onChange={(e) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              stock: parseInt(e.target.value) || 0,
+                            }))
+                          }
+                          placeholder="0"
+                          required
+                        />
+                      </div>
+                    )}
                   </div>
                 </TabsContent>
 
