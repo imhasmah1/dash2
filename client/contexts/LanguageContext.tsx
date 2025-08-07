@@ -105,6 +105,7 @@ const translations = {
 
     // Customers
     "customers.title": "Customers",
+    "customers.subtitle": "Manage your customer database",
     "customers.addNew": "Add New Customer",
     "customers.search": "Search customers...",
     "customers.name": "Name",
@@ -234,7 +235,7 @@ const translations = {
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
-    "products.maxImages": "الحد ال��قصى 10 صور",
+    "products.maxImages": "الحد ��لأقصى 10 صور",
 
     // Orders
     "orders.title": "الطلبات",
@@ -264,7 +265,7 @@ const translations = {
     "orders.notes": "ملاحظات",
     "orders.delivery": "توصيل",
     "orders.pickup": "استلام",
-    "orders.processing": "قيد المعال��ة",
+    "orders.processing": "قيد المع��لجة",
     "orders.ready": "جاهز",
     "orders.delivered": "تم التسليم",
     "orders.pickedUp": "تم الاستلام",
@@ -293,7 +294,7 @@ const translations = {
 
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
-    "revenue.overview": "نظرة عامة على الإيرا��ات",
+    "revenue.overview": "نظرة عامة على الإي��ادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
@@ -343,7 +344,7 @@ const translations = {
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
-    "message.orderDeleted": "تم حذف الطلب بنجاح",
+    "message.orderDeleted": "تم ح��ف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
     "message.customerUpdated": "تم تحديث العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
