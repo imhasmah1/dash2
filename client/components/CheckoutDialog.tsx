@@ -230,7 +230,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="address">{t('checkout.customerAddress')}</Label>
+                      <Label htmlFor="address" className="block text-right [dir=ltr]:text-left">{t('checkout.customerAddress')}</Label>
                       <Input
                         id="address"
                         value={customerInfo.address}
