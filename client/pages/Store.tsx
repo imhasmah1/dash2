@@ -196,7 +196,7 @@ export default function Store() {
 
                   {product.totalStock === 0 && (
                     <Badge variant="secondary" className="w-full mt-2 justify-center">
-                      Out of Stock
+                      {t('store.outOfStock')}
                     </Badge>
                   )}
                 </div>
