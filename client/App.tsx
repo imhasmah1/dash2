@@ -1,6 +1,6 @@
 import "./global.css";
 
-// Suppress defaultProps warnings from Recharts library - Complete override
+// Suppress defaultProps warnings from Recharts library and other React 18+ compatibility warnings
 const originalWarn = console.warn;
 const originalError = console.error;
 
