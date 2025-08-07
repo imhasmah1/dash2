@@ -318,12 +318,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           handleInputChange("address", e.target.value)
                         }
                         placeholder={t("language.switch") === "تغيير اللغة" ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304" : "Example: House 1234, Road 321, Block 304"}
-                        className="text-right [dir=ltr]:text-left"
+                        className="text-right [dir=ltr]:text-left placeholder:text-xs"
                         required
                       />
-                      <p className="text-xs text-muted-foreground text-right [dir=ltr]:text-left">
-                        {t("language.switch") === "تغيير اللغة" ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304" : "Example: House 1234, Road 321, Block 304"}
-                      </p>
                     </div>
                   </CardContent>
                 </Card>
