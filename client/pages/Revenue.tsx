@@ -4,22 +4,22 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer,
+import {
+  BarChart,
+  Bar,
   LineChart,
   Line,
   PieChart,
   Pie,
   Cell,
   Area,
-  AreaChart
-} from 'recharts';
+  AreaChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer
+} from '@/components/charts/ChartComponents';
 import { 
   TrendingUp, 
   TrendingDown, 
