@@ -88,12 +88,12 @@ function AppContent() {
 
   return (
     <Routes>
-      {/* Store routes - no authentication required */}
-      <Route path="/store" element={<Store />} />
+      {/* Store routes - no authentication required (now default) */}
+      <Route path="/" element={<Store />} />
       <Route path="/product/:id" element={<ProductDetail />} />
 
-      {/* Admin routes - authentication required */}
-      <Route path="/*" element={
+      {/* Admin routes - authentication required (now at /admin) */}
+      <Route path="/admin/*" element={
         isAuthenticated ? (
           <DashboardLayout>
             <Routes>
