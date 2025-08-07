@@ -155,7 +155,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 {/* Total */}
                 <div className="flex justify-between items-center text-xl font-bold w-full">
                   <span>{t('store.cartTotal')}:</span>
-                  <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                  <span className="text-primary">BD {totalPrice.toFixed(2)}</span>
                 </div>
 
                 {/* Action Buttons */}
