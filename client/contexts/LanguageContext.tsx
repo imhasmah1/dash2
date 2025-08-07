@@ -144,6 +144,18 @@ const translations = {
     'common.close': 'Close',
     'common.yes': 'Yes',
     'common.no': 'No',
+
+    // Empty states
+    'empty.noProductsFound': 'No products found',
+    'empty.noCustomersFound': 'No customers found',
+    'empty.noOrdersFound': 'No orders found',
+    'empty.adjustSearch': 'Try adjusting your search terms',
+    'empty.addFirstProduct': 'Start by adding your first product',
+    'empty.addFirstCustomer': 'Start by adding your first customer',
+    'empty.addFirstOrder': 'Start by creating your first order',
+    'empty.addProduct': 'Add Product',
+    'empty.addCustomer': 'Add Customer',
+    'empty.createOrder': 'Create Order',
     
     // Messages
     'message.deleteConfirm': 'Are you sure you want to delete this item?',
@@ -185,11 +197,11 @@ const translations = {
     'dashboard.totalRevenue': 'إجمالي الإيرادات',
     'dashboard.totalOrders': 'إجمالي الطلبات',
     'dashboard.recentOrders': 'الطلبات الأخيرة',
-    'dashboard.welcome': 'مرحباً بك في لوحة الإدارة',
+    'dashboard.welcome': 'مرحبا�� بك في لوحة الإدارة',
     
     // Products
     'products.title': 'المنتجات',
-    'products.addNew': 'إضافة منتج جديد',
+    'products.addNew': 'إضافة منتج ج��يد',
     'products.search': 'البحث في المنتجات...',
     'products.name': 'الاسم',
     'products.price': 'السعر',
@@ -239,7 +251,7 @@ const translations = {
     'orders.price': 'السعر',
     'orders.subtotal': 'المجموع الفرعي',
     'orders.remove': 'إزالة',
-    'orders.notes': 'ملاحظات',
+    'orders.notes': 'م��احظات',
     'orders.delivery': 'توصيل',
     'orders.pickup': 'استلام',
     'orders.processing': 'قيد المعالجة',
@@ -298,7 +310,7 @@ const translations = {
     'common.loading': 'جارٍ التحميل...',
     'common.noData': 'لا توجد بيانات',
     'common.confirm': 'تأكيد',
-    'common.close': 'إغلاق',
+    'common.close': '��غلاق',
     'common.yes': 'نعم',
     'common.no': 'لا',
     
