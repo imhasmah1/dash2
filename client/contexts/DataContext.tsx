@@ -299,6 +299,11 @@ export function DataProvider({ children }: { children: ReactNode }) {
     await loadData();
   };
 
+  // Don't render children until the provider is properly mounted
+  if (!mounted) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <DataContext.Provider
       value={{
