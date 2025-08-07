@@ -163,7 +163,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] p-0">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full text-right [dir=ltr]:text-left">
           {/* Header */}
           <DialogHeader className="px-6 py-4 border-b">
             <DialogTitle className="text-2xl font-bold text-center">
