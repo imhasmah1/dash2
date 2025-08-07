@@ -95,16 +95,15 @@ export default function ProductDetail() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg">
-              <StoreIcon className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                {t('store.title')}
-              </h1>
-              <p className="text-xs text-muted-foreground">
-                {language === 'ar' ? 'منتجات عالية الجودة' : 'Premium Quality Products'}
-              </p>
+            <div className="h-12 flex items-center">
+              <img
+                src={language === 'ar'
+                  ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
+                  : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
+                }
+                alt={t('store.title')}
+                className="h-12 w-auto object-contain"
+              />
             </div>
           </div>
           
