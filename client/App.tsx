@@ -78,6 +78,7 @@ import Orders from "@/pages/Orders";
 import Customers from "@/pages/Customers";
 import Revenue from "@/pages/Revenue";
 import Store from "@/pages/Store";
+import ProductDetail from "@/pages/ProductDetail";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
