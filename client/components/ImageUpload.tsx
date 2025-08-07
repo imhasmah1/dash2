@@ -152,7 +152,7 @@ export default function ImageUpload({
               }}
             >
               <Upload className="w-4 h-4 mr-2" />
-              {t("products.productImages")}
+              {t("products.uploadImages")}
             </Button>
             <p className="text-xs text-gray-500 mt-2">
               {images.length}/{maxImages} {t("products.productImages")} •{" "}
