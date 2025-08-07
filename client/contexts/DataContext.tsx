@@ -119,22 +119,36 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const uploadImage = async (file: File): Promise<string> => {
     const formData = new FormData();
     formData.append('image', file);
-    
+
     try {
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
-      
+
       if (!response.ok) {
-        throw new Error('Upload failed');
+        const errorText = await response.text();
+        let errorMessage = 'Upload failed';
+
+        try {
+          const errorData = JSON.parse(errorText);
+          errorMessage = errorData.error || errorMessage;
+        } catch {
+          // If not JSON, use status text
+          errorMessage = response.statusText || errorMessage;
+        }
+
+        throw new Error(`Image upload failed: ${errorMessage}`);
       }
-      
+
       const data = await response.json();
       return data.url;
     } catch (error) {
       console.error('Failed to upload image:', error);
-      throw error;
+      if (error instanceof Error) {
+        throw new Error(error.message.includes('upload') ? error.message : `Failed to upload image: ${error.message}`);
+      }
+      throw new Error('Failed to upload image: Unknown error');
     }
   };
 
