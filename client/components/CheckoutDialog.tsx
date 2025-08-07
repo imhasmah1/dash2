@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Separator } from './ui/separator';
 import { Badge } from './ui/badge';
 import { ScrollArea } from './ui/scroll-area';
-import { Check, CreditCard, Truck, Package } from 'lucide-react';
+import { Check, CreditCard, Truck, Package, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface CheckoutDialogProps {
   open: boolean;
@@ -27,6 +27,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const { t } = useLanguage();
   const { items, getTotalPrice, clearCart } = useCart();
   
+  const [step, setStep] = useState(1);
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
     phone: '',
@@ -47,13 +48,30 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     }));
   };
 
-  const isFormValid = () => {
+  const isStep1Valid = () => {
     return (
       customerInfo.name.trim() !== '' &&
       customerInfo.phone.trim() !== '' &&
-      customerInfo.address.trim() !== '' &&
-      items.length > 0
+      customerInfo.address.trim() !== ''
     );
+  };
+
+  const isFormValid = () => {
+    return isStep1Valid() && items.length > 0;
+  };
+
+  const handleNext = () => {
+    if (step === 1 && isStep1Valid()) {
+      setStep(2);
+    } else if (step === 2) {
+      setStep(3);
+    }
+  };
+
+  const handleBack = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
   };
 
   const handlePlaceOrder = async () => {
@@ -102,6 +120,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     setDeliveryType('delivery');
     setOrderSuccess(false);
     setOrderNumber('');
+    setStep(1);
   };
 
   const handleClose = () => {
@@ -152,151 +171,222 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             <p className="text-center text-muted-foreground text-sm">
               {t('checkout.noCreditCard')}
             </p>
+            
+            {/* Step indicator */}
+            <div className="flex justify-center mt-4">
+              <div className="flex items-center space-x-4">
+                {[1, 2, 3].map((stepNum) => (
+                  <div key={stepNum} className="flex items-center">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                      step >= stepNum ? 'bg-primary text-white' : 'bg-gray-200 text-gray-600'
+                    }`}>
+                      {stepNum}
+                    </div>
+                    {stepNum < 3 && (
+                      <div className={`w-12 h-0.5 mx-2 ${
+                        step > stepNum ? 'bg-primary' : 'bg-gray-200'
+                      }`} />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </DialogHeader>
 
           <ScrollArea className="flex-1">
-            <div className="p-6 space-y-6">
-              {/* Customer Information Card */}
-              <Card className="border-2">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold">1</span>
-                    </div>
-                    {t('checkout.customerInfo')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">{t('checkout.customerName')}</Label>
-                      <Input
-                        id="name"
-                        value={customerInfo.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                        placeholder={t('checkout.customerName')}
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">{t('checkout.customerPhone')}</Label>
-                      <Input
-                        id="phone"
-                        value={customerInfo.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                        placeholder={t('checkout.customerPhone')}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="address">{t('checkout.customerAddress')}</Label>
-                    <Input
-                      id="address"
-                      value={customerInfo.address}
-                      onChange={(e) => handleInputChange('address', e.target.value)}
-                      placeholder={t('checkout.customerAddress')}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Delivery Options Card */}
-              <Card className="border-2">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold">2</span>
-                    </div>
-                    {t('checkout.deliveryOptions')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <RadioGroup 
-                    value={deliveryType} 
-                    onValueChange={(value) => setDeliveryType(value as 'delivery' | 'pickup')}
-                    className="grid grid-cols-2 gap-4"
-                  >
-                    <Label htmlFor="delivery" className="cursor-pointer">
-                      <div className={`p-4 border-2 rounded-lg transition-all ${deliveryType === 'delivery' ? 'border-primary bg-primary/5' : 'border-border'}`}>
-                        <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse mb-2">
-                          <RadioGroupItem value="delivery" id="delivery" />
-                          <Truck className="h-5 w-5" />
-                        </div>
-                        <div className="font-medium">{t('checkout.delivery')}</div>
+            <div className="p-6">
+              {/* Step 1: Customer Information */}
+              {step === 1 && (
+                <Card className="border-2">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
+                        <span className="font-bold">1</span>
                       </div>
-                    </Label>
+                      {t('checkout.customerInfo')}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">{t('checkout.customerName')}</Label>
+                        <Input
+                          id="name"
+                          value={customerInfo.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                          placeholder={t('checkout.customerName')}
+                          required
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">{t('checkout.customerPhone')}</Label>
+                        <Input
+                          id="phone"
+                          value={customerInfo.phone}
+                          onChange={(e) => handleInputChange('phone', e.target.value)}
+                          placeholder={t('checkout.customerPhone')}
+                          required
+                        />
+                      </div>
+                    </div>
                     
-                    <Label htmlFor="pickup" className="cursor-pointer">
-                      <div className={`p-4 border-2 rounded-lg transition-all ${deliveryType === 'pickup' ? 'border-primary bg-primary/5' : 'border-border'}`}>
-                        <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse mb-2">
-                          <RadioGroupItem value="pickup" id="pickup" />
-                          <Package className="h-5 w-5" />
-                        </div>
-                        <div className="font-medium">{t('checkout.pickup')}</div>
-                      </div>
-                    </Label>
-                  </RadioGroup>
-                </CardContent>
-              </Card>
-
-              {/* Order Summary Card */}
-              <Card className="border-2">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold">3</span>
+                    <div className="space-y-2">
+                      <Label htmlFor="address">{t('checkout.customerAddress')}</Label>
+                      <Input
+                        id="address"
+                        value={customerInfo.address}
+                        onChange={(e) => handleInputChange('address', e.target.value)}
+                        placeholder={t('checkout.customerAddress')}
+                        required
+                      />
                     </div>
-                    {t('checkout.orderSummary')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {/* Order Items */}
-                  <div className="space-y-3">
-                    {items.map((item) => (
-                      <div key={`${item.productId}-${item.variantId}`} className="flex justify-between items-center text-sm py-2 border-b">
-                        <div className="flex-1">
-                          <p className="font-medium">{item.productName}</p>
-                          <p className="text-muted-foreground">{item.variantName} × {item.quantity}</p>
-                        </div>
-                        <p className="font-medium">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </p>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Step 2: Delivery Options */}
+              {step === 2 && (
+                <Card className="border-2">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
+                        <span className="font-bold">2</span>
                       </div>
-                    ))}
-                  </div>
+                      {t('checkout.deliveryOptions')}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <RadioGroup 
+                      value={deliveryType} 
+                      onValueChange={(value) => setDeliveryType(value as 'delivery' | 'pickup')}
+                      className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    >
+                      <Label htmlFor="delivery" className="cursor-pointer">
+                        <div className={`p-6 border-2 rounded-lg transition-all ${deliveryType === 'delivery' ? 'border-primary bg-primary/5' : 'border-border'}`}>
+                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse mb-3">
+                            <RadioGroupItem value="delivery" id="delivery" />
+                            <Truck className="h-6 w-6" />
+                          </div>
+                          <div className="font-medium text-lg">{t('checkout.delivery')}</div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            {t('language.switch') === 'تغيير اللغة' ? 'يتم التوصيل لباب المنزل' : 'Delivered to your door'}
+                          </div>
+                        </div>
+                      </Label>
+                      
+                      <Label htmlFor="pickup" className="cursor-pointer">
+                        <div className={`p-6 border-2 rounded-lg transition-all ${deliveryType === 'pickup' ? 'border-primary bg-primary/5' : 'border-border'}`}>
+                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse mb-3">
+                            <RadioGroupItem value="pickup" id="pickup" />
+                            <Package className="h-6 w-6" />
+                          </div>
+                          <div className="font-medium text-lg">{t('checkout.pickup')}</div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            {t('language.switch') === 'تغيير اللغة' ? 'استلام من المتجر' : 'Pick up from store'}
+                          </div>
+                        </div>
+                      </Label>
+                    </RadioGroup>
+                  </CardContent>
+                </Card>
+              )}
 
-                  <Separator />
+              {/* Step 3: Order Summary */}
+              {step === 3 && (
+                <Card className="border-2">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
+                        <span className="font-bold">3</span>
+                      </div>
+                      {t('checkout.orderSummary')}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Customer Summary */}
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">{t('checkout.customerInfo')}</h4>
+                      <p className="text-sm">{customerInfo.name}</p>
+                      <p className="text-sm">{customerInfo.phone}</p>
+                      <p className="text-sm">{customerInfo.address}</p>
+                      <p className="text-sm font-medium mt-2">
+                        {deliveryType === 'delivery' ? t('checkout.delivery') : t('checkout.pickup')}
+                      </p>
+                    </div>
 
-                  {/* Total */}
-                  <div className="flex justify-between items-center text-xl font-bold">
-                    <span>{t('orders.orderTotal')}:</span>
-                    <span className="text-primary">${totalPrice.toFixed(2)}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                    {/* Order Items */}
+                    <div className="space-y-3">
+                      <h4 className="font-medium">{t('orders.items')}</h4>
+                      {items.map((item) => (
+                        <div key={`${item.productId}-${item.variantId}`} className="flex justify-between items-center text-sm py-2 border-b">
+                          <div className="flex-1">
+                            <p className="font-medium">{item.productName}</p>
+                            <p className="text-muted-foreground">{item.variantName} × {item.quantity}</p>
+                          </div>
+                          <p className="font-medium">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Separator />
+
+                    {/* Total */}
+                    <div className="flex justify-between items-center text-xl font-bold">
+                      <span>{t('orders.orderTotal')}:</span>
+                      <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </ScrollArea>
 
           {/* Footer */}
           <div className="p-6 border-t bg-muted/20">
             <div className="flex gap-3">
+              {step > 1 && (
+                <Button
+                  variant="outline"
+                  onClick={handleBack}
+                  className="flex-1"
+                >
+                  <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
+                  {t('language.switch') === 'تغيير اللغة' ? 'السابق' : 'Back'}
+                </Button>
+              )}
+              
               <Button
                 variant="outline"
                 onClick={handleClose}
-                className="flex-1"
+                className={step === 1 ? "flex-1" : ""}
               >
                 {t('common.cancel')}
               </Button>
-              <Button
-                onClick={handlePlaceOrder}
-                disabled={!isFormValid() || isSubmitting}
-                className="flex-1"
-                size="lg"
-              >
-                <CreditCard className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-                {isSubmitting ? t('common.loading') : t('checkout.placeOrder')}
-              </Button>
+              
+              {step < 3 ? (
+                <Button
+                  onClick={handleNext}
+                  disabled={step === 1 && !isStep1Valid()}
+                  className="flex-1"
+                  size="lg"
+                >
+                  {t('language.switch') === 'تغيير اللغة' ? 'التالي' : 'Next'}
+                  <ArrowRight className="h-4 w-4 [dir=rtl]:mr-2 [dir=ltr]:ml-2" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={handlePlaceOrder}
+                  disabled={!isFormValid() || isSubmitting}
+                  className="flex-1"
+                  size="lg"
+                >
+                  <CreditCard className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
+                  {isSubmitting ? t('common.loading') : t('checkout.placeOrder')}
+                </Button>
+              )}
             </div>
           </div>
         </div>
