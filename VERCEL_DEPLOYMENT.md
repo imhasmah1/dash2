@@ -19,11 +19,11 @@ This project is fully configured for Vercel deployment. Here's what's been prepa
 - All other routes → SPA (`index.html`)
 
 ### 🌐 Features Ready for Production
-- ✅ Store interface (`/store`)
+- ✅ Store interface (homepage `/`)
 - ✅ Product detail pages (`/product/:id`)
 - ✅ Shopping cart system
 - ✅ Checkout process
-- ✅ Admin dashboard (requires login)
+- ✅ Admin dashboard (`/admin/*` - requires login)
 - ✅ Arabic/English language support
 - ✅ Responsive design
 
