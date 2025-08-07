@@ -142,14 +142,59 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
               <Check className="h-10 w-10 text-green-600" />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-green-600">
                 {t("checkout.orderSuccess")}
               </h2>
               <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
-              <p className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-2 bg-blue-50 rounded text-right [dir=ltr]:text-left [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3">
-                {t("checkout.processingMessage")}
-              </p>
+
+              {/* Delivery-specific instructions */}
+              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded text-right [dir=ltr]:text-left [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
+                {deliveryType === "pickup" ? (
+                  <div className="space-y-2">
+                    <p className="font-medium">
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "يمكنك استلام طلبك بعد 24 ساعة من الآن على العنوان التالي:"
+                        : "You can pick up your order 24 hours from now at the following address:"}
+                    </p>
+                    <p className="font-mono bg-white p-2 rounded border">
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "المنزل 1348، الطريق 416، البلوك 604"
+                        : "Home 1348, Road 416, Block 604"}
+                    </p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "عند الوصول، يرجى التواصل معنا عبر الواتساب على:"
+                        : "When you arrive, please contact us on WhatsApp at:"}
+                    </p>
+                    <p className="font-bold text-blue-600">+973 3628 3381</p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
+                        : "You can also use this number to edit, cancel, or add products to your order."}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <p className="font-medium">
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "سنقوم بتوصيل طلبك خلال 1 إلى 3 أيام."
+                        : "We will deliver your order within 1 to 3 days."}
+                    </p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
+                        : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
+                    </p>
+                    <p className="font-bold text-blue-600">+973 3628 3381</p>
+                    <p>
+                      {t("language.switch") === "تغيير اللغة"
+                        ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
+                        : "You can also use this number to edit, cancel, or add products to your order."}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">
