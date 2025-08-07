@@ -290,9 +290,7 @@ export default function Products() {
                     </div>
                     {formData.variants.length === 0 && (
                       <div className="grid gap-2">
-                        <Label htmlFor="stock">
-                          {t("products.stock")}
-                        </Label>
+                        <Label htmlFor="stock">{t("products.stock")}</Label>
                         <Input
                           id="stock"
                           type="number"

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard,
   Package,
@@ -12,20 +12,20 @@ import {
   LogOut,
   Menu,
   X,
-  Languages
-} from 'lucide-react';
-import { cn } from '@/lib/utils';
+  Languages,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 const getNavigation = (t: (key: string) => string) => [
-  { name: t('nav.dashboard'), href: '/admin/', icon: LayoutDashboard },
-  { name: t('nav.products'), href: '/admin/products', icon: Package },
-  { name: t('nav.orders'), href: '/admin/orders', icon: ShoppingCart },
-  { name: t('nav.customers'), href: '/admin/customers', icon: Users },
-  { name: t('nav.revenue'), href: '/admin/revenue', icon: TrendingUp },
+  { name: t("nav.dashboard"), href: "/admin/", icon: LayoutDashboard },
+  { name: t("nav.products"), href: "/admin/products", icon: Package },
+  { name: t("nav.orders"), href: "/admin/orders", icon: ShoppingCart },
+  { name: t("nav.customers"), href: "/admin/customers", icon: Users },
+  { name: t("nav.revenue"), href: "/admin/revenue", icon: TrendingUp },
 ];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
@@ -37,27 +37,31 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const navigation = getNavigation(t);
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ar' : 'en');
+    setLanguage(language === "en" ? "ar" : "en");
   };
 
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <div className={cn(
-        "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
-        isRTL ? "right-0" : "left-0",
-        sidebarOpen
-          ? "translate-x-0"
-          : isRTL ? "translate-x-full" : "-translate-x-full"
-      )}>
+      <div
+        className={cn(
+          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          isRTL ? "right-0" : "left-0",
+          sidebarOpen
+            ? "translate-x-0"
+            : isRTL
+              ? "translate-x-full"
+              : "-translate-x-full",
+        )}
+      >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <img
@@ -65,7 +69,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               alt="Azhar Store Logo"
               className="h-8 w-8"
             />
-            <h1 className="text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left">{t('nav.adminPanel')}</h1>
+            <h1 className="text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left">
+              {t("nav.adminPanel")}
+            </h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -74,7 +80,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        
+
         <nav className="mt-8 px-4">
           <ul className="space-y-2">
             {navigation.map((item) => {
@@ -88,10 +94,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
                       isActive
                         ? "bg-dashboard-primary text-white"
-                        : "text-gray-700 hover:bg-gray-100"
+                        : "text-gray-700 hover:bg-gray-100",
                     )}
                   >
-                    <item.icon className={cn("w-5 h-5", isRTL ? "ml-3" : "mr-3")} />
+                    <item.icon
+                      className={cn("w-5 h-5", isRTL ? "ml-3" : "mr-3")}
+                    />
                     {item.name}
                   </Link>
                 </li>
@@ -107,7 +115,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
           >
             <Languages className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            {t('language.switch')}
+            {t("language.switch")}
           </Button>
           <Button
             onClick={logout}
@@ -115,7 +123,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
           >
             <LogOut className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            {t('nav.logout')}
+            {t("nav.logout")}
           </Button>
         </div>
       </div>
@@ -131,15 +139,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <Menu className="w-6 h-6" />
             </button>
-            <h1 className="text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">{t('dashboard.title')}</h1>
+            <h1 className="text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">
+              {t("dashboard.title")}
+            </h1>
             <div className="w-6" /> {/* Spacer */}
           </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-6">
-          {children}
-        </main>
+        <main className="flex-1 overflow-auto p-6">{children}</main>
       </div>
     </div>
   );

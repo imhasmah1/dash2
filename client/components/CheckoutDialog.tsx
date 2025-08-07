@@ -167,7 +167,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         ? "عند الوصول، يرجى التواصل معنا عبر الواتساب على:"
                         : "When you arrive, please contact us on WhatsApp at:"}
                     </p>
-                    <p className="font-bold text-blue-600 text-right [dir=ltr]:text-left" dir="ltr">+973 3628 3381</p>
+                    <p
+                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
+                      dir="ltr"
+                    >
+                      +973 3628 3381
+                    </p>
                     <p>
                       {t("language.switch") === "تغيير اللغة"
                         ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
@@ -186,7 +191,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
-                    <p className="font-bold text-blue-600 text-right [dir=ltr]:text-left" dir="ltr">+973 3628 3381</p>
+                    <p
+                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
+                      dir="ltr"
+                    >
+                      +973 3628 3381
+                    </p>
                     <p>
                       {t("language.switch") === "تغيير اللغة"
                         ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
@@ -317,7 +327,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         onChange={(e) =>
                           handleInputChange("address", e.target.value)
                         }
-                        placeholder={t("language.switch") === "تغيير اللغة" ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304" : "Example: House 1234, Road 321, Block 304"}
+                        placeholder={
+                          t("language.switch") === "تغيير اللغة"
+                            ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304"
+                            : "Example: House 1234, Road 321, Block 304"
+                        }
                         className="text-right [dir=ltr]:text-left placeholder:text-xs"
                         required
                       />
@@ -467,11 +481,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             <div className="flex flex-col sm:flex-row gap-3">
               {step > 1 && (
                 <Button
-                variant="outline"
-                onClick={handleBack}
-                className="w-full sm:flex-1"
-                size="lg"
-              >
+                  variant="outline"
+                  onClick={handleBack}
+                  className="w-full sm:flex-1"
+                  size="lg"
+                >
                   <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
                   {t("language.switch") === "تغيير اللغة" ? "السابق" : "Back"}
                 </Button>
