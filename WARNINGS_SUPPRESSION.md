@@ -1,31 +1,45 @@
-# Warning Suppression
+# Warning Suppression and Chart Error Fixes
 
-This document explains the warning suppression implemented in the project.
+This document explains the warning suppression and error fixes implemented in the project.
 
-## Recharts defaultProps Warnings
+## Recharts Issues Fixed
 
-### Issue
+### Issue 1: defaultProps Warnings
 Recharts library (versions up to 2.15.4) uses the deprecated `defaultProps` pattern, which causes warnings in React 18+:
 
 ```
 Warning: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead. XAxis/YAxis
 ```
 
-### Solution Implemented
+### Issue 2: AxisId Invariant Errors
+Recharts sometimes throws invariant errors related to axis IDs:
 
-1. **Console Warning Suppression** (`client/App.tsx`)
-   - Filters out specific defaultProps warnings from Recharts
-   - Preserves other important warnings
+```
+Error: Invariant failed: Specifying a(n) xAxisId requires a corresponding xAxisId on the targeted graphical component Area
+```
+
+### Solutions Implemented
+
+1. **Enhanced Console Warning Suppression** (`client/App.tsx`)
+   - More robust pattern matching for defaultProps warnings
+   - Separates defaultProps warnings from axis configuration errors
+   - Preserves all other important warnings
    - Applied globally at app startup
 
-2. **Wrapper Components** (`client/components/charts/ChartComponents.tsx`)
-   - Created custom wrapper components for XAxis, YAxis, etc.
-   - Provides default props inline instead of using defaultProps
-   - Improves type safety and avoids deprecation warnings
+2. **Direct Component Usage with Defensive Props**
+   - Removed wrapper components that were causing axis ID conflicts
+   - Added explicit `axisLine={false}` and `tickLine={false}` to prevent ID issues
+   - Uses original Recharts components with safe default props
 
-3. **Updated Imports** (`client/pages/Revenue.tsx`)
-   - Uses wrapper components instead of direct Recharts imports
-   - Maintains same functionality without warnings
+3. **Error Boundaries** (`client/components/ErrorBoundary.tsx`)
+   - Added React error boundaries around chart components
+   - Graceful fallback UI when charts fail to render
+   - User-friendly error messages with retry functionality
+
+4. **Defensive Data Handling** (`client/pages/Revenue.tsx`)
+   - Added null checks for all chart data (`|| []`)
+   - Ensures charts always receive valid arrays
+   - Prevents runtime errors from undefined data
 
 ### Patterns Suppressed
 
