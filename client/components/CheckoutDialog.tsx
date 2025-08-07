@@ -121,6 +121,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             <div className="space-y-2">
               <h2 className="text-2xl font-bold text-green-600">{t('checkout.orderSuccess')}</h2>
               <p className="text-muted-foreground">{t('checkout.thankYou')}</p>
+              <p className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-2 bg-blue-50 rounded">
+                {t('checkout.processingMessage')}
+              </p>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">{t('checkout.orderNumber')}:</p>
