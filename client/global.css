@@ -209,4 +209,42 @@
   [dir="rtl"] .rtl-flip {
     transform: scaleX(1);
   }
+
+  /* RTL Dialog Header */
+  [dir="rtl"] .text-center.sm\\:text-left {
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    [dir="rtl"] .text-center.sm\\:text-left {
+      text-align: right;
+    }
+  }
+
+  /* RTL Form spacing */
+  [dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+
+  [dir="rtl"] .flex-row.sm\\:space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+
+  /* RTL Button margins */
+  [dir="rtl"] .mr-2 {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+
+  [dir="rtl"] .ml-1 {
+    margin-left: 0;
+    margin-right: 0.25rem;
+  }
+
+  [dir="rtl"] .mr-1 {
+    margin-right: 0;
+    margin-left: 0.25rem;
+  }
 }
