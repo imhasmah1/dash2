@@ -178,10 +178,6 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                   </Button>
                 </div>
 
-                {/* No Credit Card Notice */}
-                <p className="text-xs text-center text-muted-foreground">
-                  {t('checkout.noCreditCard')}
-                </p>
               </DialogFooter>
             </>
           )}
