@@ -533,7 +533,7 @@ export default function Orders() {
                         notes: e.target.value,
                       }))
                     }
-                    placeholder="Special instructions or notes..."
+                    placeholder={t('orders.notesPlaceholder')}
                     rows={3}
                   />
                 </div>
