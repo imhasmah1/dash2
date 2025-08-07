@@ -353,7 +353,7 @@ export default function Orders() {
                           className="flex gap-2 items-end p-4 border rounded-lg"
                         >
                           <div className="flex-1">
-                            <Label>Product</Label>
+                            <Label>{t('orders.product')}</Label>
                             <Select
                               value={item.productId}
                               onValueChange={(value) =>
@@ -361,7 +361,7 @@ export default function Orders() {
                               }
                             >
                               <SelectTrigger>
-                                <SelectValue placeholder="Select product" />
+                                <SelectValue placeholder={t('orders.selectProduct')} />
                               </SelectTrigger>
                               <SelectContent>
                                 {products.map((product) => (
