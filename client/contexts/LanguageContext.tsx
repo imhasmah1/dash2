@@ -227,6 +227,7 @@ const translations = {
     "store.continueShopping": "Continue Shopping",
     "store.removeFromCart": "Remove from Cart",
     "store.updateQuantity": "Update Quantity",
+    "store.clearCart": "Clear Cart",
 
     // Checkout
     "checkout.title": "Checkout",
@@ -345,7 +346,7 @@ const translations = {
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
     "orders.customerNotFound": "العميل غير موجود",
-    "orders.orderItems": "عناصر ال��لب",
+    "orders.orderItems": "عناصر الطلب",
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
@@ -455,7 +456,7 @@ const translations = {
     "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
     "store.continueShopping": "متابعة التسوق",
-    "store.removeFromCart": "إزالة من ��لسلة",
+    "store.removeFromCart": "إزالة من السلة",
     "store.updateQuantity": "تحديث الكمية",
 
     // Checkout
