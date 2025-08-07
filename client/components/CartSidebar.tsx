@@ -47,7 +47,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
   return (
     <>
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="sm:max-w-2xl max-h-[90vh] flex flex-col p-0">
+        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[90vh] flex flex-col p-0">
           <DialogHeader className="px-6 py-4 border-b">
             <DialogTitle className="flex items-center gap-2 text-xl">
               <ShoppingBag className="h-6 w-6" />
@@ -79,7 +79,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       <div className="flex gap-4">
                         {/* Product Image */}
                         {item.productImage && (
-                          <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 shrink-0">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-gray-100 shrink-0">
                             <img
                               src={item.productImage}
                               alt={item.productName}
@@ -90,13 +90,13 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
 
                         {/* Product Details */}
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-base truncate">
+                          <h4 className="font-semibold text-sm sm:text-base truncate">
                             {item.productName}
                           </h4>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-xs sm:text-sm text-muted-foreground">
                             {item.variantName}
                           </p>
-                          <p className="text-lg font-bold text-primary">
+                          <p className="text-base sm:text-lg font-bold text-primary">
                             BD {item.price.toFixed(2)}
                           </p>
                         </div>
@@ -143,7 +143,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                               )
                             }
                             min={1}
-                            className="w-20 h-8 text-center text-sm"
+                            className="w-16 sm:w-20 h-8 text-center text-sm"
                           />
 
                           <Button
@@ -162,7 +162,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                           </Button>
                         </div>
 
-                        <div className="text-lg font-bold">
+                        <div className="text-base sm:text-lg font-bold">
                           BD {(item.price * item.quantity).toFixed(2)}
                         </div>
                       </div>
@@ -171,9 +171,9 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
               </ScrollArea>
 
-              <DialogFooter className="flex-col space-y-4 px-6 py-4 border-t">
+              <DialogFooter className="flex-col space-y-4 px-4 sm:px-6 py-4 border-t">
                 {/* Total */}
-                <div className="flex justify-between items-center text-xl font-bold w-full">
+                <div className="flex justify-between items-center text-lg sm:text-xl font-bold w-full">
                   <span>{t("store.cartTotal")}:</span>
                   <span className="text-primary">
                     BD {totalPrice.toFixed(2)}
@@ -181,7 +181,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 w-full">
+                <div className="flex flex-col sm:flex-row gap-3 w-full">
                   <Button
                     variant="outline"
                     onClick={clearCart}
