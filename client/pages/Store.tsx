@@ -73,31 +73,57 @@ export default function Store() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg">
+              <StoreIcon className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-primary">{t('store.title')}</h1>
-              <p className="text-xs text-muted-foreground">Premium Quality Products</p>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {t('store.title')}
+              </h1>
+              <p className="text-xs text-muted-foreground">
+                {language === 'ar' ? 'منتجات عالية الجودة' : 'Premium Quality Products'}
+              </p>
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            onClick={() => setIsCartOpen(true)}
-            className="relative hover:bg-primary/5 hover:border-primary transition-colors"
-          >
-            <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-            {t('store.cart')}
-            {cartItemsCount > 0 && (
-              <Badge
-                variant="destructive"
-                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs animate-pulse"
-              >
-                {cartItemsCount}
-              </Badge>
-            )}
-          </Button>
+          {/* Right side buttons */}
+          <div className="flex items-center gap-3">
+            {/* Language Switch */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Globe className="h-4 w-4" />
+                  {language === 'ar' ? 'العربية' : 'English'}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLanguage('ar')}>
+                  العربية
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Cart Button */}
+            <Button
+              variant="outline"
+              onClick={() => setIsCartOpen(true)}
+              className="relative hover:bg-primary/5 hover:border-primary transition-colors"
+            >
+              <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
+              {t('store.cart')}
+              {cartItemsCount > 0 && (
+                <Badge
+                  variant="destructive"
+                  className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs animate-pulse"
+                >
+                  {cartItemsCount}
+                </Badge>
+              )}
+            </Button>
+          </div>
         </div>
       </header>
 
