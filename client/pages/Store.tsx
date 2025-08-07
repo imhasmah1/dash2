@@ -29,7 +29,7 @@ interface Product {
 }
 
 export default function Store() {
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
