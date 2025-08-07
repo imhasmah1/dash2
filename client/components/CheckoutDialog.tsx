@@ -137,7 +137,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   if (orderSuccess) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:max-w-md">
+        <DialogContent className="w-[95vw] sm:max-w-md rounded-lg sm:rounded-md">
           <div className="text-center space-y-6 py-4">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
               <Check className="h-10 w-10 text-green-600" />
@@ -147,7 +147,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 {t("checkout.orderSuccess")}
               </h2>
               <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
-              <p className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-2 bg-blue-50 rounded">
+              <p className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-2 bg-blue-50 rounded text-right [dir=ltr]:text-left [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3">
                 {t("checkout.processingMessage")}
               </p>
             </div>
@@ -170,7 +170,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[90vh] p-0">
+      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[90vh] p-0 rounded-lg sm:rounded-md">
         <div className="flex flex-col h-full text-right [dir=ltr]:text-left">
           {/* Header */}
           <DialogHeader className="px-4 sm:px-6 py-4 border-b">
