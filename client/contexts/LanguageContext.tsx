@@ -68,6 +68,7 @@ const translations = {
     "products.primaryImage": "Primary",
     "products.uploadImages": "Upload Images",
     "products.images": "images",
+    "products.noImages": "No images uploaded yet",
 
     // Orders
     "orders.title": "Orders",
