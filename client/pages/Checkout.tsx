@@ -252,7 +252,7 @@ export default function Checkout() {
                 {/* Total */}
                 <div className="flex justify-between items-center text-lg font-bold">
                   <span>{t('orders.orderTotal')}:</span>
-                  <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                  <span className="text-primary">BD {totalPrice.toFixed(2)}</span>
                 </div>
 
                 {/* Place Order Button */}
