@@ -133,7 +133,7 @@ export default function Store() {
       <main className="container mx-auto px-4 py-8">
         {products.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4">
+            <p className="text-muted-foreground mb-4 text-center">
               {t("empty.noProductsFound")}
             </p>
           </div>
