@@ -209,7 +209,7 @@ export default function ImageUpload({
               {/* Primary Image Badge */}
               {index === 0 && (
                 <div className="absolute top-2 left-2 bg-dashboard-primary text-white text-xs px-2 py-1 rounded">
-                  {t("products.productImages")}
+                  {t("products.primaryImage")}
                 </div>
               )}
 
