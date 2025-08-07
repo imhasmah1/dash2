@@ -266,7 +266,7 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجمالي الإيرادات",
+    "dashboard.totalRevenue": "إجمالي الإيرادا��",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
@@ -292,11 +292,11 @@ const translations = {
     "products.productImages": "صور المنتج",
     "products.addVariant": "إضافة نوع",
     "products.variantName": "اسم النوع",
-    "products.variantStock": "مخزون النوع",
+    "products.variantStock": "مخزون ��لنوع",
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
-    "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيا��",
+    "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
