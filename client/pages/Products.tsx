@@ -40,6 +40,7 @@ export default function Products() {
     price: 0,
     images: [] as string[],
     variants: [] as ProductVariant[],
+    stock: 0,
   });
 
   const filteredProducts = products.filter(
