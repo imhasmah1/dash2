@@ -251,6 +251,7 @@ const translations = {
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
+    "products.primaryImage": "أساسية",
 
     // Orders
     "orders.title": "الطلبات",
@@ -290,7 +291,7 @@ const translations = {
     "orders.orderTotal": "إجمالي الطلب",
     "orders.save": "حفظ",
     "orders.orderDetailsTitle": "تفاصيل الطلب",
-    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل وا��تتبع",
+    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
     "orders.customerInfo": "معلومات العميل",
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
@@ -345,7 +346,7 @@ const translations = {
     "common.cancel": "إلغاء",
     "common.delete": "حذف",
     "common.edit": "تعديل",
-    "common.add": "إضافة",
+    "common.add": "إض��فة",
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
