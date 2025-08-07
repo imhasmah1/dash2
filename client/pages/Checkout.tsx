@@ -95,7 +95,7 @@ export default function Checkout() {
         <Card className="w-full max-w-md">
           <CardContent className="pt-6 text-center">
             <p className="text-muted-foreground mb-4">{t('store.cartEmpty')}</p>
-            <Button onClick={() => navigate('/store')} variant="outline">
+            <Button onClick={() => navigate('/')} variant="outline">
               {t('store.continueShopping')}
             </Button>
           </CardContent>
