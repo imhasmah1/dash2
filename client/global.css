@@ -247,4 +247,23 @@
     margin-right: 0;
     margin-left: 0.25rem;
   }
+
+  /* RTL Form elements */
+  [dir="rtl"] input[type="text"],
+  [dir="rtl"] input[type="number"],
+  [dir="rtl"] input[type="email"],
+  [dir="rtl"] textarea,
+  [dir="rtl"] select {
+    text-align: right;
+  }
+
+  [dir="rtl"] input::placeholder,
+  [dir="rtl"] textarea::placeholder {
+    text-align: right;
+  }
+
+  /* RTL Labels */
+  [dir="rtl"] label {
+    text-align: right;
+  }
 }
