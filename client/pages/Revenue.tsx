@@ -7,19 +7,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   BarChart,
   Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
   LineChart,
   Line,
   PieChart,
   Pie,
   Cell,
   Area,
-  AreaChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer
-} from '@/components/charts/ChartComponents';
+  AreaChart
+} from 'recharts';
 import { 
   TrendingUp, 
   TrendingDown, 
