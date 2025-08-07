@@ -1,0 +1,191 @@
+import { useLanguage } from '../contexts/LanguageContext';
+import { useCart } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetFooter,
+} from './ui/sheet';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { ScrollArea } from './ui/scroll-area';
+import { Separator } from './ui/separator';
+import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+
+interface CartSidebarProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+export default function CartSidebar({ open, onClose }: CartSidebarProps) {
+  const { t } = useLanguage();
+  const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCart();
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    onClose();
+    navigate('/checkout');
+  };
+
+  const handleQuantityChange = (productId: string, variantId: string, newQuantity: number) => {
+    if (newQuantity <= 0) {
+      removeItem(productId, variantId);
+    } else {
+      updateQuantity(productId, variantId, newQuantity);
+    }
+  };
+
+  const totalPrice = getTotalPrice();
+
+  return (
+    <Sheet open={open} onOpenChange={onClose}>
+      <SheetContent className="w-[400px] sm:w-[540px] flex flex-col">
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2">
+            <ShoppingBag className="h-5 w-5" />
+            {t('store.cart')}
+          </SheetTitle>
+        </SheetHeader>
+
+        {items.length === 0 ? (
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center space-y-4">
+              <ShoppingBag className="h-12 w-12 mx-auto text-muted-foreground" />
+              <p className="text-muted-foreground">{t('store.cartEmpty')}</p>
+              <Button variant="outline" onClick={onClose}>
+                {t('store.continueShopping')}
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <ScrollArea className="flex-1 -mx-6 px-6">
+              <div className="space-y-4">
+                {items.map((item) => (
+                  <div key={`${item.productId}-${item.variantId}`} className="space-y-3">
+                    <div className="flex gap-3">
+                      {/* Product Image */}
+                      {item.productImage && (
+                        <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 shrink-0">
+                          <img
+                            src={item.productImage}
+                            alt={item.productName}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                      
+                      {/* Product Details */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-sm truncate">
+                          {item.productName}
+                        </h4>
+                        <p className="text-xs text-muted-foreground">
+                          {item.variantName}
+                        </p>
+                        <p className="text-sm font-semibold text-primary">
+                          ${item.price.toFixed(2)}
+                        </p>
+                      </div>
+
+                      {/* Remove Button */}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeItem(item.productId, item.variantId)}
+                        className="shrink-0 h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    {/* Quantity Controls */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => 
+                            handleQuantityChange(item.productId, item.variantId, item.quantity - 1)
+                          }
+                          className="h-7 w-7 p-0"
+                        >
+                          <Minus className="h-3 w-3" />
+                        </Button>
+                        
+                        <Input
+                          type="number"
+                          value={item.quantity}
+                          onChange={(e) => 
+                            handleQuantityChange(
+                              item.productId, 
+                              item.variantId, 
+                              parseInt(e.target.value) || 1
+                            )
+                          }
+                          min={1}
+                          className="w-16 h-7 text-center text-sm"
+                        />
+                        
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => 
+                            handleQuantityChange(item.productId, item.variantId, item.quantity + 1)
+                          }
+                          className="h-7 w-7 p-0"
+                        >
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+
+                      <div className="text-sm font-semibold">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </div>
+                    </div>
+
+                    <Separator />
+                  </div>
+                ))}
+              </div>
+            </ScrollArea>
+
+            <SheetFooter className="flex-col space-y-4">
+              {/* Total */}
+              <div className="flex justify-between items-center text-lg font-bold">
+                <span>{t('store.cartTotal')}:</span>
+                <span className="text-primary">${totalPrice.toFixed(2)}</span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 w-full">
+                <Button
+                  variant="outline"
+                  onClick={clearCart}
+                  className="flex-1"
+                  disabled={items.length === 0}
+                >
+                  Clear Cart
+                </Button>
+                <Button
+                  onClick={handleCheckout}
+                  className="flex-1"
+                  disabled={items.length === 0}
+                >
+                  {t('store.checkout')}
+                </Button>
+              </div>
+
+              {/* No Credit Card Notice */}
+              <p className="text-xs text-center text-muted-foreground">
+                {t('checkout.noCreditCard')}
+              </p>
+            </SheetFooter>
+          </>
+        )}
+      </SheetContent>
+    </Sheet>
+  );
+}
