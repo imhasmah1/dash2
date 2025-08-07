@@ -130,17 +130,19 @@ export default function ImageUpload({ images, onImagesChange, maxImages = 5 }: I
               id="image-upload"
               disabled={uploading || images.length >= maxImages}
             />
-            <label htmlFor="image-upload">
-              <Button
-                type="button"
-                variant="outline"
-                disabled={uploading || images.length >= maxImages}
-                className="cursor-pointer"
-              >
-                <Upload className="w-4 h-4 mr-2" />
-                {t('products.productImages')}
-              </Button>
-            </label>
+            <Button
+              type="button"
+              variant="outline"
+              disabled={uploading || images.length >= maxImages}
+              className="cursor-pointer"
+              onClick={() => {
+                const input = document.getElementById('image-upload') as HTMLInputElement;
+                input?.click();
+              }}
+            >
+              <Upload className="w-4 h-4 mr-2" />
+              {t('products.productImages')}
+            </Button>
             <p className="text-xs text-gray-500 mt-2">
               {images.length}/{maxImages} {t('products.productImages')} • {t('products.maxImages')}
             </p>
