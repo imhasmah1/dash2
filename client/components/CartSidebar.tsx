@@ -166,7 +166,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                     className="flex-1"
                     disabled={items.length === 0}
                   >
-                    Clear Cart
+                    {t('store.clearCart')}
                   </Button>
                   <Button
                     onClick={handleCheckout}
