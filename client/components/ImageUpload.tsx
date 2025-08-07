@@ -155,8 +155,7 @@ export default function ImageUpload({
               {t("products.uploadImages")}
             </Button>
             <p className="text-xs text-gray-500 mt-2">
-              {images.length}/{maxImages} {t("products.productImages")} •{" "}
-              {t("products.maxImages")}
+              {images.length}/{maxImages} {t("products.images")} • {t("products.maxImages")}
             </p>
           </div>
         </CardContent>
