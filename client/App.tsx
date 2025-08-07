@@ -78,7 +78,6 @@ import Orders from "@/pages/Orders";
 import Customers from "@/pages/Customers";
 import Revenue from "@/pages/Revenue";
 import Store from "@/pages/Store";
-import Checkout from "@/pages/Checkout";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -90,7 +89,6 @@ function AppContent() {
     <Routes>
       {/* Store routes - no authentication required */}
       <Route path="/store" element={<Store />} />
-      <Route path="/checkout" element={<Checkout />} />
 
       {/* Admin routes - authentication required */}
       <Route path="/*" element={
