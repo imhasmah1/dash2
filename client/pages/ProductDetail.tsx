@@ -85,7 +85,7 @@ export default function ProductDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-lg">{t("empty.noProductsFound")}</p>
+          <p className="text-lg text-center">{t("empty.noProductsFound")}</p>
           <Button onClick={() => navigate("/")} variant="outline">
             {t("store.continueShopping")}
           </Button>
