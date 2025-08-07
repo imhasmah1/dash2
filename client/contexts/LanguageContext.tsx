@@ -325,7 +325,7 @@ const translations = {
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
-    "orders.quantity": "الك��ية",
+    "orders.quantity": "الكمية",
     "orders.price": "السعر",
     "orders.subtotal": "المجموع الفرعي",
     "orders.remove": "إزالة",
@@ -379,7 +379,7 @@ const translations = {
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
-    "revenue.totalRevenue": "إجمالي الإير��دات",
+    "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
@@ -485,7 +485,7 @@ const translations = {
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
-    "store.productDetails": "تفاصيل المنتج",
+    "store.productDetails": "��فاصيل المنتج",
   },
 } as const;
 
