@@ -112,7 +112,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Button
             onClick={logout}
             variant="outline"
-            className="w-full justify-start"
+            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
           >
             <LogOut className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
             {t('nav.logout')}
