@@ -736,7 +736,7 @@ export default function Orders() {
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h3 className="font-medium text-blue-900 mb-3 flex items-center gap-2">
                   <User className="w-5 h-5" />
-                  Customer Information
+                  {t('orders.customerInfo')}
                 </h3>
                 {(() => {
                   const customer = getCustomerById(viewingOrder.customerId);
