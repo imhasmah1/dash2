@@ -209,7 +209,7 @@ export default function ProductDetail() {
               <p className="text-lg text-muted-foreground mb-4">{product.description}</p>
               
               <div className="text-3xl font-bold text-primary mb-4">
-                ${product.price.toFixed(2)}
+                BD {product.price.toFixed(2)}
               </div>
 
               {product.totalStock > 0 ? (
