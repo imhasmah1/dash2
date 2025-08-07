@@ -266,4 +266,113 @@
   [dir="rtl"] label {
     text-align: right;
   }
+
+  /* Comprehensive RTL Layout Support */
+  [dir="rtl"] .flex {
+    flex-direction: row-reverse;
+  }
+
+  [dir="rtl"] .flex-row {
+    flex-direction: row-reverse;
+  }
+
+  [dir="rtl"] .justify-start {
+    justify-content: flex-end;
+  }
+
+  [dir="rtl"] .justify-end {
+    justify-content: flex-start;
+  }
+
+  [dir="rtl"] .text-left {
+    text-align: right;
+  }
+
+  [dir="rtl"] .text-right {
+    text-align: left;
+  }
+
+  /* RTL Card Content */
+  [dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+
+  [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0;
+    margin-right: 0.75rem;
+  }
+
+  [dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+
+  /* RTL Grid gaps */
+  [dir="rtl"] .gap-2 {
+    column-gap: 0.5rem;
+  }
+
+  [dir="rtl"] .gap-3 {
+    column-gap: 0.75rem;
+  }
+
+  [dir="rtl"] .gap-4 {
+    column-gap: 1rem;
+  }
+
+  /* RTL Table headers and cells */
+  [dir="rtl"] th,
+  [dir="rtl"] td {
+    text-align: right;
+  }
+
+  /* RTL Buttons with icons */
+  [dir="rtl"] .btn-icon-left {
+    flex-direction: row-reverse;
+  }
+
+  /* RTL Badges and small elements */
+  [dir="rtl"] .badge,
+  [dir="rtl"] .inline-flex {
+    flex-direction: row-reverse;
+  }
+
+  /* RTL Navigation items */
+  [dir="rtl"] nav a,
+  [dir="rtl"] nav button {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  /* RTL Form elements alignment */
+  [dir="rtl"] .form-row {
+    flex-direction: row-reverse;
+  }
+
+  /* RTL Dropdowns */
+  [dir="rtl"] .dropdown-content {
+    text-align: right;
+  }
+
+  /* RTL Card layouts */
+  [dir="rtl"] .card-header,
+  [dir="rtl"] .card-content,
+  [dir="rtl"] .card-footer {
+    text-align: right;
+  }
+
+  /* RTL specific overrides for critical elements */
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    text-align: right;
+  }
+
+  [dir="rtl"] p {
+    text-align: right;
+  }
 }
