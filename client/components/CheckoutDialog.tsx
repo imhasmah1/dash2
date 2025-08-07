@@ -218,7 +218,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="phone">{t('checkout.customerPhone')}</Label>
+                        <Label htmlFor="phone" className="block text-right [dir=ltr]:text-left">{t('checkout.customerPhone')}</Label>
                         <Input
                           id="phone"
                           value={customerInfo.phone}
