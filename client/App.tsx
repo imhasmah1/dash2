@@ -39,27 +39,24 @@ console.error = function(...args) {
   const message = String(args[0] || '');
   const allArgsString = args.map(arg => String(arg)).join(' ');
 
-  const suppressPatterns = [
-    'defaultProps will be removed',
-    'Support for defaultProps',
-    'XAxis',
-    'YAxis',
-    'XAxis2',
-    'YAxis2',
-    'recharts',
-    'ChartLayoutContextProvider',
-    'CategoricalChartWrapper'
-  ];
+  // Check if this is a defaultProps error from Recharts
+  const isDefaultPropsError =
+    message.includes('Support for defaultProps will be removed') ||
+    message.includes('defaultProps will be removed');
 
-  const shouldSuppress = suppressPatterns.some(pattern =>
-    args.some(arg => String(arg).includes(pattern))
-  ) ||
-  (message.includes('Support for defaultProps will be removed') &&
-   (allArgsString.includes('XAxis') || allArgsString.includes('YAxis')));
+  const isRechartsComponent =
+    allArgsString.includes('XAxis') ||
+    allArgsString.includes('YAxis') ||
+    allArgsString.includes('recharts') ||
+    allArgsString.includes('ChartLayoutContextProvider');
 
-  if (!shouldSuppress) {
-    originalError.apply(console, args);
+  // Suppress if it's a defaultProps error from Recharts
+  if (isDefaultPropsError && isRechartsComponent) {
+    return; // Skip this error
   }
+
+  // Allow all other errors through
+  originalError.apply(console, args);
 };
 
 import { Toaster } from "@/components/ui/toaster";
