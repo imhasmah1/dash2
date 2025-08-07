@@ -232,24 +232,30 @@ export default function Revenue() {
               <CardDescription>{t('revenue.monthlyTrend')}</CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <AreaChart data={revenueMetrics.monthlyRevenue}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => `BD ${value}`} />
-                  <Tooltip 
-                    formatter={(value: any) => [formatCurrency(value), 'Revenue']}
-                    labelFormatter={(label) => `Month: ${label}`}
-                  />
-                  <Area 
-                    type="monotone" 
-                    dataKey="revenue" 
-                    stroke="#742370" 
-                    fill="#742370" 
-                    fillOpacity={0.2}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
+              <ErrorBoundary fallback={
+                <div className="h-[300px] flex items-center justify-center text-gray-500">
+                  Chart temporarily unavailable
+                </div>
+              }>
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart data={revenueMetrics.monthlyRevenue}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis tickFormatter={(value) => `BD ${value}`} />
+                    <Tooltip
+                      formatter={(value: any) => [formatCurrency(value), 'Revenue']}
+                      labelFormatter={(label) => `Month: ${label}`}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="revenue"
+                      stroke="#742370"
+                      fill="#742370"
+                      fillOpacity={0.2}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </ErrorBoundary>
             </CardContent>
           </Card>
         </TabsContent>
