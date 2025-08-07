@@ -49,8 +49,8 @@ This project is fully configured for Vercel deployment. Here's what's been prepa
 - Logo images are hosted on Builder.io CDN
 
 ### 🎯 Access Points
-- **Store**: `/store` - Public shopping interface
-- **Admin**: `/` - Admin dashboard (password protected)
+- **Store**: `/` - Public shopping interface (homepage)
+- **Admin**: `/admin` - Admin dashboard (password protected)
 - **API**: `/api/*` - Backend endpoints
 
 The application is ready for immediate deployment to Vercel!
