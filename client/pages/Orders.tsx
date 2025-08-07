@@ -743,18 +743,18 @@ export default function Orders() {
                   return customer ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="font-medium">Name:</span>{" "}
+                        <span className="font-medium">{t('orders.customerName')}:</span>{" "}
                         {customer.name}
                       </div>
                       <div className="flex items-center gap-1">
                         <Phone className="w-4 h-4" />
-                        <span className="font-medium">Phone:</span>{" "}
+                        <span className="font-medium">{t('orders.customerPhone')}:</span>{" "}
                         {customer.phone}
                       </div>
                       <div className="md:col-span-2 flex items-start gap-1">
                         <MapPin className="w-4 h-4 mt-0.5" />
                         <div>
-                          <span className="font-medium">Delivery Address:</span>
+                          <span className="font-medium">{t('orders.deliveryAddress')}:</span>
                           <p>{customer.address}</p>
                         </div>
                       </div>
