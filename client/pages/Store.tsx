@@ -62,22 +62,31 @@ export default function Store() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Simple Header */}
-      <header className="border-b bg-white shadow-sm">
+      {/* Header touching the roof */}
+      <header className="border-b bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">{t('store.title')}</h1>
-          
+          {/* Logo and Title */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">S</span>
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-primary">{t('store.title')}</h1>
+              <p className="text-xs text-muted-foreground">Premium Quality Products</p>
+            </div>
+          </div>
+
           <Button
             variant="outline"
             onClick={() => setIsCartOpen(true)}
-            className="relative"
+            className="relative hover:bg-primary/5 hover:border-primary transition-colors"
           >
             <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
             {t('store.cart')}
             {cartItemsCount > 0 && (
-              <Badge 
-                variant="destructive" 
-                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
+              <Badge
+                variant="destructive"
+                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs animate-pulse"
               >
                 {cartItemsCount}
               </Badge>
