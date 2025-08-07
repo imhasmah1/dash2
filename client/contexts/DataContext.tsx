@@ -348,7 +348,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
 export function useData() {
   const context = useContext(DataContext);
-  if (context === undefined) {
+  // Check if we're still using the default context (which means DataProvider wasn't found)
+  if (context === defaultDataContext) {
     throw new Error("useData must be used within a DataProvider");
   }
   return context;
