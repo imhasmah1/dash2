@@ -345,7 +345,7 @@ const translations = {
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
     "orders.customerNotFound": "العميل غير موجود",
-    "orders.orderItems": "عناصر الطلب",
+    "orders.orderItems": "عناصر ال��لب",
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
@@ -399,7 +399,7 @@ const translations = {
     "common.edit": "تعديل",
     "common.add": "إضافة",
     "common.search": "بحث",
-    "common.actions": "الإجراءا��",
+    "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
     "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
@@ -424,7 +424,7 @@ const translations = {
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
-    "message.orderAdded": "تم إضافة الطلب ب��جاح",
+    "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
@@ -455,7 +455,7 @@ const translations = {
     "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
     "store.continueShopping": "متابعة التسوق",
-    "store.removeFromCart": "إزالة من السلة",
+    "store.removeFromCart": "إزالة من ��لسلة",
     "store.updateQuantity": "تحديث الكمية",
 
     // Checkout
@@ -474,6 +474,7 @@ const translations = {
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
+    "checkout.processingMessage": "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
