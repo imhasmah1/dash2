@@ -46,14 +46,21 @@ console.error = function(...args) {
 
   const suppressPatterns = [
     'defaultProps will be removed',
+    'Support for defaultProps',
     'XAxis',
     'YAxis',
-    'recharts'
+    'XAxis2',
+    'YAxis2',
+    'recharts',
+    'ChartLayoutContextProvider',
+    'CategoricalChartWrapper'
   ];
 
   const shouldSuppress = suppressPatterns.some(pattern =>
-    message.includes(pattern) || allArgsString.includes(pattern)
-  );
+    args.some(arg => String(arg).includes(pattern))
+  ) ||
+  (message.includes('Support for defaultProps will be removed') &&
+   (allArgsString.includes('XAxis') || allArgsString.includes('YAxis')));
 
   if (!shouldSuppress) {
     originalError.apply(console, args);
