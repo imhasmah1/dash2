@@ -245,7 +245,8 @@ const translations = {
     "checkout.thankYou": "Thank you for your order",
     "checkout.orderNumber": "Order Number",
     "checkout.backToStore": "Back to Store",
-    "checkout.processingMessage": "The order will be processed in 1-3 days, we will contact you when delivery",
+    "checkout.processingMessage":
+      "The order will be processed in 1-3 days, we will contact you when delivery",
 
     // Additional store keys
     "store.outOfStock": "Out of Stock",
@@ -471,12 +472,14 @@ const translations = {
     "checkout.pickup": "استلام",
     "checkout.orderSummary": "ملخص الطلب",
     "checkout.placeOrder": "تأكيد الطلب",
-    "checkout.noCreditCard": "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
+    "checkout.noCreditCard":
+      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
-    "checkout.processingMessage": "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
+    "checkout.processingMessage":
+      "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",

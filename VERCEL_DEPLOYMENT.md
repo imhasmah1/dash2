@@ -5,20 +5,24 @@
 This project is fully configured for Vercel deployment. Here's what's been prepared:
 
 ### 📁 Configuration Files
+
 - **vercel.json**: Configured with proper routes and serverless functions
 - **package.json**: Contains `vercel-build` script
 - **api/index.js**: Serverless API handler for all backend operations
 
 ### 🛠️ Build Configuration
+
 - **Build Command**: `npm run vercel-build`
 - **Output Directory**: `dist/spa`
 - **Runtime**: `@vercel/node@3.0.7`
 
 ### 🔧 API Routes
+
 - `/api/*` → Serverless function at `api/index.js`
 - All other routes → SPA (`index.html`)
 
 ### 🌐 Features Ready for Production
+
 - ✅ Store interface (homepage `/`)
 - ✅ Product detail pages (`/product/:id`)
 - ✅ Shopping cart system
@@ -30,11 +34,13 @@ This project is fully configured for Vercel deployment. Here's what's been prepa
 ### 📦 Deployment Steps
 
 1. **Connect to Vercel**:
+
    ```bash
    vercel --prod
    ```
 
-2. **Environment Variables**: 
+2. **Environment Variables**:
+
    - No additional environment variables required
    - Database: In-memory (for demo purposes)
 
@@ -43,12 +49,14 @@ This project is fully configured for Vercel deployment. Here's what's been prepa
    - Admin panel: `your-domain.com/admin` (requires login)
 
 ### ⚠️ Production Notes
+
 - Current setup uses in-memory storage
 - For production, consider connecting to a database
 - File uploads are disabled in serverless environment
 - Logo images are hosted on Builder.io CDN
 
 ### 🎯 Access Points
+
 - **Store**: `/` - Public shopping interface (homepage)
 - **Admin**: `/admin` - Admin dashboard (password protected)
 - **API**: `/api/*` - Backend endpoints
