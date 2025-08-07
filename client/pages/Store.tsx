@@ -3,8 +3,14 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { getProducts } from '../services/api';
 import { Button } from '../components/ui/button';
-import { ShoppingCart, Plus } from 'lucide-react';
+import { ShoppingCart, Plus, Globe, Store as StoreIcon } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../components/ui/dropdown-menu';
 import AddToCartDialog from '../components/AddToCartDialog';
 import CartSidebar from '../components/CartSidebar';
 
