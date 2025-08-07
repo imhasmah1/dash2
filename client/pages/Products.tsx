@@ -58,6 +58,7 @@ export default function Products() {
       price: 0,
       images: [],
       variants: [],
+      stock: 0,
     });
     setEditingProduct(null);
   };
