@@ -162,13 +162,15 @@ export default function Store() {
 
                 {/* Product Info */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">
-                    {product.name}
-                  </h3>
-                  
-                  <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
-                    {product.description}
-                  </p>
+                  <div onClick={() => navigate(`/product/${product.id}`)}>
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors">
+                      {product.name}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                      {product.description}
+                    </p>
+                  </div>
 
                   <div className="flex items-center justify-between">
                     <div>
