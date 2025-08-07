@@ -276,11 +276,19 @@ export default function Revenue() {
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={revenueMetrics.dailyRevenue}>
+                <BarChart data={revenueMetrics.dailyRevenue || []}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="day" />
-                  <YAxis tickFormatter={(value) => `BD ${value}`} />
-                  <Tooltip 
+                  <XAxis
+                    dataKey="day"
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    tickFormatter={(value) => `BD ${value}`}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <Tooltip
                     formatter={(value: any) => [formatCurrency(value), 'Revenue']}
                     labelFormatter={(label) => `Day ${label}`}
                   />
