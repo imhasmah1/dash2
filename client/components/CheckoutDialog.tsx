@@ -168,9 +168,6 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             <DialogTitle className="text-2xl font-bold text-center">
               {t('checkout.title')}
             </DialogTitle>
-            <p className="text-center text-muted-foreground text-sm">
-              {t('checkout.noCreditCard')}
-            </p>
             
             {/* Step indicator */}
             <div className="flex justify-center mt-4">
