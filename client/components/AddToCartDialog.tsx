@@ -178,7 +178,7 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
             <div className="border-t pt-4">
               <div className="flex justify-between items-center font-semibold">
                 <span>{t('orders.subtotal')}:</span>
-                <span>${(product.price * quantity).toFixed(2)}</span>
+                <span>BD {(product.price * quantity).toFixed(2)}</span>
               </div>
             </div>
           )}
