@@ -107,7 +107,7 @@ export default function AddToCartDialog({ product, open, onClose }: AddToCartDia
 
           {/* Price */}
           <div className="text-lg font-bold text-primary">
-            ${product.price.toFixed(2)}
+            BD {product.price.toFixed(2)}
           </div>
 
           {/* Variant Selection */}
