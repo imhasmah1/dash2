@@ -10,33 +10,28 @@ console.warn = function(...args) {
   const message = String(args[0] || '');
   const allArgsString = args.map(arg => String(arg)).join(' ');
 
-  // Extensive checks for all possible Recharts warning formats
-  const suppressPatterns = [
-    'defaultProps will be removed',
-    'Support for defaultProps',
-    '%s: Support for defaultProps',
-    'XAxis',
-    'YAxis',
-    'recharts',
-    'function components in a future major release',
-    'Use JavaScript default parameters instead',
-    'XAxis2',
-    'YAxis2',
-    'ChartLayoutContextProvider',
-    'CategoricalChartWrapper'
-  ];
+  // Check if this is a defaultProps warning from Recharts
+  const isDefaultPropsWarning =
+    message.includes('Support for defaultProps will be removed') ||
+    message.includes('%s: Support for defaultProps') ||
+    allArgsString.includes('defaultProps will be removed');
 
-  // Check if any of the arguments contain Recharts-related content
-  const shouldSuppress = suppressPatterns.some(pattern =>
-    args.some(arg => String(arg).includes(pattern))
-  ) ||
-  // Also check for the specific warning pattern with %s formatting
-  (message.includes('Support for defaultProps will be removed') &&
-   (allArgsString.includes('XAxis') || allArgsString.includes('YAxis')));
+  const isRechartsComponent =
+    allArgsString.includes('XAxis') ||
+    allArgsString.includes('YAxis') ||
+    allArgsString.includes('XAxis2') ||
+    allArgsString.includes('YAxis2') ||
+    allArgsString.includes('recharts') ||
+    allArgsString.includes('ChartLayoutContextProvider') ||
+    allArgsString.includes('CategoricalChartWrapper');
 
-  if (!shouldSuppress) {
-    originalWarn.apply(console, args);
+  // Suppress if it's a defaultProps warning from Recharts
+  if (isDefaultPropsWarning && isRechartsComponent) {
+    return; // Skip this warning
   }
+
+  // Allow all other warnings through
+  originalWarn.apply(console, args);
 };
 
 // Also override console.error for completeness
