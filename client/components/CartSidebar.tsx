@@ -23,11 +23,10 @@ interface CartSidebarProps {
 export default function CartSidebar({ open, onClose }: CartSidebarProps) {
   const { t } = useLanguage();
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCart();
-  const navigate = useNavigate();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const handleCheckout = () => {
-    onClose();
-    navigate('/checkout');
+    setIsCheckoutOpen(true);
   };
 
   const handleQuantityChange = (productId: string, variantId: string, newQuantity: number) => {
