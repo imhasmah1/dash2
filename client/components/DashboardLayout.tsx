@@ -58,14 +58,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           ? "translate-x-0"
           : isRTL ? "translate-x-full" : "-translate-x-full"
       )}>
-        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
+          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2Fd034be6a637c4f408b5594847672f31b?format=webp&width=800"
               alt="Azhar Store Logo"
               className="h-8 w-8"
             />
-            <h1 className="text-lg font-bold text-dashboard-primary">{t('nav.adminPanel')}</h1>
+            <h1 className="text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left">{t('nav.adminPanel')}</h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
