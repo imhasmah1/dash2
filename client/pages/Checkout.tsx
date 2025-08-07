@@ -121,7 +121,7 @@ export default function Checkout() {
                 #{orderNumber}
               </Badge>
             </div>
-            <Button onClick={() => navigate('/store')} className="w-full">
+            <Button onClick={() => navigate('/')} className="w-full">
               {t('checkout.backToStore')}
             </Button>
           </CardContent>
