@@ -192,6 +192,15 @@
     text-align: left;
   }
 
+  /* Ensure center alignment is preserved in both directions */
+  .text-center {
+    text-align: center !important;
+  }
+
+  [dir="rtl"] .text-center {
+    text-align: center !important;
+  }
+
   /* RTL flex direction adjustments */
   [dir="rtl"] .justify-start {
     justify-content: flex-end;
