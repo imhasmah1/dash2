@@ -334,7 +334,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     {/* Total */}
                     <div className="flex justify-between items-center text-xl font-bold">
                       <span>{t('orders.orderTotal')}:</span>
-                      <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                      <span className="text-primary">BD {totalPrice.toFixed(2)}</span>
                     </div>
                   </CardContent>
                 </Card>
