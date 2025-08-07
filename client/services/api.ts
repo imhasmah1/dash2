@@ -98,3 +98,8 @@ export const orderApi = {
       method: "DELETE",
     }),
 };
+
+// Convenience exports for store components
+export const getProducts = productApi.getAll;
+export const createCustomer = customerApi.create;
+export const createOrder = orderApi.create;
