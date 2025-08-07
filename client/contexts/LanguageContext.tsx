@@ -244,6 +244,12 @@ const translations = {
     "checkout.thankYou": "Thank you for your order",
     "checkout.orderNumber": "Order Number",
     "checkout.backToStore": "Back to Store",
+
+    // Additional store keys
+    "store.outOfStock": "Out of Stock",
+    "store.inStock": "In Stock",
+    "store.viewDetails": "View Details",
+    "store.productDetails": "Product Details",
   },
   ar: {
     // Navigation
@@ -338,7 +344,7 @@ const translations = {
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
     "orders.customerNotFound": "العميل غير موجود",
-    "orders.orderItems": "عناصر الطلب",
+    "orders.orderItems": "عنا��ر الطلب",
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
@@ -394,7 +400,7 @@ const translations = {
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
-    "common.noData": "لا توجد بيانات",
+    "common.noData": "لا توجد بيان��ت",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
     "common.yes": "نعم",
