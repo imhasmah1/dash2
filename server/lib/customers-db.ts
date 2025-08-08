@@ -69,10 +69,11 @@ export const customerDb = {
   },
 
   // Create a new customer
-  async create(customer: Omit<Customer, 'id' | 'created_at' | 'updated_at'>): Promise<Customer> {
+  async create(customer: Omit<Customer, 'id' | 'created_at' | 'updated_at' | 'createdAt'>): Promise<Customer> {
     const newCustomer: Customer = {
       ...customer,
       id: generateId(),
+      createdAt: new Date().toISOString(),
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
