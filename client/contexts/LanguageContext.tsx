@@ -510,9 +510,19 @@ const translations = {
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
       "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
+    "checkout.orderSuccessMessage": "شكراً لك على طلبك",
+    "checkout.subtotal": "المجموع الفرعي",
+    "checkout.deliveryFee": "رسوم التوصيل",
+    "checkout.total": "المجموع الكلي",
+    "checkout.orderItems": "محتويات الطلب",
+    "checkout.paymentMethod": "طريقة الدفع",
+    "checkout.cashOnDelivery": "الدفع عند التسليم",
+    "checkout.free": "مجاني",
+    "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
+    "checkout.pickupDescription": "الاستلام من المتجر",
 
     // Additional store keys
-    "store.outOfStock": "نفد المخزون",
+    "store.outOfStock": "نفد ��لمخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
     "store.productDetails": "تفاصيل المنتج",
