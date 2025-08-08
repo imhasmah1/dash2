@@ -130,6 +130,7 @@ Your data is now shared! Here's how to verify:
 ### Problem: "Could not find the 'createdAt' column" errors
 
 **Symptoms**: You see errors like:
+
 ```
 Supabase error, falling back to in-memory storage: Could not find the 'createdAt' column of 'customers' in the schema cache
 Supabase error, falling back to in-memory storage: Could not find the 'createdAt' column of 'orders' in the schema cache
@@ -145,6 +146,7 @@ Supabase error, falling back to in-memory storage: Could not find the 'createdAt
 6. Restart your development server with `npm run dev`
 
 This migration will:
+
 - Add missing `created_at` and `updated_at` columns if they don't exist
 - Create necessary indexes
 - Set up auto-update triggers
