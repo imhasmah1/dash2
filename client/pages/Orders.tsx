@@ -820,7 +820,7 @@ export default function Orders() {
                             <button
                               onClick={() => {
                                 // Navigate to product page - you can add routing here
-                                window.open(`/products/${item.productId}`, '_blank');
+                                window.open(`/product/${item.productId}`, '_blank');
                               }}
                               className="font-medium text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left"
                             >
