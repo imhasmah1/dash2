@@ -294,7 +294,7 @@ const translations = {
     "products.productPrice": "سعر المنتج",
     "products.productDescription": "وصف المنتج",
     "products.productImages": "صور المنتج",
-    "products.addVariant": "إضافة نوع",
+    "products.addVariant": "��ضافة نوع",
     "products.variantName": "اسم النوع",
     "products.variantStock": "مخزون النوع",
     "products.save": "حفظ",
@@ -316,7 +316,7 @@ const translations = {
     "orders.customer": "العميل",
     "orders.total": "الإجمالي",
     "orders.status": "الحالة",
-    "orders.deliveryType": "نوع التسل��م",
+    "orders.deliveryType": "نوع التسليم",
     "orders.date": "التاريخ",
     "orders.actions": "الإجراءات",
     "orders.view": "عرض",
@@ -378,6 +378,10 @@ const translations = {
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
+    "customers.customerHome": "رقم المنزل",
+    "customers.customerRoad": "رقم الطريق",
+    "customers.customerBlock": "رقم البلوك",
+    "customers.customerTown": "المدينة/المنطقة",
     "customers.save": "حفظ",
 
     // Revenue
@@ -453,7 +457,7 @@ const translations = {
     // Store
     "store.title": "المتجر",
     "store.cart": "السلة",
-    "store.addToCart": "إضافة للس��ة",
+    "store.addToCart": "إضافة للسلة",
     "store.quantity": "الكمية",
     "store.variant": "النوع",
     "store.selectVariant": "اختر النوع",
@@ -478,7 +482,7 @@ const translations = {
     "checkout.placeOrder": "تأكيد الطلب",
     "checkout.noCreditCard":
       "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
-    "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
+    "checkout.orderSuccess": "تم تأكيد ا��طلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
