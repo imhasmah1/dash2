@@ -168,7 +168,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         : "When you arrive, please contact us on WhatsApp at:"}
                     </p>
                     <p
-                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
+                      className="font-bold text-blue-600 ltr-text"
                       dir="ltr"
                     >
                       +973 3628 3381
@@ -192,7 +192,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
                     <p
-                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
+                      className="font-bold text-blue-600 ltr-text"
                       dir="ltr"
                     >
                       +973 3628 3381
