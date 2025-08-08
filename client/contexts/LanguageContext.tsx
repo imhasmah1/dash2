@@ -28,6 +28,7 @@ const translations = {
     "nav.orders": "Orders",
     "nav.customers": "Customers",
     "nav.revenue": "Revenue",
+    "nav.analytics": "Analytics",
     "nav.logout": "Logout",
     "nav.adminPanel": "Admin Panel",
 
@@ -281,6 +282,7 @@ const translations = {
     "nav.orders": "الطلبات",
     "nav.customers": "العملاء",
     "nav.revenue": "الإيرادات",
+    "nav.analytics": "التحليلات",
     "nav.logout": "تسجيل الخروج",
     "nav.adminPanel": "لوحة الإدارة",
 
@@ -408,7 +410,7 @@ const translations = {
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
-    "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
+    "revenue.topProducts": "أفضل المنتجات من حيث ��لإيرادات",
     "revenue.deliveryAnalysis": "تحليل نوع التسليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
     "revenue.month": "الشهر",
@@ -513,7 +515,7 @@ const translations = {
     "checkout.orderSuccessMessage": "شكراً لك على طلبك",
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
-    "checkout.total": "المجموع الكلي",
+    "checkout.total": "المجموع ا��كلي",
     "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
