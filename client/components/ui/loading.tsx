@@ -72,7 +72,7 @@ export function LoadingScreen({ text, className }: LoadingScreenProps) {
     <div
       className={cn("min-h-screen flex items-center justify-center", className)}
     >
-      <LoadingSpinner size="lg" withLogo text={text || t("common.loading")} />
+      <LoadingSpinner size="lg" text={text || t("common.loading")} />
     </div>
   );
 }
