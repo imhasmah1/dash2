@@ -188,7 +188,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </p>
                     <p>
                       {t("language.switch") === "تغيير اللغة"
-                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
+                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل مع��ا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
                     <p
@@ -372,7 +372,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                           <div className="text-sm text-muted-foreground mt-1 auto-text">
                             {t("language.switch") === "تغيير اللغة"
-                              ? "يتم التو��يل لباب المنزل"
+                              ? "يتم التوصيل لباب المنزل"
                               : "Delivered to your door"}
                           </div>
                         </div>
@@ -436,7 +436,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     {/* Order Items */}
                     <div className="space-y-3">
-                      <h4 className="font-medium text-right [dir=ltr]:text-left">
+                      <h4 className="font-medium auto-text">
                         {t("orders.items")}
                       </h4>
                       {items.map((item) => (
