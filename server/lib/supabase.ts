@@ -4,17 +4,36 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl || !supabaseServiceKey) {
-  throw new Error('Missing Supabase environment variables. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY');
+// Check if environment variables are properly configured (not placeholder values)
+const isSupabaseConfigured =
+  supabaseUrl &&
+  supabaseServiceKey &&
+  supabaseUrl !== 'your_supabase_project_url' &&
+  supabaseServiceKey !== 'your_supabase_service_role_key' &&
+  supabaseUrl.startsWith('http');
+
+let supabase: any = null;
+
+if (isSupabaseConfigured) {
+  try {
+    // Create Supabase client with service role key for server-side operations
+    supabase = createClient(supabaseUrl!, supabaseServiceKey!, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false
+      }
+    });
+    console.log('✅ Supabase client initialized successfully');
+  } catch (error) {
+    console.error('❌ Failed to initialize Supabase client:', error);
+    supabase = null;
+  }
+} else {
+  console.warn('⚠️  Supabase not configured. Using fallback in-memory storage.');
+  console.warn('   Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to enable database persistence.');
 }
 
-// Create Supabase client with service role key for server-side operations
-export const supabase = createClient(supabaseUrl, supabaseServiceKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false
-  }
-});
+export { supabase };
 
 // Database types
 export interface ProductVariant {
