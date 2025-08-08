@@ -329,7 +329,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         }
                         placeholder={
                           t("language.switch") === "تغيير اللغة"
-                            ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304"
+                            ? "مثال: المنزل: 1234، الط��يق: 321، البلوك: 304"
                             : "Example: House 1234, Road 321, Block 304"
                         }
                         className="auto-text placeholder:text-xs"
@@ -442,19 +442,21 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       {items.map((item) => (
                         <div
                           key={`${item.productId}-${item.variantId}`}
-                          className="flex justify-between items-center text-sm py-2 border-b [dir=rtl]:flex-row-reverse"
+                          className="flex justify-between items-start text-sm py-3 border-b [dir=rtl]:flex-row-reverse gap-3"
                         >
-                          <div className="flex-1">
-                            <p className="font-medium auto-text">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium auto-text mb-1 leading-relaxed">
                               {item.productName}
                             </p>
-                            <p className="text-muted-foreground auto-text">
+                            <p className="text-muted-foreground auto-text text-xs leading-relaxed">
                               {item.variantName} × {item.quantity}
                             </p>
                           </div>
-                          <p className="font-medium auto-text">
-                            BD {(item.price * item.quantity).toFixed(2)}
-                          </p>
+                          <div className="flex-shrink-0">
+                            <p className="font-medium auto-text text-right">
+                              BD {(item.price * item.quantity).toFixed(2)}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
