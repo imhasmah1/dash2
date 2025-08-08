@@ -60,6 +60,10 @@ export default function Customers() {
         name: customer.name,
         phone: customer.phone,
         address: customer.address,
+        home: customer.home || "",
+        road: customer.road || "",
+        block: customer.block || "",
+        town: customer.town || "",
       });
     } else {
       resetForm();
