@@ -396,10 +396,10 @@ const translations = {
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
-    "customers.customerHome": "رقم المنزل",
-    "customers.customerRoad": "رقم الطريق",
-    "customers.customerBlock": "رقم البلوك",
-    "customers.customerTown": "المدينة/المنطقة",
+    "customers.customerHome": "المنزل:",
+    "customers.customerRoad": "الطريق:",
+    "customers.customerBlock": "المجمع:",
+    "customers.customerTown": "المنطقة:",
     "customers.save": "حفظ",
 
     // Revenue
@@ -450,7 +450,7 @@ const translations = {
     "empty.createOrder": "إنشاء طلب",
 
     // Messages
-    "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
+    "message.deleteConfirm": "هل أنت متأكد م�� حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
