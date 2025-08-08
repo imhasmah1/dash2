@@ -344,11 +344,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               {step === 2 && (
                 <Card className="border-2">
                   <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">2</span>
                       </div>
-                      {t("checkout.deliveryOptions")}
+                      <span className="auto-text">{t("checkout.deliveryOptions")}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
