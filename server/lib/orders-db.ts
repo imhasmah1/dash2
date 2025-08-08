@@ -28,24 +28,32 @@ let fallbackOrders: Order[] = [
   {
     id: '1',
     customerId: '1',
+    customer_id: '1',
     items: [
       { productId: '1', quantity: 1, price: 35.0 }
     ],
     total: 35.0,
     status: 'delivered',
     deliveryType: 'delivery',
+    delivery_type: 'delivery',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-01-15T15:30:00Z',
     created_at: '2024-01-15T10:00:00Z',
     updated_at: '2024-01-15T15:30:00Z'
   },
   {
     id: '2',
     customerId: '2',
+    customer_id: '2',
     items: [
       { productId: '2', quantity: 1, price: 17.5 }
     ],
     total: 17.5,
     status: 'processing',
     deliveryType: 'pickup',
+    delivery_type: 'pickup',
+    createdAt: '2024-01-15T11:00:00Z',
+    updatedAt: '2024-01-15T11:00:00Z',
     created_at: '2024-01-15T11:00:00Z',
     updated_at: '2024-01-15T11:00:00Z'
   }
