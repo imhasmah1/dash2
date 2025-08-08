@@ -165,11 +165,11 @@ export default function Store() {
                 {/* Product Info */}
                 <div className="p-4">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors text-start">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors auto-text">
                       {product.name}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 text-start">
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 auto-text">
                       {product.description}
                     </p>
                   </div>
