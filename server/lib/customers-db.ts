@@ -4,7 +4,11 @@ export interface Customer {
   id: string;
   name: string;
   phone: string;
-  address: string;
+  address: string; // Backward compatibility
+  home?: string;
+  road?: string;
+  block?: string;
+  town?: string;
   createdAt: string;
   created_at?: string;
   updated_at?: string;
