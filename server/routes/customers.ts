@@ -1,84 +1,77 @@
 import { RequestHandler } from "express";
+import { customerDb, Customer } from "../lib/customers-db";
 
-export interface Customer {
-  id: string;
-  name: string;
-  phone: string;
-  address: string;
-  createdAt: string;
-}
-
-// In-memory storage (replace with database in production)
-let customers: Customer[] = [
-  {
-    id: '1',
-    name: 'Alice Johnson',
-    phone: '+1 (555) 123-4567',
-    address: '123 Main St, Springfield, IL 62701',
-    createdAt: '2024-01-10T10:00:00Z'
-  },
-  {
-    id: '2',
-    name: 'Bob Smith',
-    phone: '+1 (555) 234-5678',
-    address: '456 Oak Ave, Springfield, IL 62702',
-    createdAt: '2024-01-12T14:30:00Z'
-  },
-  {
-    id: '3',
-    name: 'Carol Davis',
-    phone: '+1 (555) 345-6789',
-    address: '789 Pine Rd, Springfield, IL 62703',
-    createdAt: '2024-01-14T09:15:00Z'
+export const getAllCustomers: RequestHandler = async (req, res) => {
+  try {
+    const customers = await customerDb.getAll();
+    res.json(customers);
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+    res.status(500).json({ error: 'Failed to fetch customers' });
   }
-];
-
-const generateId = () => Date.now().toString() + Math.random().toString(36).substr(2, 9);
-
-export const getAllCustomers: RequestHandler = (req, res) => {
-  res.json(customers);
 };
 
-export const createCustomer: RequestHandler = (req, res) => {
-  const { name, phone, address } = req.body;
-  
-  if (!name || !phone || !address) {
-    return res.status(400).json({ error: 'Name, phone, and address are required' });
+export const createCustomer: RequestHandler = async (req, res) => {
+  try {
+    const { name, phone, address } = req.body;
+    
+    if (!name || !phone || !address) {
+      return res.status(400).json({ error: 'Name, phone, and address are required' });
+    }
+
+    const newCustomer = await customerDb.create({ name, phone, address });
+    res.status(201).json(newCustomer);
+  } catch (error) {
+    console.error('Error creating customer:', error);
+    res.status(500).json({ error: 'Failed to create customer' });
   }
-
-  const newCustomer: Customer = {
-    id: generateId(),
-    name,
-    phone,
-    address,
-    createdAt: new Date().toISOString()
-  };
-
-  customers.push(newCustomer);
-  res.status(201).json(newCustomer);
 };
 
-export const updateCustomer: RequestHandler = (req, res) => {
-  const { id } = req.params;
-  const updates = req.body;
+export const updateCustomer: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
 
-  const customerIndex = customers.findIndex(c => c.id === id);
-  if (customerIndex === -1) {
-    return res.status(404).json({ error: 'Customer not found' });
+    const updatedCustomer = await customerDb.update(id, updates);
+    res.json(updatedCustomer);
+  } catch (error) {
+    console.error('Error updating customer:', error);
+    if (error instanceof Error && error.message.includes('not found')) {
+      res.status(404).json({ error: 'Customer not found' });
+    } else {
+      res.status(500).json({ error: 'Failed to update customer' });
+    }
   }
-
-  customers[customerIndex] = { ...customers[customerIndex], ...updates };
-  res.json(customers[customerIndex]);
 };
 
-export const deleteCustomer: RequestHandler = (req, res) => {
-  const { id } = req.params;
-  
-  const customerIndex = customers.findIndex(c => c.id === id);
-  if (customerIndex === -1) {
-    return res.status(404).json({ error: 'Customer not found' });
+export const deleteCustomer: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    await customerDb.delete(id);
+    res.status(204).send();
+  } catch (error) {
+    console.error('Error deleting customer:', error);
+    if (error instanceof Error && error.message.includes('not found')) {
+      res.status(404).json({ error: 'Customer not found' });
+    } else {
+      res.status(500).json({ error: 'Failed to delete customer' });
+    }
   }
+};
 
-  customers.splice(customerIndex, 1);
-  res.status(204).send();
+export const getCustomerById: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const customer = await customerDb.getById(id);
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+    
+    res.json(customer);
+  } catch (error) {
+    console.error('Error fetching customer:', error);
+    res.status(500).json({ error: 'Failed to fetch customer' });
+  }
 };
