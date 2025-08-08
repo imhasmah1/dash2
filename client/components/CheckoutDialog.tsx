@@ -93,10 +93,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         customerInfo.home && `House ${customerInfo.home}`,
         customerInfo.road && `Road ${customerInfo.road}`,
         customerInfo.block && `Block ${customerInfo.block}`,
-        customerInfo.town
+        customerInfo.town,
       ].filter(Boolean);
-      
-      const combinedAddress = addressParts.length > 0 ? addressParts.join(", ") : customerInfo.address;
+
+      const combinedAddress =
+        addressParts.length > 0
+          ? addressParts.join(", ")
+          : customerInfo.address;
 
       // Create customer
       const customer = await createCustomer({
@@ -137,7 +140,15 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   const handleClose = () => {
     setStep(1);
-    setCustomerInfo({ name: "", phone: "", address: "", home: "", road: "", block: "", town: "" });
+    setCustomerInfo({
+      name: "",
+      phone: "",
+      address: "",
+      home: "",
+      road: "",
+      block: "",
+      town: "",
+    });
     setDeliveryType("delivery");
     setOrderSuccess(false);
     setOrderNumber("");
@@ -146,7 +157,15 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   const resetToStart = () => {
     setStep(1);
-    setCustomerInfo({ name: "", phone: "", address: "", home: "", road: "", block: "", town: "" });
+    setCustomerInfo({
+      name: "",
+      phone: "",
+      address: "",
+      home: "",
+      road: "",
+      block: "",
+      town: "",
+    });
     setDeliveryType("delivery");
     setOrderSuccess(false);
     setOrderNumber("");
@@ -167,7 +186,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <h2 className="text-2xl font-bold text-green-600">
                 {t("checkout.orderSuccess")}
               </h2>
-              <p className="text-gray-600">{t("checkout.orderSuccessMessage")}</p>
+              <p className="text-gray-600">
+                {t("checkout.orderSuccessMessage")}
+              </p>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">
@@ -279,7 +300,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       </Label>
                       <div className="grid grid-cols-2 gap-2">
                         <div className="space-y-1">
-                          <Label htmlFor="home" className="text-sm text-gray-600 auto-text">
+                          <Label
+                            htmlFor="home"
+                            className="text-sm text-gray-600 auto-text"
+                          >
                             {t("checkout.customerHome")}
                           </Label>
                           <Input
@@ -293,7 +317,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           />
                         </div>
                         <div className="space-y-1">
-                          <Label htmlFor="road" className="text-sm text-gray-600 auto-text">
+                          <Label
+                            htmlFor="road"
+                            className="text-sm text-gray-600 auto-text"
+                          >
                             {t("checkout.customerRoad")}
                           </Label>
                           <Input
@@ -307,7 +334,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           />
                         </div>
                         <div className="space-y-1">
-                          <Label htmlFor="block" className="text-sm text-gray-600 auto-text">
+                          <Label
+                            htmlFor="block"
+                            className="text-sm text-gray-600 auto-text"
+                          >
                             {t("checkout.customerBlock")}
                           </Label>
                           <Input
@@ -321,7 +351,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           />
                         </div>
                         <div className="space-y-1">
-                          <Label htmlFor="town" className="text-sm text-gray-600 auto-text">
+                          <Label
+                            htmlFor="town"
+                            className="text-sm text-gray-600 auto-text"
+                          >
                             {t("checkout.customerTown")}
                           </Label>
                           <Input
@@ -379,9 +412,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                         </div>
                         <div className="text-right auto-text">
-                          <span className="text-lg font-semibold">
-                            BD 2.00
-                          </span>
+                          <span className="text-lg font-semibold">BD 2.00</span>
                         </div>
                       </div>
 
@@ -452,8 +483,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             customerInfo.home && `House ${customerInfo.home}`,
                             customerInfo.road && `Road ${customerInfo.road}`,
                             customerInfo.block && `Block ${customerInfo.block}`,
-                            customerInfo.town
-                          ].filter(Boolean).join(", ")}
+                            customerInfo.town,
+                          ]
+                            .filter(Boolean)
+                            .join(", ")}
                         </p>
                       </div>
                     </div>

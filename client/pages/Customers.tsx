@@ -49,7 +49,15 @@ export default function Customers() {
   );
 
   const resetForm = () => {
-    setFormData({ name: "", phone: "", address: "", home: "", road: "", block: "", town: "" });
+    setFormData({
+      name: "",
+      phone: "",
+      address: "",
+      home: "",
+      road: "",
+      block: "",
+      town: "",
+    });
     setEditingCustomer(null);
   };
 
@@ -84,14 +92,15 @@ export default function Customers() {
         formData.home && `House ${formData.home}`,
         formData.road && `Road ${formData.road}`,
         formData.block && `Block ${formData.block}`,
-        formData.town
+        formData.town,
       ].filter(Boolean);
 
-      const combinedAddress = addressParts.length > 0 ? addressParts.join(", ") : formData.address;
+      const combinedAddress =
+        addressParts.length > 0 ? addressParts.join(", ") : formData.address;
 
       const customerData = {
         ...formData,
-        address: combinedAddress
+        address: combinedAddress,
       };
 
       if (editingCustomer) {

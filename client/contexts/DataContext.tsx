@@ -314,7 +314,11 @@ export function DataProvider({ children }: { children: ReactNode }) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12">
-            <img src="/placeholder.svg" alt="Logo" className="w-full h-full object-contain" />
+            <img
+              src="/placeholder.svg"
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="animate-spin rounded-full border-2 border-muted border-t-primary w-6 h-6" />
           <p className="text-sm text-muted-foreground">Loading...</p>
