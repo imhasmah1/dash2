@@ -176,11 +176,11 @@ export default function Store() {
 
                   <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
                     <div>
-                      <span className="text-lg font-bold text-primary [dir=rtl]:text-right [dir=ltr]:text-left">
+                      <span className="text-lg font-bold text-primary rtl:text-right ltr:text-left">
                         BD {product.price.toFixed(2)}
                       </span>
                       {product.totalStock > 0 && (
-                        <p className="text-xs text-muted-foreground [dir=rtl]:text-right [dir=ltr]:text-left">
+                        <p className="text-xs text-muted-foreground rtl:text-right ltr:text-left">
                           {product.totalStock} {t("products.stock")}
                         </p>
                       )}
