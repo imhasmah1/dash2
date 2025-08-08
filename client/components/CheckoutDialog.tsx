@@ -188,7 +188,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </p>
                     <p>
                       {t("language.switch") === "تغيير اللغة"
-                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل مع��ا عبر الواتساب على:"
+                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
                     <p
@@ -445,14 +445,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           className="flex justify-between items-center text-sm py-2 border-b [dir=rtl]:flex-row-reverse"
                         >
                           <div className="flex-1">
-                            <p className="font-medium text-right [dir=ltr]:text-left">
+                            <p className="font-medium auto-text">
                               {item.productName}
                             </p>
-                            <p className="text-muted-foreground text-right [dir=ltr]:text-left">
+                            <p className="text-muted-foreground auto-text">
                               {item.variantName} × {item.quantity}
                             </p>
                           </div>
-                          <p className="font-medium text-right [dir=ltr]:text-left">
+                          <p className="font-medium auto-text">
                             BD {(item.price * item.quantity).toFixed(2)}
                           </p>
                         </div>
