@@ -290,9 +290,7 @@ export default function Orders() {
           <h1 className="text-3xl font-bold text-gray-900">
             {t("orders.title")}
           </h1>
-          <p className="text-gray-600 mt-2">
-            {t("orders.subtitle")}
-          </p>
+          <p className="text-gray-600 mt-2">{t("orders.subtitle")}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -820,7 +818,10 @@ export default function Orders() {
                             <button
                               onClick={() => {
                                 // Navigate to product page - you can add routing here
-                                window.open(`/product/${item.productId}`, '_blank');
+                                window.open(
+                                  `/product/${item.productId}`,
+                                  "_blank",
+                                );
                               }}
                               className="font-medium text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left"
                             >

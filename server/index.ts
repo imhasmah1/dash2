@@ -3,10 +3,32 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { handleDemo } from "./routes/demo";
-import { getAllCustomers, createCustomer, updateCustomer, deleteCustomer, getCustomerById } from "./routes/customers";
-import { getAllProducts, createProduct, updateProduct, deleteProduct, getProductById } from "./routes/products";
-import { getAllOrders, createOrder, updateOrder, deleteOrder, getOrderById } from "./routes/orders";
-import { uploadMiddleware, handleImageUpload, deleteImage } from "./routes/upload";
+import {
+  getAllCustomers,
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
+  getCustomerById,
+} from "./routes/customers";
+import {
+  getAllProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProductById,
+} from "./routes/products";
+import {
+  getAllOrders,
+  createOrder,
+  updateOrder,
+  deleteOrder,
+  getOrderById,
+} from "./routes/orders";
+import {
+  uploadMiddleware,
+  handleImageUpload,
+  deleteImage,
+} from "./routes/upload";
 
 export function createServer() {
   const app = express();
@@ -17,7 +39,7 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Serve uploaded files statically
-  app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+  app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {

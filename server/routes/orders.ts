@@ -6,35 +6,40 @@ export const getAllOrders: RequestHandler = async (req, res) => {
     const orders = await orderDb.getAll();
     res.json(orders);
   } catch (error) {
-    console.error('Error fetching orders:', error);
-    res.status(500).json({ error: 'Failed to fetch orders' });
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Failed to fetch orders" });
   }
 };
 
 export const createOrder: RequestHandler = async (req, res) => {
   try {
     const { customerId, items, status, deliveryType, notes } = req.body;
-    
+
     if (!customerId || !items || !Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ error: 'Customer ID and items are required' });
+      return res
+        .status(400)
+        .json({ error: "Customer ID and items are required" });
     }
 
-    const total = items.reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
+    const total = items.reduce(
+      (sum: number, item: OrderItem) => sum + item.price * item.quantity,
+      0,
+    );
 
     const orderData = {
       customerId,
       items,
       total,
-      status: status || 'processing',
-      deliveryType: deliveryType || 'delivery',
-      notes
+      status: status || "processing",
+      deliveryType: deliveryType || "delivery",
+      notes,
     };
 
     const newOrder = await orderDb.create(orderData);
     res.status(201).json(newOrder);
   } catch (error) {
-    console.error('Error creating order:', error);
-    res.status(500).json({ error: 'Failed to create order' });
+    console.error("Error creating order:", error);
+    res.status(500).json({ error: "Failed to create order" });
   }
 };
 
@@ -45,17 +50,20 @@ export const updateOrder: RequestHandler = async (req, res) => {
 
     // Recalculate total if items are updated
     if (updates.items) {
-      updates.total = updates.items.reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
+      updates.total = updates.items.reduce(
+        (sum: number, item: OrderItem) => sum + item.price * item.quantity,
+        0,
+      );
     }
 
     const updatedOrder = await orderDb.update(id, updates);
     res.json(updatedOrder);
   } catch (error) {
-    console.error('Error updating order:', error);
-    if (error instanceof Error && error.message.includes('not found')) {
-      res.status(404).json({ error: 'Order not found' });
+    console.error("Error updating order:", error);
+    if (error instanceof Error && error.message.includes("not found")) {
+      res.status(404).json({ error: "Order not found" });
     } else {
-      res.status(500).json({ error: 'Failed to update order' });
+      res.status(500).json({ error: "Failed to update order" });
     }
   }
 };
@@ -63,15 +71,15 @@ export const updateOrder: RequestHandler = async (req, res) => {
 export const deleteOrder: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     await orderDb.delete(id);
     res.status(204).send();
   } catch (error) {
-    console.error('Error deleting order:', error);
-    if (error instanceof Error && error.message.includes('not found')) {
-      res.status(404).json({ error: 'Order not found' });
+    console.error("Error deleting order:", error);
+    if (error instanceof Error && error.message.includes("not found")) {
+      res.status(404).json({ error: "Order not found" });
     } else {
-      res.status(500).json({ error: 'Failed to delete order' });
+      res.status(500).json({ error: "Failed to delete order" });
     }
   }
 };
@@ -79,15 +87,15 @@ export const deleteOrder: RequestHandler = async (req, res) => {
 export const getOrderById: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const order = await orderDb.getById(id);
     if (!order) {
-      return res.status(404).json({ error: 'Order not found' });
+      return res.status(404).json({ error: "Order not found" });
     }
-    
+
     res.json(order);
   } catch (error) {
-    console.error('Error fetching order:', error);
-    res.status(500).json({ error: 'Failed to fetch order' });
+    console.error("Error fetching order:", error);
+    res.status(500).json({ error: "Failed to fetch order" });
   }
 };

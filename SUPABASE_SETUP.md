@@ -5,7 +5,7 @@ This guide will help you set up Supabase so your data is shared between your dev
 ## Step 1: Create Supabase Project
 
 1. Go to [supabase.com](https://supabase.com)
-2. Click **"Start your project"** 
+2. Click **"Start your project"**
 3. Sign up/login with GitHub, Google, or email
 4. Click **"New Project"**
 5. Choose your organization (or create one)
@@ -38,6 +38,7 @@ This guide will help you set up Supabase so your data is shared between your dev
 ### Option A: Using Environment Variables (Recommended)
 
 1. In your project root, update the `.env` file:
+
 ```env
 # Supabase Configuration
 SUPABASE_URL=https://your-project-id.supabase.co
@@ -64,10 +65,10 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 3. Click **"Environment"** tab
 4. Add these environment variables:
 
-| Variable Name | Value |
-|---------------|-------|
-| `SUPABASE_URL` | `https://your-project-id.supabase.co` |
-| `SUPABASE_SERVICE_ROLE_KEY` | `eyJ...` (your service role key) |
+| Variable Name               | Value                                 |
+| --------------------------- | ------------------------------------- |
+| `SUPABASE_URL`              | `https://your-project-id.supabase.co` |
+| `SUPABASE_SERVICE_ROLE_KEY` | `eyJ...` (your service role key)      |
 
 5. Click **"Save Changes"**
 6. Your app will automatically redeploy
@@ -75,12 +76,14 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 ## Step 6: Verify Everything Works
 
 ### Check Local Development:
+
 1. Restart your dev server: `npm run dev`
 2. You should see: `✅ Supabase client initialized successfully`
 3. Test creating/editing products, customers, and orders
 4. Data should persist between page refreshes
 
 ### Check Render Deployment:
+
 1. Visit your Render app URL
 2. Go to admin panel (`/admin`)
 3. Test CRUD operations
@@ -92,7 +95,7 @@ Your data is now shared! Here's how to verify:
 
 1. **Add a product locally** in development
 2. **Check Render deployment** - the product should appear
-3. **Add a customer in Render** 
+3. **Add a customer in Render**
 4. **Check locally** - the customer should appear
 
 ## Security Notes
@@ -113,35 +116,46 @@ Your data is now shared! Here's how to verify:
 ## Troubleshooting
 
 ### Problem: "Supabase not configured" message
+
 **Solution**: Double-check your environment variables are set correctly and restart the server
 
 ### Problem: Database connection errors
-**Solution**: 
+
+**Solution**:
+
 1. Verify your Supabase URL and service role key
 2. Check if your Supabase project is active
 3. Ensure the migration ran successfully
 
 ### Problem: Data not syncing between environments
+
 **Solution**:
+
 1. Both environments must use the same Supabase project
 2. Check environment variables in both places
 3. Verify network connectivity
 
 ### Problem: Permission errors
+
 **Solution**:
+
 1. Make sure you're using the **Service Role Key**, not the **Anon Key**
 2. Check that RLS policies allow your operations
 
 ## Advanced Configuration
 
 ### Custom Database Schema:
+
 If you want to modify the database structure:
+
 1. Edit `code/supabase/migrations/001_create_all_tables.sql`
 2. Run the updated migration in Supabase SQL Editor
 3. Update your TypeScript interfaces accordingly
 
 ### Production Security:
+
 For production deployment:
+
 1. Implement proper authentication
 2. Create stricter RLS policies
 3. Use environment-specific API keys
@@ -150,6 +164,7 @@ For production deployment:
 ## Support
 
 If you encounter issues:
+
 1. Check Supabase logs in the dashboard
 2. Verify environment variables are correctly set
 3. Test database connectivity using Supabase's built-in tools

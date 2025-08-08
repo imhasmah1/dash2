@@ -167,10 +167,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         ? "عند الوصول، يرجى التواصل معنا عبر الواتساب على:"
                         : "When you arrive, please contact us on WhatsApp at:"}
                     </p>
-                    <p
-                      className="font-bold text-blue-600 ltr-text"
-                      dir="ltr"
-                    >
+                    <p className="font-bold text-blue-600 ltr-text" dir="ltr">
                       +973 3628 3381
                     </p>
                     <p>
@@ -191,10 +188,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
-                    <p
-                      className="font-bold text-blue-600 ltr-text"
-                      dir="ltr"
-                    >
+                    <p className="font-bold text-blue-600 ltr-text" dir="ltr">
                       +973 3628 3381
                     </p>
                     <p>
@@ -270,16 +264,15 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">1</span>
                       </div>
-                      <span className="auto-text">{t("checkout.customerInfo")}</span>
+                      <span className="auto-text">
+                        {t("checkout.customerInfo")}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 gap-4">
                       <div className="space-y-2">
-                        <Label
-                          htmlFor="name"
-                          className="block auto-text"
-                        >
+                        <Label htmlFor="name" className="block auto-text">
                           {t("checkout.customerName")}
                         </Label>
                         <Input
@@ -295,10 +288,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       </div>
 
                       <div className="space-y-2">
-                        <Label
-                          htmlFor="phone"
-                          className="block auto-text"
-                        >
+                        <Label htmlFor="phone" className="block auto-text">
                           {t("checkout.customerPhone")}
                         </Label>
                         <Input
@@ -315,10 +305,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="address"
-                        className="block auto-text"
-                      >
+                      <Label htmlFor="address" className="block auto-text">
                         {t("checkout.customerAddress")}
                       </Label>
                       <Input
@@ -348,7 +335,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">2</span>
                       </div>
-                      <span className="auto-text">{t("checkout.deliveryOptions")}</span>
+                      <span className="auto-text">
+                        {t("checkout.deliveryOptions")}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -409,7 +398,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">3</span>
                       </div>
-                      <span className="auto-text">{t("checkout.orderSummary")}</span>
+                      <span className="auto-text">
+                        {t("checkout.orderSummary")}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -418,12 +409,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <h4 className="font-medium mb-2 auto-text">
                         {t("checkout.customerInfo")}
                       </h4>
-                      <p className="text-sm auto-text">
-                        {customerInfo.name}
-                      </p>
-                      <p className="text-sm auto-text">
-                        {customerInfo.phone}
-                      </p>
+                      <p className="text-sm auto-text">{customerInfo.name}</p>
+                      <p className="text-sm auto-text">{customerInfo.phone}</p>
                       <p className="text-sm auto-text">
                         {customerInfo.address}
                       </p>

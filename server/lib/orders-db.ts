@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase } from "./supabase";
 
 export interface OrderItem {
   productId: string;
@@ -13,9 +13,9 @@ export interface Order {
   customer_id?: string; // Database field name
   items: OrderItem[];
   total: number;
-  status: 'processing' | 'ready' | 'delivered' | 'picked-up';
-  deliveryType: 'delivery' | 'pickup';
-  delivery_type?: 'delivery' | 'pickup'; // Database field name
+  status: "processing" | "ready" | "delivered" | "picked-up";
+  deliveryType: "delivery" | "pickup";
+  delivery_type?: "delivery" | "pickup"; // Database field name
   createdAt?: string; // Frontend field name
   updatedAt?: string; // Frontend field name
   created_at?: string; // Database field name
@@ -26,40 +26,37 @@ export interface Order {
 // In-memory fallback storage
 let fallbackOrders: Order[] = [
   {
-    id: '1',
-    customerId: '1',
-    customer_id: '1',
-    items: [
-      { productId: '1', quantity: 1, price: 35.0 }
-    ],
+    id: "1",
+    customerId: "1",
+    customer_id: "1",
+    items: [{ productId: "1", quantity: 1, price: 35.0 }],
     total: 35.0,
-    status: 'delivered',
-    deliveryType: 'delivery',
-    delivery_type: 'delivery',
-    createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-01-15T15:30:00Z',
-    created_at: '2024-01-15T10:00:00Z',
-    updated_at: '2024-01-15T15:30:00Z'
+    status: "delivered",
+    deliveryType: "delivery",
+    delivery_type: "delivery",
+    createdAt: "2024-01-15T10:00:00Z",
+    updatedAt: "2024-01-15T15:30:00Z",
+    created_at: "2024-01-15T10:00:00Z",
+    updated_at: "2024-01-15T15:30:00Z",
   },
   {
-    id: '2',
-    customerId: '2',
-    customer_id: '2',
-    items: [
-      { productId: '2', quantity: 1, price: 17.5 }
-    ],
+    id: "2",
+    customerId: "2",
+    customer_id: "2",
+    items: [{ productId: "2", quantity: 1, price: 17.5 }],
     total: 17.5,
-    status: 'processing',
-    deliveryType: 'pickup',
-    delivery_type: 'pickup',
-    createdAt: '2024-01-15T11:00:00Z',
-    updatedAt: '2024-01-15T11:00:00Z',
-    created_at: '2024-01-15T11:00:00Z',
-    updated_at: '2024-01-15T11:00:00Z'
-  }
+    status: "processing",
+    deliveryType: "pickup",
+    delivery_type: "pickup",
+    createdAt: "2024-01-15T11:00:00Z",
+    updatedAt: "2024-01-15T11:00:00Z",
+    created_at: "2024-01-15T11:00:00Z",
+    updated_at: "2024-01-15T11:00:00Z",
+  },
 ];
 
-const generateId = () => Date.now().toString() + Math.random().toString(36).substr(2, 9);
+const generateId = () =>
+  Date.now().toString() + Math.random().toString(36).substr(2, 9);
 
 export const orderDb = {
   // Get all orders
@@ -70,24 +67,32 @@ export const orderDb = {
 
     try {
       const { data, error } = await supabase
-        .from('orders')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .from("orders")
+        .select("*")
+        .order("created_at", { ascending: false });
 
       if (error) {
-        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
         return fallbackOrders;
       }
 
       return data || [];
     } catch (error) {
-      console.warn('Supabase connection failed, using in-memory storage');
+      console.warn("Supabase connection failed, using in-memory storage");
       return fallbackOrders;
     }
   },
 
   // Create a new order
-  async create(order: Omit<Order, 'id' | 'created_at' | 'updated_at' | 'createdAt' | 'updatedAt'>): Promise<Order> {
+  async create(
+    order: Omit<
+      Order,
+      "id" | "created_at" | "updated_at" | "createdAt" | "updatedAt"
+    >,
+  ): Promise<Order> {
     const newOrder: Order = {
       ...order,
       id: generateId(),
@@ -96,7 +101,7 @@ export const orderDb = {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     if (!supabase) {
@@ -106,20 +111,23 @@ export const orderDb = {
 
     try {
       const { data, error } = await supabase
-        .from('orders')
+        .from("orders")
         .insert([newOrder])
         .select()
         .single();
 
       if (error) {
-        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
         fallbackOrders.push(newOrder);
         return newOrder;
       }
 
       return data;
     } catch (error) {
-      console.warn('Supabase connection failed, using in-memory storage');
+      console.warn("Supabase connection failed, using in-memory storage");
       fallbackOrders.push(newOrder);
       return newOrder;
     }
@@ -128,51 +136,54 @@ export const orderDb = {
   // Update an order
   async update(id: string, updates: Partial<Order>): Promise<Order> {
     if (!supabase) {
-      const index = fallbackOrders.findIndex(o => o.id === id);
+      const index = fallbackOrders.findIndex((o) => o.id === id);
       if (index === -1) {
-        throw new Error('Order not found');
+        throw new Error("Order not found");
       }
-      fallbackOrders[index] = { 
-        ...fallbackOrders[index], 
-        ...updates, 
-        updated_at: new Date().toISOString() 
+      fallbackOrders[index] = {
+        ...fallbackOrders[index],
+        ...updates,
+        updated_at: new Date().toISOString(),
       };
       return fallbackOrders[index];
     }
 
     try {
       const { data, error } = await supabase
-        .from('orders')
+        .from("orders")
         .update({ ...updates, updated_at: new Date().toISOString() })
-        .eq('id', id)
+        .eq("id", id)
         .select()
         .single();
 
       if (error) {
-        console.warn('Supabase error, falling back to in-memory storage:', error.message);
-        const index = fallbackOrders.findIndex(o => o.id === id);
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        const index = fallbackOrders.findIndex((o) => o.id === id);
         if (index === -1) {
-          throw new Error('Order not found');
+          throw new Error("Order not found");
         }
-        fallbackOrders[index] = { 
-          ...fallbackOrders[index], 
-          ...updates, 
-          updated_at: new Date().toISOString() 
+        fallbackOrders[index] = {
+          ...fallbackOrders[index],
+          ...updates,
+          updated_at: new Date().toISOString(),
         };
         return fallbackOrders[index];
       }
 
       return data;
     } catch (error) {
-      console.warn('Supabase connection failed, using in-memory storage');
-      const index = fallbackOrders.findIndex(o => o.id === id);
+      console.warn("Supabase connection failed, using in-memory storage");
+      const index = fallbackOrders.findIndex((o) => o.id === id);
       if (index === -1) {
-        throw new Error('Order not found');
+        throw new Error("Order not found");
       }
-      fallbackOrders[index] = { 
-        ...fallbackOrders[index], 
-        ...updates, 
-        updated_at: new Date().toISOString() 
+      fallbackOrders[index] = {
+        ...fallbackOrders[index],
+        ...updates,
+        updated_at: new Date().toISOString(),
       };
       return fallbackOrders[index];
     }
@@ -181,34 +192,34 @@ export const orderDb = {
   // Delete an order
   async delete(id: string): Promise<void> {
     if (!supabase) {
-      const index = fallbackOrders.findIndex(o => o.id === id);
+      const index = fallbackOrders.findIndex((o) => o.id === id);
       if (index === -1) {
-        throw new Error('Order not found');
+        throw new Error("Order not found");
       }
       fallbackOrders.splice(index, 1);
       return;
     }
 
     try {
-      const { error } = await supabase
-        .from('orders')
-        .delete()
-        .eq('id', id);
+      const { error } = await supabase.from("orders").delete().eq("id", id);
 
       if (error) {
-        console.warn('Supabase error, falling back to in-memory storage:', error.message);
-        const index = fallbackOrders.findIndex(o => o.id === id);
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        const index = fallbackOrders.findIndex((o) => o.id === id);
         if (index === -1) {
-          throw new Error('Order not found');
+          throw new Error("Order not found");
         }
         fallbackOrders.splice(index, 1);
         return;
       }
     } catch (error) {
-      console.warn('Supabase connection failed, using in-memory storage');
-      const index = fallbackOrders.findIndex(o => o.id === id);
+      console.warn("Supabase connection failed, using in-memory storage");
+      const index = fallbackOrders.findIndex((o) => o.id === id);
       if (index === -1) {
-        throw new Error('Order not found');
+        throw new Error("Order not found");
       }
       fallbackOrders.splice(index, 1);
     }
@@ -217,28 +228,31 @@ export const orderDb = {
   // Get a single order by ID
   async getById(id: string): Promise<Order | null> {
     if (!supabase) {
-      return fallbackOrders.find(o => o.id === id) || null;
+      return fallbackOrders.find((o) => o.id === id) || null;
     }
 
     try {
       const { data, error } = await supabase
-        .from('orders')
-        .select('*')
-        .eq('id', id)
+        .from("orders")
+        .select("*")
+        .eq("id", id)
         .single();
 
       if (error) {
-        if (error.code === 'PGRST116') {
+        if (error.code === "PGRST116") {
           return null; // No rows returned
         }
-        console.warn('Supabase error, falling back to in-memory storage:', error.message);
-        return fallbackOrders.find(o => o.id === id) || null;
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        return fallbackOrders.find((o) => o.id === id) || null;
       }
 
       return data;
     } catch (error) {
-      console.warn('Supabase connection failed, using in-memory storage');
-      return fallbackOrders.find(o => o.id === id) || null;
+      console.warn("Supabase connection failed, using in-memory storage");
+      return fallbackOrders.find((o) => o.id === id) || null;
     }
-  }
+  },
 };
