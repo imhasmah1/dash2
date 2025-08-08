@@ -252,8 +252,19 @@
     text-align: center !important;
   }
 
-  /* Custom directional classes that work properly */
-  [dir="rtl"] .\[dir\=rtl\]\:text-right {
+  /* Custom directional classes that work properly with higher specificity */
+  [dir="rtl"] .text-right\[dir\=ltr\]\:text-left,
+  [dir="rtl"] .text-right {
+    text-align: right !important;
+  }
+
+  [dir="ltr"] .text-right\[dir\=ltr\]\:text-left,
+  [dir="ltr"] .text-left {
+    text-align: left !important;
+  }
+
+  /* Override any TailwindCSS directional classes that don't work */
+  [dir="rtl"] .\[dir\=ltr\]\:text-left {
     text-align: right !important;
   }
 
@@ -261,11 +272,11 @@
     text-align: left !important;
   }
 
-  [dir="rtl"] .\[dir\=rtl\]\:text-left {
-    text-align: left !important;
+  [dir="rtl"] .\[dir\=rtl\]\:text-right {
+    text-align: right !important;
   }
 
-  [dir="ltr"] .\[dir\=ltr\]\:text-right {
+  [dir="ltr"] .\[dir\=rtl\]\:text-right {
     text-align: right !important;
   }
 
