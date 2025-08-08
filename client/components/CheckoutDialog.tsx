@@ -149,7 +149,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
 
               {/* Delivery-specific instructions */}
-              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded text-right [dir=ltr]:text-left [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
+              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded auto-text [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
                 {deliveryType === "pickup" ? (
                   <div className="space-y-2">
                     <p className="font-medium">
@@ -187,7 +187,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         : "We will deliver your order within 1 to 3 days."}
                     </p>
                     <p>
-                      {t("language.switch") === "تغيير ا��لغة"
+                      {t("language.switch") === "تغيير اللغة"
                         ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
