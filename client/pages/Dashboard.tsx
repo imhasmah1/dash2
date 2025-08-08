@@ -77,19 +77,25 @@ export default function Dashboard() {
   ];
 
   const recentOrders = orders
+    .filter(order => order.createdAt && !isNaN(new Date(order.createdAt).getTime()))
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .slice(0, 5)
     .map(order => {
       const customer = getCustomerById(order.customerId);
       const mainProduct = order.items[0] ? getProductById(order.items[0].productId) : null;
       const itemsCount = order.items.length;
+      const orderDate = new Date(order.createdAt);
+      const formattedDate = orderDate && !isNaN(orderDate.getTime())
+        ? orderDate.toISOString().split('T')[0]
+        : 'Invalid Date';
+
       return {
         id: `#${order.id}`,
         customer: customer?.name || 'Unknown Customer',
         product: itemsCount > 1 ? `${mainProduct?.name || 'Product'} +${itemsCount - 1} more` : (mainProduct?.name || 'Unknown Product'),
         amount: `BD ${order.total.toFixed(2)}`,
         status: getStatusText(order.status, t),
-        date: new Date(order.createdAt).toISOString().split('T')[0]
+        date: formattedDate
       };
     });
 
