@@ -65,7 +65,18 @@ export const customerDb = {
         return fallbackCustomers;
       }
 
-      return data || [];
+      // Transform database data to match frontend expectations
+      const transformedData = (data || []).map((customer: any) => ({
+        id: customer.id,
+        name: customer.name,
+        phone: customer.phone,
+        address: customer.address,
+        createdAt: customer.created_at || customer.createdAt,
+        created_at: customer.created_at,
+        updated_at: customer.updated_at,
+      }));
+
+      return transformedData;
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackCustomers;
