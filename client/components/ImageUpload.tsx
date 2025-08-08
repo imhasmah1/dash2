@@ -217,7 +217,7 @@ export default function ImageUpload({
               )}
 
               {/* Drag Handle */}
-              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute top-2 right-2 [dir=rtl]:right-auto [dir=rtl]:left-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="w-6 h-6 bg-white/80 rounded flex items-center justify-center cursor-move">
                   <div className="w-2 h-2 grid grid-cols-2 gap-0.5">
                     <div className="w-1 h-1 bg-gray-600 rounded-full"></div>

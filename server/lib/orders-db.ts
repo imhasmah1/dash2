@@ -79,7 +79,24 @@ export const orderDb = {
         return fallbackOrders;
       }
 
-      return data || [];
+      // Transform database data to match frontend expectations
+      const transformedData = (data || []).map((order: any) => ({
+        id: order.id,
+        customerId: order.customer_id || order.customerId,
+        customer_id: order.customer_id,
+        items: order.items,
+        total: order.total,
+        status: order.status,
+        deliveryType: order.delivery_type || order.deliveryType,
+        delivery_type: order.delivery_type,
+        createdAt: order.created_at || order.createdAt,
+        updatedAt: order.updated_at || order.updatedAt,
+        created_at: order.created_at,
+        updated_at: order.updated_at,
+        notes: order.notes,
+      }));
+
+      return transformedData;
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackOrders;
@@ -125,7 +142,22 @@ export const orderDb = {
         return newOrder;
       }
 
-      return data;
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        customerId: data.customer_id || data.customerId,
+        customer_id: data.customer_id,
+        items: data.items,
+        total: data.total,
+        status: data.status,
+        deliveryType: data.delivery_type || data.deliveryType,
+        delivery_type: data.delivery_type,
+        createdAt: data.created_at || data.createdAt,
+        updatedAt: data.updated_at || data.updatedAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+        notes: data.notes,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       fallbackOrders.push(newOrder);
@@ -173,7 +205,22 @@ export const orderDb = {
         return fallbackOrders[index];
       }
 
-      return data;
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        customerId: data.customer_id || data.customerId,
+        customer_id: data.customer_id,
+        items: data.items,
+        total: data.total,
+        status: data.status,
+        deliveryType: data.delivery_type || data.deliveryType,
+        delivery_type: data.delivery_type,
+        createdAt: data.created_at || data.createdAt,
+        updatedAt: data.updated_at || data.updatedAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+        notes: data.notes,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       const index = fallbackOrders.findIndex((o) => o.id === id);
@@ -249,7 +296,24 @@ export const orderDb = {
         return fallbackOrders.find((o) => o.id === id) || null;
       }
 
-      return data;
+      if (!data) return null;
+
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        customerId: data.customer_id || data.customerId,
+        customer_id: data.customer_id,
+        items: data.items,
+        total: data.total,
+        status: data.status,
+        deliveryType: data.delivery_type || data.deliveryType,
+        delivery_type: data.delivery_type,
+        createdAt: data.created_at || data.createdAt,
+        updatedAt: data.updated_at || data.updatedAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+        notes: data.notes,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackOrders.find((o) => o.id === id) || null;

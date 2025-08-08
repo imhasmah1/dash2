@@ -35,7 +35,11 @@ export default function Customers() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    address: "",
+    address: "", // For backward compatibility
+    home: "",
+    road: "",
+    block: "",
+    town: "",
   });
 
   const filteredCustomers = customers.filter(
@@ -45,7 +49,15 @@ export default function Customers() {
   );
 
   const resetForm = () => {
-    setFormData({ name: "", phone: "", address: "" });
+    setFormData({
+      name: "",
+      phone: "",
+      address: "",
+      home: "",
+      road: "",
+      block: "",
+      town: "",
+    });
     setEditingCustomer(null);
   };
 
@@ -56,6 +68,10 @@ export default function Customers() {
         name: customer.name,
         phone: customer.phone,
         address: customer.address,
+        home: customer.home || "",
+        road: customer.road || "",
+        block: customer.block || "",
+        town: customer.town || "",
       });
     } else {
       resetForm();
@@ -71,10 +87,26 @@ export default function Customers() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Combine address fields into a single address string for backend compatibility
+      const addressParts = [
+        formData.home && `House ${formData.home}`,
+        formData.road && `Road ${formData.road}`,
+        formData.block && `Block ${formData.block}`,
+        formData.town,
+      ].filter(Boolean);
+
+      const combinedAddress =
+        addressParts.length > 0 ? addressParts.join(", ") : formData.address;
+
+      const customerData = {
+        ...formData,
+        address: combinedAddress,
+      };
+
       if (editingCustomer) {
-        await updateCustomer(editingCustomer.id, formData);
+        await updateCustomer(editingCustomer.id, customerData);
       } else {
-        await addCustomer(formData);
+        await addCustomer(customerData);
       }
       closeDialog();
     } catch (error) {
@@ -175,21 +207,77 @@ export default function Customers() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="address">
-                    {t("customers.customerAddress")}
-                  </Label>
-                  <Textarea
-                    id="address"
-                    value={formData.address}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        address: e.target.value,
-                      }))
-                    }
-                    placeholder={t("customers.customerAddress")}
-                    required
-                  />
+                  <Label>{t("customers.customerAddress")}</Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label htmlFor="home" className="text-sm text-gray-600">
+                        {t("customers.customerHome")}
+                      </Label>
+                      <Input
+                        id="home"
+                        value={formData.home}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            home: e.target.value,
+                          }))
+                        }
+                        placeholder="123"
+                        className="text-center"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="road" className="text-sm text-gray-600">
+                        {t("customers.customerRoad")}
+                      </Label>
+                      <Input
+                        id="road"
+                        value={formData.road}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            road: e.target.value,
+                          }))
+                        }
+                        placeholder="456"
+                        className="text-center"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="block" className="text-sm text-gray-600">
+                        {t("customers.customerBlock")}
+                      </Label>
+                      <Input
+                        id="block"
+                        value={formData.block}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            block: e.target.value,
+                          }))
+                        }
+                        placeholder="789"
+                        className="text-center"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="town" className="text-sm text-gray-600">
+                        {t("customers.customerTown")}
+                      </Label>
+                      <Input
+                        id="town"
+                        value={formData.town}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            town: e.target.value,
+                          }))
+                        }
+                        placeholder="Manama"
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <DialogFooter>

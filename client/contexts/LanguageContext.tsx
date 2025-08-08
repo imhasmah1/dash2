@@ -142,6 +142,10 @@ const translations = {
     "customers.customerName": "Customer Name",
     "customers.customerPhone": "Customer Phone",
     "customers.customerAddress": "Customer Address",
+    "customers.customerHome": "Home Number",
+    "customers.customerRoad": "Road Number",
+    "customers.customerBlock": "Block Number",
+    "customers.customerTown": "Town/Area",
     "customers.save": "Save",
 
     // Revenue
@@ -176,6 +180,8 @@ const translations = {
     "common.close": "Close",
     "common.yes": "Yes",
     "common.no": "No",
+    "common.back": "Back",
+    "common.next": "Next",
 
     // Empty states
     "empty.noProductsFound": "No products found",
@@ -235,6 +241,10 @@ const translations = {
     "checkout.customerName": "Full Name",
     "checkout.customerPhone": "Phone Number",
     "checkout.customerAddress": "Address",
+    "checkout.customerHome": "Home Number",
+    "checkout.customerRoad": "Road Number",
+    "checkout.customerBlock": "Block Number",
+    "checkout.customerTown": "Town/Area",
     "checkout.deliveryOptions": "Delivery Options",
     "checkout.delivery": "Delivery",
     "checkout.pickup": "Pickup",
@@ -247,6 +257,16 @@ const translations = {
     "checkout.backToStore": "Back to Store",
     "checkout.processingMessage":
       "The order will be processed in 1-3 days, we will contact you when delivery",
+    "checkout.orderSuccessMessage": "Thank you for your order",
+    "checkout.subtotal": "Subtotal",
+    "checkout.deliveryFee": "Delivery Fee",
+    "checkout.total": "Total",
+    "checkout.orderItems": "Order Items",
+    "checkout.paymentMethod": "Payment Method",
+    "checkout.cashOnDelivery": "Cash on Delivery",
+    "checkout.free": "Free",
+    "checkout.deliveryDescription": "We'll deliver to your address",
+    "checkout.pickupDescription": "Pick up from our store",
 
     // Additional store keys
     "store.outOfStock": "Out of Stock",
@@ -266,14 +286,14 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجمالي الإيرادات",
+    "dashboard.totalRevenue": "إجمالي ا��إيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
 
     // Products
     "products.title": "المنتجات",
-    "products.subtitle": "إدارة مخزون ��لمنتجات",
+    "products.subtitle": "إدارة مخزون المنتجات",
     "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
@@ -374,6 +394,10 @@ const translations = {
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
+    "customers.customerHome": "رقم المنزل",
+    "customers.customerRoad": "رقم الطريق",
+    "customers.customerBlock": "رقم البلوك",
+    "customers.customerTown": "المدينة/المنطقة",
     "customers.save": "حفظ",
 
     // Revenue
@@ -408,6 +432,8 @@ const translations = {
     "common.close": "إغلاق",
     "common.yes": "نعم",
     "common.no": "لا",
+    "common.back": "السابق",
+    "common.next": "التالي",
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
@@ -422,7 +448,7 @@ const translations = {
     "empty.createOrder": "إنشاء طلب",
 
     // Messages
-    "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
+    "message.deleteConfirm": "هل أنت متأكد من حذف ه��ا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
@@ -467,6 +493,10 @@ const translations = {
     "checkout.customerName": "الاسم الكامل",
     "checkout.customerPhone": "رقم الهاتف",
     "checkout.customerAddress": "العنوان",
+    "checkout.customerHome": "رقم المنزل",
+    "checkout.customerRoad": "رقم الطريق",
+    "checkout.customerBlock": "رقم البلوك",
+    "checkout.customerTown": "المدينة/المنطقة",
     "checkout.deliveryOptions": "خيارات التسليم",
     "checkout.delivery": "توصيل",
     "checkout.pickup": "استلام",
@@ -480,9 +510,19 @@ const translations = {
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
       "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
+    "checkout.orderSuccessMessage": "شكراً لك على طلبك",
+    "checkout.subtotal": "المجموع الفرعي",
+    "checkout.deliveryFee": "رسوم التوصيل",
+    "checkout.total": "المجموع الكلي",
+    "checkout.orderItems": "محتويات الطلب",
+    "checkout.paymentMethod": "طريقة الدفع",
+    "checkout.cashOnDelivery": "الدفع عند التسليم",
+    "checkout.free": "مجاني",
+    "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
+    "checkout.pickupDescription": "الاستلام من المتجر",
 
     // Additional store keys
-    "store.outOfStock": "نفد المخزون",
+    "store.outOfStock": "نفد ��لمخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
     "store.productDetails": "تفاصيل المنتج",

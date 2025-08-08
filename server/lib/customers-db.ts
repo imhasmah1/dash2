@@ -4,7 +4,11 @@ export interface Customer {
   id: string;
   name: string;
   phone: string;
-  address: string;
+  address: string; // Backward compatibility
+  home?: string;
+  road?: string;
+  block?: string;
+  town?: string;
   createdAt: string;
   created_at?: string;
   updated_at?: string;
@@ -16,7 +20,11 @@ let fallbackCustomers: Customer[] = [
     id: "1",
     name: "Alice Johnson",
     phone: "+1 (555) 123-4567",
-    address: "123 Main St, Springfield, IL 62701",
+    address: "House 123, Road 15, Block 304, Springfield",
+    home: "123",
+    road: "15",
+    block: "304",
+    town: "Springfield",
     createdAt: "2024-01-10T10:00:00Z",
     created_at: "2024-01-10T10:00:00Z",
     updated_at: "2024-01-10T10:00:00Z",
@@ -25,7 +33,11 @@ let fallbackCustomers: Customer[] = [
     id: "2",
     name: "Bob Smith",
     phone: "+1 (555) 234-5678",
-    address: "456 Oak Ave, Springfield, IL 62702",
+    address: "House 456, Road 22, Block 205, Manama",
+    home: "456",
+    road: "22",
+    block: "205",
+    town: "Manama",
     createdAt: "2024-01-12T14:30:00Z",
     created_at: "2024-01-12T14:30:00Z",
     updated_at: "2024-01-12T14:30:00Z",
@@ -34,7 +46,11 @@ let fallbackCustomers: Customer[] = [
     id: "3",
     name: "Carol Davis",
     phone: "+1 (555) 345-6789",
-    address: "789 Pine Rd, Springfield, IL 62703",
+    address: "House 789, Road 33, Block 102, Riffa",
+    home: "789",
+    road: "33",
+    block: "102",
+    town: "Riffa",
     createdAt: "2024-01-14T09:15:00Z",
     created_at: "2024-01-14T09:15:00Z",
     updated_at: "2024-01-14T09:15:00Z",
@@ -65,7 +81,22 @@ export const customerDb = {
         return fallbackCustomers;
       }
 
-      return data || [];
+      // Transform database data to match frontend expectations
+      const transformedData = (data || []).map((customer: any) => ({
+        id: customer.id,
+        name: customer.name,
+        phone: customer.phone,
+        address: customer.address,
+        home: customer.home,
+        road: customer.road,
+        block: customer.block,
+        town: customer.town,
+        createdAt: customer.created_at || customer.createdAt,
+        created_at: customer.created_at,
+        updated_at: customer.updated_at,
+      }));
+
+      return transformedData;
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackCustomers;
@@ -105,7 +136,16 @@ export const customerDb = {
         return newCustomer;
       }
 
-      return data;
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
+        createdAt: data.created_at || data.createdAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       fallbackCustomers.push(newCustomer);
@@ -153,7 +193,16 @@ export const customerDb = {
         return fallbackCustomers[index];
       }
 
-      return data;
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
+        createdAt: data.created_at || data.createdAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       const index = fallbackCustomers.findIndex((c) => c.id === id);
@@ -229,7 +278,18 @@ export const customerDb = {
         return fallbackCustomers.find((c) => c.id === id) || null;
       }
 
-      return data;
+      if (!data) return null;
+
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
+        createdAt: data.created_at || data.createdAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackCustomers.find((c) => c.id === id) || null;
