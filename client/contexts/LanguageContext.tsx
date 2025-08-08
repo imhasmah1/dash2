@@ -142,6 +142,10 @@ const translations = {
     "customers.customerName": "Customer Name",
     "customers.customerPhone": "Customer Phone",
     "customers.customerAddress": "Customer Address",
+    "customers.customerHome": "Home Number",
+    "customers.customerRoad": "Road Number",
+    "customers.customerBlock": "Block Number",
+    "customers.customerTown": "Town/Area",
     "customers.save": "Save",
 
     // Revenue
@@ -312,7 +316,7 @@ const translations = {
     "orders.customer": "العميل",
     "orders.total": "الإجمالي",
     "orders.status": "الحالة",
-    "orders.deliveryType": "نوع التسليم",
+    "orders.deliveryType": "نوع التسل��م",
     "orders.date": "التاريخ",
     "orders.actions": "الإجراءات",
     "orders.view": "عرض",
@@ -449,7 +453,7 @@ const translations = {
     // Store
     "store.title": "المتجر",
     "store.cart": "السلة",
-    "store.addToCart": "إضافة للسلة",
+    "store.addToCart": "إضافة للس��ة",
     "store.quantity": "الكمية",
     "store.variant": "النوع",
     "store.selectVariant": "اختر النوع",
