@@ -88,11 +88,21 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     setIsSubmitting(true);
 
     try {
+      // Combine address fields into a single address string
+      const addressParts = [
+        customerInfo.home && `House ${customerInfo.home}`,
+        customerInfo.road && `Road ${customerInfo.road}`,
+        customerInfo.block && `Block ${customerInfo.block}`,
+        customerInfo.town
+      ].filter(Boolean);
+
+      const combinedAddress = addressParts.length > 0 ? addressParts.join(", ") : customerInfo.address;
+
       // Create customer
       const customer = await createCustomer({
         name: customerInfo.name,
         phone: customerInfo.phone,
-        address: customerInfo.address,
+        address: combinedAddress,
       });
 
       // Prepare order items
