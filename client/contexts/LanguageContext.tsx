@@ -180,6 +180,8 @@ const translations = {
     "common.close": "Close",
     "common.yes": "Yes",
     "common.no": "No",
+    "common.back": "Back",
+    "common.next": "Next",
 
     // Empty states
     "empty.noProductsFound": "No products found",

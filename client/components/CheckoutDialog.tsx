@@ -95,7 +95,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         customerInfo.block && `Block ${customerInfo.block}`,
         customerInfo.town
       ].filter(Boolean);
-
+      
       const combinedAddress = addressParts.length > 0 ? addressParts.join(", ") : customerInfo.address;
 
       // Create customer
@@ -119,100 +119,55 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         items: orderItems,
         total: totalPrice,
         status: "processing",
-        deliveryType,
+        deliveryType: deliveryType,
         notes: "",
       });
 
+      // Success state
       setOrderNumber(order.id);
       setOrderSuccess(true);
       clearCart();
     } catch (error) {
-      console.error("Failed to place order:", error);
-      alert(t("message.error"));
+      console.error("Error placing order:", error);
+      alert("Failed to place order. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const resetForm = () => {
-    setCustomerInfo({ name: "", phone: "", address: "" });
+  const handleClose = () => {
+    setStep(1);
+    setCustomerInfo({ name: "", phone: "", address: "", home: "", road: "", block: "", town: "" });
     setDeliveryType("delivery");
     setOrderSuccess(false);
     setOrderNumber("");
-    setStep(1);
-  };
-
-  const handleClose = () => {
-    resetForm();
     onClose();
   };
 
-  // Order Success Content
+  const resetToStart = () => {
+    setStep(1);
+    setCustomerInfo({ name: "", phone: "", address: "", home: "", road: "", block: "", town: "" });
+    setDeliveryType("delivery");
+    setOrderSuccess(false);
+    setOrderNumber("");
+  };
+
+  // Success State
   if (orderSuccess) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:max-w-md rounded-lg sm:rounded-md">
-          <div className="text-center space-y-6 py-4">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-              <Check className="h-10 w-10 text-green-600" />
+        <DialogContent className="w-[95vw] sm:max-w-md max-h-[90vh] p-0 rounded-lg sm:rounded-md">
+          <div className="p-6 text-center space-y-6">
+            <div className="flex justify-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                <Check className="w-8 h-8 text-green-600" />
+              </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <h2 className="text-2xl font-bold text-green-600">
                 {t("checkout.orderSuccess")}
               </h2>
-              <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
-
-              {/* Delivery-specific instructions */}
-              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded auto-text [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
-                {deliveryType === "pickup" ? (
-                  <div className="space-y-2">
-                    <p className="font-medium">
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "يمكنك استلام طلبك بعد 24 ساعة من الآن على العنوان التالي:"
-                        : "You can pick up your order 24 hours from now at the following address:"}
-                    </p>
-                    <p className="font-mono bg-white p-2 rounded border">
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "المنزل 1348، الطريق 416، البلوك 604"
-                        : "Home 1348, Road 416, Block 604"}
-                    </p>
-                    <p>
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "عند الوصول، يرجى التواصل معنا عبر الواتساب على:"
-                        : "When you arrive, please contact us on WhatsApp at:"}
-                    </p>
-                    <p className="font-bold text-blue-600 ltr-text" dir="ltr">
-                      +973 3628 3381
-                    </p>
-                    <p>
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "يمكنك أيضاً استخدام هذا الرقم ل��عديل الطلب أو إلغاؤه أو إضافة منتجات."
-                        : "You can also use this number to edit, cancel, or add products to your order."}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <p className="font-medium">
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "سنقوم بتوصيل طلبك خلال 1 إلى 3 أيام."
-                        : "We will deliver your order within 1 to 3 days."}
-                    </p>
-                    <p>
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
-                        : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
-                    </p>
-                    <p className="font-bold text-blue-600 ltr-text" dir="ltr">
-                      +973 3628 3381
-                    </p>
-                    <p>
-                      {t("language.switch") === "تغيير اللغة"
-                        ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
-                        : "You can also use this number to edit, cancel, or add products to your order."}
-                    </p>
-                  </div>
-                )}
-              </div>
+              <p className="text-gray-600">{t("checkout.orderSuccessMessage")}</p>
             </div>
             <div className="space-y-2">
               <p className="text-sm font-medium">
@@ -319,23 +274,68 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="address" className="block auto-text">
+                      <Label className="block auto-text">
                         {t("checkout.customerAddress")}
                       </Label>
-                      <Input
-                        id="address"
-                        value={customerInfo.address}
-                        onChange={(e) =>
-                          handleInputChange("address", e.target.value)
-                        }
-                        placeholder={
-                          t("language.switch") === "تغيير اللغة"
-                            ? "مثال: المنزل: 1234، الط��يق: 321، البلوك: 304"
-                            : "Example: House 1234, Road 321, Block 304"
-                        }
-                        className="auto-text placeholder:text-xs"
-                        required
-                      />
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="space-y-1">
+                          <Label htmlFor="home" className="text-sm text-gray-600 auto-text">
+                            {t("checkout.customerHome")}
+                          </Label>
+                          <Input
+                            id="home"
+                            value={customerInfo.home}
+                            onChange={(e) =>
+                              handleInputChange("home", e.target.value)
+                            }
+                            placeholder="123"
+                            className="text-center auto-text"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label htmlFor="road" className="text-sm text-gray-600 auto-text">
+                            {t("checkout.customerRoad")}
+                          </Label>
+                          <Input
+                            id="road"
+                            value={customerInfo.road}
+                            onChange={(e) =>
+                              handleInputChange("road", e.target.value)
+                            }
+                            placeholder="456"
+                            className="text-center auto-text"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label htmlFor="block" className="text-sm text-gray-600 auto-text">
+                            {t("checkout.customerBlock")}
+                          </Label>
+                          <Input
+                            id="block"
+                            value={customerInfo.block}
+                            onChange={(e) =>
+                              handleInputChange("block", e.target.value)
+                            }
+                            placeholder="789"
+                            className="text-center auto-text"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label htmlFor="town" className="text-sm text-gray-600 auto-text">
+                            {t("checkout.customerTown")}
+                          </Label>
+                          <Input
+                            id="town"
+                            value={customerInfo.town}
+                            onChange={(e) =>
+                              handleInputChange("town", e.target.value)
+                            }
+                            placeholder="Manama"
+                            className="auto-text"
+                            required
+                          />
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -362,49 +362,57 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       }
                       className="grid grid-cols-1 gap-4"
                     >
-                      <Label htmlFor="delivery" className="cursor-pointer">
-                        <div
-                          className={`p-6 border-2 rounded-lg transition-all ${deliveryType === "delivery" ? "border-primary bg-primary/5" : "border-border"}`}
-                        >
-                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse mb-3">
-                            <RadioGroupItem value="delivery" id="delivery" />
-                            <Truck className="h-6 w-6" />
-                          </div>
-                          <div className="font-medium text-lg auto-text">
-                            {t("checkout.delivery")}
-                          </div>
-                          <div className="text-sm text-muted-foreground mt-1 auto-text">
-                            {t("language.switch") === "تغيير اللغة"
-                              ? "يتم التوصيل لباب المنزل"
-                              : "Delivered to your door"}
+                      <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <RadioGroupItem value="delivery" id="delivery" />
+                        <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
+                          <Truck className="w-5 h-5 text-primary" />
+                          <div>
+                            <Label
+                              htmlFor="delivery"
+                              className="text-base font-medium cursor-pointer auto-text"
+                            >
+                              {t("checkout.delivery")}
+                            </Label>
+                            <p className="text-sm text-gray-500 auto-text">
+                              {t("checkout.deliveryDescription")}
+                            </p>
                           </div>
                         </div>
-                      </Label>
+                        <div className="text-right auto-text">
+                          <span className="text-lg font-semibold">
+                            BD 2.00
+                          </span>
+                        </div>
+                      </div>
 
-                      <Label htmlFor="pickup" className="cursor-pointer">
-                        <div
-                          className={`p-6 border-2 rounded-lg transition-all ${deliveryType === "pickup" ? "border-primary bg-primary/5" : "border-border"}`}
-                        >
-                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse mb-3">
-                            <RadioGroupItem value="pickup" id="pickup" />
-                            <Package className="h-6 w-6" />
-                          </div>
-                          <div className="font-medium text-lg auto-text">
-                            {t("checkout.pickup")}
-                          </div>
-                          <div className="text-sm text-muted-foreground mt-1 auto-text">
-                            {t("language.switch") === "تغيير اللغة"
-                              ? "استلام من المتجر"
-                              : "Pick up from store"}
+                      <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <RadioGroupItem value="pickup" id="pickup" />
+                        <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
+                          <Package className="w-5 h-5 text-primary" />
+                          <div>
+                            <Label
+                              htmlFor="pickup"
+                              className="text-base font-medium cursor-pointer auto-text"
+                            >
+                              {t("checkout.pickup")}
+                            </Label>
+                            <p className="text-sm text-gray-500 auto-text">
+                              {t("checkout.pickupDescription")}
+                            </p>
                           </div>
                         </div>
-                      </Label>
+                        <div className="text-right auto-text">
+                          <span className="text-lg font-semibold text-green-600">
+                            {t("checkout.free")}
+                          </span>
+                        </div>
+                      </div>
                     </RadioGroup>
                   </CardContent>
                 </Card>
               )}
 
-              {/* Step 3: Order Summary */}
+              {/* Step 3: Order Summary & Payment */}
               {step === 3 && (
                 <Card className="border-2">
                   <CardHeader className="pb-4">
@@ -417,44 +425,59 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       </span>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    {/* Customer Summary */}
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-medium mb-2 auto-text">
+                  <CardContent className="space-y-6">
+                    {/* Customer Info Review */}
+                    <div className="p-4 bg-gray-50 rounded-lg space-y-2">
+                      <h4 className="font-medium auto-text">
                         {t("checkout.customerInfo")}
                       </h4>
-                      <p className="text-sm auto-text">{customerInfo.name}</p>
-                      <p className="text-sm auto-text">{customerInfo.phone}</p>
-                      <p className="text-sm auto-text">
-                        {customerInfo.address}
-                      </p>
-                      <p className="text-sm font-medium mt-2 auto-text">
-                        {deliveryType === "delivery"
-                          ? t("checkout.delivery")
-                          : t("checkout.pickup")}
-                      </p>
+                      <div className="space-y-1 text-sm">
+                        <p className="auto-text">
+                          <span className="font-medium">
+                            {t("checkout.customerName")}:
+                          </span>{" "}
+                          {customerInfo.name}
+                        </p>
+                        <p className="auto-text">
+                          <span className="font-medium">
+                            {t("checkout.customerPhone")}:
+                          </span>{" "}
+                          {customerInfo.phone}
+                        </p>
+                        <p className="auto-text">
+                          <span className="font-medium">
+                            {t("checkout.customerAddress")}:
+                          </span>{" "}
+                          {[
+                            customerInfo.home && `House ${customerInfo.home}`,
+                            customerInfo.road && `Road ${customerInfo.road}`,
+                            customerInfo.block && `Block ${customerInfo.block}`,
+                            customerInfo.town
+                          ].filter(Boolean).join(", ")}
+                        </p>
+                      </div>
                     </div>
 
-                    {/* Order Items */}
+                    {/* Items Review */}
                     <div className="space-y-3">
                       <h4 className="font-medium auto-text">
-                        {t("orders.items")}
+                        {t("checkout.orderItems")}
                       </h4>
-                      {items.map((item) => (
+                      {items.map((item, index) => (
                         <div
-                          key={`${item.productId}-${item.variantId}`}
-                          className="flex justify-between items-start text-sm py-3 border-b [dir=rtl]:flex-row-reverse gap-3"
+                          key={index}
+                          className="flex justify-between items-center py-2 border-b last:border-b-0"
                         >
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium auto-text mb-1 leading-relaxed">
+                          <div className="flex-1">
+                            <p className="font-medium auto-text">
                               {item.productName}
                             </p>
-                            <p className="text-muted-foreground auto-text text-xs leading-relaxed">
+                            <p className="text-sm text-gray-500 auto-text">
                               {item.variantName} × {item.quantity}
                             </p>
                           </div>
-                          <div className="flex-shrink-0">
-                            <p className="font-medium auto-text text-right">
+                          <div className="text-right auto-text">
+                            <p className="font-medium">
                               BD {(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
@@ -464,14 +487,43 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     <Separator />
 
-                    {/* Total */}
-                    <div className="flex justify-between items-center text-xl font-bold [dir=rtl]:flex-row-reverse">
-                      <span className="auto-text">
-                        {t("orders.orderTotal")}:
-                      </span>
-                      <span className="text-primary auto-text">
-                        BD {totalPrice.toFixed(2)}
-                      </span>
+                    {/* Total Calculation */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between auto-text">
+                        <span>{t("checkout.subtotal")}:</span>
+                        <span>BD {totalPrice.toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between auto-text">
+                        <span>{t("checkout.deliveryFee")}:</span>
+                        <span>
+                          {deliveryType === "delivery" ? "BD 2.00" : "BD 0.00"}
+                        </span>
+                      </div>
+                      <Separator />
+                      <div className="flex justify-between text-lg font-bold auto-text">
+                        <span>{t("checkout.total")}:</span>
+                        <span className="text-primary">
+                          BD{" "}
+                          {(
+                            totalPrice + (deliveryType === "delivery" ? 2 : 0)
+                          ).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Payment Method */}
+                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <div className="flex items-center gap-3">
+                        <CreditCard className="w-5 h-5 text-blue-600" />
+                        <div>
+                          <p className="font-medium text-blue-900 auto-text">
+                            {t("checkout.paymentMethod")}
+                          </p>
+                          <p className="text-sm text-blue-700 auto-text">
+                            {t("checkout.cashOnDelivery")}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -479,53 +531,46 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             </div>
           </ScrollArea>
 
-          {/* Footer */}
-          <div className="p-4 sm:p-6 border-t bg-muted/20">
-            <div className="flex flex-col sm:flex-row gap-3">
+          {/* Footer with Navigation */}
+          <div className="border-t p-4 sm:p-6">
+            <div className="flex justify-between items-center gap-4">
+              {/* Back Button */}
               {step > 1 && (
                 <Button
                   variant="outline"
                   onClick={handleBack}
-                  className="w-full sm:flex-1"
-                  size="lg"
+                  className="flex items-center gap-2"
                 >
-                  <ArrowLeft className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-                  {t("language.switch") === "تغيير اللغة" ? "السابق" : "Back"}
+                  <ArrowLeft className="w-4 h-4" />
+                  {t("common.back")}
                 </Button>
               )}
 
-              <Button
-                variant="outline"
-                onClick={handleClose}
-                className={step === 1 ? "w-full sm:flex-1" : "w-full sm:w-auto"}
-                size="lg"
-              >
-                {t("common.cancel")}
-              </Button>
-
-              {step < 3 ? (
-                <Button
-                  onClick={handleNext}
-                  disabled={step === 1 && !isStep1Valid()}
-                  className="w-full sm:flex-1"
-                  size="lg"
-                >
-                  {t("language.switch") === "تغيير اللغة" ? "التالي" : "Next"}
-                  <ArrowRight className="h-4 w-4 [dir=rtl]:mr-2 [dir=ltr]:ml-2" />
-                </Button>
-              ) : (
-                <Button
-                  onClick={handlePlaceOrder}
-                  disabled={!isFormValid() || isSubmitting}
-                  className="w-full sm:flex-1"
-                  size="lg"
-                >
-                  <CreditCard className="h-4 w-4 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-                  {isSubmitting
-                    ? t("common.loading")
-                    : t("checkout.placeOrder")}
-                </Button>
-              )}
+              {/* Next/Submit Button */}
+              <div className="flex-1 flex justify-end">
+                {step < 3 ? (
+                  <Button
+                    onClick={handleNext}
+                    disabled={step === 1 && !isStep1Valid()}
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+                  >
+                    {t("common.next")}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={handlePlaceOrder}
+                    disabled={!isFormValid() || isSubmitting}
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+                    size="lg"
+                  >
+                    <CreditCard className="w-4 h-4" />
+                    {isSubmitting
+                      ? t("common.loading")
+                      : t("checkout.placeOrder")}
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>
