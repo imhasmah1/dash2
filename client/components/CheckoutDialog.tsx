@@ -317,7 +317,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="space-y-2">
                       <Label
                         htmlFor="address"
-                        className="block text-right [dir=ltr]:text-left"
+                        className="block auto-text"
                       >
                         {t("checkout.customerAddress")}
                       </Label>
@@ -332,7 +332,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304"
                             : "Example: House 1234, Road 321, Block 304"
                         }
-                        className="text-right [dir=ltr]:text-left placeholder:text-xs"
+                        className="auto-text placeholder:text-xs"
                         required
                       />
                     </div>
