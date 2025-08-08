@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   Users,
   TrendingUp,
+  BarChart3,
   LogOut,
   Menu,
   X,
@@ -26,6 +27,7 @@ const getNavigation = (t: (key: string) => string) => [
   { name: t("nav.orders"), href: "/admin/orders", icon: ShoppingCart },
   { name: t("nav.customers"), href: "/admin/customers", icon: Users },
   { name: t("nav.revenue"), href: "/admin/revenue", icon: TrendingUp },
+  { name: t("nav.analytics"), href: "/admin/analytics", icon: BarChart3 },
 ];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
