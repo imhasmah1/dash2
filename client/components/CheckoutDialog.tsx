@@ -372,7 +372,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                           <div className="text-sm text-muted-foreground mt-1 auto-text">
                             {t("language.switch") === "تغيير اللغة"
-                              ? "يتم التوصيل لباب المنزل"
+                              ? "يتم التو��يل لباب المنزل"
                               : "Delivered to your door"}
                           </div>
                         </div>
@@ -415,19 +415,19 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <CardContent className="space-y-4">
                     {/* Customer Summary */}
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-medium mb-2 text-right [dir=ltr]:text-left">
+                      <h4 className="font-medium mb-2 auto-text">
                         {t("checkout.customerInfo")}
                       </h4>
-                      <p className="text-sm text-right [dir=ltr]:text-left">
+                      <p className="text-sm auto-text">
                         {customerInfo.name}
                       </p>
-                      <p className="text-sm text-right [dir=ltr]:text-left">
+                      <p className="text-sm auto-text">
                         {customerInfo.phone}
                       </p>
-                      <p className="text-sm text-right [dir=ltr]:text-left">
+                      <p className="text-sm auto-text">
                         {customerInfo.address}
                       </p>
-                      <p className="text-sm font-medium mt-2 text-right [dir=ltr]:text-left">
+                      <p className="text-sm font-medium mt-2 auto-text">
                         {deliveryType === "delivery"
                           ? t("checkout.delivery")
                           : t("checkout.pickup")}
