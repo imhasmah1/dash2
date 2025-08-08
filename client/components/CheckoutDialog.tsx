@@ -187,7 +187,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         : "We will deliver your order within 1 to 3 days."}
                     </p>
                     <p>
-                      {t("language.switch") === "تغيير اللغة"
+                      {t("language.switch") === "تغيير ا��لغة"
                         ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
@@ -463,10 +463,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     {/* Total */}
                     <div className="flex justify-between items-center text-xl font-bold [dir=rtl]:flex-row-reverse">
-                      <span className="text-right [dir=ltr]:text-left">
+                      <span className="auto-text">
                         {t("orders.orderTotal")}:
                       </span>
-                      <span className="text-primary text-right [dir=ltr]:text-left">
+                      <span className="text-primary auto-text">
                         BD {totalPrice.toFixed(2)}
                       </span>
                     </div>
