@@ -405,11 +405,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               {step === 3 && (
                 <Card className="border-2">
                   <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">3</span>
                       </div>
-                      {t("checkout.orderSummary")}
+                      <span className="auto-text">{t("checkout.orderSummary")}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
