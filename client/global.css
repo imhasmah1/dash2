@@ -183,21 +183,32 @@
     transform: translateX(0);
   }
 
-  /* RTL text alignment */
-  [dir="rtl"] .text-left {
+  /* RTL text alignment - only for specific directional elements */
+  [dir="rtl"] .rtl-text-right {
     text-align: right;
   }
 
-  [dir="rtl"] .text-right {
+  [dir="ltr"] .rtl-text-left {
     text-align: left;
   }
 
-  /* Ensure center alignment is preserved in both directions */
-  .text-center {
-    text-align: center !important;
+  /* Default text alignment for general text */
+  [dir="rtl"] p,
+  [dir="rtl"] span:not(.no-rtl),
+  [dir="rtl"] div:not(.no-rtl) {
+    text-align: right;
   }
 
-  [dir="rtl"] .text-center {
+  [dir="ltr"] p,
+  [dir="ltr"] span:not(.no-rtl),
+  [dir="ltr"] div:not(.no-rtl) {
+    text-align: left;
+  }
+
+  /* Ensure center alignment is ALWAYS preserved in both directions */
+  .text-center,
+  [dir="rtl"] .text-center,
+  [dir="ltr"] .text-center {
     text-align: center !important;
   }
 
