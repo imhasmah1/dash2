@@ -286,7 +286,7 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجمالي ا��إيرادات",
+    "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
@@ -317,7 +317,7 @@ const translations = {
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
-    "products.maxImages": "الحد الأقصى 10 صور",
+    "products.maxImages": "الحد الأقص�� 10 صور",
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
     "products.images": "صور",
@@ -346,7 +346,7 @@ const translations = {
     "orders.product": "المنتج",
     "orders.variant": "النوع",
     "orders.quantity": "الكمية",
-    "orders.price": "السعر",
+    "orders.price": "��لسعر",
     "orders.subtotal": "المجموع الفرعي",
     "orders.remove": "إزالة",
     "orders.notes": "ملاحظات",
