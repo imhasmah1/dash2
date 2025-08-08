@@ -198,21 +198,77 @@ export default function Customers() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="address">
-                    {t("customers.customerAddress")}
-                  </Label>
-                  <Textarea
-                    id="address"
-                    value={formData.address}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        address: e.target.value,
-                      }))
-                    }
-                    placeholder={t("customers.customerAddress")}
-                    required
-                  />
+                  <Label>{t("customers.customerAddress")}</Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label htmlFor="home" className="text-sm text-gray-600">
+                        {t("customers.customerHome")}
+                      </Label>
+                      <Input
+                        id="home"
+                        value={formData.home}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            home: e.target.value,
+                          }))
+                        }
+                        placeholder="123"
+                        className="text-center"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="road" className="text-sm text-gray-600">
+                        {t("customers.customerRoad")}
+                      </Label>
+                      <Input
+                        id="road"
+                        value={formData.road}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            road: e.target.value,
+                          }))
+                        }
+                        placeholder="456"
+                        className="text-center"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="block" className="text-sm text-gray-600">
+                        {t("customers.customerBlock")}
+                      </Label>
+                      <Input
+                        id="block"
+                        value={formData.block}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            block: e.target.value,
+                          }))
+                        }
+                        placeholder="789"
+                        className="text-center"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="town" className="text-sm text-gray-600">
+                        {t("customers.customerTown")}
+                      </Label>
+                      <Input
+                        id="town"
+                        value={formData.town}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            town: e.target.value,
+                          }))
+                        }
+                        placeholder="Manama"
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <DialogFooter>
