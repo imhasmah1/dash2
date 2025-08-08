@@ -87,10 +87,14 @@ export const orderDb = {
   },
 
   // Create a new order
-  async create(order: Omit<Order, 'id' | 'created_at' | 'updated_at'>): Promise<Order> {
+  async create(order: Omit<Order, 'id' | 'created_at' | 'updated_at' | 'createdAt' | 'updatedAt'>): Promise<Order> {
     const newOrder: Order = {
       ...order,
       id: generateId(),
+      customer_id: order.customerId,
+      delivery_type: order.deliveryType,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
