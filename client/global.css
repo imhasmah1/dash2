@@ -103,6 +103,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities {
+  /* Custom RTL utilities */
+  .text-start {
+    text-align: start;
+  }
+
+  .text-end {
+    text-align: end;
+  }
+
+  /* Direction-specific overrides */
+  [dir="rtl"] .text-start {
+    text-align: right;
+  }
+
+  [dir="ltr"] .text-start {
+    text-align: left;
+  }
+
+  [dir="rtl"] .text-end {
+    text-align: left;
+  }
+
+  [dir="ltr"] .text-end {
+    text-align: right;
+  }
 
   /* Font families */
   html {
