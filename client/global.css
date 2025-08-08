@@ -317,17 +317,30 @@
   }
 
   /* RTL Text alignment for key content */
-  [dir="rtl"] h1,
-  [dir="rtl"] h2,
-  [dir="rtl"] h3,
-  [dir="rtl"] h4,
-  [dir="rtl"] h5,
-  [dir="rtl"] h6 {
+  [dir="rtl"] h1:not(.text-center),
+  [dir="rtl"] h2:not(.text-center),
+  [dir="rtl"] h3:not(.text-center),
+  [dir="rtl"] h4:not(.text-center),
+  [dir="rtl"] h5:not(.text-center),
+  [dir="rtl"] h6:not(.text-center) {
     text-align: right;
   }
 
-  [dir="rtl"] p {
+  [dir="rtl"] p:not(.text-center) {
     text-align: right;
+  }
+
+  [dir="ltr"] h1:not(.text-center),
+  [dir="ltr"] h2:not(.text-center),
+  [dir="ltr"] h3:not(.text-center),
+  [dir="ltr"] h4:not(.text-center),
+  [dir="ltr"] h5:not(.text-center),
+  [dir="ltr"] h6:not(.text-center) {
+    text-align: left;
+  }
+
+  [dir="ltr"] p:not(.text-center) {
+    text-align: left;
   }
 
   /* RTL Table headers and cells */
