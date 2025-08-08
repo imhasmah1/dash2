@@ -79,10 +79,25 @@ export default function Customers() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Combine address fields into a single address string for backend compatibility
+      const addressParts = [
+        formData.home && `House ${formData.home}`,
+        formData.road && `Road ${formData.road}`,
+        formData.block && `Block ${formData.block}`,
+        formData.town
+      ].filter(Boolean);
+
+      const combinedAddress = addressParts.length > 0 ? addressParts.join(", ") : formData.address;
+
+      const customerData = {
+        ...formData,
+        address: combinedAddress
+      };
+
       if (editingCustomer) {
-        await updateCustomer(editingCustomer.id, formData);
+        await updateCustomer(editingCustomer.id, customerData);
       } else {
-        await addCustomer(formData);
+        await addCustomer(customerData);
       }
       closeDialog();
     } catch (error) {
