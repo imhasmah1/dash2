@@ -94,4 +94,8 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  corePlugins: {
+    // Enable direction utilities
+    textAlign: true,
+  },
 } satisfies Config;
