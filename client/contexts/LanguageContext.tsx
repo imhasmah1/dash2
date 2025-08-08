@@ -318,7 +318,7 @@ const translations = {
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
-    "products.primaryImage": "أساس��ة",
+    "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
     "products.images": "صور",
     "products.noImages": "لم يتم رفع أي صور بعد",
@@ -403,7 +403,7 @@ const translations = {
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
-    "revenue.totalRevenue": "إجمالي الإيرادات",
+    "revenue.totalRevenue": "��جمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
@@ -507,7 +507,7 @@ const translations = {
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
-    "checkout.backToStore": "العودة للمتجر",
+    "checkout.backToStore": "العودة للم��جر",
     "checkout.processingMessage":
       "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
     "checkout.orderSuccessMessage": "شكراً لك على طلبك",
