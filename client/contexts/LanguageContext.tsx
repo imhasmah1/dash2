@@ -381,7 +381,7 @@ const translations = {
     "customers.noCustomers": "لا يوجد عملاء",
     "customers.addCustomer": "إضافة عميل",
     "customers.editCustomer": "تعديل عميل",
-    "customers.customerName": "اسم العميل",
+    "customers.customerName": "ا��م العميل",
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
     "customers.customerHome": "رقم المنزل",
@@ -422,6 +422,8 @@ const translations = {
     "common.close": "إغلاق",
     "common.yes": "نعم",
     "common.no": "لا",
+    "common.back": "السابق",
+    "common.next": "التالي",
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
@@ -431,7 +433,7 @@ const translations = {
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
-    "empty.addProduct": "إضافة منتج",
+    "empty.addProduct": "إضاف�� منتج",
     "empty.addCustomer": "إضافة عميل",
     "empty.createOrder": "إنشاء طلب",
 
