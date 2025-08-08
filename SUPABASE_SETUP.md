@@ -127,6 +127,29 @@ Your data is now shared! Here's how to verify:
 2. Check if your Supabase project is active
 3. Ensure the migration ran successfully
 
+### Problem: "Could not find the 'createdAt' column" errors
+
+**Symptoms**: You see errors like:
+```
+Supabase error, falling back to in-memory storage: Could not find the 'createdAt' column of 'customers' in the schema cache
+Supabase error, falling back to in-memory storage: Could not find the 'createdAt' column of 'orders' in the schema cache
+```
+
+**Solution**: Run the schema fix migration:
+
+1. In your Supabase dashboard, go to **SQL Editor**
+2. Click **"New Query"**
+3. Copy the entire content from `code/supabase/migrations/002_fix_created_at_columns.sql`
+4. Paste it into the SQL editor
+5. Click **"Run"** to execute the migration
+6. Restart your development server with `npm run dev`
+
+This migration will:
+- Add missing `created_at` and `updated_at` columns if they don't exist
+- Create necessary indexes
+- Set up auto-update triggers
+- Refresh the schema cache
+
 ### Problem: Data not syncing between environments
 
 **Solution**:
@@ -141,6 +164,14 @@ Your data is now shared! Here's how to verify:
 
 1. Make sure you're using the **Service Role Key**, not the **Anon Key**
 2. Check that RLS policies allow your operations
+
+### Problem: Schema cache issues
+
+**Solution**:
+
+1. Run the schema fix migration above
+2. In Supabase dashboard, go to **Settings** → **API** → **Schema Cache** and click **Refresh**
+3. Restart your application
 
 ## Advanced Configuration
 
