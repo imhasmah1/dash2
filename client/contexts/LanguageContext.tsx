@@ -433,7 +433,7 @@ const translations = {
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
-    "empty.addProduct": "إضاف�� منتج",
+    "empty.addProduct": "إضافة منتج",
     "empty.addCustomer": "إضافة عميل",
     "empty.createOrder": "إنشاء طلب",
 
@@ -490,7 +490,7 @@ const translations = {
     "checkout.deliveryOptions": "خيارات التسليم",
     "checkout.delivery": "توصيل",
     "checkout.pickup": "استلام",
-    "checkout.orderSummary": "م��خص الطلب",
+    "checkout.orderSummary": "ملخص الطلب",
     "checkout.placeOrder": "تأكيد الطلب",
     "checkout.noCreditCard":
       "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
