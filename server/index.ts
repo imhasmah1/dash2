@@ -3,9 +3,9 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { handleDemo } from "./routes/demo";
-import { getAllCustomers, createCustomer, updateCustomer, deleteCustomer } from "./routes/customers";
+import { getAllCustomers, createCustomer, updateCustomer, deleteCustomer, getCustomerById } from "./routes/customers";
 import { getAllProducts, createProduct, updateProduct, deleteProduct, getProductById } from "./routes/products";
-import { getAllOrders, createOrder, updateOrder, deleteOrder } from "./routes/orders";
+import { getAllOrders, createOrder, updateOrder, deleteOrder, getOrderById } from "./routes/orders";
 import { uploadMiddleware, handleImageUpload, deleteImage } from "./routes/upload";
 
 export function createServer() {
