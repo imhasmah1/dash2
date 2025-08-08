@@ -4,6 +4,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
+import { LoadingScreen } from "../components/ui/loading";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
 import {
@@ -74,11 +75,7 @@ export default function ProductDetail() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">{t("common.loading")}</div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   if (!product) {
