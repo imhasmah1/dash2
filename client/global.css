@@ -252,25 +252,25 @@
     text-align: center !important;
   }
 
-  /* Simple, reliable RTL classes */
+  /* Simple, reliable RTL classes with higher specificity */
   .rtl-text {
-    text-align: right;
+    text-align: right !important;
   }
 
   .ltr-text {
-    text-align: left;
+    text-align: left !important;
   }
 
   .auto-text {
-    text-align: left;
+    text-align: left !important;
   }
 
-  [dir="rtl"] .auto-text {
-    text-align: right;
+  html[dir="rtl"] .auto-text {
+    text-align: right !important;
   }
 
-  [dir="ltr"] .auto-text {
-    text-align: left;
+  html[dir="ltr"] .auto-text {
+    text-align: left !important;
   }
 
   /* Override any problematic classes */
