@@ -28,7 +28,8 @@ export interface Product {
   price: number;
   images: string[];
   variants: ProductVariant[];
-  totalStock: number; // Calculated from all variants
+  totalStock?: number; // For backward compatibility
+  total_stock?: number; // Database field name
 }
 
 export interface OrderItem {
