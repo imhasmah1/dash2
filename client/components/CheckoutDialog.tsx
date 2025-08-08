@@ -297,7 +297,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="space-y-2">
                         <Label
                           htmlFor="phone"
-                          className="block text-right [dir=ltr]:text-left"
+                          className="block auto-text"
                         >
                           {t("checkout.customerPhone")}
                         </Label>
@@ -308,7 +308,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("phone", e.target.value)
                           }
                           placeholder={t("checkout.customerPhone")}
-                          className="text-right [dir=ltr]:text-left"
+                          className="auto-text"
                           required
                         />
                       </div>
