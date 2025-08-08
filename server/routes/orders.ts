@@ -1,113 +1,93 @@
 import { RequestHandler } from "express";
+import { orderDb, Order, OrderItem } from "../lib/orders-db";
 
-export interface OrderItem {
-  productId: string;
-  variantId?: string;
-  quantity: number;
-  price: number;
-}
-
-export interface Order {
-  id: string;
-  customerId: string;
-  items: OrderItem[];
-  total: number;
-  status: 'processing' | 'ready' | 'delivered' | 'picked-up';
-  deliveryType: 'delivery' | 'pickup';
-  createdAt: string;
-  updatedAt: string;
-  notes?: string;
-}
-
-// In-memory storage (replace with database in production)
-let orders: Order[] = [
-  {
-    id: '1',
-    customerId: '1',
-    items: [
-      { productId: '1', quantity: 1, price: 35.0 }
-    ],
-    total: 35.0,
-    status: 'delivered',
-    deliveryType: 'delivery',
-    createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-01-15T15:30:00Z'
-  },
-  {
-    id: '2',
-    customerId: '2',
-    items: [
-      { productId: '2', quantity: 1, price: 17.5 }
-    ],
-    total: 17.5,
-    status: 'processing',
-    deliveryType: 'pickup',
-    createdAt: '2024-01-15T11:00:00Z',
-    updatedAt: '2024-01-15T11:00:00Z'
+export const getAllOrders: RequestHandler = async (req, res) => {
+  try {
+    const orders = await orderDb.getAll();
+    res.json(orders);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ error: 'Failed to fetch orders' });
   }
-];
-
-const generateId = () => Date.now().toString() + Math.random().toString(36).substr(2, 9);
-
-export const getAllOrders: RequestHandler = (req, res) => {
-  res.json(orders);
 };
 
-export const createOrder: RequestHandler = (req, res) => {
-  const { customerId, items, status, deliveryType, notes } = req.body;
-  
-  if (!customerId || !items || !Array.isArray(items) || items.length === 0) {
-    return res.status(400).json({ error: 'Customer ID and items are required' });
+export const createOrder: RequestHandler = async (req, res) => {
+  try {
+    const { customerId, items, status, deliveryType, notes } = req.body;
+    
+    if (!customerId || !items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'Customer ID and items are required' });
+    }
+
+    const total = items.reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
+
+    const orderData = {
+      customerId,
+      items,
+      total,
+      status: status || 'processing',
+      deliveryType: deliveryType || 'delivery',
+      notes
+    };
+
+    const newOrder = await orderDb.create(orderData);
+    res.status(201).json(newOrder);
+  } catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({ error: 'Failed to create order' });
   }
-
-  const total = items.reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
-
-  const newOrder: Order = {
-    id: generateId(),
-    customerId,
-    items,
-    total,
-    status: status || 'processing',
-    deliveryType: deliveryType || 'delivery',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    notes
-  };
-
-  orders.push(newOrder);
-  res.status(201).json(newOrder);
 };
 
-export const updateOrder: RequestHandler = (req, res) => {
-  const { id } = req.params;
-  const updates = req.body;
+export const updateOrder: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
 
-  const orderIndex = orders.findIndex(o => o.id === id);
-  if (orderIndex === -1) {
-    return res.status(404).json({ error: 'Order not found' });
+    // Recalculate total if items are updated
+    if (updates.items) {
+      updates.total = updates.items.reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
+    }
+
+    const updatedOrder = await orderDb.update(id, updates);
+    res.json(updatedOrder);
+  } catch (error) {
+    console.error('Error updating order:', error);
+    if (error instanceof Error && error.message.includes('not found')) {
+      res.status(404).json({ error: 'Order not found' });
+    } else {
+      res.status(500).json({ error: 'Failed to update order' });
+    }
   }
-
-  // Recalculate total if items are updated
-  if (updates.items) {
-    updates.total = updates.items.reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
-  }
-
-  orders[orderIndex] = { 
-    ...orders[orderIndex], 
-    ...updates, 
-    updatedAt: new Date().toISOString() 
-  };
-  res.json(orders[orderIndex]);
 };
 
-export const deleteOrder: RequestHandler = (req, res) => {
-  const { id } = req.params;
-  
-  const orderIndex = orders.findIndex(o => o.id === id);
-  if (orderIndex === -1) {
-    return res.status(404).json({ error: 'Order not found' });
+export const deleteOrder: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    await orderDb.delete(id);
+    res.status(204).send();
+  } catch (error) {
+    console.error('Error deleting order:', error);
+    if (error instanceof Error && error.message.includes('not found')) {
+      res.status(404).json({ error: 'Order not found' });
+    } else {
+      res.status(500).json({ error: 'Failed to delete order' });
+    }
   }
+};
 
-  orders.splice(orderIndex, 1);
-  res.status(204).send();
+export const getOrderById: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const order = await orderDb.getById(id);
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    
+    res.json(order);
+  } catch (error) {
+    console.error('Error fetching order:', error);
+    res.status(500).json({ error: 'Failed to fetch order' });
+  }
 };
