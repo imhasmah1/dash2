@@ -50,23 +50,35 @@ export const updateProduct: RequestHandler = async (req, res) => {
     const { id } = req.params;
     const updates = req.body;
 
+    console.log('Updating product with ID:', id);
+    console.log('Update data:', updates);
+
+    if (!id) {
+      return res.status(400).json({ error: 'Product ID is required' });
+    }
+
     if (updates.price !== undefined) {
       updates.price = parseFloat(updates.price);
     }
-    
+
     // Recalculate total stock if variants are updated
     if (updates.variants) {
       updates.total_stock = updates.variants.reduce((sum: number, variant: ProductVariant) => sum + variant.stock, 0);
     }
 
     const updatedProduct = await productDb.update(id, updates);
+    console.log('Product updated successfully:', updatedProduct.id);
     res.json(updatedProduct);
   } catch (error) {
     console.error('Error updating product:', error);
-    if (error instanceof Error && error.message.includes('No rows')) {
-      res.status(404).json({ error: 'Product not found' });
+    if (error instanceof Error) {
+      if (error.message.includes('No rows') || error.message.includes('Product not found')) {
+        res.status(404).json({ error: 'Product not found' });
+      } else {
+        res.status(500).json({ error: `Failed to update product: ${error.message}` });
+      }
     } else {
-      res.status(500).json({ error: 'Failed to update product' });
+      res.status(500).json({ error: 'Failed to update product: Unknown error' });
     }
   }
 };
