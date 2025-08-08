@@ -283,7 +283,7 @@ const translations = {
 
     // Products
     "products.title": "المنتجات",
-    "products.subtitle": "إدارة مخزون ��لمنتجات",
+    "products.subtitle": "إدارة مخزون المنتجات",
     "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
@@ -299,7 +299,7 @@ const translations = {
     "products.productName": "اسم المنتج",
     "products.productPrice": "سعر المنتج",
     "products.productDescription": "وصف المنتج",
-    "products.productImages": "صور المنتج",
+    "products.productImages": "صور ا��منتج",
     "products.addVariant": "إضافة نوع",
     "products.variantName": "اسم النوع",
     "products.variantStock": "مخزون النوع",
@@ -326,7 +326,7 @@ const translations = {
     "orders.date": "التاريخ",
     "orders.actions": "الإجراءات",
     "orders.view": "عرض",
-    "orders.edit": "تعديل",
+    "orders.edit": "تع��يل",
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
@@ -356,7 +356,7 @@ const translations = {
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
-    "orders.customerNotFound": "العميل غير موجود",
+    "orders.customerNotFound": "العميل غير موجو��",
     "orders.orderItems": "عناصر الطلب",
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
@@ -434,7 +434,7 @@ const translations = {
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
     "empty.addProduct": "إضاف�� منتج",
-    "empty.addCustomer": "إضافة عميل",
+    "empty.addCustomer": "إض��فة عميل",
     "empty.createOrder": "إنشاء طلب",
 
     // Messages
