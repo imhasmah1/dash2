@@ -273,17 +273,17 @@
     text-align: left !important;
   }
 
-  /* Override any problematic classes */
-  [dir="rtl"] input,
-  [dir="rtl"] textarea,
-  [dir="rtl"] .form-input {
-    text-align: right;
+  /* Override any problematic classes with higher specificity */
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea,
+  html[dir="rtl"] .form-input {
+    text-align: right !important;
   }
 
-  [dir="ltr"] input,
-  [dir="ltr"] textarea,
-  [dir="ltr"] .form-input {
-    text-align: left;
+  html[dir="ltr"] input,
+  html[dir="ltr"] textarea,
+  html[dir="ltr"] .form-input {
+    text-align: left !important;
   }
 
   /* RTL flex direction adjustments */
