@@ -286,7 +286,7 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجمالي ا��إيرادات",
+    "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
@@ -379,7 +379,7 @@ const translations = {
 
     // Customers
     "customers.title": "العملاء",
-    "customers.subtitle": "إدارة قاعدة بيانات العملاء",
+    "customers.subtitle": "إدارة قاعدة بي��نات العملاء",
     "customers.addNew": "إضافة عميل جديد",
     "customers.search": "البحث في العملاء...",
     "customers.name": "الاسم",
@@ -448,7 +448,7 @@ const translations = {
     "empty.createOrder": "إنشاء طلب",
 
     // Messages
-    "message.deleteConfirm": "هل أنت متأكد من حذف ه��ا العنصر؟",
+    "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
@@ -522,7 +522,7 @@ const translations = {
     "checkout.pickupDescription": "الاستلام من المتجر",
 
     // Additional store keys
-    "store.outOfStock": "نفد ��لمخزون",
+    "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
     "store.productDetails": "تفاصيل المنتج",
