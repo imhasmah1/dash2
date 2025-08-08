@@ -1,115 +1,140 @@
-import { DollarSign, ShoppingBag, TrendingUp, Clock } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useData } from '@/contexts/DataContext';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { DollarSign, ShoppingBag, TrendingUp, Clock } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useData } from "@/contexts/DataContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
-    case 'processing':
-      return 'text-blue-700 bg-blue-100';
-    case 'ready':
-      return 'text-yellow-700 bg-yellow-100';
-    case 'delivered':
-      return 'text-green-700 bg-green-100';
-    case 'picked-up':
-      return 'text-purple-700 bg-purple-100';
+    case "processing":
+      return "text-blue-700 bg-blue-100";
+    case "ready":
+      return "text-yellow-700 bg-yellow-100";
+    case "delivered":
+      return "text-green-700 bg-green-100";
+    case "picked-up":
+      return "text-purple-700 bg-purple-100";
     default:
-      return 'text-gray-700 bg-gray-100';
+      return "text-gray-700 bg-gray-100";
   }
 };
 
 const getStatusText = (status: string, t: (key: string) => string) => {
   switch (status) {
-    case 'processing':
-      return t('orders.processing');
-    case 'ready':
-      return t('orders.ready');
-    case 'delivered':
-      return t('orders.delivered');
-    case 'picked-up':
-      return t('orders.pickedUp');
+    case "processing":
+      return t("orders.processing");
+    case "ready":
+      return t("orders.ready");
+    case "delivered":
+      return t("orders.delivered");
+    case "picked-up":
+      return t("orders.pickedUp");
     default:
       return status;
   }
 };
 
 export default function Dashboard() {
-  const { orders, customers, products, getCustomerById, getProductById } = useData();
+  const { orders, customers, products, getCustomerById, getProductById } =
+    useData();
   const { t } = useLanguage();
 
   const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
   const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
-  const pendingOrders = orders.filter(order => order.status === 'processing').length;
+  const pendingOrders = orders.filter(
+    (order) => order.status === "processing",
+  ).length;
 
   const stats = [
     {
-      title: t('dashboard.totalRevenue'),
+      title: t("dashboard.totalRevenue"),
       value: `BD ${totalRevenue.toFixed(2)}`,
-      description: `${t('dashboard.totalOrders')}: ${orders.length}`,
+      description: `${t("dashboard.totalOrders")}: ${orders.length}`,
       icon: DollarSign,
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
+      color: "text-green-600",
+      bgColor: "bg-green-100",
     },
     {
-      title: t('dashboard.totalOrders'),
+      title: t("dashboard.totalOrders"),
       value: orders.length.toString(),
-      description: `${customers.length} ${t('nav.customers')}`,
+      description: `${customers.length} ${t("nav.customers")}`,
       icon: ShoppingBag,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
     },
     {
-      title: t('revenue.avgOrderValue'),
+      title: t("revenue.avgOrderValue"),
       value: `BD ${avgOrderValue.toFixed(2)}`,
-      description: t('orders.orderTotal'),
+      description: t("orders.orderTotal"),
       icon: TrendingUp,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100',
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
     },
     {
-      title: t('orders.processing'),
+      title: t("orders.processing"),
       value: pendingOrders.toString(),
-      description: t('orders.processing'),
+      description: t("orders.processing"),
       icon: Clock,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-100',
+      color: "text-orange-600",
+      bgColor: "bg-orange-100",
     },
   ];
 
   const recentOrders = orders
-    .filter(order => order.createdAt && !isNaN(new Date(order.createdAt).getTime()))
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .filter(
+      (order) => order.createdAt && !isNaN(new Date(order.createdAt).getTime()),
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
     .slice(0, 5)
-    .map(order => {
+    .map((order) => {
       const customer = getCustomerById(order.customerId);
-      const mainProduct = order.items[0] ? getProductById(order.items[0].productId) : null;
+      const mainProduct = order.items[0]
+        ? getProductById(order.items[0].productId)
+        : null;
       const itemsCount = order.items.length;
       const orderDate = new Date(order.createdAt);
-      const formattedDate = orderDate && !isNaN(orderDate.getTime())
-        ? orderDate.toISOString().split('T')[0]
-        : 'Invalid Date';
+      const formattedDate =
+        orderDate && !isNaN(orderDate.getTime())
+          ? orderDate.toISOString().split("T")[0]
+          : "Invalid Date";
 
       return {
         id: `#${order.id}`,
-        customer: customer?.name || 'Unknown Customer',
-        product: itemsCount > 1 ? `${mainProduct?.name || 'Product'} +${itemsCount - 1} more` : (mainProduct?.name || 'Unknown Product'),
+        customer: customer?.name || "Unknown Customer",
+        product:
+          itemsCount > 1
+            ? `${mainProduct?.name || "Product"} +${itemsCount - 1} more`
+            : mainProduct?.name || "Unknown Product",
         amount: `BD ${order.total.toFixed(2)}`,
         status: getStatusText(order.status, t),
-        date: formattedDate
+        date: formattedDate,
       };
     });
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">{t('dashboard.title')}</h1>
-        <p className="text-gray-600 mt-2">{t('dashboard.welcome')}</p>
+        <h1 className="text-3xl font-bold text-gray-900">
+          {t("dashboard.title")}
+        </h1>
+        <p className="text-gray-600 mt-2">{t("dashboard.welcome")}</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat) => (
-          <Card key={stat.title} className="transition-transform hover:scale-105">
+          <Card
+            key={stat.title}
+            className="transition-transform hover:scale-105"
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600">
                 {stat.title}
@@ -119,10 +144,10 @@ export default function Dashboard() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-              <p className="text-xs text-gray-600 mt-1">
-                {stat.description}
-              </p>
+              <div className="text-2xl font-bold text-gray-900">
+                {stat.value}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">{stat.description}</p>
             </CardContent>
           </Card>
         ))}
@@ -131,10 +156,10 @@ export default function Dashboard() {
       {/* Recent Orders */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-gray-900">{t('dashboard.recentOrders')}</CardTitle>
-          <CardDescription>
-            {t('dashboard.recentOrders')}
-          </CardDescription>
+          <CardTitle className="text-xl font-semibold text-gray-900">
+            {t("dashboard.recentOrders")}
+          </CardTitle>
+          <CardDescription>{t("dashboard.recentOrders")}</CardDescription>
         </CardHeader>
         <CardContent>
           {recentOrders.length > 0 ? (
@@ -142,23 +167,48 @@ export default function Dashboard() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.orderId')}</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.customer')}</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('nav.products')}</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.total')}</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.status')}</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">{t('orders.date')}</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">
+                      {t("orders.orderId")}
+                    </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">
+                      {t("orders.customer")}
+                    </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">
+                      {t("nav.products")}
+                    </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">
+                      {t("orders.total")}
+                    </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">
+                      {t("orders.status")}
+                    </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-600">
+                      {t("orders.date")}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentOrders.map((order) => (
-                    <tr key={order.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="py-3 px-4 font-medium text-dashboard-primary">{order.id}</td>
-                      <td className="py-3 px-4 text-gray-900">{order.customer}</td>
-                      <td className="py-3 px-4 text-gray-600">{order.product}</td>
-                      <td className="py-3 px-4 font-medium text-gray-900">{order.amount}</td>
+                    <tr
+                      key={order.id}
+                      className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="py-3 px-4 font-medium text-dashboard-primary">
+                        {order.id}
+                      </td>
+                      <td className="py-3 px-4 text-gray-900">
+                        {order.customer}
+                      </td>
+                      <td className="py-3 px-4 text-gray-600">
+                        {order.product}
+                      </td>
+                      <td className="py-3 px-4 font-medium text-gray-900">
+                        {order.amount}
+                      </td>
                       <td className="py-3 px-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}
+                        >
                           {order.status}
                         </span>
                       </td>
@@ -171,7 +221,9 @@ export default function Dashboard() {
           ) : (
             <div className="text-center py-8">
               <ShoppingBag className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No orders yet. Create your first order to see it here!</p>
+              <p className="text-gray-600">
+                No orders yet. Create your first order to see it here!
+              </p>
             </div>
           )}
         </CardContent>
