@@ -183,33 +183,62 @@
     transform: translateX(0);
   }
 
-  /* RTL text alignment - only for specific directional elements */
-  [dir="rtl"] .rtl-text-right {
+  /* RTL text alignment system - FIXED VERSION */
+
+  /* Default text direction for content */
+  [dir="rtl"] {
     text-align: right;
   }
 
-  [dir="ltr"] .rtl-text-left {
+  [dir="ltr"] {
     text-align: left;
   }
 
-  /* Default text alignment for general text */
-  [dir="rtl"] p,
-  [dir="rtl"] span:not(.no-rtl),
-  [dir="rtl"] div:not(.no-rtl) {
-    text-align: right;
+  /* Specific directional overrides */
+  [dir="rtl"] .text-left {
+    text-align: right !important;
   }
 
-  [dir="ltr"] p,
-  [dir="ltr"] span:not(.no-rtl),
-  [dir="ltr"] div:not(.no-rtl) {
-    text-align: left;
+  [dir="ltr"] .text-left {
+    text-align: left !important;
   }
 
-  /* Ensure center alignment is ALWAYS preserved in both directions */
-  .text-center,
-  [dir="rtl"] .text-center,
+  [dir="rtl"] .text-right {
+    text-align: left !important;
+  }
+
+  [dir="ltr"] .text-right {
+    text-align: right !important;
+  }
+
+  /* ALWAYS preserve center alignment regardless of direction */
+  .text-center {
+    text-align: center !important;
+  }
+
+  [dir="rtl"] .text-center {
+    text-align: center !important;
+  }
+
   [dir="ltr"] .text-center {
     text-align: center !important;
+  }
+
+  /* Custom directional classes that work properly */
+  [dir="rtl"] .\[dir\=rtl\]\:text-right {
+    text-align: right !important;
+  }
+
+  [dir="ltr"] .\[dir\=ltr\]\:text-left {
+    text-align: left !important;
+  }
+
+  [dir="rtl"] .\[dir\=rtl\]\:text-left {
+    text-align: left !important;
+  }
+
+  [dir="ltr"] .\[dir\=ltr\]\:text-right {
+    text-align: right !important;
   }
 
   /* RTL flex direction adjustments */
