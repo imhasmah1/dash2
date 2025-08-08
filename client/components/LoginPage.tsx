@@ -28,8 +28,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dashboard-primary/10 to-dashboard-secondary/10 relative">
-      {/* Language Switcher - Top Right */}
-      <div className="absolute top-6 right-6">
+      {/* Language Switcher - Top Right/Left for RTL */}
+      <div className="absolute top-6 right-6 [dir=rtl]:right-auto [dir=rtl]:left-6">
         <Button
           onClick={toggleLanguage}
           variant="outline"
