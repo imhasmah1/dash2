@@ -10,12 +10,16 @@ export interface OrderItem {
 export interface Order {
   id: string;
   customerId: string;
+  customer_id?: string; // Database field name
   items: OrderItem[];
   total: number;
   status: 'processing' | 'ready' | 'delivered' | 'picked-up';
   deliveryType: 'delivery' | 'pickup';
-  created_at?: string;
-  updated_at?: string;
+  delivery_type?: 'delivery' | 'pickup'; // Database field name
+  createdAt?: string; // Frontend field name
+  updatedAt?: string; // Frontend field name
+  created_at?: string; // Database field name
+  updated_at?: string; // Database field name
   notes?: string;
 }
 
