@@ -14,17 +14,26 @@ async function apiCall<T>(url: string, options?: RequestInit): Promise<T> {
     });
 
     if (!response.ok) {
-      let errorMessage = `API Error: ${response.status} ${response.statusText}`;
+      let errorMessage = `API Error: ${response.status}`;
 
       try {
         const errorData = await response.json();
         if (errorData.error) {
           errorMessage = errorData.error;
+        } else {
+          errorMessage = `${errorMessage} ${response.statusText}`;
         }
       } catch {
         // If response isn't JSON, use status text
-        errorMessage = response.statusText || errorMessage;
+        errorMessage = `${errorMessage} ${response.statusText || "Unknown error"}`;
       }
+
+      console.error("API Error details:", {
+        url: `${API_BASE}${url}`,
+        status: response.status,
+        statusText: response.statusText,
+        errorMessage,
+      });
 
       throw new Error(errorMessage);
     }
