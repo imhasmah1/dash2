@@ -286,6 +286,29 @@
     text-align: left !important;
   }
 
+  /* Force RTL for all elements when in Arabic mode */
+  html[dir="rtl"] * {
+    text-align: right !important;
+  }
+
+  html[dir="ltr"] * {
+    text-align: left !important;
+  }
+
+  /* Exceptions for center-aligned content */
+  html[dir="rtl"] .text-center,
+  html[dir="ltr"] .text-center,
+  .text-center {
+    text-align: center !important;
+  }
+
+  /* Exceptions for number/price content that should stay LTR */
+  html[dir="rtl"] .ltr-text,
+  html[dir="ltr"] .ltr-text {
+    text-align: left !important;
+    direction: ltr;
+  }
+
   /* RTL flex direction adjustments */
   [dir="rtl"] .justify-start {
     justify-content: flex-end;
