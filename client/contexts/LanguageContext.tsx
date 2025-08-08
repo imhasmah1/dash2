@@ -257,6 +257,16 @@ const translations = {
     "checkout.backToStore": "Back to Store",
     "checkout.processingMessage":
       "The order will be processed in 1-3 days, we will contact you when delivery",
+    "checkout.orderSuccessMessage": "Thank you for your order",
+    "checkout.subtotal": "Subtotal",
+    "checkout.deliveryFee": "Delivery Fee",
+    "checkout.total": "Total",
+    "checkout.orderItems": "Order Items",
+    "checkout.paymentMethod": "Payment Method",
+    "checkout.cashOnDelivery": "Cash on Delivery",
+    "checkout.free": "Free",
+    "checkout.deliveryDescription": "We'll deliver to your address",
+    "checkout.pickupDescription": "Pick up from our store",
 
     // Additional store keys
     "store.outOfStock": "Out of Stock",
@@ -276,7 +286,7 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجمالي الإيرادات",
+    "dashboard.totalRevenue": "إجمالي ا��إيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
@@ -438,7 +448,7 @@ const translations = {
     "empty.createOrder": "إنشاء طلب",
 
     // Messages
-    "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
+    "message.deleteConfirm": "هل أنت متأكد من حذف ه��ا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
