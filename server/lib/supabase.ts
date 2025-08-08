@@ -204,7 +204,10 @@ export const productDb = {
   async update(id: string, updates: Partial<Product>): Promise<Product> {
     if (!supabase) {
       console.log("Using in-memory storage. Looking for product ID:", id);
-      console.log("Available products:", fallbackProducts.map(p => ({ id: p.id, name: p.name })));
+      console.log(
+        "Available products:",
+        fallbackProducts.map((p) => ({ id: p.id, name: p.name })),
+      );
 
       const index = fallbackProducts.findIndex((p) => p.id === id);
       if (index === -1) {

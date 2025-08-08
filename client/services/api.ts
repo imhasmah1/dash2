@@ -25,10 +25,10 @@ async function apiCall<T>(url: string, options?: RequestInit): Promise<T> {
         }
       } catch {
         // If response isn't JSON, use status text
-        errorMessage = `${errorMessage} ${response.statusText || 'Unknown error'}`;
+        errorMessage = `${errorMessage} ${response.statusText || "Unknown error"}`;
       }
 
-      console.error('API Error details:', {
+      console.error("API Error details:", {
         url: `${API_BASE}${url}`,
         status: response.status,
         statusText: response.statusText,
