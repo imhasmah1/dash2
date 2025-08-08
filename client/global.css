@@ -252,32 +252,38 @@
     text-align: center !important;
   }
 
-  /* Custom directional classes that work properly with higher specificity */
-  [dir="rtl"] .text-right\[dir\=ltr\]\:text-left,
-  [dir="rtl"] .text-right {
-    text-align: right !important;
+  /* Simple, reliable RTL classes */
+  .rtl-text {
+    text-align: right;
   }
 
-  [dir="ltr"] .text-right\[dir\=ltr\]\:text-left,
-  [dir="ltr"] .text-left {
-    text-align: left !important;
+  .ltr-text {
+    text-align: left;
   }
 
-  /* Override any TailwindCSS directional classes that don't work */
-  [dir="rtl"] .\[dir\=ltr\]\:text-left {
-    text-align: right !important;
+  .auto-text {
+    text-align: left;
   }
 
-  [dir="ltr"] .\[dir\=ltr\]\:text-left {
-    text-align: left !important;
+  [dir="rtl"] .auto-text {
+    text-align: right;
   }
 
-  [dir="rtl"] .\[dir\=rtl\]\:text-right {
-    text-align: right !important;
+  [dir="ltr"] .auto-text {
+    text-align: left;
   }
 
-  [dir="ltr"] .\[dir\=rtl\]\:text-right {
-    text-align: right !important;
+  /* Override any problematic classes */
+  [dir="rtl"] input,
+  [dir="rtl"] textarea,
+  [dir="rtl"] .form-input {
+    text-align: right;
+  }
+
+  [dir="ltr"] input,
+  [dir="ltr"] textarea,
+  [dir="ltr"] .form-input {
+    text-align: left;
   }
 
   /* RTL flex direction adjustments */
