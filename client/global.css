@@ -103,6 +103,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities {
+  /* Custom RTL utilities */
+  .text-start {
+    text-align: start;
+  }
+
+  .text-end {
+    text-align: end;
+  }
+
+  /* Direction-specific overrides */
+  [dir="rtl"] .text-start {
+    text-align: right;
+  }
+
+  [dir="ltr"] .text-start {
+    text-align: left;
+  }
+
+  [dir="rtl"] .text-end {
+    text-align: left;
+  }
+
+  [dir="ltr"] .text-end {
+    text-align: right;
+  }
 
   /* Font families */
   html {
@@ -183,22 +211,120 @@
     transform: translateX(0);
   }
 
-  /* RTL text alignment */
-  [dir="rtl"] .text-left {
+  /* RTL text alignment system - FIXED VERSION */
+
+  /* Default text direction for content */
+  [dir="rtl"] {
     text-align: right;
   }
 
-  [dir="rtl"] .text-right {
+  [dir="ltr"] {
     text-align: left;
   }
 
-  /* Ensure center alignment is preserved in both directions */
+  /* Specific directional overrides */
+  [dir="rtl"] .text-left {
+    text-align: right !important;
+  }
+
+  [dir="ltr"] .text-left {
+    text-align: left !important;
+  }
+
+  [dir="rtl"] .text-right {
+    text-align: left !important;
+  }
+
+  [dir="ltr"] .text-right {
+    text-align: right !important;
+  }
+
+  /* ALWAYS preserve center alignment regardless of direction */
   .text-center {
     text-align: center !important;
   }
 
   [dir="rtl"] .text-center {
     text-align: center !important;
+  }
+
+  [dir="ltr"] .text-center {
+    text-align: center !important;
+  }
+
+  /* Simple, reliable RTL classes with higher specificity */
+  .rtl-text {
+    text-align: right !important;
+  }
+
+  .ltr-text {
+    text-align: left !important;
+  }
+
+  .auto-text {
+    text-align: left !important;
+  }
+
+  html[dir="rtl"] .auto-text {
+    text-align: right !important;
+  }
+
+  html[dir="ltr"] .auto-text {
+    text-align: left !important;
+  }
+
+  /* Override any problematic classes with higher specificity */
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea,
+  html[dir="rtl"] .form-input {
+    text-align: right !important;
+  }
+
+  html[dir="ltr"] input,
+  html[dir="ltr"] textarea,
+  html[dir="ltr"] .form-input {
+    text-align: left !important;
+  }
+
+  /* Force RTL for text elements when in Arabic mode */
+  html[dir="rtl"] p,
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4,
+  html[dir="rtl"] h5,
+  html[dir="rtl"] h6,
+  html[dir="rtl"] span:not(.text-center),
+  html[dir="rtl"] div:not(.flex):not(.text-center),
+  html[dir="rtl"] label {
+    text-align: right !important;
+  }
+
+  html[dir="ltr"] p,
+  html[dir="ltr"] h1,
+  html[dir="ltr"] h2,
+  html[dir="ltr"] h3,
+  html[dir="ltr"] h4,
+  html[dir="ltr"] h5,
+  html[dir="ltr"] h6,
+  html[dir="ltr"] span:not(.text-center),
+  html[dir="ltr"] div:not(.flex):not(.text-center),
+  html[dir="ltr"] label {
+    text-align: left !important;
+  }
+
+  /* Exceptions for center-aligned content */
+  html[dir="rtl"] .text-center,
+  html[dir="ltr"] .text-center,
+  .text-center {
+    text-align: center !important;
+  }
+
+  /* Exceptions for number/price content that should stay LTR */
+  html[dir="rtl"] .ltr-text,
+  html[dir="ltr"] .ltr-text {
+    text-align: left !important;
+    direction: ltr;
   }
 
   /* RTL flex direction adjustments */
@@ -277,17 +403,30 @@
   }
 
   /* RTL Text alignment for key content */
-  [dir="rtl"] h1,
-  [dir="rtl"] h2,
-  [dir="rtl"] h3,
-  [dir="rtl"] h4,
-  [dir="rtl"] h5,
-  [dir="rtl"] h6 {
+  [dir="rtl"] h1:not(.text-center),
+  [dir="rtl"] h2:not(.text-center),
+  [dir="rtl"] h3:not(.text-center),
+  [dir="rtl"] h4:not(.text-center),
+  [dir="rtl"] h5:not(.text-center),
+  [dir="rtl"] h6:not(.text-center) {
     text-align: right;
   }
 
-  [dir="rtl"] p {
+  [dir="rtl"] p:not(.text-center) {
     text-align: right;
+  }
+
+  [dir="ltr"] h1:not(.text-center),
+  [dir="ltr"] h2:not(.text-center),
+  [dir="ltr"] h3:not(.text-center),
+  [dir="ltr"] h4:not(.text-center),
+  [dir="ltr"] h5:not(.text-center),
+  [dir="ltr"] h6:not(.text-center) {
+    text-align: left;
+  }
+
+  [dir="ltr"] p:not(.text-center) {
+    text-align: left;
   }
 
   /* RTL Table headers and cells */

@@ -149,7 +149,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
 
               {/* Delivery-specific instructions */}
-              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded text-right [dir=ltr]:text-left [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
+              <div className="text-sm text-muted-foreground border-l-4 border-blue-500 pl-3 py-3 bg-blue-50 rounded auto-text [dir=rtl]:border-l-0 [dir=rtl]:border-r-4 [dir=rtl]:pl-0 [dir=rtl]:pr-3 space-y-2">
                 {deliveryType === "pickup" ? (
                   <div className="space-y-2">
                     <p className="font-medium">
@@ -167,15 +167,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         ? "عند الوصول، يرجى التواصل معنا عبر الواتساب على:"
                         : "When you arrive, please contact us on WhatsApp at:"}
                     </p>
-                    <p
-                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
-                      dir="ltr"
-                    >
+                    <p className="font-bold text-blue-600 ltr-text" dir="ltr">
                       +973 3628 3381
                     </p>
                     <p>
                       {t("language.switch") === "تغيير اللغة"
-                        ? "يمكنك أيضاً استخدام هذا الرقم لتعديل الطلب أو إلغاؤه أو إضافة منتجات."
+                        ? "يمكنك أيضاً استخدام هذا الرقم ل��عديل الطلب أو إلغاؤه أو إضافة منتجات."
                         : "You can also use this number to edit, cancel, or add products to your order."}
                     </p>
                   </div>
@@ -191,10 +188,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         ? "إذا كان لديك أي أسئلة حول التوصيل، يرجى التواصل معنا عبر الواتساب على:"
                         : "If you have any questions about your delivery, please contact us on WhatsApp at:"}
                     </p>
-                    <p
-                      className="font-bold text-blue-600 text-right [dir=ltr]:text-left"
-                      dir="ltr"
-                    >
+                    <p className="font-bold text-blue-600 ltr-text" dir="ltr">
                       +973 3628 3381
                     </p>
                     <p>
@@ -226,7 +220,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="w-[95vw] sm:max-w-lg max-h-[90vh] p-0 rounded-lg sm:rounded-md">
-        <div className="flex flex-col h-full text-right [dir=ltr]:text-left">
+        <div className="flex flex-col h-full auto-text">
           {/* Header */}
           <DialogHeader className="px-4 sm:px-6 py-4 border-b">
             <DialogTitle className="text-2xl font-bold text-center">
@@ -266,20 +260,19 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               {step === 1 && (
                 <Card className="border-2">
                   <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">1</span>
                       </div>
-                      {t("checkout.customerInfo")}
+                      <span className="auto-text">
+                        {t("checkout.customerInfo")}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 gap-4">
                       <div className="space-y-2">
-                        <Label
-                          htmlFor="name"
-                          className="block text-right [dir=ltr]:text-left"
-                        >
+                        <Label htmlFor="name" className="block auto-text">
                           {t("checkout.customerName")}
                         </Label>
                         <Input
@@ -289,16 +282,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("name", e.target.value)
                           }
                           placeholder={t("checkout.customerName")}
-                          className="text-right [dir=ltr]:text-left"
+                          className="auto-text"
                           required
                         />
                       </div>
 
                       <div className="space-y-2">
-                        <Label
-                          htmlFor="phone"
-                          className="block text-right [dir=ltr]:text-left"
-                        >
+                        <Label htmlFor="phone" className="block auto-text">
                           {t("checkout.customerPhone")}
                         </Label>
                         <Input
@@ -308,17 +298,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             handleInputChange("phone", e.target.value)
                           }
                           placeholder={t("checkout.customerPhone")}
-                          className="text-right [dir=ltr]:text-left"
+                          className="auto-text"
                           required
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="address"
-                        className="block text-right [dir=ltr]:text-left"
-                      >
+                      <Label htmlFor="address" className="block auto-text">
                         {t("checkout.customerAddress")}
                       </Label>
                       <Input
@@ -329,10 +316,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         }
                         placeholder={
                           t("language.switch") === "تغيير اللغة"
-                            ? "مثال: المنزل: 1234، الطريق: 321، البلوك: 304"
+                            ? "مثال: المنزل: 1234، الط��يق: 321، البلوك: 304"
                             : "Example: House 1234, Road 321, Block 304"
                         }
-                        className="text-right [dir=ltr]:text-left placeholder:text-xs"
+                        className="auto-text placeholder:text-xs"
                         required
                       />
                     </div>
@@ -344,11 +331,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               {step === 2 && (
                 <Card className="border-2">
                   <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">2</span>
                       </div>
-                      {t("checkout.deliveryOptions")}
+                      <span className="auto-text">
+                        {t("checkout.deliveryOptions")}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -367,10 +356,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <RadioGroupItem value="delivery" id="delivery" />
                             <Truck className="h-6 w-6" />
                           </div>
-                          <div className="font-medium text-lg text-right [dir=ltr]:text-left">
+                          <div className="font-medium text-lg auto-text">
                             {t("checkout.delivery")}
                           </div>
-                          <div className="text-sm text-muted-foreground mt-1 text-right [dir=ltr]:text-left">
+                          <div className="text-sm text-muted-foreground mt-1 auto-text">
                             {t("language.switch") === "تغيير اللغة"
                               ? "يتم التوصيل لباب المنزل"
                               : "Delivered to your door"}
@@ -386,10 +375,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <RadioGroupItem value="pickup" id="pickup" />
                             <Package className="h-6 w-6" />
                           </div>
-                          <div className="font-medium text-lg text-right [dir=ltr]:text-left">
+                          <div className="font-medium text-lg auto-text">
                             {t("checkout.pickup")}
                           </div>
-                          <div className="text-sm text-muted-foreground mt-1 text-right [dir=ltr]:text-left">
+                          <div className="text-sm text-muted-foreground mt-1 auto-text">
                             {t("language.switch") === "تغيير اللغة"
                               ? "استلام من المتجر"
                               : "Pick up from store"}
@@ -405,29 +394,27 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               {step === 3 && (
                 <Card className="border-2">
                   <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                    <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
                       <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
                         <span className="font-bold">3</span>
                       </div>
-                      {t("checkout.orderSummary")}
+                      <span className="auto-text">
+                        {t("checkout.orderSummary")}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {/* Customer Summary */}
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-medium mb-2 text-right [dir=ltr]:text-left">
+                      <h4 className="font-medium mb-2 auto-text">
                         {t("checkout.customerInfo")}
                       </h4>
-                      <p className="text-sm text-right [dir=ltr]:text-left">
-                        {customerInfo.name}
-                      </p>
-                      <p className="text-sm text-right [dir=ltr]:text-left">
-                        {customerInfo.phone}
-                      </p>
-                      <p className="text-sm text-right [dir=ltr]:text-left">
+                      <p className="text-sm auto-text">{customerInfo.name}</p>
+                      <p className="text-sm auto-text">{customerInfo.phone}</p>
+                      <p className="text-sm auto-text">
                         {customerInfo.address}
                       </p>
-                      <p className="text-sm font-medium mt-2 text-right [dir=ltr]:text-left">
+                      <p className="text-sm font-medium mt-2 auto-text">
                         {deliveryType === "delivery"
                           ? t("checkout.delivery")
                           : t("checkout.pickup")}
@@ -436,25 +423,27 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     {/* Order Items */}
                     <div className="space-y-3">
-                      <h4 className="font-medium text-right [dir=ltr]:text-left">
+                      <h4 className="font-medium auto-text">
                         {t("orders.items")}
                       </h4>
                       {items.map((item) => (
                         <div
                           key={`${item.productId}-${item.variantId}`}
-                          className="flex justify-between items-center text-sm py-2 border-b [dir=rtl]:flex-row-reverse"
+                          className="flex justify-between items-start text-sm py-3 border-b [dir=rtl]:flex-row-reverse gap-3"
                         >
-                          <div className="flex-1">
-                            <p className="font-medium text-right [dir=ltr]:text-left">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium auto-text mb-1 leading-relaxed">
                               {item.productName}
                             </p>
-                            <p className="text-muted-foreground text-right [dir=ltr]:text-left">
+                            <p className="text-muted-foreground auto-text text-xs leading-relaxed">
                               {item.variantName} × {item.quantity}
                             </p>
                           </div>
-                          <p className="font-medium text-right [dir=ltr]:text-left">
-                            BD {(item.price * item.quantity).toFixed(2)}
-                          </p>
+                          <div className="flex-shrink-0">
+                            <p className="font-medium auto-text text-right">
+                              BD {(item.price * item.quantity).toFixed(2)}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -463,10 +452,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     {/* Total */}
                     <div className="flex justify-between items-center text-xl font-bold [dir=rtl]:flex-row-reverse">
-                      <span className="text-right [dir=ltr]:text-left">
+                      <span className="auto-text">
                         {t("orders.orderTotal")}:
                       </span>
-                      <span className="text-primary text-right [dir=ltr]:text-left">
+                      <span className="text-primary auto-text">
                         BD {totalPrice.toFixed(2)}
                       </span>
                     </div>

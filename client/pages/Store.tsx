@@ -165,22 +165,22 @@ export default function Store() {
                 {/* Product Info */}
                 <div className="p-4">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors [dir=rtl]:text-right [dir=ltr]:text-left">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors auto-text">
                       {product.name}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 [dir=rtl]:text-right [dir=ltr]:text-left">
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 auto-text">
                       {product.description}
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
                     <div>
-                      <span className="text-lg font-bold text-primary [dir=rtl]:text-right [dir=ltr]:text-left">
+                      <span className="text-lg font-bold text-primary auto-text">
                         BD {product.price.toFixed(2)}
                       </span>
                       {product.totalStock > 0 && (
-                        <p className="text-xs text-muted-foreground [dir=rtl]:text-right [dir=ltr]:text-left">
+                        <p className="text-xs text-muted-foreground auto-text">
                           {product.totalStock} {t("products.stock")}
                         </p>
                       )}
@@ -199,7 +199,7 @@ export default function Store() {
                   {product.totalStock === 0 && (
                     <Badge
                       variant="secondary"
-                      className="w-full mt-2 justify-center [dir=rtl]:text-right [dir=ltr]:text-left"
+                      className="w-full mt-2 justify-center text-center"
                     >
                       {t("store.outOfStock")}
                     </Badge>

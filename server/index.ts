@@ -3,10 +3,32 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { handleDemo } from "./routes/demo";
-import { getAllCustomers, createCustomer, updateCustomer, deleteCustomer } from "./routes/customers";
-import { getAllProducts, createProduct, updateProduct, deleteProduct } from "./routes/products";
-import { getAllOrders, createOrder, updateOrder, deleteOrder } from "./routes/orders";
-import { uploadMiddleware, handleImageUpload, deleteImage } from "./routes/upload";
+import {
+  getAllCustomers,
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
+  getCustomerById,
+} from "./routes/customers";
+import {
+  getAllProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProductById,
+} from "./routes/products";
+import {
+  getAllOrders,
+  createOrder,
+  updateOrder,
+  deleteOrder,
+  getOrderById,
+} from "./routes/orders";
+import {
+  uploadMiddleware,
+  handleImageUpload,
+  deleteImage,
+} from "./routes/upload";
 
 export function createServer() {
   const app = express();
@@ -17,7 +39,7 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Serve uploaded files statically
-  app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+  app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {
@@ -33,18 +55,21 @@ export function createServer() {
 
   // Customer routes
   app.get("/api/customers", getAllCustomers);
+  app.get("/api/customers/:id", getCustomerById);
   app.post("/api/customers", createCustomer);
   app.put("/api/customers/:id", updateCustomer);
   app.delete("/api/customers/:id", deleteCustomer);
 
   // Product routes
   app.get("/api/products", getAllProducts);
+  app.get("/api/products/:id", getProductById);
   app.post("/api/products", createProduct);
   app.put("/api/products/:id", updateProduct);
   app.delete("/api/products/:id", deleteProduct);
 
   // Order routes
   app.get("/api/orders", getAllOrders);
+  app.get("/api/orders/:id", getOrderById);
   app.post("/api/orders", createOrder);
   app.put("/api/orders/:id", updateOrder);
   app.delete("/api/orders/:id", deleteOrder);

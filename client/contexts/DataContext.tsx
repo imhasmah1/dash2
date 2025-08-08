@@ -28,7 +28,8 @@ export interface Product {
   price: number;
   images: string[];
   variants: ProductVariant[];
-  totalStock: number; // Calculated from all variants
+  totalStock?: number; // For backward compatibility
+  total_stock?: number; // Database field name
 }
 
 export interface OrderItem {
@@ -41,12 +42,16 @@ export interface OrderItem {
 export interface Order {
   id: string;
   customerId: string;
+  customer_id?: string; // Database field name
   items: OrderItem[];
   total: number;
   status: "processing" | "ready" | "delivered" | "picked-up";
   deliveryType: "delivery" | "pickup";
+  delivery_type?: "delivery" | "pickup"; // Database field name
   createdAt: string;
   updatedAt: string;
+  created_at?: string; // Database field name
+  updated_at?: string; // Database field name
   notes?: string;
 }
 

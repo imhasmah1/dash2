@@ -287,12 +287,10 @@ export default function Orders() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">
+          <h1 className="text-3xl font-bold text-gray-900">
             {t("orders.title")}
           </h1>
-          <p className="text-gray-600 mt-2 [dir=rtl]:text-right [dir=ltr]:text-left">
-            {t("orders.subtitle")}
-          </p>
+          <p className="text-gray-600 mt-2">{t("orders.subtitle")}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -595,10 +593,10 @@ export default function Orders() {
                       <ShoppingCart className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg [dir=rtl]:text-right [dir=ltr]:text-left">
+                      <CardTitle className="text-lg">
                         {t("orders.orderId")} #{order.id}
                       </CardTitle>
-                      <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left">
+                      <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
                         <User className="w-4 h-4" />
                         {customer?.name || t("orders.customer")}
                       </CardDescription>
@@ -656,10 +654,19 @@ export default function Orders() {
                             key={index}
                             className="flex justify-between items-center p-2 bg-gray-50 rounded"
                           >
-                            <span>
-                              {product?.name || t("products.title")}
-                              {variant && ` (${variant.name})`}
-                            </span>
+                            <div className="flex items-center gap-3">
+                              {product?.images?.[0] && (
+                                <img
+                                  src={product.images[0]}
+                                  alt={product.name}
+                                  className="w-10 h-10 rounded object-cover"
+                                />
+                              )}
+                              <span>
+                                {product?.name || t("products.title")}
+                                {variant && ` (${variant.name})`}
+                              </span>
+                            </div>
                             <span className="text-sm text-gray-600">
                               {item.quantity}x BD {item.price.toFixed(2)} = BD{" "}
                               {(item.quantity * item.price).toFixed(2)}
@@ -797,23 +804,46 @@ export default function Orders() {
                     return (
                       <div
                         key={index}
-                        className="flex justify-between items-center p-3 border rounded"
+                        className="flex justify-between items-center p-3 border rounded hover:bg-gray-50 transition-colors"
                       >
-                        <div>
-                          <span className="font-medium">
-                            {product?.name || t("orders.unknownProduct")}
-                          </span>
-                          {variant && (
-                            <span className="text-sm text-gray-600 ml-2">
-                              ({variant.name})
-                            </span>
+                        <div className="flex items-center gap-3">
+                          {product?.images?.[0] && (
+                            <img
+                              src={product.images[0]}
+                              alt={product.name}
+                              className="w-16 h-16 rounded-lg object-cover border"
+                            />
                           )}
+                          <div>
+                            <button
+                              onClick={() => {
+                                // Navigate to product page - you can add routing here
+                                window.open(
+                                  `/product/${item.productId}`,
+                                  "_blank",
+                                );
+                              }}
+                              className="font-medium text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left"
+                            >
+                              {product?.name || t("orders.unknownProduct")}
+                            </button>
+                            {variant && (
+                              <span className="text-sm text-gray-600 ml-2 block">
+                                Variant: {variant.name}
+                              </span>
+                            )}
+                            {product && (
+                              <span className="text-sm text-gray-500 block">
+                                Unit Price: BD {product.price.toFixed(2)}
+                              </span>
+                            )}
+                          </div>
                         </div>
                         <div className="text-right">
-                          <div>
+                          <div className="text-sm text-gray-600">
                             {item.quantity} × BD {item.price.toFixed(2)}
                           </div>
-                          <div className="font-medium">
+                          <div className="font-medium text-lg">
                             BD {(item.quantity * item.price).toFixed(2)}
                           </div>
                         </div>
