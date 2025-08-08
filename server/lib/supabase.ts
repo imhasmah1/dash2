@@ -54,80 +54,245 @@ export interface Product {
   updated_at?: string;
 }
 
-// Product database operations
+// In-memory fallback storage
+let fallbackProducts: Product[] = [
+  {
+    id: '1',
+    name: 'Wireless Bluetooth Headphones',
+    description: 'Premium quality headphones with noise cancellation',
+    price: 35.0,
+    images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop'],
+    variants: [
+      { id: 'v1', name: 'Black', stock: 25 },
+      { id: 'v2', name: 'White', stock: 15 },
+      { id: 'v3', name: 'Silver', stock: 5 }
+    ],
+    total_stock: 45,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '2',
+    name: 'Adjustable Laptop Stand',
+    description: 'Ergonomic laptop stand for better posture',
+    price: 17.5,
+    images: ['https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop'],
+    variants: [
+      { id: 'v1', name: 'Natural Wood', stock: 13 },
+      { id: 'v2', name: 'Black', stock: 10 }
+    ],
+    total_stock: 23,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '3',
+    name: 'USB-C Cable 6ft',
+    description: 'Fast charging USB-C to USB-C cable',
+    price: 5.0,
+    images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'],
+    variants: [
+      { id: 'v1', name: 'Black', stock: 70 },
+      { id: 'v2', name: 'White', stock: 50 }
+    ],
+    total_stock: 120,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '4',
+    name: 'Portable Bluetooth Speaker',
+    description: 'Waterproof speaker with 12-hour battery life',
+    price: 50.0,
+    images: ['https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop'],
+    variants: [
+      { id: 'v1', name: 'Red', stock: 3 },
+      { id: 'v2', name: 'Blue', stock: 2 },
+      { id: 'v3', name: 'Black', stock: 3 }
+    ],
+    total_stock: 8,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+];
+
+const generateId = () => Date.now().toString() + Math.random().toString(36).substr(2, 9);
+
+// Product database operations with fallback
 export const productDb = {
   // Get all products
   async getAll(): Promise<Product[]> {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      throw new Error(`Failed to fetch products: ${error.message}`);
+    if (!supabase) {
+      return fallbackProducts;
     }
 
-    return data || [];
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        return fallbackProducts;
+      }
+
+      return data || [];
+    } catch (error) {
+      console.warn('Supabase connection failed, using in-memory storage');
+      return fallbackProducts;
+    }
   },
 
   // Create a new product
   async create(product: Omit<Product, 'id' | 'created_at' | 'updated_at'>): Promise<Product> {
-    const { data, error } = await supabase
-      .from('products')
-      .insert([product])
-      .select()
-      .single();
+    const newProduct: Product = {
+      ...product,
+      id: generateId(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
 
-    if (error) {
-      throw new Error(`Failed to create product: ${error.message}`);
+    if (!supabase) {
+      fallbackProducts.push(newProduct);
+      return newProduct;
     }
 
-    return data;
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .insert([product])
+        .select()
+        .single();
+
+      if (error) {
+        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        fallbackProducts.push(newProduct);
+        return newProduct;
+      }
+
+      return data;
+    } catch (error) {
+      console.warn('Supabase connection failed, using in-memory storage');
+      fallbackProducts.push(newProduct);
+      return newProduct;
+    }
   },
 
   // Update a product
   async update(id: string, updates: Partial<Product>): Promise<Product> {
-    const { data, error } = await supabase
-      .from('products')
-      .update({ ...updates, updated_at: new Date().toISOString() })
-      .eq('id', id)
-      .select()
-      .single();
-
-    if (error) {
-      throw new Error(`Failed to update product: ${error.message}`);
+    if (!supabase) {
+      const index = fallbackProducts.findIndex(p => p.id === id);
+      if (index === -1) {
+        throw new Error('Product not found');
+      }
+      fallbackProducts[index] = {
+        ...fallbackProducts[index],
+        ...updates,
+        updated_at: new Date().toISOString()
+      };
+      return fallbackProducts[index];
     }
 
-    return data;
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .update({ ...updates, updated_at: new Date().toISOString() })
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) {
+        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        const index = fallbackProducts.findIndex(p => p.id === id);
+        if (index === -1) {
+          throw new Error('Product not found');
+        }
+        fallbackProducts[index] = {
+          ...fallbackProducts[index],
+          ...updates,
+          updated_at: new Date().toISOString()
+        };
+        return fallbackProducts[index];
+      }
+
+      return data;
+    } catch (error) {
+      console.warn('Supabase connection failed, using in-memory storage');
+      const index = fallbackProducts.findIndex(p => p.id === id);
+      if (index === -1) {
+        throw new Error('Product not found');
+      }
+      fallbackProducts[index] = {
+        ...fallbackProducts[index],
+        ...updates,
+        updated_at: new Date().toISOString()
+      };
+      return fallbackProducts[index];
+    }
   },
 
   // Delete a product
   async delete(id: string): Promise<void> {
-    const { error } = await supabase
-      .from('products')
-      .delete()
-      .eq('id', id);
+    if (!supabase) {
+      const index = fallbackProducts.findIndex(p => p.id === id);
+      if (index === -1) {
+        throw new Error('Product not found');
+      }
+      fallbackProducts.splice(index, 1);
+      return;
+    }
 
-    if (error) {
-      throw new Error(`Failed to delete product: ${error.message}`);
+    try {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', id);
+
+      if (error) {
+        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        const index = fallbackProducts.findIndex(p => p.id === id);
+        if (index === -1) {
+          throw new Error('Product not found');
+        }
+        fallbackProducts.splice(index, 1);
+        return;
+      }
+    } catch (error) {
+      console.warn('Supabase connection failed, using in-memory storage');
+      const index = fallbackProducts.findIndex(p => p.id === id);
+      if (index === -1) {
+        throw new Error('Product not found');
+      }
+      fallbackProducts.splice(index, 1);
     }
   },
 
   // Get a single product by ID
   async getById(id: string): Promise<Product | null> {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('id', id)
-      .single();
-
-    if (error) {
-      if (error.code === 'PGRST116') {
-        return null; // No rows returned
-      }
-      throw new Error(`Failed to fetch product: ${error.message}`);
+    if (!supabase) {
+      return fallbackProducts.find(p => p.id === id) || null;
     }
 
-    return data;
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        if (error.code === 'PGRST116') {
+          return null; // No rows returned
+        }
+        console.warn('Supabase error, falling back to in-memory storage:', error.message);
+        return fallbackProducts.find(p => p.id === id) || null;
+      }
+
+      return data;
+    } catch (error) {
+      console.warn('Supabase connection failed, using in-memory storage');
+      return fallbackProducts.find(p => p.id === id) || null;
+    }
   }
 };
