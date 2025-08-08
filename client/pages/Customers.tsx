@@ -35,7 +35,11 @@ export default function Customers() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    address: "",
+    address: "", // For backward compatibility
+    home: "",
+    road: "",
+    block: "",
+    town: "",
   });
 
   const filteredCustomers = customers.filter(
@@ -45,7 +49,7 @@ export default function Customers() {
   );
 
   const resetForm = () => {
-    setFormData({ name: "", phone: "", address: "" });
+    setFormData({ name: "", phone: "", address: "", home: "", road: "", block: "", town: "" });
     setEditingCustomer(null);
   };
 
