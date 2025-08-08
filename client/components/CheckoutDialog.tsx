@@ -33,7 +33,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     phone: "",
-    address: "",
+    address: "", // For backward compatibility
+    home: "",
+    road: "",
+    block: "",
+    town: "",
   });
 
   const [deliveryType, setDeliveryType] = useState<"delivery" | "pickup">(
