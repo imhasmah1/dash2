@@ -60,7 +60,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     return (
       customerInfo.name.trim() !== "" &&
       customerInfo.phone.trim() !== "" &&
-      customerInfo.address.trim() !== ""
+      customerInfo.town.trim() !== "" // At minimum, town is required
     );
   };
 
