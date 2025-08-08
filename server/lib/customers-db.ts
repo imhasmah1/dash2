@@ -258,7 +258,18 @@ export const customerDb = {
         return fallbackCustomers.find((c) => c.id === id) || null;
       }
 
-      return data;
+      if (!data) return null;
+
+      // Transform database response to match frontend expectations
+      return {
+        id: data.id,
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
+        createdAt: data.created_at || data.createdAt,
+        created_at: data.created_at,
+        updated_at: data.updated_at,
+      };
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackCustomers.find((c) => c.id === id) || null;
