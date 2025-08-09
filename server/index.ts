@@ -25,6 +25,13 @@ import {
   getOrderById,
 } from "./routes/orders";
 import {
+  getAllCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  getCategoryById,
+} from "./routes/categories";
+import {
   uploadMiddleware,
   handleImageUpload,
   deleteImage,
