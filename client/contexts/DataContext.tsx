@@ -126,7 +126,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
         categoryApi.getAll(),
       ]);
       setCustomers(customersData);
-      setProducts(productsData);
+      // Ensure totalStock is properly mapped for backward compatibility
+      const normalizedProducts = productsData.map((product: any) => ({
+        ...product,
+        totalStock: product.total_stock || product.totalStock || 0,
+      }));
+      setProducts(normalizedProducts);
       setOrders(ordersData);
       setCategories(categoriesData);
     } catch (error) {
