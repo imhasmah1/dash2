@@ -564,7 +564,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 </Card>
               )}
             {/* Footer with Navigation - Fixed at bottom */}
-            <div className="sticky bottom-0 bg-white border-t p-4 sm:p-6 mt-6">
+            <div className="sticky bottom-0 bg-white border-t p-4 sm:p-6 mt-8 shadow-lg">
               <div className="flex justify-between items-center gap-4">
                 {/* Back Button */}
                 {step > 1 && (
