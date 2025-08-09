@@ -591,7 +591,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // Helper function to translate category names
   const translateCategory = (categoryName: string): string => {
     // Convert category name to translation key format
-    const key = `category.${categoryName.toLowerCase().replace(/\s+/g, '')}`;
+    const key = `category.${categoryName.toLowerCase().replace(/\s+/g, "")}`;
     const translated = t(key);
     // If translation key doesn't exist, fall back to original name
     return translated === key ? categoryName : translated;
@@ -600,7 +600,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const isRTL = language === "ar";
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, isRTL, t, translateCategory }}>
+    <LanguageContext.Provider
+      value={{ language, setLanguage, isRTL, t, translateCategory }}
+    >
       {children}
     </LanguageContext.Provider>
   );

@@ -262,11 +262,16 @@ export const productDb = {
         console.warn(
           "Supabase error, falling back to in-memory storage:",
           error.message,
-          "Error code:", error.code,
-          "Error details:", error.details
+          "Error code:",
+          error.code,
+          "Error details:",
+          error.details,
         );
         console.log("Looking for product ID in fallback storage:", id);
-        console.log("Available product IDs:", fallbackProducts.map(p => p.id));
+        console.log(
+          "Available product IDs:",
+          fallbackProducts.map((p) => p.id),
+        );
         const index = fallbackProducts.findIndex((p) => p.id === id);
         if (index === -1) {
           throw new Error("Product not found");

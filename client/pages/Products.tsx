@@ -634,7 +634,9 @@ export default function Products() {
                       <div className="mt-2">
                         <Badge variant="outline" className="text-xs">
                           {getCategoryById(product.categoryId)?.name
-                            ? translateCategory(getCategoryById(product.categoryId).name)
+                            ? translateCategory(
+                                getCategoryById(product.categoryId).name,
+                              )
                             : "Unknown Category"}
                         </Badge>
                       </div>
