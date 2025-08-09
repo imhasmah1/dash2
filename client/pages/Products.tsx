@@ -324,13 +324,18 @@ export default function Products() {
                           id="stock"
                           type="number"
                           min="0"
-                          value={formData.stock}
+                          value={formData.stock === 0 ? "" : formData.stock}
                           onChange={(e) =>
                             setFormData((prev) => ({
                               ...prev,
                               stock: parseInt(e.target.value) || 0,
                             }))
                           }
+                          onFocus={(e) => {
+                            if (e.target.value === "0") {
+                              e.target.value = "";
+                            }
+                          }}
                           placeholder="0"
                           required
                         />
