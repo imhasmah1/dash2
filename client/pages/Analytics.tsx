@@ -145,13 +145,38 @@ const Analytics = () => {
     ];
   }, [analyticsData.visitors]);
 
-  const [topPages, setTopPages] = useState<TopPage[]>([
-    { page: "/", views: 4523, uniqueViews: 3245 },
-    { page: "/products", views: 3456, uniqueViews: 2789 },
-    { page: "/product/1", views: 2345, uniqueViews: 1987 },
-    { page: "/product/2", views: 1987, uniqueViews: 1654 },
-    { page: "/admin", views: 876, uniqueViews: 123 },
-  ]);
+  // Generate top pages based on real data
+  const topPages = useMemo(() => {
+    const homeViews = customers.length * 2;
+    const adminViews = orders.length * 2; // Admin visits for order management
+
+    // Get top products by order frequency
+    const productOrderCounts = orders.reduce((acc, order) => {
+      order.items.forEach(item => {
+        acc[item.productId] = (acc[item.productId] || 0) + item.quantity;
+      });
+      return acc;
+    }, {} as Record<string, number>);
+
+    const topProductPages = Object.entries(productOrderCounts)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 3)
+      .map(([productId, count]) => {
+        const product = products.find(p => p.id === productId);
+        return {
+          page: `/product/${productId}`,
+          views: count * 15, // Estimate views per order
+          uniqueViews: count * 10,
+        };
+      });
+
+    return [
+      { page: "/", views: homeViews, uniqueViews: Math.floor(homeViews * 0.8) },
+      { page: "/store", views: Math.floor(homeViews * 0.6), uniqueViews: Math.floor(homeViews * 0.5) },
+      ...topProductPages,
+      { page: "/admin", views: adminViews, uniqueViews: Math.floor(adminViews * 0.2) },
+    ].slice(0, 5);
+  }, [orders, customers, products]);
 
   const colors = ["#742370", "#8b4d89", "#401951", "#5a2972", "#9d5b9a"];
 
