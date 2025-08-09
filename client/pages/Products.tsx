@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useData, Product, ProductVariant } from "@/contexts/DataContext";
+import { useData, Product, ProductVariant, Category } from "@/contexts/DataContext";
 import { useDialog } from "@/contexts/DialogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
