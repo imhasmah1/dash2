@@ -53,7 +53,11 @@ export default function AddToCartDialog({
   const selectedVariant = product.variants.find(
     (v) => v.id === selectedVariantId,
   );
-  const maxQuantity = selectedVariant?.stock || 0;
+
+  // For products without variants, use total_stock; otherwise use variant stock
+  const maxQuantity = product.variants.length === 0
+    ? product.total_stock
+    : (selectedVariant?.stock || 0);
 
   // Reset form when dialog opens
   useEffect(() => {
@@ -64,15 +68,16 @@ export default function AddToCartDialog({
   }, [open]);
 
   const handleAddToCart = () => {
-    if (!selectedVariant) return;
+    // For products without variants, allow adding to cart without variant selection
+    if (product.variants.length > 0 && !selectedVariant) return;
 
     addItem({
       productId: product.id,
-      variantId: selectedVariant.id,
+      variantId: selectedVariant?.id || 'default',
       quantity,
       price: product.price,
       productName: product.name,
-      variantName: selectedVariant.name,
+      variantName: selectedVariant?.name || 'Default',
       productImage: product.images[0] || undefined,
     });
 
@@ -85,8 +90,10 @@ export default function AddToCartDialog({
     }
   };
 
-  const isValidSelection =
-    selectedVariant && quantity > 0 && quantity <= maxQuantity;
+  // For products without variants, only check quantity; otherwise require variant selection
+  const isValidSelection = product.variants.length === 0
+    ? quantity > 0 && quantity <= maxQuantity && maxQuantity > 0
+    : selectedVariant && quantity > 0 && quantity <= maxQuantity;
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -141,7 +148,7 @@ export default function AddToCartDialog({
           )}
 
           {/* Quantity Selection */}
-          {selectedVariant && (
+          {(selectedVariant || product.variants.length === 0) && (
             <div className="space-y-2">
               <Label htmlFor="quantity">{t("store.quantity")}</Label>
               <div className="flex items-center gap-3 justify-center">
@@ -178,9 +185,9 @@ export default function AddToCartDialog({
                 </Button>
               </div>
 
-              {selectedVariant && (
+              {(selectedVariant || product.variants.length === 0) && (
                 <p className="text-xs text-muted-foreground">
-                  {t("products.stock")}: {selectedVariant.stock}
+                  {t("products.stock")}: {product.variants.length === 0 ? product.total_stock : selectedVariant.stock}
                 </p>
               )}
             </div>
