@@ -84,7 +84,7 @@ export default function Checkout() {
         total: totalPrice,
         status: "processing",
         deliveryType,
-        notes: "",
+        notes: deliveryType === "delivery" ? `Delivery Area: ${deliveryArea === "all-towns" ? "All Towns" : "Jao or Askar"}` : "",
       });
 
       setOrderNumber(order.id);
