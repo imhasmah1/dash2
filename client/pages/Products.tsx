@@ -624,23 +624,31 @@ export default function Products() {
                   </div>
 
                   {product.variants.length > 0 && (
-                    <div className="space-y-1">
+                    <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-700">
                         {t("products.variants")}:
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        {product.variants.slice(0, 3).map((variant) => (
-                          <Badge
-                            key={variant.id}
-                            variant="outline"
-                            className="text-xs"
-                          >
-                            {variant.name} ({variant.stock})
-                          </Badge>
+                      <div className="space-y-2">
+                        {product.variants.slice(0, 2).map((variant) => (
+                          <div key={variant.id} className="flex items-center gap-2">
+                            {variant.image && (
+                              <img
+                                src={variant.image}
+                                alt={variant.name}
+                                className="w-8 h-8 object-cover rounded border"
+                              />
+                            )}
+                            <Badge
+                              variant="outline"
+                              className="text-xs"
+                            >
+                              {variant.name} ({variant.stock})
+                            </Badge>
+                          </div>
                         ))}
-                        {product.variants.length > 3 && (
+                        {product.variants.length > 2 && (
                           <Badge variant="outline" className="text-xs">
-                            +{product.variants.length - 3} more
+                            +{product.variants.length - 2} more variants
                           </Badge>
                         )}
                       </div>
