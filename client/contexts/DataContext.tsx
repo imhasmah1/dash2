@@ -70,6 +70,7 @@ interface DataContextType {
   customers: Customer[];
   products: Product[];
   orders: Order[];
+  categories: Category[];
   loading: boolean;
   addCustomer: (customer: Omit<Customer, "id" | "createdAt">) => Promise<void>;
   updateCustomer: (id: string, customer: Partial<Customer>) => Promise<void>;
