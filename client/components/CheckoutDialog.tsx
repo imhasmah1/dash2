@@ -412,7 +412,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                         </div>
                         <div className="text-right auto-text">
-                          <span className="text-xl font-bold text-primary">BD 2.00</span>
+                          <span className="text-xl font-bold text-primary">
+                            BD 2.00
+                          </span>
                         </div>
                       </div>
 

@@ -6,7 +6,14 @@ import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { LoadingScreen } from "../components/ui/loading";
-import { ShoppingCart, Plus, Globe, Store as StoreIcon, Search, X } from "lucide-react";
+import {
+  ShoppingCart,
+  Plus,
+  Globe,
+  Store as StoreIcon,
+  Search,
+  X,
+} from "lucide-react";
 import { Badge } from "../components/ui/badge";
 import {
   DropdownMenu,
@@ -63,9 +70,10 @@ export default function Store() {
     if (!searchQuery.trim()) {
       setFilteredProducts(products);
     } else {
-      const filtered = products.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase())
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.description.toLowerCase().includes(searchQuery.toLowerCase()),
       );
       setFilteredProducts(filtered);
     }

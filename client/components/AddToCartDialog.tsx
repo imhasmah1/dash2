@@ -200,7 +200,12 @@ export default function AddToCartDialog({
           <Button variant="outline" onClick={onClose} className="flex-1 h-12">
             {t("common.cancel")}
           </Button>
-          <Button onClick={handleAddToCart} disabled={!isValidSelection} className="flex-1 h-12" size="lg">
+          <Button
+            onClick={handleAddToCart}
+            disabled={!isValidSelection}
+            className="flex-1 h-12"
+            size="lg"
+          >
             {t("store.addToCart")}
           </Button>
         </DialogFooter>
