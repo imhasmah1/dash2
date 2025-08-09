@@ -254,7 +254,7 @@ export default function Store() {
                     <Button
                       size="sm"
                       onClick={() => handleAddToCart(product)}
-                      disabled={product.total_stock === 0}
+                      disabled={(product.total_stock || product.totalStock || 0) === 0}
                       className="shrink-0"
                     >
                       <Plus className="h-4 w-4" />
