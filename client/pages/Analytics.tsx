@@ -172,7 +172,6 @@ const Analytics = () => {
 
     return [
       { page: "/", views: homeViews, uniqueViews: Math.floor(homeViews * 0.8) },
-      { page: "/store", views: Math.floor(homeViews * 0.6), uniqueViews: Math.floor(homeViews * 0.5) },
       ...topProductPages,
       { page: "/admin", views: adminViews, uniqueViews: Math.floor(adminViews * 0.2) },
     ].slice(0, 5);
