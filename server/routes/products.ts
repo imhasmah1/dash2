@@ -72,12 +72,16 @@ export const updateProduct: RequestHandler = async (req, res) => {
       updates.price = parseFloat(updates.price);
     }
 
-    // Recalculate total stock if variants are updated
-    if (updates.variants) {
+    // Recalculate total stock if variants are updated or if stock is provided
+    if (updates.variants && updates.variants.length > 0) {
       updates.total_stock = updates.variants.reduce(
         (sum: number, variant: ProductVariant) => sum + variant.stock,
         0,
       );
+    } else if (updates.totalStock !== undefined) {
+      updates.total_stock = updates.totalStock;
+    } else if (updates.stock !== undefined) {
+      updates.total_stock = updates.stock;
     }
 
     const updatedProduct = await productDb.update(id, updates);
