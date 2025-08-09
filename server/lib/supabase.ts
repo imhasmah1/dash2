@@ -232,6 +232,9 @@ export const productDb = {
 
   // Update a product
   async update(id: string, updates: Partial<Product>): Promise<Product> {
+    console.log("Updating product with ID:", id);
+    console.log("Updates:", JSON.stringify(updates, null, 2));
+
     if (!supabase) {
       console.log("Using in-memory storage. Looking for product ID:", id);
       console.log(
@@ -241,28 +244,15 @@ export const productDb = {
 
       const index = fallbackProducts.findIndex((p) => p.id === id);
       if (index === -1) {
-        // Product not found in fallback storage, create new one with the ID
-        console.log("Product not found in fallback storage, creating new one");
-        const newProduct: Product = {
-          id,
-          name: updates.name || "New Product",
-          description: updates.description || "",
-          price: updates.price || 0,
-          images: updates.images || [],
-          variants: updates.variants || [],
-          total_stock: updates.total_stock || 0,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-          ...updates,
-        };
-        fallbackProducts.push(newProduct);
-        return newProduct;
+        console.error("Product not found in fallback storage with ID:", id);
+        throw new Error("Product not found");
       }
       fallbackProducts[index] = {
         ...fallbackProducts[index],
         ...updates,
         updated_at: new Date().toISOString(),
       };
+      console.log("Product updated successfully in fallback storage");
       return fallbackProducts[index];
     }
 
