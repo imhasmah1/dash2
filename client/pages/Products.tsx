@@ -552,7 +552,7 @@ export default function Products() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((product) => {
-          const stockStatus = getStockStatus(product.totalStock);
+          const stockStatus = getStockStatus(product.totalStock || product.total_stock || 0);
           const primaryImage = product.images[0];
 
           return (
