@@ -327,7 +327,7 @@ const Analytics = () => {
               {analyticsData.bounceRate}%
             </div>
             <Badge variant="outline" className="mt-1">
-              -3%
+              {orders.length > customers.length ? '+' : '-'}{Math.abs(Math.floor((orders.length - customers.length) / Math.max(1, customers.length) * 100))}%
             </Badge>
           </CardContent>
         </Card>
