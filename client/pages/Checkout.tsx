@@ -160,9 +160,9 @@ export default function Checkout() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 [dir=rtl]:grid-cols-1 [dir=rtl]:lg:grid-cols-2">
           {/* Customer Information */}
-          <div className="space-y-6">
+          <div className="space-y-6 [dir=rtl]:order-2 [dir=ltr]:order-1">
             <Card>
               <CardHeader>
                 <CardTitle>{t("checkout.customerInfo")}</CardTitle>
