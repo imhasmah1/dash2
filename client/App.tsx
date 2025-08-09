@@ -76,6 +76,7 @@ import Dashboard from "@/pages/Dashboard";
 import Products from "@/pages/Products";
 import Orders from "@/pages/Orders";
 import Customers from "@/pages/Customers";
+import Categories from "@/pages/Categories";
 import Revenue from "@/pages/Revenue";
 import Analytics from "@/pages/Analytics";
 import Store from "@/pages/Store";
@@ -102,6 +103,7 @@ function AppContent() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/categories" element={<Categories />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/revenue" element={<Revenue />} />

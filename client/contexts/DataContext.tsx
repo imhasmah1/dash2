@@ -5,7 +5,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { customerApi, productApi, orderApi } from "@/services/api";
+import { customerApi, productApi, orderApi, categoryApi } from "@/services/api";
 
 export interface Customer {
   id: string;
@@ -19,10 +19,17 @@ export interface Customer {
   createdAt: string;
 }
 
+export interface Category {
+  id: string;
+  name: string;
+  createdAt: string;
+}
+
 export interface ProductVariant {
   id: string;
   name: string;
   stock: number;
+  image?: string;
 }
 
 export interface Product {
@@ -32,6 +39,7 @@ export interface Product {
   price: number;
   images: string[];
   variants: ProductVariant[];
+  categoryId?: string;
   totalStock?: number; // For backward compatibility
   total_stock?: number; // Database field name
 }
@@ -63,6 +71,7 @@ interface DataContextType {
   customers: Customer[];
   products: Product[];
   orders: Order[];
+  categories: Category[];
   loading: boolean;
   addCustomer: (customer: Omit<Customer, "id" | "createdAt">) => Promise<void>;
   updateCustomer: (id: string, customer: Partial<Customer>) => Promise<void>;
@@ -76,12 +85,16 @@ interface DataContextType {
   updateOrder: (id: string, order: Partial<Order>) => Promise<void>;
   deleteOrder: (id: string) => Promise<void>;
   updateOrderStatus: (id: string, status: Order["status"]) => Promise<void>;
+  addCategory: (category: Omit<Category, "id" | "createdAt">) => Promise<void>;
+  updateCategory: (id: string, category: Partial<Category>) => Promise<void>;
+  deleteCategory: (id: string) => Promise<void>;
   getCustomerById: (id: string) => Customer | undefined;
   getProductById: (id: string) => Product | undefined;
   getVariantById: (
     productId: string,
     variantId: string,
   ) => ProductVariant | undefined;
+  getCategoryById: (id: string) => Category | undefined;
   refetchData: () => Promise<void>;
   uploadImage: (file: File) => Promise<string>;
 }
@@ -92,6 +105,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
 
@@ -105,14 +119,22 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
     try {
       setLoading(true);
-      const [customersData, productsData, ordersData] = await Promise.all([
-        customerApi.getAll(),
-        productApi.getAll(),
-        orderApi.getAll(),
-      ]);
+      const [customersData, productsData, ordersData, categoriesData] =
+        await Promise.all([
+          customerApi.getAll(),
+          productApi.getAll(),
+          orderApi.getAll(),
+          categoryApi.getAll(),
+        ]);
       setCustomers(customersData);
-      setProducts(productsData);
+      // Ensure totalStock is properly mapped for backward compatibility
+      const normalizedProducts = productsData.map((product: any) => ({
+        ...product,
+        totalStock: product.total_stock || product.totalStock || 0,
+      }));
+      setProducts(normalizedProducts);
       setOrders(ordersData);
+      setCategories(categoriesData);
     } catch (error) {
       console.error(`Failed to load data (attempt ${retryCount + 1}):`, error);
 
@@ -126,6 +148,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         setCustomers([]);
         setProducts([]);
         setOrders([]);
+        setCategories([]);
       }
     } finally {
       setLoading(false);
@@ -295,6 +318,45 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const addCategory = async (
+    categoryData: Omit<Category, "id" | "createdAt">,
+  ) => {
+    try {
+      const newCategory = await categoryApi.create(categoryData);
+      setCategories((prev) => [...prev, newCategory]);
+    } catch (error) {
+      console.error("Failed to add category:", error);
+      throw error;
+    }
+  };
+
+  const updateCategory = async (
+    id: string,
+    categoryData: Partial<Category>,
+  ) => {
+    try {
+      const updatedCategory = await categoryApi.update(id, categoryData);
+      setCategories((prev) =>
+        prev.map((category) =>
+          category.id === id ? updatedCategory : category,
+        ),
+      );
+    } catch (error) {
+      console.error("Failed to update category:", error);
+      throw error;
+    }
+  };
+
+  const deleteCategory = async (id: string) => {
+    try {
+      await categoryApi.delete(id);
+      setCategories((prev) => prev.filter((category) => category.id !== id));
+    } catch (error) {
+      console.error("Failed to delete category:", error);
+      throw error;
+    }
+  };
+
   const getCustomerById = (id: string) =>
     customers.find((customer) => customer.id === id);
   const getProductById = (id: string) =>
@@ -303,6 +365,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
     const product = getProductById(productId);
     return product?.variants.find((variant) => variant.id === variantId);
   };
+  const getCategoryById = (id: string) =>
+    categories.find((category) => category.id === id);
 
   const refetchData = async () => {
     await loadData();
@@ -315,8 +379,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12">
             <img
-              src="/placeholder.svg"
-              alt="Logo"
+              src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F9d5f63fd358a4946ace1b6ce56f63e7e?format=webp&width=800"
+              alt="أزهار ستور - azharstore"
               className="w-full h-full object-contain"
             />
           </div>
@@ -333,6 +397,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         customers,
         products,
         orders,
+        categories,
         loading,
         addCustomer,
         updateCustomer,
@@ -344,9 +409,13 @@ export function DataProvider({ children }: { children: ReactNode }) {
         updateOrder,
         deleteOrder,
         updateOrderStatus,
+        addCategory,
+        updateCategory,
+        deleteCategory,
         getCustomerById,
         getProductById,
         getVariantById,
+        getCategoryById,
         refetchData,
         uploadImage,
       }}

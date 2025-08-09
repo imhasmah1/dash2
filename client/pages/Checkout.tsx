@@ -31,9 +31,16 @@ export default function Checkout() {
   const [deliveryType, setDeliveryType] = useState<"delivery" | "pickup">(
     "delivery",
   );
+  const [deliveryArea, setDeliveryArea] = useState<"all-towns" | "jao-askar">(
+    "all-towns",
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
+  const [orderDetails, setOrderDetails] = useState<{
+    deliveryType: "delivery" | "pickup";
+    deliveryArea?: "all-towns" | "jao-askar";
+  } | null>(null);
 
   const totalPrice = getTotalPrice();
 
@@ -81,10 +88,17 @@ export default function Checkout() {
         total: totalPrice,
         status: "processing",
         deliveryType,
-        notes: "",
+        notes:
+          deliveryType === "delivery"
+            ? `Delivery Area: ${deliveryArea === "all-towns" ? "All Towns" : "Jao or Askar"}`
+            : "",
       });
 
       setOrderNumber(order.id);
+      setOrderDetails({
+        deliveryType,
+        deliveryArea: deliveryType === "delivery" ? deliveryArea : undefined,
+      });
       setOrderSuccess(true);
       clearCart();
     } catch (error) {
@@ -121,12 +135,30 @@ export default function Checkout() {
               <Check className="h-8 w-8 text-green-600" />
             </div>
             <h2 className="text-xl font-semibold">
-              {t("checkout.orderSuccess")}
+              {t("checkout.orderSuccess") || "Order Placed Successfully!"}
             </h2>
-            <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
+            <p className="text-muted-foreground">
+              {t("checkout.thankYou") ||
+                "Thank you for your order! We have received your order and will process it shortly."}
+            </p>
+
+            <div className="bg-blue-50 p-4 rounded-lg space-y-2 text-sm">
+              <p className="font-medium text-blue-900">What happens next?</p>
+              <ul className="text-blue-800 space-y-1 text-left">
+                <li>• We will contact you shortly to confirm your order</li>
+                <li>
+                  •{" "}
+                  {orderDetails?.deliveryType === "delivery"
+                    ? `Your order will be delivered to your address${orderDetails?.deliveryArea === "jao-askar" ? " (Jao/Askar area)" : " (All towns)"}`
+                    : "Your order will be ready for pickup"}
+                </li>
+                <li>• You will receive updates about your order status</li>
+              </ul>
+            </div>
+
             <div className="space-y-2">
               <p className="text-sm font-medium">
-                {t("checkout.orderNumber")}:
+                {t("checkout.orderNumber") || "Order Number"}:
               </p>
               <Badge variant="outline" className="text-lg px-4 py-2">
                 #{orderNumber}
@@ -157,9 +189,9 @@ export default function Checkout() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 [dir=rtl]:grid-cols-1 [dir=rtl]:lg:grid-cols-2">
           {/* Customer Information */}
-          <div className="space-y-6">
+          <div className="space-y-6 [dir=rtl]:order-2 [dir=ltr]:order-1">
             <Card>
               <CardHeader>
                 <CardTitle>{t("checkout.customerInfo")}</CardTitle>
@@ -172,6 +204,7 @@ export default function Checkout() {
                     value={customerInfo.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     placeholder={t("checkout.customerName")}
+                    className="auto-text"
                   />
                 </div>
 
@@ -182,6 +215,8 @@ export default function Checkout() {
                     value={customerInfo.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     placeholder={t("checkout.customerPhone")}
+                    className="ltr-text"
+                    dir="ltr"
                   />
                 </div>
 
@@ -196,6 +231,7 @@ export default function Checkout() {
                       handleInputChange("address", e.target.value)
                     }
                     placeholder={t("checkout.customerAddress")}
+                    className="auto-text"
                   />
                 </div>
               </CardContent>
@@ -206,20 +242,60 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle>{t("checkout.deliveryOptions")}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <RadioGroup
                   value={deliveryType}
                   onValueChange={(value) =>
                     setDeliveryType(value as "delivery" | "pickup")
                   }
                 >
-                  <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
-                    <RadioGroupItem value="delivery" id="delivery" />
-                    <Label htmlFor="delivery">{t("checkout.delivery")}</Label>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                      <RadioGroupItem value="delivery" id="delivery" />
+                      <Label htmlFor="delivery" className="font-medium">
+                        {t("checkout.delivery")}
+                      </Label>
+                    </div>
+
+                    {deliveryType === "delivery" && (
+                      <div className="ml-6 [dir=rtl]:ml-0 [dir=rtl]:mr-6 space-y-2">
+                        <RadioGroup
+                          value={deliveryArea}
+                          onValueChange={(value) =>
+                            setDeliveryArea(value as "all-towns" | "jao-askar")
+                          }
+                        >
+                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                            <RadioGroupItem value="all-towns" id="all-towns" />
+                            <Label
+                              htmlFor="all-towns"
+                              className="font-semibold text-primary"
+                            >
+                              All Towns (Recommended)
+                            </Label>
+                          </div>
+                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                            <RadioGroupItem value="jao-askar" id="jao-askar" />
+                            <Label htmlFor="jao-askar">Jao or Askar only</Label>
+                          </div>
+                        </RadioGroup>
+                      </div>
+                    )}
                   </div>
-                  <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
-                    <RadioGroupItem value="pickup" id="pickup" />
-                    <Label htmlFor="pickup">{t("checkout.pickup")}</Label>
+
+                  <div className="flex items-center justify-between space-x-2 [dir=rtl]:space-x-reverse">
+                    <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                      <RadioGroupItem value="pickup" id="pickup" />
+                      <Label htmlFor="pickup" className="font-medium">
+                        {t("checkout.pickup")}
+                      </Label>
+                    </div>
+                    <Badge
+                      variant="secondary"
+                      className="text-green-700 bg-green-100"
+                    >
+                      Free
+                    </Badge>
                   </div>
                 </RadioGroup>
               </CardContent>
@@ -236,31 +312,40 @@ export default function Checkout() {
           </div>
 
           {/* Order Summary */}
-          <div>
+          <div className="[dir=rtl]:order-1 [dir=ltr]:order-2">
             <Card className="sticky top-4">
               <CardHeader>
                 <CardTitle>{t("checkout.orderSummary")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Order Items */}
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="flex justify-between items-start text-sm"
+                      className="flex justify-between items-start gap-4 p-3 bg-gray-50 rounded-lg [dir=rtl]:flex-row-reverse"
                     >
-                      <div className="flex-1">
-                        <p className="font-medium">{item.productName}</p>
-                        <p className="text-muted-foreground">
-                          {item.variantName}
+                      <div className="flex-1 space-y-1">
+                        <p className="font-medium text-base auto-text">
+                          {item.productName}
                         </p>
-                        <p className="text-muted-foreground">
+                        {item.variantName && (
+                          <p className="text-muted-foreground text-sm auto-text">
+                            {item.variantName}
+                          </p>
+                        )}
+                        <p className="text-muted-foreground text-sm auto-text">
                           {t("store.quantity")}: {item.quantity}
                         </p>
                       </div>
-                      <p className="font-medium">
-                        BD {(item.price * item.quantity).toFixed(2)}
-                      </p>
+                      <div className="text-right [dir=rtl]:text-left">
+                        <p className="font-semibold text-lg text-primary ltr-text">
+                          BD {(item.price * item.quantity).toFixed(2)}
+                        </p>
+                        <p className="text-xs text-muted-foreground ltr-text">
+                          BD {item.price.toFixed(2)} each
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -268,9 +353,9 @@ export default function Checkout() {
                 <Separator />
 
                 {/* Total */}
-                <div className="flex justify-between items-center text-lg font-bold">
-                  <span>{t("orders.orderTotal")}:</span>
-                  <span className="text-primary">
+                <div className="flex justify-between items-center text-xl font-bold p-4 bg-primary/5 rounded-lg [dir=rtl]:flex-row-reverse">
+                  <span className="auto-text">{t("orders.orderTotal")}:</span>
+                  <span className="text-primary text-2xl ltr-text">
                     BD {totalPrice.toFixed(2)}
                   </span>
                 </div>

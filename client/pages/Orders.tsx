@@ -420,7 +420,7 @@ export default function Orders() {
                                   ? selectedVariant.stock
                                   : product?.totalStock || 999
                               }
-                              value={item.quantity}
+                              value={item.quantity === 0 ? "" : item.quantity}
                               onChange={(e) =>
                                 updateOrderItem(
                                   index,
@@ -428,6 +428,11 @@ export default function Orders() {
                                   parseInt(e.target.value) || 1,
                                 )
                               }
+                              onFocus={(e) => {
+                                if (e.target.value === "0") {
+                                  e.target.value = "";
+                                }
+                              }}
                             />
                           </div>
                           <div className="w-24">
@@ -435,7 +440,7 @@ export default function Orders() {
                             <Input
                               type="number"
                               step="0.01"
-                              value={item.price}
+                              value={item.price === 0 ? "" : item.price}
                               onChange={(e) =>
                                 updateOrderItem(
                                   index,
@@ -443,6 +448,11 @@ export default function Orders() {
                                   parseFloat(e.target.value) || 0,
                                 )
                               }
+                              onFocus={(e) => {
+                                if (e.target.value === "0") {
+                                  e.target.value = "";
+                                }
+                              }}
                             />
                           </div>
                           <Button

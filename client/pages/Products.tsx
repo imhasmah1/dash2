@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { useData, Product, ProductVariant } from "@/contexts/DataContext";
+import {
+  useData,
+  Product,
+  ProductVariant,
+  Category,
+} from "@/contexts/DataContext";
 import { useDialog } from "@/contexts/DialogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -28,7 +33,15 @@ import ImageUpload from "@/components/ImageUpload";
 import { Plus, Search, Edit, Trash2, Package, X } from "lucide-react";
 
 export default function Products() {
-  const { products, addProduct, updateProduct, deleteProduct } = useData();
+  const {
+    products,
+    categories,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    getCategoryById,
+    uploadImage,
+  } = useData();
   const { showConfirm, showAlert } = useDialog();
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,6 +54,7 @@ export default function Products() {
     images: [] as string[],
     variants: [] as ProductVariant[],
     stock: 0,
+    categoryId: "",
   });
 
   const filteredProducts = products.filter(
@@ -59,6 +73,7 @@ export default function Products() {
       images: [],
       variants: [],
       stock: 0,
+      categoryId: "",
     });
     setEditingProduct(null);
   };
@@ -72,7 +87,11 @@ export default function Products() {
         price: product.price,
         images: [...product.images],
         variants: [...product.variants],
-        stock: product.variants.length === 0 ? product.totalStock : 0,
+        stock:
+          product.variants.length === 0
+            ? product.totalStock || product.total_stock || 0
+            : 0,
+        categoryId: product.categoryId || "",
       });
     } else {
       resetForm();
@@ -90,7 +109,7 @@ export default function Products() {
       ...prev,
       variants: [
         ...prev.variants,
-        { id: generateVariantId(), name: "", stock: 0 },
+        { id: generateVariantId(), name: "", stock: 0, image: "" },
       ],
     }));
   };
@@ -130,13 +149,19 @@ export default function Products() {
         totalStock: getTotalStock(),
       };
 
+      console.log("Submitting product data:", productData);
+      console.log("Editing product:", editingProduct);
+
       if (editingProduct) {
+        console.log("Updating product with ID:", editingProduct.id);
         await updateProduct(editingProduct.id, productData);
       } else {
+        console.log("Creating new product");
         await addProduct(productData);
       }
       closeDialog();
     } catch (error) {
+      console.error("Product save error:", error);
       const errorMessage =
         error instanceof Error
           ? error.message
@@ -277,16 +302,42 @@ export default function Products() {
                         type="number"
                         step="0.01"
                         min="0"
-                        value={formData.price}
+                        value={formData.price === 0 ? "" : formData.price}
                         onChange={(e) =>
                           setFormData((prev) => ({
                             ...prev,
                             price: parseFloat(e.target.value) || 0,
                           }))
                         }
+                        onFocus={(e) => {
+                          if (e.target.value === "0") {
+                            e.target.value = "";
+                          }
+                        }}
                         placeholder="0.00"
                         required
                       />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="category">Category</Label>
+                      <select
+                        id="category"
+                        value={formData.categoryId}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            categoryId: e.target.value,
+                          }))
+                        }
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <option value="">Select Category</option>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     {formData.variants.length === 0 && (
                       <div className="grid gap-2">
@@ -295,13 +346,18 @@ export default function Products() {
                           id="stock"
                           type="number"
                           min="0"
-                          value={formData.stock}
+                          value={formData.stock === 0 ? "" : formData.stock}
                           onChange={(e) =>
                             setFormData((prev) => ({
                               ...prev,
                               stock: parseInt(e.target.value) || 0,
                             }))
                           }
+                          onFocus={(e) => {
+                            if (e.target.value === "0") {
+                              e.target.value = "";
+                            }
+                          }}
                           placeholder="0"
                           required
                         />
@@ -353,50 +409,122 @@ export default function Products() {
                     <div className="space-y-3">
                       {formData.variants.map((variant, index) => (
                         <Card key={variant.id || index} className="p-4">
-                          <div className="flex gap-4 items-end">
-                            <div className="flex-1">
-                              <Label htmlFor={`variant-name-${index}`}>
-                                {t("products.variantName")}
-                              </Label>
-                              <Input
-                                id={`variant-name-${index}`}
-                                value={variant.name}
-                                onChange={(e) =>
-                                  updateVariant(index, "name", e.target.value)
-                                }
-                                placeholder={t("products.variantName")}
-                                required
-                              />
+                          <div className="space-y-4">
+                            <div className="flex gap-4 items-end">
+                              <div className="flex-1">
+                                <Label htmlFor={`variant-name-${index}`}>
+                                  {t("products.variantName")}
+                                </Label>
+                                <Input
+                                  id={`variant-name-${index}`}
+                                  value={variant.name}
+                                  onChange={(e) =>
+                                    updateVariant(index, "name", e.target.value)
+                                  }
+                                  placeholder={t("products.variantName")}
+                                  required
+                                />
+                              </div>
+                              <div className="w-32">
+                                <Label htmlFor={`variant-stock-${index}`}>
+                                  {t("products.variantStock")}
+                                </Label>
+                                <Input
+                                  id={`variant-stock-${index}`}
+                                  type="number"
+                                  min="0"
+                                  value={
+                                    variant.stock === 0 ? "" : variant.stock
+                                  }
+                                  onChange={(e) =>
+                                    updateVariant(
+                                      index,
+                                      "stock",
+                                      parseInt(e.target.value) || 0,
+                                    )
+                                  }
+                                  onFocus={(e) => {
+                                    if (e.target.value === "0") {
+                                      e.target.value = "";
+                                    }
+                                  }}
+                                  placeholder="0"
+                                  required
+                                />
+                              </div>
+                              <Button
+                                type="button"
+                                size="icon"
+                                variant="outline"
+                                onClick={() => removeVariant(index)}
+                                className="text-red-600 hover:text-red-700"
+                              >
+                                <X className="w-4 h-4" />
+                              </Button>
                             </div>
-                            <div className="w-32">
-                              <Label htmlFor={`variant-stock-${index}`}>
-                                {t("products.variantStock")}
+
+                            {/* Variant Image Upload */}
+                            <div>
+                              <Label className="text-sm font-medium">
+                                Variant Image (Optional)
                               </Label>
-                              <Input
-                                id={`variant-stock-${index}`}
-                                type="number"
-                                min="0"
-                                value={variant.stock}
-                                onChange={(e) =>
-                                  updateVariant(
-                                    index,
-                                    "stock",
-                                    parseInt(e.target.value) || 0,
-                                  )
-                                }
-                                placeholder="0"
-                                required
-                              />
+                              <div className="mt-2">
+                                {variant.image ? (
+                                  <div className="flex items-center gap-3">
+                                    <img
+                                      src={variant.image}
+                                      alt={variant.name}
+                                      className="w-16 h-16 object-cover rounded border"
+                                    />
+                                    <Button
+                                      type="button"
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() =>
+                                        updateVariant(index, "image", "")
+                                      }
+                                    >
+                                      Remove Image
+                                    </Button>
+                                  </div>
+                                ) : (
+                                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      onChange={async (e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                          try {
+                                            const imageUrl =
+                                              await uploadImage(file);
+                                            updateVariant(
+                                              index,
+                                              "image",
+                                              imageUrl,
+                                            );
+                                          } catch (error) {
+                                            console.error(
+                                              "Failed to upload variant image:",
+                                              error,
+                                            );
+                                          }
+                                        }
+                                      }}
+                                      className="hidden"
+                                      id={`variant-image-${index}`}
+                                    />
+                                    <label
+                                      htmlFor={`variant-image-${index}`}
+                                      className="cursor-pointer flex flex-col items-center justify-center text-sm text-gray-600 hover:text-gray-800"
+                                    >
+                                      <Plus className="w-6 h-6 mb-1" />
+                                      Upload Image
+                                    </label>
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            <Button
-                              type="button"
-                              size="icon"
-                              variant="outline"
-                              onClick={() => removeVariant(index)}
-                              className="text-red-600 hover:text-red-700"
-                            >
-                              <X className="w-4 h-4" />
-                            </Button>
                           </div>
                         </Card>
                       ))}
@@ -458,7 +586,9 @@ export default function Products() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((product) => {
-          const stockStatus = getStockStatus(product.totalStock);
+          const stockStatus = getStockStatus(
+            product.totalStock || product.total_stock || 0,
+          );
           const primaryImage = product.images[0];
 
           return (
@@ -500,6 +630,14 @@ export default function Products() {
                     <CardDescription className="mt-1 line-clamp-2">
                       {product.description}
                     </CardDescription>
+                    {product.categoryId && (
+                      <div className="mt-2">
+                        <Badge variant="outline" className="text-xs">
+                          {getCategoryById(product.categoryId)?.name ||
+                            "Unknown Category"}
+                        </Badge>
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardHeader>
@@ -518,28 +656,37 @@ export default function Products() {
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Package className="w-4 h-4" />
                     <span>
-                      {product.totalStock} {t("products.stock")}
+                      {product.totalStock || product.total_stock || 0}{" "}
+                      {t("products.stock")}
                     </span>
                   </div>
 
                   {product.variants.length > 0 && (
-                    <div className="space-y-1">
+                    <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-700">
                         {t("products.variants")}:
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        {product.variants.slice(0, 3).map((variant) => (
-                          <Badge
+                      <div className="space-y-2">
+                        {product.variants.slice(0, 2).map((variant) => (
+                          <div
                             key={variant.id}
-                            variant="outline"
-                            className="text-xs"
+                            className="flex items-center gap-2"
                           >
-                            {variant.name} ({variant.stock})
-                          </Badge>
+                            {variant.image && (
+                              <img
+                                src={variant.image}
+                                alt={variant.name}
+                                className="w-8 h-8 object-cover rounded border"
+                              />
+                            )}
+                            <Badge variant="outline" className="text-xs">
+                              {variant.name} ({variant.stock})
+                            </Badge>
+                          </div>
                         ))}
-                        {product.variants.length > 3 && (
+                        {product.variants.length > 2 && (
                           <Badge variant="outline" className="text-xs">
-                            +{product.variants.length - 3} more
+                            +{product.variants.length - 2} more variants
                           </Badge>
                         )}
                       </div>

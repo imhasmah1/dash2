@@ -1,4 +1,4 @@
-import { Customer, Product, Order } from "@/contexts/DataContext";
+import { Customer, Product, Order, Category } from "@/contexts/DataContext";
 
 const API_BASE = "/api";
 
@@ -104,6 +104,25 @@ export const orderApi = {
     }),
   delete: (id: string) =>
     apiCall<void>(`/orders/${id}`, {
+      method: "DELETE",
+    }),
+};
+
+// Category API
+export const categoryApi = {
+  getAll: () => apiCall<Category[]>("/categories"),
+  create: (category: Omit<Category, "id" | "createdAt">) =>
+    apiCall<Category>("/categories", {
+      method: "POST",
+      body: JSON.stringify(category),
+    }),
+  update: (id: string, category: Partial<Category>) =>
+    apiCall<Category>(`/categories/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(category),
+    }),
+  delete: (id: string) =>
+    apiCall<void>(`/categories/${id}`, {
       method: "DELETE",
     }),
 };

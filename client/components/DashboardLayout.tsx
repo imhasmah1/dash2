@@ -14,6 +14,7 @@ import {
   Menu,
   X,
   Languages,
+  FolderOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ interface DashboardLayoutProps {
 const getNavigation = (t: (key: string) => string) => [
   { name: t("nav.dashboard"), href: "/admin/", icon: LayoutDashboard },
   { name: t("nav.products"), href: "/admin/products", icon: Package },
+  { name: "Categories", href: "/admin/categories", icon: FolderOpen },
   { name: t("nav.orders"), href: "/admin/orders", icon: ShoppingCart },
   { name: t("nav.customers"), href: "/admin/customers", icon: Users },
   { name: t("nav.revenue"), href: "/admin/revenue", icon: TrendingUp },
@@ -67,9 +69,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/6cb987f4f6054cf88b5f469a13f2a67e/b5f4e8c2a4b64c34a9e5f8e8d3a5b9c2"
-              alt="Azhar Store Logo"
-              className="h-8 w-8"
+              src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F9d5f63fd358a4946ace1b6ce56f63e7e?format=webp&width=800"
+              alt="أزهار ستور - azharstore"
+              className="h-8 w-8 object-contain"
             />
             <h1 className="text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left">
               {t("nav.adminPanel")}

@@ -25,6 +25,13 @@ import {
   getOrderById,
 } from "./routes/orders";
 import {
+  getAllCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  getCategoryById,
+} from "./routes/categories";
+import {
   uploadMiddleware,
   handleImageUpload,
   deleteImage,
@@ -73,6 +80,13 @@ export function createServer() {
   app.post("/api/orders", createOrder);
   app.put("/api/orders/:id", updateOrder);
   app.delete("/api/orders/:id", deleteOrder);
+
+  // Category routes
+  app.get("/api/categories", getAllCategories);
+  app.get("/api/categories/:id", getCategoryById);
+  app.post("/api/categories", createCategory);
+  app.put("/api/categories/:id", updateCategory);
+  app.delete("/api/categories/:id", deleteCategory);
 
   return app;
 }

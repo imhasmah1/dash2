@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
+import { useData } from "../contexts/DataContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -42,11 +43,13 @@ export default function Store() {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
+  const { categories, getCategoryById } = useData();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -65,19 +68,28 @@ export default function Store() {
     fetchProducts();
   }, []);
 
-  // Filter products based on search query
+  // Filter products based on search query and category
   useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter(
+    let filtered = products;
+
+    // Filter by category
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (product) => product.categoryId === selectedCategory,
+      );
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(
         (product) =>
           product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.description.toLowerCase().includes(searchQuery.toLowerCase()),
       );
-      setFilteredProducts(filtered);
     }
-  }, [products, searchQuery]);
+
+    setFilteredProducts(filtered);
+  }, [products, searchQuery, selectedCategory]);
 
   const clearSearch = () => {
     setSearchQuery("");
@@ -103,7 +115,7 @@ export default function Store() {
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <div className="h-20 flex items-center">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F16a76df3c393470e995ec2718d67ab09?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2Feb0b70b9250f4bfca41dbc5a78c2ce45?format=webp&width=800"
                 alt="أزهار ستور - azharstore"
                 className="h-20 w-auto object-contain"
               />
@@ -151,9 +163,10 @@ export default function Store() {
         </div>
       </header>
 
-      {/* Search Bar */}
+      {/* Search and Category Filter */}
       <div className="border-b bg-gray-50/50">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-6 space-y-4">
+          {/* Search Bar */}
           <div className="max-w-md mx-auto relative">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground [dir=rtl]:left-auto [dir=rtl]:right-3" />
@@ -180,6 +193,31 @@ export default function Store() {
                 {filteredProducts.length} {t("store.searchResults")}
               </p>
             )}
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-2">
+            <Button
+              variant={selectedCategory === "all" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedCategory("all")}
+              className="rounded-full"
+            >
+              All Products
+            </Button>
+            {categories.map((category) => (
+              <Button
+                key={category.id}
+                variant={
+                  selectedCategory === category.id ? "default" : "outline"
+                }
+                size="sm"
+                onClick={() => setSelectedCategory(category.id)}
+                className="rounded-full"
+              >
+                {category.name}
+              </Button>
+            ))}
           </div>
         </div>
       </div>
@@ -244,9 +282,10 @@ export default function Store() {
                       <span className="text-lg font-bold text-primary auto-text">
                         BD {product.price.toFixed(2)}
                       </span>
-                      {product.total_stock > 0 && (
+                      {(product.total_stock || product.totalStock || 0) > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.total_stock} {t("products.stock")}
+                          {product.total_stock || product.totalStock || 0}{" "}
+                          {t("products.stock")}
                         </p>
                       )}
                     </div>
@@ -254,14 +293,16 @@ export default function Store() {
                     <Button
                       size="sm"
                       onClick={() => handleAddToCart(product)}
-                      disabled={product.total_stock === 0}
+                      disabled={
+                        (product.total_stock || product.totalStock || 0) === 0
+                      }
                       className="shrink-0"
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
-                  {product.total_stock === 0 && (
+                  {(product.total_stock || product.totalStock || 0) === 0 && (
                     <Badge
                       variant="secondary"
                       className="w-full mt-2 justify-center text-center"
