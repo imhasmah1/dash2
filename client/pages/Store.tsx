@@ -161,9 +161,10 @@ export default function Store() {
         </div>
       </header>
 
-      {/* Search Bar */}
+      {/* Search and Category Filter */}
       <div className="border-b bg-gray-50/50">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-6 space-y-4">
+          {/* Search Bar */}
           <div className="max-w-md mx-auto relative">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground [dir=rtl]:left-auto [dir=rtl]:right-3" />
@@ -190,6 +191,29 @@ export default function Store() {
                 {filteredProducts.length} {t("store.searchResults")}
               </p>
             )}
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-2">
+            <Button
+              variant={selectedCategory === "all" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedCategory("all")}
+              className="rounded-full"
+            >
+              All Products
+            </Button>
+            {categories.map((category) => (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.id ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category.id)}
+                className="rounded-full"
+              >
+                {category.name}
+              </Button>
+            ))}
           </div>
         </div>
       </div>
