@@ -275,7 +275,7 @@ const Analytics = () => {
             </div>
             <Badge variant="secondary" className="mt-1">
               <TrendingUp className="w-3 h-3 mr-1" />
-              +12%
+              +{Math.floor((customers.length / Math.max(1, customers.length - analyticsData.newUsers)) * 10)}%
             </Badge>
           </CardContent>
         </Card>
