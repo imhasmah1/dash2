@@ -314,9 +314,9 @@ export default function Checkout() {
                 <Separator />
 
                 {/* Total */}
-                <div className="flex justify-between items-center text-lg font-bold">
-                  <span>{t("orders.orderTotal")}:</span>
-                  <span className="text-primary">
+                <div className="flex justify-between items-center text-xl font-bold p-4 bg-primary/5 rounded-lg [dir=rtl]:flex-row-reverse">
+                  <span className="auto-text">{t("orders.orderTotal")}:</span>
+                  <span className="text-primary text-2xl ltr-text">
                     BD {totalPrice.toFixed(2)}
                   </span>
                 </div>
