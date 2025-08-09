@@ -282,24 +282,31 @@ export default function Checkout() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Order Items */}
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="flex justify-between items-start text-sm"
+                      className="flex justify-between items-start gap-4 p-3 bg-gray-50 rounded-lg [dir=rtl]:flex-row-reverse"
                     >
-                      <div className="flex-1">
-                        <p className="font-medium">{item.productName}</p>
-                        <p className="text-muted-foreground">
-                          {item.variantName}
-                        </p>
-                        <p className="text-muted-foreground">
+                      <div className="flex-1 space-y-1">
+                        <p className="font-medium text-base auto-text">{item.productName}</p>
+                        {item.variantName && (
+                          <p className="text-muted-foreground text-sm auto-text">
+                            {item.variantName}
+                          </p>
+                        )}
+                        <p className="text-muted-foreground text-sm auto-text">
                           {t("store.quantity")}: {item.quantity}
                         </p>
                       </div>
-                      <p className="font-medium">
-                        BD {(item.price * item.quantity).toFixed(2)}
-                      </p>
+                      <div className="text-right [dir=rtl]:text-left">
+                        <p className="font-semibold text-lg text-primary ltr-text">
+                          BD {(item.price * item.quantity).toFixed(2)}
+                        </p>
+                        <p className="text-xs text-muted-foreground ltr-text">
+                          BD {item.price.toFixed(2)} each
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
