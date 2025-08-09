@@ -209,20 +209,56 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle>{t("checkout.deliveryOptions")}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <RadioGroup
                   value={deliveryType}
                   onValueChange={(value) =>
                     setDeliveryType(value as "delivery" | "pickup")
                   }
                 >
-                  <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
-                    <RadioGroupItem value="delivery" id="delivery" />
-                    <Label htmlFor="delivery">{t("checkout.delivery")}</Label>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                      <RadioGroupItem value="delivery" id="delivery" />
+                      <Label htmlFor="delivery" className="font-medium">
+                        {t("checkout.delivery")}
+                      </Label>
+                    </div>
+
+                    {deliveryType === "delivery" && (
+                      <div className="ml-6 [dir=rtl]:ml-0 [dir=rtl]:mr-6 space-y-2">
+                        <RadioGroup
+                          value={deliveryArea}
+                          onValueChange={(value) =>
+                            setDeliveryArea(value as "all-towns" | "jao-askar")
+                          }
+                        >
+                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                            <RadioGroupItem value="all-towns" id="all-towns" />
+                            <Label htmlFor="all-towns" className="font-semibold text-primary">
+                              All Towns (Recommended)
+                            </Label>
+                          </div>
+                          <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                            <RadioGroupItem value="jao-askar" id="jao-askar" />
+                            <Label htmlFor="jao-askar">
+                              Jao or Askar only
+                            </Label>
+                          </div>
+                        </RadioGroup>
+                      </div>
+                    )}
                   </div>
-                  <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
-                    <RadioGroupItem value="pickup" id="pickup" />
-                    <Label htmlFor="pickup">{t("checkout.pickup")}</Label>
+
+                  <div className="flex items-center justify-between space-x-2 [dir=rtl]:space-x-reverse">
+                    <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
+                      <RadioGroupItem value="pickup" id="pickup" />
+                      <Label htmlFor="pickup" className="font-medium">
+                        {t("checkout.pickup")}
+                      </Label>
+                    </div>
+                    <Badge variant="secondary" className="text-green-700 bg-green-100">
+                      Free
+                    </Badge>
                   </div>
                 </RadioGroup>
               </CardContent>
