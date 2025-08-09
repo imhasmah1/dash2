@@ -563,51 +563,52 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </CardContent>
                 </Card>
               )}
-            {/* Footer with Navigation - Fixed at bottom */}
-            <div className="sticky bottom-0 bg-white border-t p-4 sm:p-6 mt-8 shadow-lg">
-              <div className="flex justify-between items-center gap-4">
-                {/* Back Button */}
-                {step > 1 && (
-                  <Button
-                    variant="outline"
-                    onClick={handleBack}
-                    className="flex items-center gap-2 h-12 px-6 touch-manipulation"
-                  >
-                    <ArrowLeft className="w-5 h-5" />
-                    {t("common.back")}
-                  </Button>
-                )}
-
-                {/* Next/Submit Button */}
-                <div className="flex-1 flex justify-end">
-                  {step < 3 ? (
-                    <Button
-                      onClick={handleNext}
-                      disabled={step === 1 && !isStep1Valid()}
-                      className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
-                      size="lg"
-                    >
-                      {t("common.next")}
-                      <ArrowRight className="w-5 h-5" />
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={handlePlaceOrder}
-                      disabled={!isFormValid() || isSubmitting}
-                      className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
-                      size="lg"
-                    >
-                      <CreditCard className="w-5 h-5" />
-                      {isSubmitting
-                        ? t("common.loading")
-                        : t("checkout.placeOrder")}
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
           </div>
         </ScrollArea>
+
+        {/* Footer with Navigation - Fixed at bottom */}
+        <div className="border-t p-4 sm:p-6 bg-white flex-shrink-0">
+          <div className="flex justify-between items-center gap-4">
+            {/* Back Button */}
+            {step > 1 && (
+              <Button
+                variant="outline"
+                onClick={handleBack}
+                className="flex items-center gap-2 h-12 px-6 touch-manipulation"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                {t("common.back")}
+              </Button>
+            )}
+
+            {/* Next/Submit Button */}
+            <div className="flex-1 flex justify-end">
+              {step < 3 ? (
+                <Button
+                  onClick={handleNext}
+                  disabled={step === 1 && !isStep1Valid()}
+                  className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                  size="lg"
+                >
+                  {t("common.next")}
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={handlePlaceOrder}
+                  disabled={!isFormValid() || isSubmitting}
+                  className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                  size="lg"
+                >
+                  <CreditCard className="w-5 h-5" />
+                  {isSubmitting
+                    ? t("common.loading")
+                    : t("checkout.placeOrder")}
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
