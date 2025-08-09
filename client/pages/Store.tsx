@@ -261,7 +261,7 @@ export default function Store() {
                     </Button>
                   </div>
 
-                  {product.total_stock === 0 && (
+                  {(product.total_stock || product.totalStock || 0) === 0 && (
                     <Badge
                       variant="secondary"
                       className="w-full mt-2 justify-center text-center"
