@@ -258,48 +258,6 @@ export const productDb = {
     console.log("Product updated successfully in fallback storage");
     return fallbackProducts[index];
 
-    try {
-      const { data, error } = await supabase
-        .from("products")
-        .update({ ...updates, updated_at: new Date().toISOString() })
-        .eq("id", id)
-        .select()
-        .single();
-
-      if (error) {
-        console.error("Supabase update error:", error);
-        if (error.code === "PGRST116" || error.message.includes("No rows")) {
-          throw new Error("Product not found");
-        }
-        console.warn("Supabase error, falling back to in-memory storage");
-        const index = fallbackProducts.findIndex((p) => p.id === id);
-        if (index === -1) {
-          throw new Error("Product not found");
-        }
-        fallbackProducts[index] = {
-          ...fallbackProducts[index],
-          ...updates,
-          updated_at: new Date().toISOString(),
-        };
-        return fallbackProducts[index];
-      }
-
-      console.log("Product updated successfully in Supabase");
-      return data;
-    } catch (error) {
-      console.error("Supabase connection error:", error);
-      console.warn("Falling back to in-memory storage");
-      const index = fallbackProducts.findIndex((p) => p.id === id);
-      if (index === -1) {
-        throw new Error("Product not found");
-      }
-      fallbackProducts[index] = {
-        ...fallbackProducts[index],
-        ...updates,
-        updated_at: new Date().toISOString(),
-      };
-      return fallbackProducts[index];
-    }
   },
 
   // Delete a product
