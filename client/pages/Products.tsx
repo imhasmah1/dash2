@@ -524,6 +524,13 @@ export default function Products() {
                     <CardDescription className="mt-1 line-clamp-2">
                       {product.description}
                     </CardDescription>
+                    {product.categoryId && (
+                      <div className="mt-2">
+                        <Badge variant="outline" className="text-xs">
+                          {getCategoryById(product.categoryId)?.name || "Unknown Category"}
+                        </Badge>
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardHeader>
