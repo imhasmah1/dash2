@@ -135,11 +135,15 @@ const Analytics = () => {
     return trends;
   }, [orders, customers, timeRange]);
 
-  const [deviceData, setDeviceData] = useState<DeviceData[]>([
-    { device: "Mobile", visitors: 1528, percentage: 60 },
-    { device: "Desktop", visitors: 764, percentage: 30 },
-    { device: "Tablet", visitors: 255, percentage: 10 },
-  ]);
+  // Device data based on typical e-commerce patterns
+  const deviceData = useMemo(() => {
+    const totalVisitors = analyticsData.visitors;
+    return [
+      { device: "Mobile", visitors: Math.floor(totalVisitors * 0.65), percentage: 65 },
+      { device: "Desktop", visitors: Math.floor(totalVisitors * 0.25), percentage: 25 },
+      { device: "Tablet", visitors: Math.floor(totalVisitors * 0.10), percentage: 10 },
+    ];
+  }, [analyticsData.visitors]);
 
   const [topPages, setTopPages] = useState<TopPage[]>([
     { page: "/", views: 4523, uniqueViews: 3245 },
