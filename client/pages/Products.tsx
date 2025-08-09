@@ -133,13 +133,19 @@ export default function Products() {
         totalStock: getTotalStock(),
       };
 
+      console.log("Submitting product data:", productData);
+      console.log("Editing product:", editingProduct);
+
       if (editingProduct) {
+        console.log("Updating product with ID:", editingProduct.id);
         await updateProduct(editingProduct.id, productData);
       } else {
+        console.log("Creating new product");
         await addProduct(productData);
       }
       closeDialog();
     } catch (error) {
+      console.error("Product save error:", error);
       const errorMessage =
         error instanceof Error
           ? error.message
