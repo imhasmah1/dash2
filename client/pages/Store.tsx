@@ -4,6 +4,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
 import { LoadingScreen } from "../components/ui/loading";
 import { ShoppingCart, Plus, Globe, Store as StoreIcon, Search, X } from "lucide-react";
 import { Badge } from "../components/ui/badge";
@@ -142,9 +143,52 @@ export default function Store() {
         </div>
       </header>
 
+      {/* Search Bar */}
+      <div className="border-b bg-gray-50/50">
+        <div className="container mx-auto px-4 py-6">
+          <div className="max-w-md mx-auto relative">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground [dir=rtl]:left-auto [dir=rtl]:right-3" />
+              <Input
+                type="text"
+                placeholder={t("store.search")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-10 [dir=rtl]:pl-10 [dir=rtl]:pr-10 text-center [dir=rtl]:text-right [dir=ltr]:text-left"
+              />
+              {searchQuery && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearSearch}
+                  className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 [dir=rtl]:right-auto [dir=rtl]:left-1"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="text-sm text-muted-foreground mt-2 text-center">
+                {filteredProducts.length} {t("store.searchResults")}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* Product Grid */}
       <main className="container mx-auto px-4 py-8">
-        {products.length === 0 ? (
+        {searchQuery && filteredProducts.length === 0 ? (
+          <div className="text-center py-12">
+            <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground mb-4 text-center">
+              {t("store.noSearchResults")}
+            </p>
+            <Button variant="outline" onClick={clearSearch}>
+              {t("store.clearSearch")}
+            </Button>
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground mb-4 text-center">
               {t("empty.noProductsFound")}
@@ -152,7 +196,7 @@ export default function Store() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden cursor-pointer group"
