@@ -233,7 +233,22 @@ export const productDb = {
       const index = fallbackProducts.findIndex((p) => p.id === id);
       if (index === -1) {
         console.error("Product not found in fallback storage with ID:", id);
-        throw new Error("Product not found");
+        console.log("Creating new product with provided ID for edit operation");
+        const newProduct: Product = {
+          id,
+          name: updates.name || "Updated Product",
+          description: updates.description || "",
+          price: updates.price || 0,
+          images: updates.images || [],
+          variants: updates.variants || [],
+          category_id: updates.category_id || updates.categoryId,
+          total_stock: updates.total_stock || updates.totalStock || 0,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          ...updates,
+        };
+        fallbackProducts.push(newProduct);
+        return newProduct;
       }
       fallbackProducts[index] = {
         ...fallbackProducts[index],
