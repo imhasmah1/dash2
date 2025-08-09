@@ -34,7 +34,7 @@ interface Product {
     name: string;
     stock: number;
   }>;
-  totalStock: number;
+  total_stock: number;
 }
 
 export default function ProductDetail() {
@@ -53,19 +53,34 @@ export default function ProductDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const products = await getProducts();
-        const foundProduct = products.find((p) => p.id === id);
-        setProduct(foundProduct || null);
+        if (!id) {
+          setProduct(null);
+          setLoading(false);
+          return;
+        }
+
+        // Try direct API call first
+        const response = await fetch(`/api/products/${id}`);
+        if (response.ok) {
+          const product = await response.json();
+          setProduct(product);
+        } else if (response.status === 404) {
+          setProduct(null);
+        } else {
+          // Fallback to getting all products
+          const products = await getProducts();
+          const foundProduct = products.find((p) => p.id === id);
+          setProduct(foundProduct || null);
+        }
       } catch (error) {
         console.error("Failed to fetch product:", error);
+        setProduct(null);
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) {
-      fetchProduct();
-    }
+    fetchProduct();
   }, [id]);
 
   const handleAddToCart = () => {
@@ -100,12 +115,8 @@ export default function ProductDetail() {
           <div className="flex items-center gap-3">
             <div className="h-20 flex items-center">
               <img
-                src={
-                  language === "ar"
-                    ? "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F29c97beefe89426cb91fceaee3817c7a?format=webp&width=800"
-                    : "https://cdn.builder.io/api/v1/image/assets%2F6cb987f4f6054cf88b5f469a13f2a67e%2F1f3539241b034a2280e7b5e91b51eb3d?format=webp&width=800"
-                }
-                alt={t("store.title")}
+                src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F16a76df3c393470e995ec2718d67ab09?format=webp&width=800"
+                alt="أزهار ستور - azharstore"
                 className="h-20 w-auto object-contain"
               />
             </div>
@@ -218,12 +229,12 @@ export default function ProductDetail() {
                 BD {product.price.toFixed(2)}
               </div>
 
-              {product.totalStock > 0 ? (
+              {product.total_stock > 0 ? (
                 <Badge
                   variant="outline"
                   className="text-green-600 border-green-600"
                 >
-                  {product.totalStock} {t("products.stock")}
+                  {product.total_stock} {t("products.stock")}
                 </Badge>
               ) : (
                 <Badge variant="secondary">{t("store.outOfStock")}</Badge>
@@ -257,7 +268,7 @@ export default function ProductDetail() {
             {/* Add to Cart Button */}
             <Button
               onClick={handleAddToCart}
-              disabled={product.totalStock === 0}
+              disabled={product.total_stock === 0}
               size="lg"
               className="w-full"
             >

@@ -4,8 +4,16 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
 import { LoadingScreen } from "../components/ui/loading";
-import { ShoppingCart, Plus, Globe, Store as StoreIcon } from "lucide-react";
+import {
+  ShoppingCart,
+  Plus,
+  Globe,
+  Store as StoreIcon,
+  Search,
+  X,
+} from "lucide-react";
 import { Badge } from "../components/ui/badge";
 import {
   DropdownMenu,
@@ -27,7 +35,7 @@ interface Product {
     name: string;
     stock: number;
   }>;
-  totalStock: number;
+  total_stock: number;
 }
 
 export default function Store() {
@@ -38,12 +46,15 @@ export default function Store() {
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await getProducts();
         setProducts(data);
+        setFilteredProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
@@ -53,6 +64,24 @@ export default function Store() {
 
     fetchProducts();
   }, []);
+
+  // Filter products based on search query
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.description.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [products, searchQuery]);
+
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
 
   const handleAddToCart = (product: Product) => {
     setSelectedProduct(product);
@@ -74,9 +103,8 @@ export default function Store() {
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <div className="h-20 flex items-center">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets/6cb987f4f6054cf88b5f469a13f2a67e/b5f4e8c2a4b64c34a9e5f8e8d3a5b9c2"
-                // Using the new logo provided by user
-                alt={t("store.title")}
+                src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F16a76df3c393470e995ec2718d67ab09?format=webp&width=800"
+                alt="أزهار ستور - azharstore"
                 className="h-20 w-auto object-contain"
               />
             </div>
@@ -123,9 +151,52 @@ export default function Store() {
         </div>
       </header>
 
+      {/* Search Bar */}
+      <div className="border-b bg-gray-50/50">
+        <div className="container mx-auto px-4 py-6">
+          <div className="max-w-md mx-auto relative">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground [dir=rtl]:left-auto [dir=rtl]:right-3" />
+              <Input
+                type="text"
+                placeholder={t("store.search")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-10 [dir=rtl]:pl-10 [dir=rtl]:pr-10 text-center [dir=rtl]:text-right [dir=ltr]:text-left"
+              />
+              {searchQuery && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearSearch}
+                  className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 [dir=rtl]:right-auto [dir=rtl]:left-1"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="text-sm text-muted-foreground mt-2 text-center">
+                {filteredProducts.length} {t("store.searchResults")}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* Product Grid */}
       <main className="container mx-auto px-4 py-8">
-        {products.length === 0 ? (
+        {searchQuery && filteredProducts.length === 0 ? (
+          <div className="text-center py-12">
+            <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground mb-4 text-center">
+              {t("store.noSearchResults")}
+            </p>
+            <Button variant="outline" onClick={clearSearch}>
+              {t("store.clearSearch")}
+            </Button>
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground mb-4 text-center">
               {t("empty.noProductsFound")}
@@ -133,7 +204,7 @@ export default function Store() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden cursor-pointer group"
@@ -173,9 +244,9 @@ export default function Store() {
                       <span className="text-lg font-bold text-primary auto-text">
                         BD {product.price.toFixed(2)}
                       </span>
-                      {product.totalStock > 0 && (
+                      {product.total_stock > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.totalStock} {t("products.stock")}
+                          {product.total_stock} {t("products.stock")}
                         </p>
                       )}
                     </div>
@@ -183,14 +254,14 @@ export default function Store() {
                     <Button
                       size="sm"
                       onClick={() => handleAddToCart(product)}
-                      disabled={product.totalStock === 0}
+                      disabled={product.total_stock === 0}
                       className="shrink-0"
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
-                  {product.totalStock === 0 && (
+                  {product.total_stock === 0 && (
                     <Badge
                       variant="secondary"
                       className="w-full mt-2 justify-center text-center"

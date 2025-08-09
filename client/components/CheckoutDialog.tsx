@@ -298,7 +298,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <Label className="block auto-text">
                         {t("checkout.customerAddress")}
                       </Label>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="space-y-1">
                           <Label
                             htmlFor="home"
@@ -393,12 +393,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       onValueChange={(value) =>
                         setDeliveryType(value as "delivery" | "pickup")
                       }
-                      className="grid grid-cols-1 gap-4"
+                      className="grid grid-cols-1 gap-6"
                     >
-                      <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse p-6 border-2 rounded-xl hover:bg-gray-50 cursor-pointer transition-all touch-manipulation">
                         <RadioGroupItem value="delivery" id="delivery" />
-                        <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
-                          <Truck className="w-5 h-5 text-primary" />
+                        <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse flex-1">
+                          <Truck className="w-6 h-6 text-primary" />
                           <div>
                             <Label
                               htmlFor="delivery"
@@ -412,14 +412,16 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                         </div>
                         <div className="text-right auto-text">
-                          <span className="text-lg font-semibold">BD 2.00</span>
+                          <span className="text-xl font-bold text-primary">
+                            BD 2.00
+                          </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse p-6 border-2 rounded-xl hover:bg-gray-50 cursor-pointer transition-all touch-manipulation">
                         <RadioGroupItem value="pickup" id="pickup" />
-                        <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
-                          <Package className="w-5 h-5 text-primary" />
+                        <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse flex-1">
+                          <Package className="w-6 h-6 text-primary" />
                           <div>
                             <Label
                               htmlFor="pickup"
@@ -433,7 +435,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                         </div>
                         <div className="text-right auto-text">
-                          <span className="text-lg font-semibold text-green-600">
+                          <span className="text-xl font-bold text-green-600">
                             {t("checkout.free")}
                           </span>
                         </div>
@@ -572,9 +574,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <Button
                   variant="outline"
                   onClick={handleBack}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 h-12 px-6 touch-manipulation"
                 >
-                  <ArrowLeft className="w-4 h-4" />
+                  <ArrowLeft className="w-5 h-5" />
                   {t("common.back")}
                 </Button>
               )}
@@ -585,19 +587,20 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <Button
                     onClick={handleNext}
                     disabled={step === 1 && !isStep1Valid()}
-                    className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                    size="lg"
                   >
                     {t("common.next")}
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </Button>
                 ) : (
                   <Button
                     onClick={handlePlaceOrder}
                     disabled={!isFormValid() || isSubmitting}
-                    className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
                     size="lg"
                   >
-                    <CreditCard className="w-4 h-4" />
+                    <CreditCard className="w-5 h-5" />
                     {isSubmitting
                       ? t("common.loading")
                       : t("checkout.placeOrder")}

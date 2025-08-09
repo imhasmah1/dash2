@@ -31,7 +31,7 @@ interface Product {
     name: string;
     stock: number;
   }>;
-  totalStock: number;
+  total_stock: number;
 }
 
 interface AddToCartDialogProps {
@@ -90,7 +90,7 @@ export default function AddToCartDialog({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="w-[95vw] sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{product.name}</DialogTitle>
         </DialogHeader>
@@ -98,7 +98,7 @@ export default function AddToCartDialog({
         <div className="space-y-4">
           {/* Product Image */}
           {product.images.length > 0 && (
-            <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
+            <div className="aspect-square sm:aspect-video overflow-hidden rounded-lg bg-gray-100">
               <img
                 src={product.images[0]}
                 alt={product.name}
@@ -143,14 +143,15 @@ export default function AddToCartDialog({
           {selectedVariant && (
             <div className="space-y-2">
               <Label htmlFor="quantity">{t("store.quantity")}</Label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3 justify-center">
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="lg"
                   onClick={() => handleQuantityChange(quantity - 1)}
                   disabled={quantity <= 1}
+                  className="h-12 w-12 p-0 touch-manipulation"
                 >
-                  <Minus className="h-4 w-4" />
+                  <Minus className="h-5 w-5" />
                 </Button>
 
                 <Input
@@ -162,16 +163,17 @@ export default function AddToCartDialog({
                   }
                   min={1}
                   max={maxQuantity}
-                  className="w-20 text-center"
+                  className="w-24 h-12 text-center text-lg font-semibold"
                 />
 
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="lg"
                   onClick={() => handleQuantityChange(quantity + 1)}
                   disabled={quantity >= maxQuantity}
+                  className="h-12 w-12 p-0 touch-manipulation"
                 >
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-5 w-5" />
                 </Button>
               </div>
 
@@ -194,11 +196,16 @@ export default function AddToCartDialog({
           )}
         </div>
 
-        <DialogFooter className="gap-2">
-          <Button variant="outline" onClick={onClose}>
+        <DialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+          <Button variant="outline" onClick={onClose} className="flex-1 h-12">
             {t("common.cancel")}
           </Button>
-          <Button onClick={handleAddToCart} disabled={!isValidSelection}>
+          <Button
+            onClick={handleAddToCart}
+            disabled={!isValidSelection}
+            className="flex-1 h-12"
+            size="lg"
+          >
             {t("store.addToCart")}
           </Button>
         </DialogFooter>
