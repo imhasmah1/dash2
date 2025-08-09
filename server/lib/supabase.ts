@@ -59,6 +59,7 @@ export interface Product {
   price: number;
   images: string[];
   variants: ProductVariant[];
+  category_id?: string;
   total_stock: number;
   created_at?: string;
   updated_at?: string;
