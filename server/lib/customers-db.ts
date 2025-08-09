@@ -60,6 +60,21 @@ let fallbackCustomers: Customer[] = [
 const generateId = () =>
   Date.now().toString() + Math.random().toString(36).substr(2, 9);
 
+// Transform database data to match frontend expectations
+const transformCustomer = (customer: any): Customer => ({
+  id: customer.id,
+  name: customer.name,
+  phone: customer.phone,
+  address: customer.address || `House ${customer.home || ''}, Road ${customer.road || ''}, Block ${customer.block || ''}, ${customer.town || ''}`.trim(),
+  home: customer.home,
+  road: customer.road,
+  block: customer.block,
+  town: customer.town,
+  createdAt: customer.created_at || customer.createdAt,
+  created_at: customer.created_at,
+  updated_at: customer.updated_at,
+});
+
 export const customerDb = {
   // Get all customers
   async getAll(): Promise<Customer[]> {
@@ -81,22 +96,7 @@ export const customerDb = {
         return fallbackCustomers;
       }
 
-      // Transform database data to match frontend expectations
-      const transformedData = (data || []).map((customer: any) => ({
-        id: customer.id,
-        name: customer.name,
-        phone: customer.phone,
-        address: customer.address,
-        home: customer.home,
-        road: customer.road,
-        block: customer.block,
-        town: customer.town,
-        createdAt: customer.created_at || customer.createdAt,
-        created_at: customer.created_at,
-        updated_at: customer.updated_at,
-      }));
-
-      return transformedData;
+      return (data || []).map(transformCustomer);
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackCustomers;
@@ -123,7 +123,18 @@ export const customerDb = {
     try {
       const { data, error } = await supabase
         .from("customers")
-        .insert([newCustomer])
+        .insert([{
+          id: newCustomer.id,
+          name: newCustomer.name,
+          phone: newCustomer.phone,
+          address: newCustomer.address,
+          home: newCustomer.home,
+          road: newCustomer.road,
+          block: newCustomer.block,
+          town: newCustomer.town,
+          created_at: newCustomer.created_at,
+          updated_at: newCustomer.updated_at,
+        }])
         .select()
         .single();
 
@@ -136,16 +147,7 @@ export const customerDb = {
         return newCustomer;
       }
 
-      // Transform database response to match frontend expectations
-      return {
-        id: data.id,
-        name: data.name,
-        phone: data.phone,
-        address: data.address,
-        createdAt: data.created_at || data.createdAt,
-        created_at: data.created_at,
-        updated_at: data.updated_at,
-      };
+      return transformCustomer(data);
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       fallbackCustomers.push(newCustomer);
@@ -171,7 +173,10 @@ export const customerDb = {
     try {
       const { data, error } = await supabase
         .from("customers")
-        .update({ ...updates, updated_at: new Date().toISOString() })
+        .update({ 
+          ...updates, 
+          updated_at: new Date().toISOString() 
+        })
         .eq("id", id)
         .select()
         .single();
@@ -193,16 +198,7 @@ export const customerDb = {
         return fallbackCustomers[index];
       }
 
-      // Transform database response to match frontend expectations
-      return {
-        id: data.id,
-        name: data.name,
-        phone: data.phone,
-        address: data.address,
-        createdAt: data.created_at || data.createdAt,
-        created_at: data.created_at,
-        updated_at: data.updated_at,
-      };
+      return transformCustomer(data);
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       const index = fallbackCustomers.findIndex((c) => c.id === id);
@@ -280,16 +276,7 @@ export const customerDb = {
 
       if (!data) return null;
 
-      // Transform database response to match frontend expectations
-      return {
-        id: data.id,
-        name: data.name,
-        phone: data.phone,
-        address: data.address,
-        createdAt: data.created_at || data.createdAt,
-        created_at: data.created_at,
-        updated_at: data.updated_at,
-      };
+      return transformCustomer(data);
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
       return fallbackCustomers.find((c) => c.id === id) || null;
