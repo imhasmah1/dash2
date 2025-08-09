@@ -31,6 +31,9 @@ export default function Checkout() {
   const [deliveryType, setDeliveryType] = useState<"delivery" | "pickup">(
     "delivery",
   );
+  const [deliveryArea, setDeliveryArea] = useState<"all-towns" | "jao-askar">(
+    "all-towns",
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
