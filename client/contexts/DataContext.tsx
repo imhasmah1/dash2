@@ -118,14 +118,16 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
     try {
       setLoading(true);
-      const [customersData, productsData, ordersData] = await Promise.all([
+      const [customersData, productsData, ordersData, categoriesData] = await Promise.all([
         customerApi.getAll(),
         productApi.getAll(),
         orderApi.getAll(),
+        categoryApi.getAll(),
       ]);
       setCustomers(customersData);
       setProducts(productsData);
       setOrders(ordersData);
+      setCategories(categoriesData);
     } catch (error) {
       console.error(`Failed to load data (attempt ${retryCount + 1}):`, error);
 
