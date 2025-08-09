@@ -24,13 +24,13 @@ export const createProduct: RequestHandler = async (req, res) => {
         .json({ error: "Name, description, and price are required" });
     }
 
-    // Calculate total stock from variants
-    const totalStock = variants
+    // Calculate total stock from variants or use provided stock
+    const totalStock = variants && variants.length > 0
       ? variants.reduce(
           (sum: number, variant: ProductVariant) => sum + variant.stock,
           0,
         )
-      : 0;
+      : parseInt(req.body.stock) || parseInt(req.body.totalStock) || 0;
 
     const newProduct = {
       name,
@@ -42,6 +42,7 @@ export const createProduct: RequestHandler = async (req, res) => {
             id: v.id || generateId(),
             name: v.name,
             stock: parseInt(v.stock) || 0,
+            image: v.image || "",
           }))
         : [],
       total_stock: totalStock,
