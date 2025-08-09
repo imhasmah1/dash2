@@ -410,7 +410,7 @@ export default function Products() {
                                 id={`variant-stock-${index}`}
                                 type="number"
                                 min="0"
-                                value={variant.stock}
+                                value={variant.stock === 0 ? "" : variant.stock}
                                 onChange={(e) =>
                                   updateVariant(
                                     index,
@@ -418,6 +418,11 @@ export default function Products() {
                                     parseInt(e.target.value) || 0,
                                   )
                                 }
+                                onFocus={(e) => {
+                                  if (e.target.value === "0") {
+                                    e.target.value = "";
+                                  }
+                                }}
                                 placeholder="0"
                                 required
                               />
