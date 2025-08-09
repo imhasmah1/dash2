@@ -37,6 +37,10 @@ export default function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
+  const [orderDetails, setOrderDetails] = useState<{
+    deliveryType: "delivery" | "pickup";
+    deliveryArea?: "all-towns" | "jao-askar";
+  } | null>(null);
 
   const totalPrice = getTotalPrice();
 
