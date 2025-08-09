@@ -45,6 +45,7 @@ export const createProduct: RequestHandler = async (req, res) => {
             image: v.image || "",
           }))
         : [],
+      category_id: req.body.categoryId || req.body.category_id,
       total_stock: totalStock,
     };
 
