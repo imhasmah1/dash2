@@ -40,6 +40,12 @@ if (isSupabaseConfigured) {
 export { supabase };
 
 // Database types
+export interface Category {
+  id: string;
+  name: string;
+  created_at?: string;
+}
+
 export interface ProductVariant {
   id: string;
   name: string;
