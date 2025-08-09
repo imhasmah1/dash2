@@ -373,3 +373,192 @@ export const productDb = {
     }
   },
 };
+
+// Category database operations with fallback
+export const categoryDb = {
+  // Get all categories
+  async getAll(): Promise<Category[]> {
+    if (!supabase) {
+      return fallbackCategories;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("categories")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        return fallbackCategories;
+      }
+
+      return data || [];
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      return fallbackCategories;
+    }
+  },
+
+  // Create a new category
+  async create(
+    category: Omit<Category, "id" | "created_at">,
+  ): Promise<Category> {
+    const newCategory: Category = {
+      ...category,
+      id: generateId(),
+      created_at: new Date().toISOString(),
+    };
+
+    if (!supabase) {
+      fallbackCategories.push(newCategory);
+      return newCategory;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("categories")
+        .insert([category])
+        .select()
+        .single();
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        fallbackCategories.push(newCategory);
+        return newCategory;
+      }
+
+      return data;
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      fallbackCategories.push(newCategory);
+      return newCategory;
+    }
+  },
+
+  // Update a category
+  async update(id: string, updates: Partial<Category>): Promise<Category> {
+    if (!supabase) {
+      const index = fallbackCategories.findIndex((c) => c.id === id);
+      if (index === -1) {
+        throw new Error("Category not found");
+      }
+      fallbackCategories[index] = {
+        ...fallbackCategories[index],
+        ...updates,
+      };
+      return fallbackCategories[index];
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("categories")
+        .update(updates)
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        const index = fallbackCategories.findIndex((c) => c.id === id);
+        if (index === -1) {
+          throw new Error("Category not found");
+        }
+        fallbackCategories[index] = {
+          ...fallbackCategories[index],
+          ...updates,
+        };
+        return fallbackCategories[index];
+      }
+
+      return data;
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      const index = fallbackCategories.findIndex((c) => c.id === id);
+      if (index === -1) {
+        throw new Error("Category not found");
+      }
+      fallbackCategories[index] = {
+        ...fallbackCategories[index],
+        ...updates,
+      };
+      return fallbackCategories[index];
+    }
+  },
+
+  // Delete a category
+  async delete(id: string): Promise<void> {
+    if (!supabase) {
+      const index = fallbackCategories.findIndex((c) => c.id === id);
+      if (index === -1) {
+        throw new Error("Category not found");
+      }
+      fallbackCategories.splice(index, 1);
+      return;
+    }
+
+    try {
+      const { error } = await supabase.from("categories").delete().eq("id", id);
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        const index = fallbackCategories.findIndex((c) => c.id === id);
+        if (index === -1) {
+          throw new Error("Category not found");
+        }
+        fallbackCategories.splice(index, 1);
+        return;
+      }
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      const index = fallbackCategories.findIndex((c) => c.id === id);
+      if (index === -1) {
+        throw new Error("Category not found");
+      }
+      fallbackCategories.splice(index, 1);
+    }
+  },
+
+  // Get a single category by ID
+  async getById(id: string): Promise<Category | null> {
+    if (!supabase) {
+      return fallbackCategories.find((c) => c.id === id) || null;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("categories")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        if (error.code === "PGRST116") {
+          return null; // No rows returned
+        }
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        return fallbackCategories.find((c) => c.id === id) || null;
+      }
+
+      return data;
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      return fallbackCategories.find((c) => c.id === id) || null;
+    }
+  },
+};
