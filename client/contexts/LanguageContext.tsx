@@ -13,6 +13,7 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   isRTL: boolean;
   t: (key: string) => string;
+  translateCategory: (categoryName: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -383,7 +384,7 @@ const translations = {
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
-    "orders.lastUpdated": "آخر تحديث",
+    "orders.lastUpdated": "آخر تح��يث",
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
     "orders.selectVariant": "اختر النوع",
@@ -409,7 +410,7 @@ const translations = {
     "customers.customerHome": "المنزل:",
     "customers.customerRoad": "الطريق:",
     "customers.customerBlock": "المجمع:",
-    "customers.customerTown": "المنطقة:",
+    "customers.customerTown": "ا��منطقة:",
     "customers.save": "حفظ",
 
     // Revenue
@@ -462,7 +463,7 @@ const translations = {
     // Messages
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
-    "message.productUpdated": "تم تحديث المنتج بنجاح",
+    "message.productUpdated": "تم تحديث المنت�� بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
@@ -587,10 +588,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  // Helper function to translate category names
+  const translateCategory = (categoryName: string): string => {
+    // Convert category name to translation key format
+    const key = `category.${categoryName.toLowerCase().replace(/\s+/g, "")}`;
+    const translated = t(key);
+    // If translation key doesn't exist, fall back to original name
+    return translated === key ? categoryName : translated;
+  };
+
   const isRTL = language === "ar";
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, isRTL, t }}>
+    <LanguageContext.Provider
+      value={{ language, setLanguage, isRTL, t, translateCategory }}
+    >
       {children}
     </LanguageContext.Provider>
   );

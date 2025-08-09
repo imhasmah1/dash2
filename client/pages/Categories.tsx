@@ -28,7 +28,7 @@ export default function Categories() {
   const { categories, products, addCategory, updateCategory, deleteCategory } =
     useData();
   const { showConfirm, showAlert } = useDialog();
-  const { t } = useLanguage();
+  const { t, translateCategory } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
@@ -237,7 +237,9 @@ export default function Categories() {
                       <FolderOpen className="w-6 h-6 text-dashboard-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">{category.name}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {translateCategory(category.name)}
+                      </CardTitle>
                       <CardDescription>
                         {productCount} product{productCount !== 1 ? "s" : ""}
                       </CardDescription>

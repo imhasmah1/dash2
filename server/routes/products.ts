@@ -64,6 +64,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
     const updates = req.body;
 
     console.log("Updating product with ID:", id);
+    console.log("ID type:", typeof id, "ID length:", id.length);
     console.log("Update data:", updates);
 
     if (!id) {

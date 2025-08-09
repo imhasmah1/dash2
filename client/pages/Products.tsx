@@ -43,7 +43,7 @@ export default function Products() {
     uploadImage,
   } = useData();
   const { showConfirm, showAlert } = useDialog();
-  const { t } = useLanguage();
+  const { t, translateCategory } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -633,8 +633,11 @@ export default function Products() {
                     {product.categoryId && (
                       <div className="mt-2">
                         <Badge variant="outline" className="text-xs">
-                          {getCategoryById(product.categoryId)?.name ||
-                            "Unknown Category"}
+                          {getCategoryById(product.categoryId)?.name
+                            ? translateCategory(
+                                getCategoryById(product.categoryId).name,
+                              )
+                            : "Unknown Category"}
                         </Badge>
                       </div>
                     )}

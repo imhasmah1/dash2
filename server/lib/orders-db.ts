@@ -68,7 +68,21 @@ export const orderDb = {
     try {
       const { data, error } = await supabase
         .from("orders")
-        .select("*")
+        .select(
+          `
+          *,
+          customer:customers!customer_id (
+            id,
+            name,
+            phone,
+            address,
+            home,
+            road,
+            block,
+            town
+          )
+        `,
+        )
         .order("created_at", { ascending: false });
 
       if (error) {
@@ -281,7 +295,21 @@ export const orderDb = {
     try {
       const { data, error } = await supabase
         .from("orders")
-        .select("*")
+        .select(
+          `
+          *,
+          customer:customers!customer_id (
+            id,
+            name,
+            phone,
+            address,
+            home,
+            road,
+            block,
+            town
+          )
+        `,
+        )
         .eq("id", id)
         .single();
 
