@@ -298,7 +298,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <Label className="block auto-text">
                         {t("checkout.customerAddress")}
                       </Label>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="space-y-1">
                           <Label
                             htmlFor="home"
@@ -393,9 +393,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       onValueChange={(value) =>
                         setDeliveryType(value as "delivery" | "pickup")
                       }
-                      className="grid grid-cols-1 gap-4"
+                      className="grid grid-cols-1 gap-6"
                     >
-                      <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse p-6 border-2 rounded-xl hover:bg-gray-50 cursor-pointer transition-all touch-manipulation">
                         <RadioGroupItem value="delivery" id="delivery" />
                         <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
                           <Truck className="w-5 h-5 text-primary" />
@@ -416,7 +416,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse p-6 border-2 rounded-xl hover:bg-gray-50 cursor-pointer transition-all touch-manipulation">
                         <RadioGroupItem value="pickup" id="pickup" />
                         <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
                           <Package className="w-5 h-5 text-primary" />
