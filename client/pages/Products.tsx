@@ -75,6 +75,7 @@ export default function Products() {
         images: [...product.images],
         variants: [...product.variants],
         stock: product.variants.length === 0 ? product.totalStock : 0,
+        categoryId: product.categoryId || "",
       });
     } else {
       resetForm();
