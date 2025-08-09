@@ -28,7 +28,7 @@ import ImageUpload from "@/components/ImageUpload";
 import { Plus, Search, Edit, Trash2, Package, X } from "lucide-react";
 
 export default function Products() {
-  const { products, categories, addProduct, updateProduct, deleteProduct, getCategoryById } = useData();
+  const { products, categories, addProduct, updateProduct, deleteProduct, getCategoryById, uploadImage } = useData();
   const { showConfirm, showAlert } = useDialog();
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
