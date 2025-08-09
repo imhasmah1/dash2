@@ -74,7 +74,7 @@ export default function Products() {
         price: product.price,
         images: [...product.images],
         variants: [...product.variants],
-        stock: product.variants.length === 0 ? product.totalStock : 0,
+        stock: product.variants.length === 0 ? (product.totalStock || product.total_stock || 0) : 0,
         categoryId: product.categoryId || "",
       });
     } else {
