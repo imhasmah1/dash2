@@ -175,6 +175,7 @@ export default function Checkout() {
                     value={customerInfo.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     placeholder={t("checkout.customerName")}
+                    className="auto-text"
                   />
                 </div>
 
