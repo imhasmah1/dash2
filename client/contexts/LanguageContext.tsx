@@ -278,6 +278,12 @@ const translations = {
     "store.searchResults": "Search Results",
     "store.noSearchResults": "No products found for your search",
     "store.clearSearch": "Clear Search",
+    "store.allProducts": "All Products",
+
+    // Categories
+    "category.electronics": "Electronics",
+    "category.accessories": "Accessories",
+    "category.homeOffice": "Home & Office",
   },
   ar: {
     // Navigation
@@ -488,7 +494,7 @@ const translations = {
     "store.cartEmpty": "سلتك فارغة",
     "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
-    "store.continueShopping": "متابعة التسوق",
+    "store.continueShopping": "متابعة الت��وق",
     "store.removeFromCart": "إزالة من السلة",
     "store.updateQuantity": "تحديث الكمية",
     "store.clearCart": "إفراغ السلة",
@@ -536,6 +542,12 @@ const translations = {
     "store.searchResults": "نتائج البحث",
     "store.noSearchResults": "لا توجد منتجات للبحث المطلوب",
     "store.clearSearch": "مسح البحث",
+    "store.allProducts": "جميع المنتجات",
+
+    // Categories
+    "category.electronics": "الأجهزة الإلكترونية",
+    "category.accessories": "الإكسسوارات",
+    "category.homeOffice": "المنزل والمكتب",
   },
 } as const;
 
