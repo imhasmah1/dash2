@@ -165,7 +165,29 @@ const generateId = () =>
 export const productDb = {
   // Get all products
   async getAll(): Promise<Product[]> {
-    return fallbackProducts;
+    if (!supabase) {
+      return fallbackProducts;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        return fallbackProducts;
+      }
+
+      return data || [];
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      return fallbackProducts;
+    }
   },
 
   // Create a new product
@@ -185,12 +207,24 @@ export const productDb = {
     }
 
     try {
-      // For in-memory storage, we always use fallback
-      console.log("Creating product in fallback storage");
-      fallbackProducts.push(newProduct);
-      return newProduct;
+      const { data, error } = await supabase
+        .from("products")
+        .insert([newProduct])
+        .select()
+        .single();
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        fallbackProducts.push(newProduct);
+        return newProduct;
+      }
+
+      return data;
     } catch (error) {
-      console.warn("Error creating product, using fallback storage");
+      console.warn("Supabase connection failed, using in-memory storage");
       fallbackProducts.push(newProduct);
       return newProduct;
     }
@@ -201,41 +235,59 @@ export const productDb = {
     console.log("Updating product with ID:", id);
     console.log("Updates:", JSON.stringify(updates, null, 2));
 
-    // Always use in-memory storage for simplicity
-    console.log("Using in-memory storage. Looking for product ID:", id);
-    console.log(
-      "Available products:",
-      fallbackProducts.map((p) => ({ id: p.id, name: p.name })),
-    );
-
-    const index = fallbackProducts.findIndex((p) => p.id === id);
-    if (index === -1) {
-      console.error("Product not found in fallback storage with ID:", id);
-      console.log("Creating new product with provided ID for edit operation");
-      const newProduct: Product = {
-        id,
-        name: updates.name || "Updated Product",
-        description: updates.description || "",
-        price: updates.price || 0,
-        images: updates.images || [],
-        variants: updates.variants || [],
-        category_id: updates.category_id || updates.categoryId,
-        total_stock: updates.total_stock || updates.totalStock || 0,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
+    if (!supabase) {
+      console.log("Using in-memory storage. Looking for product ID:", id);
+      const index = fallbackProducts.findIndex((p) => p.id === id);
+      if (index === -1) {
+        throw new Error("Product not found");
+      }
+      fallbackProducts[index] = {
+        ...fallbackProducts[index],
         ...updates,
+        updated_at: new Date().toISOString(),
       };
-      fallbackProducts.push(newProduct);
-      return newProduct;
+      return fallbackProducts[index];
     }
-    fallbackProducts[index] = {
-      ...fallbackProducts[index],
-      ...updates,
-      updated_at: new Date().toISOString(),
-    };
-    console.log("Product updated successfully in fallback storage");
-    return fallbackProducts[index];
 
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .update({ ...updates, updated_at: new Date().toISOString() })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) {
+        console.warn(
+          "Supabase error, falling back to in-memory storage:",
+          error.message,
+        );
+        const index = fallbackProducts.findIndex((p) => p.id === id);
+        if (index === -1) {
+          throw new Error("Product not found");
+        }
+        fallbackProducts[index] = {
+          ...fallbackProducts[index],
+          ...updates,
+          updated_at: new Date().toISOString(),
+        };
+        return fallbackProducts[index];
+      }
+
+      return data;
+    } catch (error) {
+      console.warn("Supabase connection failed, using in-memory storage");
+      const index = fallbackProducts.findIndex((p) => p.id === id);
+      if (index === -1) {
+        throw new Error("Product not found");
+      }
+      fallbackProducts[index] = {
+        ...fallbackProducts[index],
+        ...updates,
+        updated_at: new Date().toISOString(),
+      };
+      return fallbackProducts[index];
+    }
   },
 
   // Delete a product
