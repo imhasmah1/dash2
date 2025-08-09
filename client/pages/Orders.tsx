@@ -420,7 +420,7 @@ export default function Orders() {
                                   ? selectedVariant.stock
                                   : product?.totalStock || 999
                               }
-                              value={item.quantity}
+                              value={item.quantity === 0 ? "" : item.quantity}
                               onChange={(e) =>
                                 updateOrderItem(
                                   index,
@@ -428,6 +428,11 @@ export default function Orders() {
                                   parseInt(e.target.value) || 1,
                                 )
                               }
+                              onFocus={(e) => {
+                                if (e.target.value === "0") {
+                                  e.target.value = "";
+                                }
+                              }}
                             />
                           </div>
                           <div className="w-24">
