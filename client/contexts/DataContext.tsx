@@ -358,6 +358,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
     const product = getProductById(productId);
     return product?.variants.find((variant) => variant.id === variantId);
   };
+  const getCategoryById = (id: string) =>
+    categories.find((category) => category.id === id);
 
   const refetchData = async () => {
     await loadData();
