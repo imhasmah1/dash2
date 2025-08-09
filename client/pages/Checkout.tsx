@@ -140,8 +140,8 @@ export default function Checkout() {
               <p className="font-medium text-blue-900">What happens next?</p>
               <ul className="text-blue-800 space-y-1 text-left">
                 <li>• We will contact you shortly to confirm your order</li>
-                <li>• {deliveryType === "delivery"
-                    ? `Your order will be delivered to your address${deliveryArea === "jao-askar" ? " (Jao/Askar area)" : " (All towns)"}`
+                <li>• {orderDetails?.deliveryType === "delivery"
+                    ? `Your order will be delivered to your address${orderDetails?.deliveryArea === "jao-askar" ? " (Jao/Askar area)" : " (All towns)"}`
                     : "Your order will be ready for pickup"}</li>
                 <li>• You will receive updates about your order status</li>
               </ul>
