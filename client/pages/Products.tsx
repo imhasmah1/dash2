@@ -387,55 +387,110 @@ export default function Products() {
                     <div className="space-y-3">
                       {formData.variants.map((variant, index) => (
                         <Card key={variant.id || index} className="p-4">
-                          <div className="flex gap-4 items-end">
-                            <div className="flex-1">
-                              <Label htmlFor={`variant-name-${index}`}>
-                                {t("products.variantName")}
-                              </Label>
-                              <Input
-                                id={`variant-name-${index}`}
-                                value={variant.name}
-                                onChange={(e) =>
-                                  updateVariant(index, "name", e.target.value)
-                                }
-                                placeholder={t("products.variantName")}
-                                required
-                              />
-                            </div>
-                            <div className="w-32">
-                              <Label htmlFor={`variant-stock-${index}`}>
-                                {t("products.variantStock")}
-                              </Label>
-                              <Input
-                                id={`variant-stock-${index}`}
-                                type="number"
-                                min="0"
-                                value={variant.stock === 0 ? "" : variant.stock}
-                                onChange={(e) =>
-                                  updateVariant(
-                                    index,
-                                    "stock",
-                                    parseInt(e.target.value) || 0,
-                                  )
-                                }
-                                onFocus={(e) => {
-                                  if (e.target.value === "0") {
-                                    e.target.value = "";
+                          <div className="space-y-4">
+                            <div className="flex gap-4 items-end">
+                              <div className="flex-1">
+                                <Label htmlFor={`variant-name-${index}`}>
+                                  {t("products.variantName")}
+                                </Label>
+                                <Input
+                                  id={`variant-name-${index}`}
+                                  value={variant.name}
+                                  onChange={(e) =>
+                                    updateVariant(index, "name", e.target.value)
                                   }
-                                }}
-                                placeholder="0"
-                                required
-                              />
+                                  placeholder={t("products.variantName")}
+                                  required
+                                />
+                              </div>
+                              <div className="w-32">
+                                <Label htmlFor={`variant-stock-${index}`}>
+                                  {t("products.variantStock")}
+                                </Label>
+                                <Input
+                                  id={`variant-stock-${index}`}
+                                  type="number"
+                                  min="0"
+                                  value={variant.stock === 0 ? "" : variant.stock}
+                                  onChange={(e) =>
+                                    updateVariant(
+                                      index,
+                                      "stock",
+                                      parseInt(e.target.value) || 0,
+                                    )
+                                  }
+                                  onFocus={(e) => {
+                                    if (e.target.value === "0") {
+                                      e.target.value = "";
+                                    }
+                                  }}
+                                  placeholder="0"
+                                  required
+                                />
+                              </div>
+                              <Button
+                                type="button"
+                                size="icon"
+                                variant="outline"
+                                onClick={() => removeVariant(index)}
+                                className="text-red-600 hover:text-red-700"
+                              >
+                                <X className="w-4 h-4" />
+                              </Button>
                             </div>
-                            <Button
-                              type="button"
-                              size="icon"
-                              variant="outline"
-                              onClick={() => removeVariant(index)}
-                              className="text-red-600 hover:text-red-700"
-                            >
-                              <X className="w-4 h-4" />
-                            </Button>
+
+                            {/* Variant Image Upload */}
+                            <div>
+                              <Label className="text-sm font-medium">
+                                Variant Image (Optional)
+                              </Label>
+                              <div className="mt-2">
+                                {variant.image ? (
+                                  <div className="flex items-center gap-3">
+                                    <img
+                                      src={variant.image}
+                                      alt={variant.name}
+                                      className="w-16 h-16 object-cover rounded border"
+                                    />
+                                    <Button
+                                      type="button"
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => updateVariant(index, "image", "")}
+                                    >
+                                      Remove Image
+                                    </Button>
+                                  </div>
+                                ) : (
+                                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      onChange={async (e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                          try {
+                                            const imageUrl = await uploadImage(file);
+                                            updateVariant(index, "image", imageUrl);
+                                          } catch (error) {
+                                            console.error("Failed to upload variant image:", error);
+                                          }
+                                        }
+                                      }}
+                                      className="hidden"
+                                      id={`variant-image-${index}`}
+                                    />
+                                    <label
+                                      htmlFor={`variant-image-${index}`}
+                                      className="cursor-pointer flex flex-col items-center justify-center text-sm text-gray-600 hover:text-gray-800"
+                                    >
+                                      <Plus className="w-6 h-6 mb-1" />
+                                      Upload Image
+                                    </label>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
                           </div>
                         </Card>
                       ))}
