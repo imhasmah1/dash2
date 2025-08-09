@@ -124,12 +124,24 @@ export default function Checkout() {
               <Check className="h-8 w-8 text-green-600" />
             </div>
             <h2 className="text-xl font-semibold">
-              {t("checkout.orderSuccess")}
+              {t("checkout.orderSuccess") || "Order Placed Successfully!"}
             </h2>
-            <p className="text-muted-foreground">{t("checkout.thankYou")}</p>
+            <p className="text-muted-foreground">{t("checkout.thankYou") || "Thank you for your order! We have received your order and will process it shortly."}</p>
+
+            <div className="bg-blue-50 p-4 rounded-lg space-y-2 text-sm">
+              <p className="font-medium text-blue-900">What happens next?</p>
+              <ul className="text-blue-800 space-y-1 text-left">
+                <li>• We will contact you shortly to confirm your order</li>
+                <li>• {deliveryType === "delivery"
+                    ? `Your order will be delivered to your address${deliveryArea === "jao-askar" ? " (Jao/Askar area)" : " (All towns)"}`
+                    : "Your order will be ready for pickup"}</li>
+                <li>• You will receive updates about your order status</li>
+              </ul>
+            </div>
+
             <div className="space-y-2">
               <p className="text-sm font-medium">
-                {t("checkout.orderNumber")}:
+                {t("checkout.orderNumber") || "Order Number"}:
               </p>
               <Badge variant="outline" className="text-lg px-4 py-2">
                 #{orderNumber}
