@@ -1,4 +1,4 @@
-import { Customer, Product, Order } from "@/contexts/DataContext";
+import { Customer, Product, Order, Category } from "@/contexts/DataContext";
 
 const API_BASE = "/api";
 
