@@ -141,6 +141,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         setCustomers([]);
         setProducts([]);
         setOrders([]);
+        setCategories([]);
       }
     } finally {
       setLoading(false);
