@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
+import { useData } from "../contexts/DataContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
