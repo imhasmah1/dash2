@@ -29,6 +29,7 @@ export interface ProductVariant {
   id: string;
   name: string;
   stock: number;
+  image?: string;
 }
 
 export interface Product {
