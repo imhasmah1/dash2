@@ -13,9 +13,11 @@ export const getAllOrders: RequestHandler = async (req, res) => {
 
 export const createOrder: RequestHandler = async (req, res) => {
   try {
+    console.log("Creating order with data:", req.body);
     const { customerId, items, status, deliveryType, notes } = req.body;
 
     if (!customerId || !items || !Array.isArray(items) || items.length === 0) {
+      console.error("Invalid order data:", { customerId, items });
       return res
         .status(400)
         .json({ error: "Customer ID and items are required" });
@@ -35,7 +37,9 @@ export const createOrder: RequestHandler = async (req, res) => {
       notes,
     };
 
+    console.log("Creating order with processed data:", orderData);
     const newOrder = await orderDb.create(orderData);
+    console.log("Order created successfully:", newOrder.id);
     res.status(201).json(newOrder);
   } catch (error) {
     console.error("Error creating order:", error);
