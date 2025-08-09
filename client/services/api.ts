@@ -108,6 +108,25 @@ export const orderApi = {
     }),
 };
 
+// Category API
+export const categoryApi = {
+  getAll: () => apiCall<Category[]>("/categories"),
+  create: (category: Omit<Category, "id" | "createdAt">) =>
+    apiCall<Category>("/categories", {
+      method: "POST",
+      body: JSON.stringify(category),
+    }),
+  update: (id: string, category: Partial<Category>) =>
+    apiCall<Category>(`/categories/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(category),
+    }),
+  delete: (id: string) =>
+    apiCall<void>(`/categories/${id}`, {
+      method: "DELETE",
+    }),
+};
+
 // Convenience exports for store components
 export const getProducts = productApi.getAll;
 export const createCustomer = customerApi.create;
