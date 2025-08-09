@@ -5,7 +5,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { customerApi, productApi, orderApi } from "@/services/api";
+import { customerApi, productApi, orderApi, categoryApi } from "@/services/api";
 
 export interface Customer {
   id: string;
