@@ -103,15 +103,37 @@ const Analytics = () => {
     };
   }, [orders, customers, timeRange]);
 
-  const [visitorTrends, setVisitorTrends] = useState<VisitorTrend[]>([
-    { date: "2024-01-01", visitors: 245, pageViews: 1245 },
-    { date: "2024-01-02", visitors: 323, pageViews: 1567 },
-    { date: "2024-01-03", visitors: 298, pageViews: 1423 },
-    { date: "2024-01-04", visitors: 367, pageViews: 1789 },
-    { date: "2024-01-05", visitors: 445, pageViews: 2134 },
-    { date: "2024-01-06", visitors: 398, pageViews: 1923 },
-    { date: "2024-01-07", visitors: 471, pageViews: 2266 },
-  ]);
+  // Calculate visitor trends from real order data
+  const visitorTrends = useMemo(() => {
+    const now = new Date();
+    const daysAgo = timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
+    const trends: VisitorTrend[] = [];
+
+    for (let i = daysAgo - 1; i >= 0; i--) {
+      const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+      const dateStr = date.toISOString().split('T')[0];
+
+      // Count orders for this day
+      const dayOrders = orders.filter(order => {
+        const orderDate = new Date(order.createdAt || order.created_at || '');
+        return orderDate.toDateString() === date.toDateString();
+      });
+
+      // Count customers created on this day
+      const dayCustomers = customers.filter(customer => {
+        const customerDate = new Date(customer.createdAt || customer.created_at || '');
+        return customerDate.toDateString() === date.toDateString();
+      });
+
+      trends.push({
+        date: dateStr,
+        visitors: dayCustomers.length * 2 + dayOrders.length, // Estimate visitors
+        pageViews: dayOrders.length * 3 + dayCustomers.length * 5, // Estimate page views
+      });
+    }
+
+    return trends;
+  }, [orders, customers, timeRange]);
 
   const [deviceData, setDeviceData] = useState<DeviceData[]>([
     { device: "Mobile", visitors: 1528, percentage: 60 },
@@ -158,7 +180,7 @@ const Analytics = () => {
       avgSession: "متوسط مدة الجلسة",
       bounceRate: "معدل الارتداد",
       newUsers: "المستخدمين الجدد",
-      returningUsers: "ا��مستخدمين العائدين",
+      returningUsers: "المستخدمين العائدين",
       visitorTrends: "اتجاهات الزوار",
       deviceBreakdown: "تفصيل الأجهزة",
       topPages: "أهم الصفحات",
