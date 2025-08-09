@@ -27,7 +27,7 @@ interface Product {
     name: string;
     stock: number;
   }>;
-  totalStock: number;
+  total_stock: number;
 }
 
 export default function Store() {
