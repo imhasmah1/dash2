@@ -28,7 +28,7 @@ export default function Categories() {
   const { categories, products, addCategory, updateCategory, deleteCategory } =
     useData();
   const { showConfirm, showAlert } = useDialog();
-  const { t } = useLanguage();
+  const { t, translateCategory } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
