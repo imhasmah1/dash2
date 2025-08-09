@@ -19,6 +19,12 @@ export interface Customer {
   createdAt: string;
 }
 
+export interface Category {
+  id: string;
+  name: string;
+  createdAt: string;
+}
+
 export interface ProductVariant {
   id: string;
   name: string;
