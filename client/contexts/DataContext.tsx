@@ -84,12 +84,16 @@ interface DataContextType {
   updateOrder: (id: string, order: Partial<Order>) => Promise<void>;
   deleteOrder: (id: string) => Promise<void>;
   updateOrderStatus: (id: string, status: Order["status"]) => Promise<void>;
+  addCategory: (category: Omit<Category, "id" | "createdAt">) => Promise<void>;
+  updateCategory: (id: string, category: Partial<Category>) => Promise<void>;
+  deleteCategory: (id: string) => Promise<void>;
   getCustomerById: (id: string) => Customer | undefined;
   getProductById: (id: string) => Product | undefined;
   getVariantById: (
     productId: string,
     variantId: string,
   ) => ProductVariant | undefined;
+  getCategoryById: (id: string) => Category | undefined;
   refetchData: () => Promise<void>;
   uploadImage: (file: File) => Promise<string>;
 }
