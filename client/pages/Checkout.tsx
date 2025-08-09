@@ -275,7 +275,7 @@ export default function Checkout() {
           </div>
 
           {/* Order Summary */}
-          <div>
+          <div className="[dir=rtl]:order-1 [dir=ltr]:order-2">
             <Card className="sticky top-4">
               <CardHeader>
                 <CardTitle>{t("checkout.orderSummary")}</CardTitle>
