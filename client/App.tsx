@@ -76,6 +76,7 @@ import Dashboard from "@/pages/Dashboard";
 import Products from "@/pages/Products";
 import Orders from "@/pages/Orders";
 import Customers from "@/pages/Customers";
+import Categories from "@/pages/Categories";
 import Revenue from "@/pages/Revenue";
 import Analytics from "@/pages/Analytics";
 import Store from "@/pages/Store";
