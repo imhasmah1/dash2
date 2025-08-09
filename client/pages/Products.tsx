@@ -60,6 +60,7 @@ export default function Products() {
       images: [],
       variants: [],
       stock: 0,
+      categoryId: "",
     });
     setEditingProduct(null);
   };
