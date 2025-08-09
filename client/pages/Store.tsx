@@ -182,14 +182,14 @@ export default function Store() {
                     <Button
                       size="sm"
                       onClick={() => handleAddToCart(product)}
-                      disabled={product.totalStock === 0}
+                      disabled={product.total_stock === 0}
                       className="shrink-0"
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
-                  {product.totalStock === 0 && (
+                  {product.total_stock === 0 && (
                     <Badge
                       variant="secondary"
                       className="w-full mt-2 justify-center text-center"
