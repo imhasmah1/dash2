@@ -66,6 +66,24 @@ export interface Product {
 }
 
 // In-memory fallback storage
+let fallbackCategories: Category[] = [
+  {
+    id: "1",
+    name: "Electronics",
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: "2",
+    name: "Accessories",
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: "3",
+    name: "Home & Office",
+    created_at: new Date().toISOString(),
+  },
+];
+
 let fallbackProducts: Product[] = [
   {
     id: "1",
