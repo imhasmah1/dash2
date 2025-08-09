@@ -11,19 +11,23 @@
 ## What the Schema Creates
 
 ### Tables
+
 - **categories**: Product categories (Electronics, Accessories, etc.)
 - **products**: Your store products with variants, images, and pricing
 - **customers**: Customer information including address details
 - **orders**: Order history with items, status, and delivery info
 
 ### Sample Data
+
 The schema includes sample data to get you started:
+
 - 3 product categories
 - 4 sample products with variants
 - 3 sample customers
 - 2 sample orders
 
 ### Features
+
 - **UUID primary keys**: Unique identifiers for all records
 - **JSONB fields**: Flexible storage for product variants and images
 - **Automatic timestamps**: Created/updated dates are managed automatically
@@ -41,6 +45,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 ```
 
 You can find these values in:
+
 1. **Project URL**: Supabase Dashboard → Settings → API → Project URL
 2. **Service Role Key**: Supabase Dashboard → Settings → API → service_role (secret)
 

@@ -119,12 +119,13 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
     try {
       setLoading(true);
-      const [customersData, productsData, ordersData, categoriesData] = await Promise.all([
-        customerApi.getAll(),
-        productApi.getAll(),
-        orderApi.getAll(),
-        categoryApi.getAll(),
-      ]);
+      const [customersData, productsData, ordersData, categoriesData] =
+        await Promise.all([
+          customerApi.getAll(),
+          productApi.getAll(),
+          orderApi.getAll(),
+          categoryApi.getAll(),
+        ]);
       setCustomers(customersData);
       // Ensure totalStock is properly mapped for backward compatibility
       const normalizedProducts = productsData.map((product: any) => ({

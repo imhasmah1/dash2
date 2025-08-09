@@ -25,7 +25,8 @@ import { Label } from "@/components/ui/label";
 import { Plus, Search, Edit, Trash2, FolderOpen } from "lucide-react";
 
 export default function Categories() {
-  const { categories, products, addCategory, updateCategory, deleteCategory } = useData();
+  const { categories, products, addCategory, updateCategory, deleteCategory } =
+    useData();
   const { showConfirm, showAlert } = useDialog();
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
@@ -65,7 +66,7 @@ export default function Categories() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim()) {
       showAlert({
         title: "Validation Error",
@@ -97,8 +98,10 @@ export default function Categories() {
 
   const handleDeleteCategory = async (id: string) => {
     // Check if category is being used by any products
-    const productsUsingCategory = products.filter(product => product.categoryId === id);
-    
+    const productsUsingCategory = products.filter(
+      (product) => product.categoryId === id,
+    );
+
     if (productsUsingCategory.length > 0) {
       showAlert({
         title: "Cannot Delete Category",
@@ -110,7 +113,8 @@ export default function Categories() {
 
     const confirmed = await showConfirm({
       title: "Delete Category",
-      message: "Are you sure you want to delete this category? This action cannot be undone.",
+      message:
+        "Are you sure you want to delete this category? This action cannot be undone.",
       type: "danger",
       confirmText: "Delete",
       cancelText: t("common.cancel"),
@@ -135,16 +139,15 @@ export default function Categories() {
   };
 
   const getProductCountForCategory = (categoryId: string) => {
-    return products.filter(product => product.categoryId === categoryId).length;
+    return products.filter((product) => product.categoryId === categoryId)
+      .length;
   };
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Categories
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
           <p className="text-gray-600 mt-2">Manage product categories</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -160,9 +163,7 @@ export default function Categories() {
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>
-                {editingCategory
-                  ? "Edit Category"
-                  : "Add New Category"}
+                {editingCategory ? "Edit Category" : "Add New Category"}
               </DialogTitle>
               <DialogDescription>
                 {editingCategory
@@ -236,11 +237,9 @@ export default function Categories() {
                       <FolderOpen className="w-6 h-6 text-dashboard-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">
-                        {category.name}
-                      </CardTitle>
+                      <CardTitle className="text-lg">{category.name}</CardTitle>
                       <CardDescription>
-                        {productCount} product{productCount !== 1 ? 's' : ''}
+                        {productCount} product{productCount !== 1 ? "s" : ""}
                       </CardDescription>
                     </div>
                   </div>

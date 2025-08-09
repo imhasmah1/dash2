@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { useData, Product, ProductVariant, Category } from "@/contexts/DataContext";
+import {
+  useData,
+  Product,
+  ProductVariant,
+  Category,
+} from "@/contexts/DataContext";
 import { useDialog } from "@/contexts/DialogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -28,7 +33,15 @@ import ImageUpload from "@/components/ImageUpload";
 import { Plus, Search, Edit, Trash2, Package, X } from "lucide-react";
 
 export default function Products() {
-  const { products, categories, addProduct, updateProduct, deleteProduct, getCategoryById, uploadImage } = useData();
+  const {
+    products,
+    categories,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    getCategoryById,
+    uploadImage,
+  } = useData();
   const { showConfirm, showAlert } = useDialog();
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
@@ -74,7 +87,10 @@ export default function Products() {
         price: product.price,
         images: [...product.images],
         variants: [...product.variants],
-        stock: product.variants.length === 0 ? (product.totalStock || product.total_stock || 0) : 0,
+        stock:
+          product.variants.length === 0
+            ? product.totalStock || product.total_stock || 0
+            : 0,
         categoryId: product.categoryId || "",
       });
     } else {
@@ -417,7 +433,9 @@ export default function Products() {
                                   id={`variant-stock-${index}`}
                                   type="number"
                                   min="0"
-                                  value={variant.stock === 0 ? "" : variant.stock}
+                                  value={
+                                    variant.stock === 0 ? "" : variant.stock
+                                  }
                                   onChange={(e) =>
                                     updateVariant(
                                       index,
@@ -462,7 +480,9 @@ export default function Products() {
                                       type="button"
                                       variant="outline"
                                       size="sm"
-                                      onClick={() => updateVariant(index, "image", "")}
+                                      onClick={() =>
+                                        updateVariant(index, "image", "")
+                                      }
                                     >
                                       Remove Image
                                     </Button>
@@ -476,10 +496,18 @@ export default function Products() {
                                         const file = e.target.files?.[0];
                                         if (file) {
                                           try {
-                                            const imageUrl = await uploadImage(file);
-                                            updateVariant(index, "image", imageUrl);
+                                            const imageUrl =
+                                              await uploadImage(file);
+                                            updateVariant(
+                                              index,
+                                              "image",
+                                              imageUrl,
+                                            );
                                           } catch (error) {
-                                            console.error("Failed to upload variant image:", error);
+                                            console.error(
+                                              "Failed to upload variant image:",
+                                              error,
+                                            );
                                           }
                                         }
                                       }}
@@ -558,7 +586,9 @@ export default function Products() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((product) => {
-          const stockStatus = getStockStatus(product.totalStock || product.total_stock || 0);
+          const stockStatus = getStockStatus(
+            product.totalStock || product.total_stock || 0,
+          );
           const primaryImage = product.images[0];
 
           return (
@@ -603,7 +633,8 @@ export default function Products() {
                     {product.categoryId && (
                       <div className="mt-2">
                         <Badge variant="outline" className="text-xs">
-                          {getCategoryById(product.categoryId)?.name || "Unknown Category"}
+                          {getCategoryById(product.categoryId)?.name ||
+                            "Unknown Category"}
                         </Badge>
                       </div>
                     )}
@@ -625,7 +656,8 @@ export default function Products() {
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Package className="w-4 h-4" />
                     <span>
-                      {product.totalStock || product.total_stock || 0} {t("products.stock")}
+                      {product.totalStock || product.total_stock || 0}{" "}
+                      {t("products.stock")}
                     </span>
                   </div>
 
@@ -636,7 +668,10 @@ export default function Products() {
                       </p>
                       <div className="space-y-2">
                         {product.variants.slice(0, 2).map((variant) => (
-                          <div key={variant.id} className="flex items-center gap-2">
+                          <div
+                            key={variant.id}
+                            className="flex items-center gap-2"
+                          >
                             {variant.image && (
                               <img
                                 src={variant.image}
@@ -644,10 +679,7 @@ export default function Products() {
                                 className="w-8 h-8 object-cover rounded border"
                               />
                             )}
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
+                            <Badge variant="outline" className="text-xs">
                               {variant.name} ({variant.stock})
                             </Badge>
                           </div>

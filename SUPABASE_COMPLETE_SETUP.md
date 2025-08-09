@@ -5,6 +5,7 @@ This guide will help you set up Supabase database integration for your Azhar Sto
 ## 🚀 Quick Setup (5 minutes)
 
 ### Step 1: Create Supabase Project
+
 1. Go to [https://supabase.com](https://supabase.com) and sign up/login
 2. Click "New Project"
 3. Choose your organization
@@ -14,6 +15,7 @@ This guide will help you set up Supabase database integration for your Azhar Sto
 7. Click "Create new project"
 
 ### Step 2: Set Up Database Schema
+
 1. Wait for your project to be ready (usually 1-2 minutes)
 2. In your Supabase dashboard, click "SQL Editor" in the left sidebar
 3. Click "+ New query"
@@ -22,6 +24,7 @@ This guide will help you set up Supabase database integration for your Azhar Sto
 6. Click "Run" to execute the schema
 
 ### Step 3: Configure Environment Variables
+
 1. In Supabase dashboard, go to Settings → API (in left sidebar)
 2. Copy your "Project URL"
 3. Copy your "service_role" key (this is the secret key)
@@ -34,11 +37,13 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...your-service-ro
 ```
 
 ### Step 4: Restart Your Application
+
 After updating the `.env` file, restart your development server to apply the changes.
 
 ## ✅ Verification
 
 After setup, your application should show:
+
 - ✅ Supabase client initialized successfully (in server logs)
 - All CRUD operations working through Supabase instead of in-memory storage
 - Data persistence between server restarts
@@ -48,20 +53,24 @@ After setup, your application should show:
 ### Common Issues:
 
 **1. "⚠️ Supabase not configured" warning**
+
 - Make sure your `.env` file has the correct SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
 - Ensure there are no extra spaces in the environment variables
 - Restart your development server after updating `.env`
 
 **2. "PGRST116" errors**
+
 - This means "no rows found" - it's normal for empty queries
 - Not an error, just means the data you're looking for doesn't exist
 
 **3. API errors when editing products**
+
 - Check that your environment variables are properly set
 - Look for any console errors in your browser's developer tools
 - Check server logs for Supabase connection errors
 
 **4. Data not persisting**
+
 - Verify that console shows "✅ Supabase client initialized successfully"
 - If you see fallback warnings, check your environment variables
 - Ensure your Supabase project is active and not paused
@@ -102,6 +111,7 @@ For production deployment:
 ## 📞 Need Help?
 
 If you encounter issues:
+
 1. Check the browser console for errors
 2. Check server logs for Supabase connection messages
 3. Verify your environment variables are correctly set

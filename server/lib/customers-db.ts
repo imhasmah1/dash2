@@ -65,7 +65,9 @@ const transformCustomer = (customer: any): Customer => ({
   id: customer.id,
   name: customer.name,
   phone: customer.phone,
-  address: customer.address || `House ${customer.home || ''}, Road ${customer.road || ''}, Block ${customer.block || ''}, ${customer.town || ''}`.trim(),
+  address:
+    customer.address ||
+    `House ${customer.home || ""}, Road ${customer.road || ""}, Block ${customer.block || ""}, ${customer.town || ""}`.trim(),
   home: customer.home,
   road: customer.road,
   block: customer.block,
@@ -123,18 +125,20 @@ export const customerDb = {
     try {
       const { data, error } = await supabase
         .from("customers")
-        .insert([{
-          id: newCustomer.id,
-          name: newCustomer.name,
-          phone: newCustomer.phone,
-          address: newCustomer.address,
-          home: newCustomer.home,
-          road: newCustomer.road,
-          block: newCustomer.block,
-          town: newCustomer.town,
-          created_at: newCustomer.created_at,
-          updated_at: newCustomer.updated_at,
-        }])
+        .insert([
+          {
+            id: newCustomer.id,
+            name: newCustomer.name,
+            phone: newCustomer.phone,
+            address: newCustomer.address,
+            home: newCustomer.home,
+            road: newCustomer.road,
+            block: newCustomer.block,
+            town: newCustomer.town,
+            created_at: newCustomer.created_at,
+            updated_at: newCustomer.updated_at,
+          },
+        ])
         .select()
         .single();
 
@@ -173,9 +177,9 @@ export const customerDb = {
     try {
       const { data, error } = await supabase
         .from("customers")
-        .update({ 
-          ...updates, 
-          updated_at: new Date().toISOString() 
+        .update({
+          ...updates,
+          updated_at: new Date().toISOString(),
         })
         .eq("id", id)
         .select()

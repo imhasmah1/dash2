@@ -88,13 +88,16 @@ export default function Checkout() {
         total: totalPrice,
         status: "processing",
         deliveryType,
-        notes: deliveryType === "delivery" ? `Delivery Area: ${deliveryArea === "all-towns" ? "All Towns" : "Jao or Askar"}` : "",
+        notes:
+          deliveryType === "delivery"
+            ? `Delivery Area: ${deliveryArea === "all-towns" ? "All Towns" : "Jao or Askar"}`
+            : "",
       });
 
       setOrderNumber(order.id);
       setOrderDetails({
         deliveryType,
-        deliveryArea: deliveryType === "delivery" ? deliveryArea : undefined
+        deliveryArea: deliveryType === "delivery" ? deliveryArea : undefined,
       });
       setOrderSuccess(true);
       clearCart();
@@ -134,15 +137,21 @@ export default function Checkout() {
             <h2 className="text-xl font-semibold">
               {t("checkout.orderSuccess") || "Order Placed Successfully!"}
             </h2>
-            <p className="text-muted-foreground">{t("checkout.thankYou") || "Thank you for your order! We have received your order and will process it shortly."}</p>
+            <p className="text-muted-foreground">
+              {t("checkout.thankYou") ||
+                "Thank you for your order! We have received your order and will process it shortly."}
+            </p>
 
             <div className="bg-blue-50 p-4 rounded-lg space-y-2 text-sm">
               <p className="font-medium text-blue-900">What happens next?</p>
               <ul className="text-blue-800 space-y-1 text-left">
                 <li>• We will contact you shortly to confirm your order</li>
-                <li>• {orderDetails?.deliveryType === "delivery"
+                <li>
+                  •{" "}
+                  {orderDetails?.deliveryType === "delivery"
                     ? `Your order will be delivered to your address${orderDetails?.deliveryArea === "jao-askar" ? " (Jao/Askar area)" : " (All towns)"}`
-                    : "Your order will be ready for pickup"}</li>
+                    : "Your order will be ready for pickup"}
+                </li>
                 <li>• You will receive updates about your order status</li>
               </ul>
             </div>
@@ -258,15 +267,16 @@ export default function Checkout() {
                         >
                           <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
                             <RadioGroupItem value="all-towns" id="all-towns" />
-                            <Label htmlFor="all-towns" className="font-semibold text-primary">
+                            <Label
+                              htmlFor="all-towns"
+                              className="font-semibold text-primary"
+                            >
                               All Towns (Recommended)
                             </Label>
                           </div>
                           <div className="flex items-center space-x-2 [dir=rtl]:space-x-reverse">
                             <RadioGroupItem value="jao-askar" id="jao-askar" />
-                            <Label htmlFor="jao-askar">
-                              Jao or Askar only
-                            </Label>
+                            <Label htmlFor="jao-askar">Jao or Askar only</Label>
                           </div>
                         </RadioGroup>
                       </div>
@@ -280,7 +290,10 @@ export default function Checkout() {
                         {t("checkout.pickup")}
                       </Label>
                     </div>
-                    <Badge variant="secondary" className="text-green-700 bg-green-100">
+                    <Badge
+                      variant="secondary"
+                      className="text-green-700 bg-green-100"
+                    >
                       Free
                     </Badge>
                   </div>
@@ -313,7 +326,9 @@ export default function Checkout() {
                       className="flex justify-between items-start gap-4 p-3 bg-gray-50 rounded-lg [dir=rtl]:flex-row-reverse"
                     >
                       <div className="flex-1 space-y-1">
-                        <p className="font-medium text-base auto-text">{item.productName}</p>
+                        <p className="font-medium text-base auto-text">
+                          {item.productName}
+                        </p>
                         {item.variantName && (
                           <p className="text-muted-foreground text-sm auto-text">
                             {item.variantName}

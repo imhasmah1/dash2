@@ -25,12 +25,13 @@ export const createProduct: RequestHandler = async (req, res) => {
     }
 
     // Calculate total stock from variants or use provided stock
-    const totalStock = variants && variants.length > 0
-      ? variants.reduce(
-          (sum: number, variant: ProductVariant) => sum + variant.stock,
-          0,
-        )
-      : parseInt(req.body.stock) || parseInt(req.body.totalStock) || 0;
+    const totalStock =
+      variants && variants.length > 0
+        ? variants.reduce(
+            (sum: number, variant: ProductVariant) => sum + variant.stock,
+            0,
+          )
+        : parseInt(req.body.stock) || parseInt(req.body.totalStock) || 0;
 
     const newProduct = {
       name,

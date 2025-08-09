@@ -74,7 +74,9 @@ export default function Store() {
 
     // Filter by category
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(product => product.categoryId === selectedCategory);
+      filtered = filtered.filter(
+        (product) => product.categoryId === selectedCategory,
+      );
     }
 
     // Filter by search query
@@ -206,7 +208,9 @@ export default function Store() {
             {categories.map((category) => (
               <Button
                 key={category.id}
-                variant={selectedCategory === category.id ? "default" : "outline"}
+                variant={
+                  selectedCategory === category.id ? "default" : "outline"
+                }
                 size="sm"
                 onClick={() => setSelectedCategory(category.id)}
                 className="rounded-full"
@@ -280,7 +284,8 @@ export default function Store() {
                       </span>
                       {(product.total_stock || product.totalStock || 0) > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.total_stock || product.totalStock || 0} {t("products.stock")}
+                          {product.total_stock || product.totalStock || 0}{" "}
+                          {t("products.stock")}
                         </p>
                       )}
                     </div>
@@ -288,7 +293,9 @@ export default function Store() {
                     <Button
                       size="sm"
                       onClick={() => handleAddToCart(product)}
-                      disabled={(product.total_stock || product.totalStock || 0) === 0}
+                      disabled={
+                        (product.total_stock || product.totalStock || 0) === 0
+                      }
                       className="shrink-0"
                     >
                       <Plus className="h-4 w-4" />

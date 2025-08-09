@@ -74,30 +74,39 @@ const Analytics = () => {
   // Calculate real analytics data
   const analyticsData = useMemo(() => {
     const now = new Date();
-    const daysAgo = timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
+    const daysAgo =
+      timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
     const startDate = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000);
 
     // Filter orders within time range
-    const recentOrders = orders.filter(order => {
-      const orderDate = new Date(order.createdAt || order.created_at || '');
+    const recentOrders = orders.filter((order) => {
+      const orderDate = new Date(order.createdAt || order.created_at || "");
       return orderDate >= startDate;
     });
 
     // Filter customers within time range
-    const recentCustomers = customers.filter(customer => {
-      const customerDate = new Date(customer.createdAt || customer.created_at || '');
+    const recentCustomers = customers.filter((customer) => {
+      const customerDate = new Date(
+        customer.createdAt || customer.created_at || "",
+      );
       return customerDate >= startDate;
     });
 
     const totalOrders = recentOrders.length;
-    const totalRevenue = recentOrders.reduce((sum, order) => sum + order.total, 0);
+    const totalRevenue = recentOrders.reduce(
+      (sum, order) => sum + order.total,
+      0,
+    );
     const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
 
     return {
       visitors: customers.length * 3, // Estimate: assume 3 visits per customer
       pageViews: customers.length * 8, // Estimate: assume 8 page views per customer
       averageSessionDuration: Math.floor(avgOrderValue * 2), // Rough estimate based on order value
-      bounceRate: Math.max(20, 60 - Math.floor(totalOrders / customers.length * 100)),
+      bounceRate: Math.max(
+        20,
+        60 - Math.floor((totalOrders / customers.length) * 100),
+      ),
       newUsers: recentCustomers.length,
       returningUsers: Math.max(0, customers.length - recentCustomers.length),
     };
@@ -106,22 +115,25 @@ const Analytics = () => {
   // Calculate visitor trends from real order data
   const visitorTrends = useMemo(() => {
     const now = new Date();
-    const daysAgo = timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
+    const daysAgo =
+      timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
     const trends: VisitorTrend[] = [];
 
     for (let i = daysAgo - 1; i >= 0; i--) {
       const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-      const dateStr = date.toISOString().split('T')[0];
+      const dateStr = date.toISOString().split("T")[0];
 
       // Count orders for this day
-      const dayOrders = orders.filter(order => {
-        const orderDate = new Date(order.createdAt || order.created_at || '');
+      const dayOrders = orders.filter((order) => {
+        const orderDate = new Date(order.createdAt || order.created_at || "");
         return orderDate.toDateString() === date.toDateString();
       });
 
       // Count customers created on this day
-      const dayCustomers = customers.filter(customer => {
-        const customerDate = new Date(customer.createdAt || customer.created_at || '');
+      const dayCustomers = customers.filter((customer) => {
+        const customerDate = new Date(
+          customer.createdAt || customer.created_at || "",
+        );
         return customerDate.toDateString() === date.toDateString();
       });
 
@@ -139,9 +151,21 @@ const Analytics = () => {
   const deviceData = useMemo(() => {
     const totalVisitors = analyticsData.visitors;
     return [
-      { device: "Mobile", visitors: Math.floor(totalVisitors * 0.65), percentage: 65 },
-      { device: "Desktop", visitors: Math.floor(totalVisitors * 0.25), percentage: 25 },
-      { device: "Tablet", visitors: Math.floor(totalVisitors * 0.10), percentage: 10 },
+      {
+        device: "Mobile",
+        visitors: Math.floor(totalVisitors * 0.65),
+        percentage: 65,
+      },
+      {
+        device: "Desktop",
+        visitors: Math.floor(totalVisitors * 0.25),
+        percentage: 25,
+      },
+      {
+        device: "Tablet",
+        visitors: Math.floor(totalVisitors * 0.1),
+        percentage: 10,
+      },
     ];
   }, [analyticsData.visitors]);
 
@@ -151,18 +175,21 @@ const Analytics = () => {
     const adminViews = orders.length * 2; // Admin visits for order management
 
     // Get top products by order frequency
-    const productOrderCounts = orders.reduce((acc, order) => {
-      order.items.forEach(item => {
-        acc[item.productId] = (acc[item.productId] || 0) + item.quantity;
-      });
-      return acc;
-    }, {} as Record<string, number>);
+    const productOrderCounts = orders.reduce(
+      (acc, order) => {
+        order.items.forEach((item) => {
+          acc[item.productId] = (acc[item.productId] || 0) + item.quantity;
+        });
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
 
     const topProductPages = Object.entries(productOrderCounts)
-      .sort(([,a], [,b]) => b - a)
+      .sort(([, a], [, b]) => b - a)
       .slice(0, 3)
       .map(([productId, count]) => {
-        const product = products.find(p => p.id === productId);
+        const product = products.find((p) => p.id === productId);
         return {
           page: `/product/${productId}`,
           views: count * 15, // Estimate views per order
@@ -173,7 +200,11 @@ const Analytics = () => {
     return [
       { page: "/", views: homeViews, uniqueViews: Math.floor(homeViews * 0.8) },
       ...topProductPages,
-      { page: "/admin", views: adminViews, uniqueViews: Math.floor(adminViews * 0.2) },
+      {
+        page: "/admin",
+        views: adminViews,
+        uniqueViews: Math.floor(adminViews * 0.2),
+      },
     ].slice(0, 5);
   }, [orders, customers, products]);
 
@@ -222,7 +253,8 @@ const Analytics = () => {
     },
   };
 
-  const currentTranslations = translations[language as keyof typeof translations] || translations.en;
+  const currentTranslations =
+    translations[language as keyof typeof translations] || translations.en;
 
   const refreshData = () => {
     // Force recalculation by updating a trigger state
@@ -247,9 +279,15 @@ const Analytics = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="7days">{currentTranslations.last7days}</SelectItem>
-              <SelectItem value="30days">{currentTranslations.last30days}</SelectItem>
-              <SelectItem value="90days">{currentTranslations.last90days}</SelectItem>
+              <SelectItem value="7days">
+                {currentTranslations.last7days}
+              </SelectItem>
+              <SelectItem value="30days">
+                {currentTranslations.last30days}
+              </SelectItem>
+              <SelectItem value="90days">
+                {currentTranslations.last90days}
+              </SelectItem>
             </SelectContent>
           </Select>
           <Button onClick={refreshData} variant="outline" size="sm">
@@ -273,8 +311,13 @@ const Analytics = () => {
               {analyticsData.visitors.toLocaleString()}
             </div>
             <Badge variant="secondary" className="mt-1">
-              <TrendingUp className="w-3 h-3 mr-1" />
-              +{Math.floor((customers.length / Math.max(1, customers.length - analyticsData.newUsers)) * 10)}%
+              <TrendingUp className="w-3 h-3 mr-1" />+
+              {Math.floor(
+                (customers.length /
+                  Math.max(1, customers.length - analyticsData.newUsers)) *
+                  10,
+              )}
+              %
             </Badge>
           </CardContent>
         </Card>
@@ -291,8 +334,11 @@ const Analytics = () => {
               {analyticsData.pageViews.toLocaleString()}
             </div>
             <Badge variant="secondary" className="mt-1">
-              <TrendingUp className="w-3 h-3 mr-1" />
-              +{Math.floor(orders.length > 0 ? (orders.length / products.length * 5) : 5)}%
+              <TrendingUp className="w-3 h-3 mr-1" />+
+              {Math.floor(
+                orders.length > 0 ? (orders.length / products.length) * 5 : 5,
+              )}
+              %
             </Badge>
           </CardContent>
         </Card>
@@ -306,7 +352,10 @@ const Analytics = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-dashboard-primary">
-              {Math.floor(analyticsData.averageSessionDuration / 60)}:{(analyticsData.averageSessionDuration % 60).toString().padStart(2, '0')}
+              {Math.floor(analyticsData.averageSessionDuration / 60)}:
+              {(analyticsData.averageSessionDuration % 60)
+                .toString()
+                .padStart(2, "0")}
             </div>
             <p className="text-xs text-muted-foreground auto-text">
               {currentTranslations.minutes}
@@ -326,7 +375,15 @@ const Analytics = () => {
               {analyticsData.bounceRate}%
             </div>
             <Badge variant="outline" className="mt-1">
-              {orders.length > customers.length ? '+' : '-'}{Math.abs(Math.floor((orders.length - customers.length) / Math.max(1, customers.length) * 100))}%
+              {orders.length > customers.length ? "+" : "-"}
+              {Math.abs(
+                Math.floor(
+                  ((orders.length - customers.length) /
+                    Math.max(1, customers.length)) *
+                    100,
+                ),
+              )}
+              %
             </Badge>
           </CardContent>
         </Card>
@@ -337,33 +394,39 @@ const Analytics = () => {
         {/* Visitor Trends Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="auto-text">{currentTranslations.visitorTrends}</CardTitle>
+            <CardTitle className="auto-text">
+              {currentTranslations.visitorTrends}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={visitorTrends}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis 
-                  dataKey="date" 
+                <XAxis
+                  dataKey="date"
                   tick={{ fontSize: 12 }}
-                  tickFormatter={(value) => new Date(value).toLocaleDateString()}
+                  tickFormatter={(value) =>
+                    new Date(value).toLocaleDateString()
+                  }
                 />
                 <YAxis tick={{ fontSize: 12 }} />
-                <Tooltip 
-                  labelFormatter={(value) => new Date(value).toLocaleDateString()}
+                <Tooltip
+                  labelFormatter={(value) =>
+                    new Date(value).toLocaleDateString()
+                  }
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="visitors" 
-                  stroke="#742370" 
-                  strokeWidth={2} 
+                <Line
+                  type="monotone"
+                  dataKey="visitors"
+                  stroke="#742370"
+                  strokeWidth={2}
                   name={currentTranslations.visitors}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="pageViews" 
-                  stroke="#8b4d89" 
-                  strokeWidth={2} 
+                <Line
+                  type="monotone"
+                  dataKey="pageViews"
+                  stroke="#8b4d89"
+                  strokeWidth={2}
                   name={currentTranslations.pageViews}
                 />
               </LineChart>
@@ -374,7 +437,9 @@ const Analytics = () => {
         {/* Device Breakdown */}
         <Card>
           <CardHeader>
-            <CardTitle className="auto-text">{currentTranslations.deviceBreakdown}</CardTitle>
+            <CardTitle className="auto-text">
+              {currentTranslations.deviceBreakdown}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -390,7 +455,10 @@ const Analytics = () => {
                   dataKey="visitors"
                 >
                   {deviceData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={colors[index % colors.length]}
+                    />
                   ))}
                 </Pie>
                 <Tooltip />
@@ -411,8 +479,14 @@ const Analytics = () => {
             <ResponsiveContainer width="100%" height={250}>
               <BarChart
                 data={[
-                  { type: currentTranslations.newUsers, count: analyticsData.newUsers },
-                  { type: currentTranslations.returningUsers, count: analyticsData.returningUsers },
+                  {
+                    type: currentTranslations.newUsers,
+                    count: analyticsData.newUsers,
+                  },
+                  {
+                    type: currentTranslations.returningUsers,
+                    count: analyticsData.returningUsers,
+                  },
                 ]}
               >
                 <CartesianGrid strokeDasharray="3 3" />
@@ -428,12 +502,17 @@ const Analytics = () => {
         {/* Top Pages */}
         <Card>
           <CardHeader>
-            <CardTitle className="auto-text">{currentTranslations.topPages}</CardTitle>
+            <CardTitle className="auto-text">
+              {currentTranslations.topPages}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {topPages.map((page, index) => (
-                <div key={page.page} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                <div
+                  key={page.page}
+                  className="flex items-center justify-between p-3 rounded-lg bg-muted/50"
+                >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-dashboard-primary text-white flex items-center justify-center text-sm font-medium">
                       {index + 1}
@@ -441,7 +520,8 @@ const Analytics = () => {
                     <div>
                       <p className="font-medium auto-text">{page.page}</p>
                       <p className="text-sm text-muted-foreground auto-text">
-                        {page.uniqueViews.toLocaleString()} {currentTranslations.uniqueViews}
+                        {page.uniqueViews.toLocaleString()}{" "}
+                        {currentTranslations.uniqueViews}
                       </p>
                     </div>
                   </div>
