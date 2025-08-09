@@ -209,43 +209,43 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[90vh] p-0 rounded-lg sm:rounded-md">
-        <div className="flex flex-col h-full auto-text">
-          {/* Header */}
-          <DialogHeader className="px-4 sm:px-6 py-4 border-b">
-            <DialogTitle className="text-2xl font-bold text-center">
-              {t("checkout.title")}
-            </DialogTitle>
+      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg sm:rounded-md flex flex-col">
+        {/* Header */}
+        <DialogHeader className="px-4 sm:px-6 py-4 border-b flex-shrink-0">
+          <DialogTitle className="text-2xl font-bold text-center">
+            {t("checkout.title")}
+          </DialogTitle>
 
-            {/* Step indicator */}
-            <div className="flex justify-center mt-4">
-              <div className="flex items-center space-x-2 sm:space-x-4 [dir=rtl]:space-x-reverse">
-                {[1, 2, 3].map((stepNum) => (
-                  <div key={stepNum} className="flex items-center">
-                    <div
-                      className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium ${
-                        step >= stepNum
-                          ? "bg-primary text-white"
-                          : "bg-gray-200 text-gray-600"
-                      }`}
-                    >
-                      {stepNum}
-                    </div>
-                    {stepNum < 3 && (
-                      <div
-                        className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 ${
-                          step > stepNum ? "bg-primary" : "bg-gray-200"
-                        }`}
-                      />
-                    )}
+          {/* Step indicator */}
+          <div className="flex justify-center mt-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 [dir=rtl]:space-x-reverse">
+              {[1, 2, 3].map((stepNum) => (
+                <div key={stepNum} className="flex items-center">
+                  <div
+                    className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium ${
+                      step >= stepNum
+                        ? "bg-primary text-white"
+                        : "bg-gray-200 text-gray-600"
+                    }`}
+                  >
+                    {stepNum}
                   </div>
-                ))}
-              </div>
+                  {stepNum < 3 && (
+                    <div
+                      className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 ${
+                        step > stepNum ? "bg-primary" : "bg-gray-200"
+                      }`}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
-          </DialogHeader>
+          </div>
+        </DialogHeader>
 
-          <ScrollArea className="flex-1">
-            <div className="p-4 sm:p-6">
+        {/* Scrollable Content Area */}
+        <ScrollArea className="flex-1 min-h-0">
+          <div className="p-4 sm:p-6 pb-20 auto-text">
               {/* Step 1: Customer Information */}
               {step === 1 && (
                 <Card className="border-2">
@@ -563,53 +563,51 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </CardContent>
                 </Card>
               )}
-            </div>
-          </ScrollArea>
-
-          {/* Footer with Navigation */}
-          <div className="border-t p-4 sm:p-6">
-            <div className="flex justify-between items-center gap-4">
-              {/* Back Button */}
-              {step > 1 && (
-                <Button
-                  variant="outline"
-                  onClick={handleBack}
-                  className="flex items-center gap-2 h-12 px-6 touch-manipulation"
-                >
-                  <ArrowLeft className="w-5 h-5" />
-                  {t("common.back")}
-                </Button>
-              )}
-
-              {/* Next/Submit Button */}
-              <div className="flex-1 flex justify-end">
-                {step < 3 ? (
+            {/* Footer with Navigation - Fixed at bottom */}
+            <div className="sticky bottom-0 bg-white border-t p-4 sm:p-6 mt-6">
+              <div className="flex justify-between items-center gap-4">
+                {/* Back Button */}
+                {step > 1 && (
                   <Button
-                    onClick={handleNext}
-                    disabled={step === 1 && !isStep1Valid()}
-                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
-                    size="lg"
+                    variant="outline"
+                    onClick={handleBack}
+                    className="flex items-center gap-2 h-12 px-6 touch-manipulation"
                   >
-                    {t("common.next")}
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={handlePlaceOrder}
-                    disabled={!isFormValid() || isSubmitting}
-                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
-                    size="lg"
-                  >
-                    <CreditCard className="w-5 h-5" />
-                    {isSubmitting
-                      ? t("common.loading")
-                      : t("checkout.placeOrder")}
+                    <ArrowLeft className="w-5 h-5" />
+                    {t("common.back")}
                   </Button>
                 )}
+
+                {/* Next/Submit Button */}
+                <div className="flex-1 flex justify-end">
+                  {step < 3 ? (
+                    <Button
+                      onClick={handleNext}
+                      disabled={step === 1 && !isStep1Valid()}
+                      className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                      size="lg"
+                    >
+                      {t("common.next")}
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handlePlaceOrder}
+                      disabled={!isFormValid() || isSubmitting}
+                      className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                      size="lg"
+                    >
+                      <CreditCard className="w-5 h-5" />
+                      {isSubmitting
+                        ? t("common.loading")
+                        : t("checkout.placeOrder")}
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
