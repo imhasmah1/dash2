@@ -619,7 +619,7 @@ export default function Products() {
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Package className="w-4 h-4" />
                     <span>
-                      {product.totalStock} {t("products.stock")}
+                      {product.totalStock || product.total_stock || 0} {t("products.stock")}
                     </span>
                   </div>
 
