@@ -91,11 +91,12 @@ export default function AddToCartDialog({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="w-[95vw] sm:max-w-md max-h-[95vh] flex flex-col">
-        <DialogHeader>
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle>{product.name}</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-4">
+        <div className="flex-1 overflow-y-auto px-1">
+          <div className="space-y-4 pb-4">
           {/* Product Image */}
           {product.images.length > 0 && (
             <div className="aspect-square sm:aspect-video overflow-hidden rounded-lg bg-gray-100">
@@ -194,9 +195,10 @@ export default function AddToCartDialog({
               </div>
             </div>
           )}
+          </div>
         </div>
 
-        <DialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+        <DialogFooter className="flex flex-col sm:flex-row gap-3 pt-4 border-t flex-shrink-0">
           <Button variant="outline" onClick={onClose} className="flex-1 h-12">
             {t("common.cancel")}
           </Button>
