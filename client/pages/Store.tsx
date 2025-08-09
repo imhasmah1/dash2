@@ -172,9 +172,9 @@ export default function Store() {
                       <span className="text-lg font-bold text-primary auto-text">
                         BD {product.price.toFixed(2)}
                       </span>
-                      {product.totalStock > 0 && (
+                      {product.total_stock > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.totalStock} {t("products.stock")}
+                          {product.total_stock} {t("products.stock")}
                         </p>
                       )}
                     </div>
