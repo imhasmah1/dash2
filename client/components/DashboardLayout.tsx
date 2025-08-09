@@ -25,6 +25,7 @@ interface DashboardLayoutProps {
 const getNavigation = (t: (key: string) => string) => [
   { name: t("nav.dashboard"), href: "/admin/", icon: LayoutDashboard },
   { name: t("nav.products"), href: "/admin/products", icon: Package },
+  { name: "Categories", href: "/admin/categories", icon: FolderOpen },
   { name: t("nav.orders"), href: "/admin/orders", icon: ShoppingCart },
   { name: t("nav.customers"), href: "/admin/customers", icon: Users },
   { name: t("nav.revenue"), href: "/admin/revenue", icon: TrendingUp },
