@@ -280,13 +280,18 @@ export default function Products() {
                         type="number"
                         step="0.01"
                         min="0"
-                        value={formData.price}
+                        value={formData.price === 0 ? "" : formData.price}
                         onChange={(e) =>
                           setFormData((prev) => ({
                             ...prev,
                             price: parseFloat(e.target.value) || 0,
                           }))
                         }
+                        onFocus={(e) => {
+                          if (e.target.value === "0") {
+                            e.target.value = "";
+                          }
+                        }}
                         placeholder="0.00"
                         required
                       />
