@@ -6,21 +6,21 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Categories Table
 CREATE TABLE IF NOT EXISTS categories (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    id TEXT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- Products Table
 CREATE TABLE IF NOT EXISTS products (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price DECIMAL(10, 2) NOT NULL DEFAULT 0,
     images JSONB DEFAULT '[]'::jsonb,
     variants JSONB DEFAULT '[]'::jsonb,
-    category_id UUID REFERENCES categories(id) ON DELETE SET NULL,
+    category_id TEXT REFERENCES categories(id) ON DELETE SET NULL,
     total_stock INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS products (
 
 -- Customers Table
 CREATE TABLE IF NOT EXISTS customers (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     phone VARCHAR(50),
     address TEXT,
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS customers (
 
 -- Orders Table
 CREATE TABLE IF NOT EXISTS orders (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    customer_id UUID REFERENCES customers(id) ON DELETE CASCADE,
+    id TEXT PRIMARY KEY,
+    customer_id TEXT REFERENCES customers(id) ON DELETE CASCADE,
     items JSONB NOT NULL DEFAULT '[]'::jsonb,
     total DECIMAL(10, 2) NOT NULL DEFAULT 0,
     status VARCHAR(50) DEFAULT 'processing' CHECK (status IN ('processing', 'ready', 'delivered', 'picked-up')),
@@ -54,15 +54,16 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 -- Insert sample categories
-INSERT INTO categories (name) VALUES 
-    ('Electronics'),
-    ('Accessories'),
-    ('Home & Office')
-ON CONFLICT DO NOTHING;
+INSERT INTO categories (id, name) VALUES 
+    ('1', 'Electronics'),
+    ('2', 'Accessories'),
+    ('3', 'Home & Office')
+ON CONFLICT (id) DO NOTHING;
 
 -- Insert sample products
-INSERT INTO products (name, description, price, images, variants, total_stock, category_id) VALUES 
+INSERT INTO products (id, name, description, price, images, variants, total_stock, category_id) VALUES 
     (
+        '1',
         'Wireless Bluetooth Headphones',
         'Premium quality headphones with noise cancellation',
         35.00,
@@ -73,9 +74,10 @@ INSERT INTO products (name, description, price, images, variants, total_stock, c
             {"id": "v3", "name": "Silver", "stock": 5}
         ]',
         45,
-        (SELECT id FROM categories WHERE name = 'Electronics' LIMIT 1)
+        '1'
     ),
     (
+        '2',
         'Adjustable Laptop Stand',
         'Ergonomic laptop stand for better posture',
         17.50,
@@ -85,9 +87,10 @@ INSERT INTO products (name, description, price, images, variants, total_stock, c
             {"id": "v2", "name": "Black", "stock": 10}
         ]',
         23,
-        (SELECT id FROM categories WHERE name = 'Accessories' LIMIT 1)
+        '2'
     ),
     (
+        '3',
         'USB-C Cable 6ft',
         'Fast charging USB-C to USB-C cable',
         5.00,
@@ -97,9 +100,10 @@ INSERT INTO products (name, description, price, images, variants, total_stock, c
             {"id": "v2", "name": "White", "stock": 50}
         ]',
         120,
-        (SELECT id FROM categories WHERE name = 'Accessories' LIMIT 1)
+        '2'
     ),
     (
+        '4',
         'Portable Bluetooth Speaker',
         'Waterproof speaker with 12-hour battery life',
         50.00,
@@ -110,34 +114,36 @@ INSERT INTO products (name, description, price, images, variants, total_stock, c
             {"id": "v3", "name": "Black", "stock": 3}
         ]',
         8,
-        (SELECT id FROM categories WHERE name = 'Electronics' LIMIT 1)
+        '1'
     )
-ON CONFLICT DO NOTHING;
+ON CONFLICT (id) DO NOTHING;
 
 -- Insert sample customers
-INSERT INTO customers (name, phone, address, home, road, block, town) VALUES 
-    ('Alice Johnson', '+1 (555) 123-4567', 'House 123, Road 15, Block 304, Springfield', '123', '15', '304', 'Springfield'),
-    ('Bob Smith', '+1 (555) 234-5678', 'House 456, Road 22, Block 205, Manama', '456', '22', '205', 'Manama'),
-    ('Carol Davis', '+1 (555) 345-6789', 'House 789, Road 33, Block 102, Riffa', '789', '33', '102', 'Riffa')
-ON CONFLICT DO NOTHING;
+INSERT INTO customers (id, name, phone, address, home, road, block, town) VALUES 
+    ('1', 'Alice Johnson', '+1 (555) 123-4567', 'House 123, Road 15, Block 304, Springfield', '123', '15', '304', 'Springfield'),
+    ('2', 'Bob Smith', '+1 (555) 234-5678', 'House 456, Road 22, Block 205, Manama', '456', '22', '205', 'Manama'),
+    ('3', 'Carol Davis', '+1 (555) 345-6789', 'House 789, Road 33, Block 102, Riffa', '789', '33', '102', 'Riffa')
+ON CONFLICT (id) DO NOTHING;
 
 -- Insert sample orders
-INSERT INTO orders (customer_id, items, total, status, delivery_type) VALUES 
+INSERT INTO orders (id, customer_id, items, total, status, delivery_type) VALUES 
     (
-        (SELECT id FROM customers WHERE name = 'Alice Johnson' LIMIT 1),
+        '1',
+        '1',
         '[{"productId": "1", "quantity": 1, "price": 35.0}]',
         35.00,
         'delivered',
         'delivery'
     ),
     (
-        (SELECT id FROM customers WHERE name = 'Bob Smith' LIMIT 1),
+        '2',
+        '2',
         '[{"productId": "2", "quantity": 1, "price": 17.5}]',
         17.50,
         'processing',
         'pickup'
     )
-ON CONFLICT DO NOTHING;
+ON CONFLICT (id) DO NOTHING;
 
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_products_category_id ON products(category_id);
@@ -156,9 +162,16 @@ END;
 $$ language 'plpgsql';
 
 -- Create triggers to automatically update updated_at
+DROP TRIGGER IF EXISTS update_categories_updated_at ON categories;
 CREATE TRIGGER update_categories_updated_at BEFORE UPDATE ON categories FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+DROP TRIGGER IF EXISTS update_products_updated_at ON products;
 CREATE TRIGGER update_products_updated_at BEFORE UPDATE ON products FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+DROP TRIGGER IF EXISTS update_customers_updated_at ON customers;
 CREATE TRIGGER update_customers_updated_at BEFORE UPDATE ON customers FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+DROP TRIGGER IF EXISTS update_orders_updated_at ON orders;
 CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 -- Enable Row Level Security (RLS) - Optional, for production use
