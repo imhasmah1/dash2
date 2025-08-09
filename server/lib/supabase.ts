@@ -207,9 +207,16 @@ export const productDb = {
     }
 
     try {
+      // Don't include our generated ID when inserting to Supabase, let the DB generate it
+      const productToInsert = {
+        ...product,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+
       const { data, error } = await supabase
         .from("products")
-        .insert([product])
+        .insert([productToInsert])
         .select()
         .single();
 
@@ -222,6 +229,7 @@ export const productDb = {
         return newProduct;
       }
 
+      console.log("Product created successfully in Supabase with ID:", data.id);
       return data;
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
