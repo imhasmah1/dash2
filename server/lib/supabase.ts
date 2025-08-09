@@ -233,6 +233,7 @@ export const productDb = {
   // Update a product
   async update(id: string, updates: Partial<Product>): Promise<Product> {
     console.log("Updating product with ID:", id);
+    console.log("ID type:", typeof id, "ID length:", id.length);
     console.log("Updates:", JSON.stringify(updates, null, 2));
 
     if (!supabase) {
