@@ -14,6 +14,7 @@ import {
   Menu,
   X,
   Languages,
+  FolderOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
