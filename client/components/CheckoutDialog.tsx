@@ -397,8 +397,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     >
                       <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse p-6 border-2 rounded-xl hover:bg-gray-50 cursor-pointer transition-all touch-manipulation">
                         <RadioGroupItem value="delivery" id="delivery" />
-                        <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
-                          <Truck className="w-5 h-5 text-primary" />
+                        <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse flex-1">
+                          <Truck className="w-6 h-6 text-primary" />
                           <div>
                             <Label
                               htmlFor="delivery"
@@ -412,14 +412,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                         </div>
                         <div className="text-right auto-text">
-                          <span className="text-lg font-semibold">BD 2.00</span>
+                          <span className="text-xl font-bold text-primary">BD 2.00</span>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse p-6 border-2 rounded-xl hover:bg-gray-50 cursor-pointer transition-all touch-manipulation">
                         <RadioGroupItem value="pickup" id="pickup" />
-                        <div className="flex items-center space-x-3 [dir=rtl]:space-x-reverse flex-1">
-                          <Package className="w-5 h-5 text-primary" />
+                        <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse flex-1">
+                          <Package className="w-6 h-6 text-primary" />
                           <div>
                             <Label
                               htmlFor="pickup"
@@ -433,7 +433,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </div>
                         </div>
                         <div className="text-right auto-text">
-                          <span className="text-lg font-semibold text-green-600">
+                          <span className="text-xl font-bold text-green-600">
                             {t("checkout.free")}
                           </span>
                         </div>
