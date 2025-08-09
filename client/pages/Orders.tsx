@@ -440,7 +440,7 @@ export default function Orders() {
                             <Input
                               type="number"
                               step="0.01"
-                              value={item.price}
+                              value={item.price === 0 ? "" : item.price}
                               onChange={(e) =>
                                 updateOrderItem(
                                   index,
@@ -448,6 +448,11 @@ export default function Orders() {
                                   parseFloat(e.target.value) || 0,
                                 )
                               }
+                              onFocus={(e) => {
+                                if (e.target.value === "0") {
+                                  e.target.value = "";
+                                }
+                              }}
                             />
                           </div>
                           <Button
