@@ -311,6 +311,45 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const addCategory = async (
+    categoryData: Omit<Category, "id" | "createdAt">,
+  ) => {
+    try {
+      const newCategory = await categoryApi.create(categoryData);
+      setCategories((prev) => [...prev, newCategory]);
+    } catch (error) {
+      console.error("Failed to add category:", error);
+      throw error;
+    }
+  };
+
+  const updateCategory = async (
+    id: string,
+    categoryData: Partial<Category>,
+  ) => {
+    try {
+      const updatedCategory = await categoryApi.update(id, categoryData);
+      setCategories((prev) =>
+        prev.map((category) =>
+          category.id === id ? updatedCategory : category,
+        ),
+      );
+    } catch (error) {
+      console.error("Failed to update category:", error);
+      throw error;
+    }
+  };
+
+  const deleteCategory = async (id: string) => {
+    try {
+      await categoryApi.delete(id);
+      setCategories((prev) => prev.filter((category) => category.id !== id));
+    } catch (error) {
+      console.error("Failed to delete category:", error);
+      throw error;
+    }
+  };
+
   const getCustomerById = (id: string) =>
     customers.find((customer) => customer.id === id);
   const getProductById = (id: string) =>
