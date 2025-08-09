@@ -274,6 +274,10 @@ const translations = {
     "store.inStock": "In Stock",
     "store.viewDetails": "View Details",
     "store.productDetails": "Product Details",
+    "store.search": "Search products...",
+    "store.searchResults": "Search Results",
+    "store.noSearchResults": "No products found for your search",
+    "store.clearSearch": "Clear Search",
   },
   ar: {
     // Navigation
@@ -321,13 +325,13 @@ const translations = {
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
     "products.primaryImage": "أساسية",
-    "products.uploadImages": "رفع الص��ر",
+    "products.uploadImages": "رفع الصور",
     "products.images": "صور",
     "products.noImages": "لم يتم رفع أي صور بعد",
 
     // Orders
     "orders.title": "الطلبات",
-    "orders.subtitle": "إد��رة طلبات العملاء والتوصيل",
+    "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
     "orders.orderId": "رقم الطلب",
@@ -354,7 +358,7 @@ const translations = {
     "orders.notes": "ملاحظات",
     "orders.delivery": "توصيل",
     "orders.pickup": "استلام",
-    "orders.processing": "قيد المعالجة",
+    "orders.processing": "قيد ال��عالجة",
     "orders.ready": "جاهز",
     "orders.delivered": "تم التسليم",
     "orders.pickedUp": "تم الاستلام",
@@ -405,7 +409,7 @@ const translations = {
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
-    "revenue.totalRevenue": "إجمالي الإيرادات",
+    "revenue.totalRevenue": "إجمالي ��لإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
@@ -511,7 +515,7 @@ const translations = {
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
-      "سيتم معالجة ا��طلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
+      "سيتم معالجة الطلب خلال 1-3 أيام، سنتواصل معك عند التوصيل",
     "checkout.orderSuccessMessage": "شكراً لك على طلبك",
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
@@ -528,6 +532,10 @@ const translations = {
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
     "store.productDetails": "تفاصيل المنتج",
+    "store.search": "البحث في المنتجات...",
+    "store.searchResults": "نتائج البحث",
+    "store.noSearchResults": "لا توجد منتجات للبحث المطلوب",
+    "store.clearSearch": "مسح البحث",
   },
 } as const;
 
