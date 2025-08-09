@@ -207,32 +207,12 @@ export const productDb = {
     }
 
     try {
-      // Don't include our generated ID when inserting to Supabase, let the DB generate it
-      const productToInsert = {
-        ...product,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      };
-
-      const { data, error } = await supabase
-        .from("products")
-        .insert([productToInsert])
-        .select()
-        .single();
-
-      if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        fallbackProducts.push(newProduct);
-        return newProduct;
-      }
-
-      console.log("Product created successfully in Supabase with ID:", data.id);
-      return data;
+      // For in-memory storage, we always use fallback
+      console.log("Creating product in fallback storage");
+      fallbackProducts.push(newProduct);
+      return newProduct;
     } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
+      console.warn("Error creating product, using fallback storage");
       fallbackProducts.push(newProduct);
       return newProduct;
     }
