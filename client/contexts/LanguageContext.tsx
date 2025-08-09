@@ -420,7 +420,7 @@ const translations = {
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
-    "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
+    "revenue.topProducts": "أفضل المنتجات من حيث الإيرادا��",
     "revenue.deliveryAnalysis": "تحليل نوع التسليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
     "revenue.month": "الشهر",
@@ -451,7 +451,7 @@ const translations = {
     "empty.noProductsFound": "لا توجد منتجات",
     "empty.noCustomersFound": "لا يوجد عملاء",
     "empty.noOrdersFound": "لا توجد طلبات",
-    "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
+    "empty.adjustSearch": "حاول ت��ديل مصطلحات البحث",
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
@@ -526,7 +526,7 @@ const translations = {
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
-    "checkout.orderItems": "محتويات الطلب",
+    "checkout.orderItems": "��حتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.free": "مجاني",
@@ -585,6 +585,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         key as keyof (typeof translations)[typeof language]
       ] || key
     );
+  };
+
+  // Helper function to translate category names
+  const translateCategory = (categoryName: string): string => {
+    // Convert category name to translation key format
+    const key = `category.${categoryName.toLowerCase().replace(/\s+/g, '')}`;
+    const translated = t(key);
+    // If translation key doesn't exist, fall back to original name
+    return translated === key ? categoryName : translated;
   };
 
   const isRTL = language === "ar";
