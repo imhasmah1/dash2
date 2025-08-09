@@ -92,6 +92,10 @@ export default function Checkout() {
       });
 
       setOrderNumber(order.id);
+      setOrderDetails({
+        deliveryType,
+        deliveryArea: deliveryType === "delivery" ? deliveryArea : undefined
+      });
       setOrderSuccess(true);
       clearCart();
     } catch (error) {
