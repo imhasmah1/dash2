@@ -175,7 +175,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   if (orderSuccess) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:max-w-md max-h-[90vh] p-0 rounded-lg sm:rounded-md">
+        <DialogContent className="w-[95vw] sm:max-w-md max-h-[95vh] p-0 rounded-lg sm:rounded-md">
           <div className="p-6 text-center space-y-6">
             <div className="flex justify-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
