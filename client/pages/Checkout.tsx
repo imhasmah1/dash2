@@ -186,6 +186,8 @@ export default function Checkout() {
                     value={customerInfo.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     placeholder={t("checkout.customerPhone")}
+                    className="ltr-text"
+                    dir="ltr"
                   />
                 </div>
 
@@ -200,6 +202,7 @@ export default function Checkout() {
                       handleInputChange("address", e.target.value)
                     }
                     placeholder={t("checkout.customerAddress")}
+                    className="auto-text"
                   />
                 </div>
               </CardContent>
