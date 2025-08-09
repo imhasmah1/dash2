@@ -226,15 +226,8 @@ const Analytics = () => {
   const currentTranslations = translations[language as keyof typeof translations] || translations.en;
 
   const refreshData = () => {
-    // Simulate data refresh
-    setAnalyticsData({
-      visitors: Math.floor(Math.random() * 3000) + 2000,
-      pageViews: Math.floor(Math.random() * 15000) + 10000,
-      averageSessionDuration: Math.floor(Math.random() * 300) + 200,
-      bounceRate: Math.floor(Math.random() * 40) + 25,
-      newUsers: Math.floor(Math.random() * 2000) + 1500,
-      returningUsers: Math.floor(Math.random() * 1000) + 800,
-    });
+    // Force recalculation by updating a trigger state
+    window.location.reload();
   };
 
   return (
