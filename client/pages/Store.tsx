@@ -74,9 +74,8 @@ export default function Store() {
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
             <div className="h-20 flex items-center">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets/6cb987f4f6054cf88b5f469a13f2a67e/b5f4e8c2a4b64c34a9e5f8e8d3a5b9c2"
-                // Using the new logo provided by user
-                alt={t("store.title")}
+                src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F16a76df3c393470e995ec2718d67ab09?format=webp&width=800"
+                alt="أزهار ستور - azharstore"
                 className="h-20 w-auto object-contain"
               />
             </div>
