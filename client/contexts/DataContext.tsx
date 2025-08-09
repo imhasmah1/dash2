@@ -378,8 +378,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12">
             <img
-              src="/placeholder.svg"
-              alt="Logo"
+              src="https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2F9d5f63fd358a4946ace1b6ce56f63e7e?format=webp&width=800"
+              alt="أزهار ستور - azharstore"
               className="w-full h-full object-contain"
             />
           </div>
