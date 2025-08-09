@@ -354,7 +354,7 @@ const translations = {
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
     "orders.editOrder": "تعديل طلب",
-    "orders.selectCustomer": "اخت�� العميل",
+    "orders.selectCustomer": "اختر العميل",
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
@@ -384,7 +384,7 @@ const translations = {
     "orders.unknownProduct": "منتج غير معروف",
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
-    "orders.lastUpdated": "آخر تحديث",
+    "orders.lastUpdated": "آخر تح��يث",
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
     "orders.selectVariant": "اختر النوع",
@@ -410,7 +410,7 @@ const translations = {
     "customers.customerHome": "المنزل:",
     "customers.customerRoad": "الطريق:",
     "customers.customerBlock": "المجمع:",
-    "customers.customerTown": "المنطقة:",
+    "customers.customerTown": "ا��منطقة:",
     "customers.save": "حفظ",
 
     // Revenue
@@ -463,7 +463,7 @@ const translations = {
     // Messages
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
-    "message.productUpdated": "تم تحديث المنتج بنجاح",
+    "message.productUpdated": "تم تحديث المنت�� بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
@@ -516,7 +516,7 @@ const translations = {
     "checkout.orderSummary": "ملخص الطلب",
     "checkout.placeOrder": "تأكيد الطلب",
     "checkout.noCreditCard":
-      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/��لاستلام",
+      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
@@ -600,7 +600,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const isRTL = language === "ar";
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, isRTL, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, isRTL, t, translateCategory }}>
       {children}
     </LanguageContext.Provider>
   );
