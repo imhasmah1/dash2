@@ -203,21 +203,37 @@ export default function Store() {
               onClick={() => setSelectedCategory("all")}
               className="rounded-full"
             >
-              All Products
+              {t("store.allProducts")}
             </Button>
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={
-                  selectedCategory === category.id ? "default" : "outline"
+            {categories.map((category) => {
+              // Map category names to translation keys
+              const getTranslatedCategoryName = (name: string) => {
+                switch (name.toLowerCase()) {
+                  case "electronics":
+                    return t("category.electronics");
+                  case "accessories":
+                    return t("category.accessories");
+                  case "home & office":
+                    return t("category.homeOffice");
+                  default:
+                    return name;
                 }
-                size="sm"
-                onClick={() => setSelectedCategory(category.id)}
-                className="rounded-full"
-              >
-                {category.name}
-              </Button>
-            ))}
+              };
+
+              return (
+                <Button
+                  key={category.id}
+                  variant={
+                    selectedCategory === category.id ? "default" : "outline"
+                  }
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className="rounded-full"
+                >
+                  {getTranslatedCategoryName(category.name)}
+                </Button>
+              );
+            })}
           </div>
         </div>
       </div>
