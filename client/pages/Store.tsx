@@ -5,7 +5,7 @@ import { useCart } from "../contexts/CartContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { LoadingScreen } from "../components/ui/loading";
-import { ShoppingCart, Plus, Globe, Store as StoreIcon } from "lucide-react";
+import { ShoppingCart, Plus, Globe, Store as StoreIcon, Search, X } from "lucide-react";
 import { Badge } from "../components/ui/badge";
 import {
   DropdownMenu,
@@ -38,12 +38,15 @@ export default function Store() {
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await getProducts();
         setProducts(data);
+        setFilteredProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
@@ -53,6 +56,23 @@ export default function Store() {
 
     fetchProducts();
   }, []);
+
+  // Filter products based on search query
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [products, searchQuery]);
+
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
 
   const handleAddToCart = (product: Product) => {
     setSelectedProduct(product);
