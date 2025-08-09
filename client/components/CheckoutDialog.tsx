@@ -572,9 +572,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <Button
                   variant="outline"
                   onClick={handleBack}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 h-12 px-6 touch-manipulation"
                 >
-                  <ArrowLeft className="w-4 h-4" />
+                  <ArrowLeft className="w-5 h-5" />
                   {t("common.back")}
                 </Button>
               )}
@@ -585,19 +585,20 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <Button
                     onClick={handleNext}
                     disabled={step === 1 && !isStep1Valid()}
-                    className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                    size="lg"
                   >
                     {t("common.next")}
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </Button>
                 ) : (
                   <Button
                     onClick={handlePlaceOrder}
                     disabled={!isFormValid() || isSubmitting}
-                    className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
                     size="lg"
                   >
-                    <CreditCard className="w-4 h-4" />
+                    <CreditCard className="w-5 h-5" />
                     {isSubmitting
                       ? t("common.loading")
                       : t("checkout.placeOrder")}
