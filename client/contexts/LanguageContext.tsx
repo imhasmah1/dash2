@@ -13,6 +13,7 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   isRTL: boolean;
   t: (key: string) => string;
+  translateCategory: (categoryName: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -353,7 +354,7 @@ const translations = {
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
     "orders.editOrder": "تعديل طلب",
-    "orders.selectCustomer": "اختر العميل",
+    "orders.selectCustomer": "اخت�� العميل",
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
@@ -420,7 +421,7 @@ const translations = {
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
-    "revenue.topProducts": "أفضل المنتجات من حيث الإيرادا��",
+    "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
     "revenue.deliveryAnalysis": "تحليل نوع التسليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
     "revenue.month": "الشهر",
@@ -451,7 +452,7 @@ const translations = {
     "empty.noProductsFound": "لا توجد منتجات",
     "empty.noCustomersFound": "لا يوجد عملاء",
     "empty.noOrdersFound": "لا توجد طلبات",
-    "empty.adjustSearch": "حاول ت��ديل مصطلحات البحث",
+    "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
@@ -515,7 +516,7 @@ const translations = {
     "checkout.orderSummary": "ملخص الطلب",
     "checkout.placeOrder": "تأكيد الطلب",
     "checkout.noCreditCard":
-      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
+      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/��لاستلام",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
@@ -526,7 +527,7 @@ const translations = {
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
-    "checkout.orderItems": "��حتويات الطلب",
+    "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.free": "مجاني",
