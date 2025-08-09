@@ -43,11 +43,13 @@ export default function Store() {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
+  const { categories, getCategoryById } = useData();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
