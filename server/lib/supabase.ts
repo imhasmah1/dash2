@@ -265,10 +265,11 @@ export const productDb = {
         .single();
 
       if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
+        console.error("Supabase update error:", error);
+        if (error.code === "PGRST116" || error.message.includes("No rows")) {
+          throw new Error("Product not found");
+        }
+        console.warn("Supabase error, falling back to in-memory storage");
         const index = fallbackProducts.findIndex((p) => p.id === id);
         if (index === -1) {
           throw new Error("Product not found");
@@ -281,9 +282,11 @@ export const productDb = {
         return fallbackProducts[index];
       }
 
+      console.log("Product updated successfully in Supabase");
       return data;
     } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
+      console.error("Supabase connection error:", error);
+      console.warn("Falling back to in-memory storage");
       const index = fallbackProducts.findIndex((p) => p.id === id);
       if (index === -1) {
         throw new Error("Product not found");
