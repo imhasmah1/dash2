@@ -165,29 +165,7 @@ const generateId = () =>
 export const productDb = {
   // Get all products
   async getAll(): Promise<Product[]> {
-    if (!supabase) {
-      return fallbackProducts;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        return fallbackProducts;
-      }
-
-      return data || [];
-    } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
-      return fallbackProducts;
-    }
+    return fallbackProducts;
   },
 
   // Create a new product
