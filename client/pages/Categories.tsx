@@ -237,7 +237,7 @@ export default function Categories() {
                       <FolderOpen className="w-6 h-6 text-dashboard-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">{category.name}</CardTitle>
+                      <CardTitle className="text-lg">{translateCategory(category.name)}</CardTitle>
                       <CardDescription>
                         {productCount} product{productCount !== 1 ? "s" : ""}
                       </CardDescription>
