@@ -72,6 +72,11 @@ export const updateProduct: RequestHandler = async (req, res) => {
       updates.price = parseFloat(updates.price);
     }
 
+    // Handle category mapping
+    if (updates.categoryId) {
+      updates.category_id = updates.categoryId;
+    }
+
     // Recalculate total stock if variants are updated or if stock is provided
     if (updates.variants && updates.variants.length > 0) {
       updates.total_stock = updates.variants.reduce(
