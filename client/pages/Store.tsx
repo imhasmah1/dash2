@@ -68,19 +68,26 @@ export default function Store() {
     fetchProducts();
   }, []);
 
-  // Filter products based on search query
+  // Filter products based on search query and category
   useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter(
+    let filtered = products;
+
+    // Filter by category
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(product => product.categoryId === selectedCategory);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(
         (product) =>
           product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.description.toLowerCase().includes(searchQuery.toLowerCase()),
       );
-      setFilteredProducts(filtered);
     }
-  }, [products, searchQuery]);
+
+    setFilteredProducts(filtered);
+  }, [products, searchQuery, selectedCategory]);
 
   const clearSearch = () => {
     setSearchQuery("");
