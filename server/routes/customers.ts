@@ -13,15 +13,18 @@ export const getAllCustomers: RequestHandler = async (req, res) => {
 
 export const createCustomer: RequestHandler = async (req, res) => {
   try {
+    console.log("Creating customer with data:", req.body);
     const { name, phone, address } = req.body;
 
     if (!name || !phone || !address) {
+      console.error("Invalid customer data:", { name, phone, address });
       return res
         .status(400)
         .json({ error: "Name, phone, and address are required" });
     }
 
     const newCustomer = await customerDb.create({ name, phone, address });
+    console.log("Customer created successfully:", newCustomer.id);
     res.status(201).json(newCustomer);
   } catch (error) {
     console.error("Error creating customer:", error);
