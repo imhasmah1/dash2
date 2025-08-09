@@ -185,14 +185,14 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                   <Button
                     variant="outline"
                     onClick={clearCart}
-                    className="flex-1"
+                    className="flex-1 h-12 touch-manipulation"
                     disabled={items.length === 0}
                   >
                     {t("store.clearCart")}
                   </Button>
                   <Button
                     onClick={handleCheckout}
-                    className="flex-1"
+                    className="flex-1 h-12 touch-manipulation"
                     disabled={items.length === 0}
                     size="lg"
                   >
