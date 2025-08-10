@@ -46,7 +46,8 @@ export const createProduct: RequestHandler = async (req, res) => {
             image: v.image || "",
           }))
         : [],
-      category_id: req.body.categoryId || req.body.category_id,
+      category_id: req.body.category_id,
+      categoryId: req.body.categoryId,
       total_stock: totalStock,
     };
 
@@ -75,10 +76,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
       updates.price = parseFloat(updates.price);
     }
 
-    // Handle category mapping
-    if (updates.categoryId) {
-      updates.category_id = updates.categoryId;
-    }
+    // Note: categoryId and category_id are automatically synced by database trigger
 
     // Recalculate total stock if variants are updated or if stock is provided
     if (updates.variants && updates.variants.length > 0) {
