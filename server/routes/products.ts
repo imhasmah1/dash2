@@ -47,7 +47,6 @@ export const createProduct: RequestHandler = async (req, res) => {
           }))
         : [],
       category_id: req.body.category_id,
-      categoryId: req.body.categoryId,
       total_stock: totalStock,
     };
 
@@ -76,7 +75,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
       updates.price = parseFloat(updates.price);
     }
 
-    // Note: categoryId and category_id are automatically synced by database trigger
+
 
     // Recalculate total stock if variants are updated or if stock is provided
     if (updates.variants && updates.variants.length > 0) {

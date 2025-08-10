@@ -61,7 +61,6 @@ export interface Product {
   images: string[];
   variants: ProductVariant[];
   category_id?: string;
-  categoryId?: string;
   total_stock: number;
   created_at?: string;
   updated_at?: string;
