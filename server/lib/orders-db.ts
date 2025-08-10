@@ -10,60 +10,67 @@ export interface OrderItem {
 export interface Order {
   id: string;
   customerId: string;
-  customer_id?: string; // Database field name
+  customer_id?: string;
   items: OrderItem[];
   total: number;
   status: "processing" | "ready" | "delivered" | "picked-up";
   deliveryType: "delivery" | "pickup";
-  delivery_type?: "delivery" | "pickup"; // Database field name
-  createdAt?: string; // Frontend field name
-  updatedAt?: string; // Frontend field name
-  created_at?: string; // Database field name
-  updated_at?: string; // Database field name
+  delivery_type?: "delivery" | "pickup";
+  createdAt?: string;
+  updatedAt?: string;
+  created_at?: string;
+  updated_at?: string;
   notes?: string;
 }
 
-// In-memory fallback storage
+// In-memory fallback storage for offline/dev
 let fallbackOrders: Order[] = [
   {
     id: "1",
     customerId: "1",
-    customer_id: "1",
     items: [{ productId: "1", quantity: 1, price: 35.0 }],
     total: 35.0,
     status: "delivered",
     deliveryType: "delivery",
-    delivery_type: "delivery",
     createdAt: "2024-01-15T10:00:00Z",
     updatedAt: "2024-01-15T15:30:00Z",
-    created_at: "2024-01-15T10:00:00Z",
-    updated_at: "2024-01-15T15:30:00Z",
   },
   {
     id: "2",
     customerId: "2",
-    customer_id: "2",
     items: [{ productId: "2", quantity: 1, price: 17.5 }],
     total: 17.5,
     status: "processing",
     deliveryType: "pickup",
-    delivery_type: "pickup",
     createdAt: "2024-01-15T11:00:00Z",
     updatedAt: "2024-01-15T11:00:00Z",
-    created_at: "2024-01-15T11:00:00Z",
-    updated_at: "2024-01-15T11:00:00Z",
   },
 ];
 
 const generateId = () =>
   Date.now().toString() + Math.random().toString(36).substr(2, 9);
 
+/** Map DB rows to frontend Order objects */
+const transformFromDb = (dbOrder: any): Order => ({
+  id: dbOrder.id,
+  customerId: dbOrder.customer_id,
+  customer_id: dbOrder.customer_id,
+  items: dbOrder.items,
+  total: dbOrder.total,
+  status: dbOrder.status,
+  deliveryType: dbOrder.delivery_type,
+  delivery_type: dbOrder.delivery_type,
+  createdAt: dbOrder.created_at,
+  updatedAt: dbOrder.updated_at,
+  created_at: dbOrder.created_at,
+  updated_at: dbOrder.updated_at,
+  notes: dbOrder.notes,
+});
+
 export const orderDb = {
-  // Get all orders
+  /** Get all orders */
   async getAll(): Promise<Order[]> {
-    if (!supabase) {
-      return fallbackOrders;
-    }
+    if (!supabase) return fallbackOrders;
 
     try {
       const { data, error } = await supabase
@@ -81,115 +88,86 @@ export const orderDb = {
             block,
             town
           )
-        `,
+        `
         )
         .order("created_at", { ascending: false });
 
-      if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        return fallbackOrders;
-      }
-
-      // Transform database data to match frontend expectations
-      const transformedData = (data || []).map((order: any) => ({
-        id: order.id,
-        customerId: order.customer_id || order.customerId,
-        customer_id: order.customer_id,
-        items: order.items,
-        total: order.total,
-        status: order.status,
-        deliveryType: order.delivery_type || order.deliveryType,
-        delivery_type: order.delivery_type,
-        createdAt: order.created_at || order.createdAt,
-        updatedAt: order.updated_at || order.updatedAt,
-        created_at: order.created_at,
-        updated_at: order.updated_at,
-        notes: order.notes,
-      }));
-
-      return transformedData;
-    } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
+      if (error) throw new Error(error.message);
+      return (data || []).map(transformFromDb);
+    } catch (err) {
+      console.warn("Supabase fetch failed, using fallback orders:", err);
       return fallbackOrders;
     }
   },
 
-  // Create a new order
+  /** Create a new order */
   async create(
-    order: Omit<
-      Order,
-      "id" | "created_at" | "updated_at" | "createdAt" | "updatedAt"
-    >,
+    order: Omit<Order, "id" | "created_at" | "updated_at" | "createdAt" | "updatedAt">
   ): Promise<Order> {
-    const newOrder: Order = {
-      ...order,
-      id: generateId(),
+    const newOrderPayload = {
+      id: generateId(), // remove if DB auto-generates
       customer_id: order.customerId,
-      delivery_type: order.deliveryType,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      created_at: new Date().toISOString(),
+      items: order.items,
+      total: order.total,
+      status: order.status || "processing",
+      delivery_type: order.deliveryType || "delivery",
+      notes: order.notes || null,
+    };
+
+    if (!supabase) {
+      const fallbackOrder: Order = {
+        ...order,
+        id: newOrderPayload.id,
+        customerId: order.customerId,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      fallbackOrders.push(fallbackOrder);
+      return fallbackOrder;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("orders")
+        .insert([newOrderPayload])
+        .select()
+        .single();
+
+      if (error) throw new Error(error.message);
+      return transformFromDb(data);
+    } catch (err) {
+      console.warn("Supabase insert failed, using fallback orders:", err);
+      const fallbackOrder: Order = {
+        ...order,
+        id: newOrderPayload.id,
+        customerId: order.customerId,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      fallbackOrders.push(fallbackOrder);
+      return fallbackOrder;
+    }
+  },
+
+  /** Update an order */
+  async update(id: string, updates: Partial<Order>): Promise<Order> {
+    const dbUpdates: any = {
+      ...(updates.customerId && { customer_id: updates.customerId }),
+      ...(updates.items && { items: updates.items }),
+      ...(updates.total !== undefined && { total: updates.total }),
+      ...(updates.status && { status: updates.status }),
+      ...(updates.deliveryType && { delivery_type: updates.deliveryType }),
+      ...(updates.notes !== undefined && { notes: updates.notes }),
       updated_at: new Date().toISOString(),
     };
 
     if (!supabase) {
-      fallbackOrders.push(newOrder);
-      return newOrder;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from("orders")
-        .insert([newOrder])
-        .select()
-        .single();
-
-      if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        fallbackOrders.push(newOrder);
-        return newOrder;
-      }
-
-      // Transform database response to match frontend expectations
-      return {
-        id: data.id,
-        customerId: data.customer_id || data.customerId,
-        customer_id: data.customer_id,
-        items: data.items,
-        total: data.total,
-        status: data.status,
-        deliveryType: data.delivery_type || data.deliveryType,
-        delivery_type: data.delivery_type,
-        createdAt: data.created_at || data.createdAt,
-        updatedAt: data.updated_at || data.updatedAt,
-        created_at: data.created_at,
-        updated_at: data.updated_at,
-        notes: data.notes,
-      };
-    } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
-      fallbackOrders.push(newOrder);
-      return newOrder;
-    }
-  },
-
-  // Update an order
-  async update(id: string, updates: Partial<Order>): Promise<Order> {
-    if (!supabase) {
       const index = fallbackOrders.findIndex((o) => o.id === id);
-      if (index === -1) {
-        throw new Error("Order not found");
-      }
+      if (index === -1) throw new Error("Order not found");
       fallbackOrders[index] = {
         ...fallbackOrders[index],
         ...updates,
-        updated_at: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       };
       return fallbackOrders[index];
     }
@@ -197,96 +175,47 @@ export const orderDb = {
     try {
       const { data, error } = await supabase
         .from("orders")
-        .update({ ...updates, updated_at: new Date().toISOString() })
+        .update(dbUpdates)
         .eq("id", id)
         .select()
         .single();
 
-      if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        const index = fallbackOrders.findIndex((o) => o.id === id);
-        if (index === -1) {
-          throw new Error("Order not found");
-        }
-        fallbackOrders[index] = {
-          ...fallbackOrders[index],
-          ...updates,
-          updated_at: new Date().toISOString(),
-        };
-        return fallbackOrders[index];
-      }
-
-      // Transform database response to match frontend expectations
-      return {
-        id: data.id,
-        customerId: data.customer_id || data.customerId,
-        customer_id: data.customer_id,
-        items: data.items,
-        total: data.total,
-        status: data.status,
-        deliveryType: data.delivery_type || data.deliveryType,
-        delivery_type: data.delivery_type,
-        createdAt: data.created_at || data.createdAt,
-        updatedAt: data.updated_at || data.updatedAt,
-        created_at: data.created_at,
-        updated_at: data.updated_at,
-        notes: data.notes,
-      };
-    } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
+      if (error) throw new Error(error.message);
+      return transformFromDb(data);
+    } catch (err) {
+      console.warn("Supabase update failed, using fallback orders:", err);
       const index = fallbackOrders.findIndex((o) => o.id === id);
-      if (index === -1) {
-        throw new Error("Order not found");
-      }
+      if (index === -1) throw new Error("Order not found");
       fallbackOrders[index] = {
         ...fallbackOrders[index],
         ...updates,
-        updated_at: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       };
       return fallbackOrders[index];
     }
   },
 
-  // Delete an order
+  /** Delete an order */
   async delete(id: string): Promise<void> {
     if (!supabase) {
       const index = fallbackOrders.findIndex((o) => o.id === id);
-      if (index === -1) {
-        throw new Error("Order not found");
-      }
+      if (index === -1) throw new Error("Order not found");
       fallbackOrders.splice(index, 1);
       return;
     }
 
     try {
       const { error } = await supabase.from("orders").delete().eq("id", id);
-
-      if (error) {
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        const index = fallbackOrders.findIndex((o) => o.id === id);
-        if (index === -1) {
-          throw new Error("Order not found");
-        }
-        fallbackOrders.splice(index, 1);
-        return;
-      }
-    } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
+      if (error) throw new Error(error.message);
+    } catch (err) {
+      console.warn("Supabase delete failed, using fallback orders:", err);
       const index = fallbackOrders.findIndex((o) => o.id === id);
-      if (index === -1) {
-        throw new Error("Order not found");
-      }
+      if (index === -1) throw new Error("Order not found");
       fallbackOrders.splice(index, 1);
     }
   },
 
-  // Get a single order by ID
+  /** Get order by ID */
   async getById(id: string): Promise<Order | null> {
     if (!supabase) {
       return fallbackOrders.find((o) => o.id === id) || null;
@@ -308,42 +237,18 @@ export const orderDb = {
             block,
             town
           )
-        `,
+        `
         )
         .eq("id", id)
         .single();
 
       if (error) {
-        if (error.code === "PGRST116") {
-          return null; // No rows returned
-        }
-        console.warn(
-          "Supabase error, falling back to in-memory storage:",
-          error.message,
-        );
-        return fallbackOrders.find((o) => o.id === id) || null;
+        if (error.code === "PGRST116") return null; // no rows found
+        throw new Error(error.message);
       }
-
-      if (!data) return null;
-
-      // Transform database response to match frontend expectations
-      return {
-        id: data.id,
-        customerId: data.customer_id || data.customerId,
-        customer_id: data.customer_id,
-        items: data.items,
-        total: data.total,
-        status: data.status,
-        deliveryType: data.delivery_type || data.deliveryType,
-        delivery_type: data.delivery_type,
-        createdAt: data.created_at || data.createdAt,
-        updatedAt: data.updated_at || data.updatedAt,
-        created_at: data.created_at,
-        updated_at: data.updated_at,
-        notes: data.notes,
-      };
-    } catch (error) {
-      console.warn("Supabase connection failed, using in-memory storage");
+      return transformFromDb(data);
+    } catch (err) {
+      console.warn("Supabase fetch by ID failed, using fallback orders:", err);
       return fallbackOrders.find((o) => o.id === id) || null;
     }
   },
