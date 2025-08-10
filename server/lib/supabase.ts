@@ -238,13 +238,11 @@ export const productDb = {
 
     if (!supabase) {
       console.log("Using in-memory storage. Looking for product ID:", id);
-      const index = fallbackProducts.findIndex((p) => p.id === id);
+      const normalizedId = String(id).trim();
+      const index = fallbackProducts.findIndex(
+        (p) => String(p.id).trim() === normalizedId,
+      );
       if (index === -1) {
-        // If product is not found due to race condition, return the closest match without throwing
-        const existing = fallbackProducts[0];
-        if (existing) {
-          return existing;
-        }
         throw new Error("Product not found");
       }
       fallbackProducts[index] = {
@@ -277,12 +275,11 @@ export const productDb = {
           "Available product IDs:",
           fallbackProducts.map((p) => p.id),
         );
-        const index = fallbackProducts.findIndex((p) => p.id === id);
+        const normalizedId = String(id).trim();
+        const index = fallbackProducts.findIndex(
+          (p) => String(p.id).trim() === normalizedId,
+        );
         if (index === -1) {
-          const existing = fallbackProducts[0];
-          if (existing) {
-            return existing;
-          }
           throw new Error("Product not found");
         }
         fallbackProducts[index] = {
@@ -296,12 +293,11 @@ export const productDb = {
       return data;
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
-      const index = fallbackProducts.findIndex((p) => p.id === id);
+      const normalizedId = String(id).trim();
+      const index = fallbackProducts.findIndex(
+        (p) => String(p.id).trim() === normalizedId,
+      );
       if (index === -1) {
-        const existing = fallbackProducts[0];
-        if (existing) {
-          return existing;
-        }
         throw new Error("Product not found");
       }
       fallbackProducts[index] = {
@@ -316,7 +312,10 @@ export const productDb = {
   // Delete a product
   async delete(id: string): Promise<void> {
     if (!supabase) {
-      const index = fallbackProducts.findIndex((p) => p.id === id);
+      const normalizedId = String(id).trim();
+      const index = fallbackProducts.findIndex(
+        (p) => String(p.id).trim() === normalizedId,
+      );
       if (index === -1) {
         throw new Error("Product not found");
       }
@@ -332,7 +331,10 @@ export const productDb = {
           "Supabase error, falling back to in-memory storage:",
           error.message,
         );
-        const index = fallbackProducts.findIndex((p) => p.id === id);
+        const normalizedId = String(id).trim();
+        const index = fallbackProducts.findIndex(
+          (p) => String(p.id).trim() === normalizedId,
+        );
         if (index === -1) {
           throw new Error("Product not found");
         }
@@ -341,7 +343,10 @@ export const productDb = {
       }
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
-      const index = fallbackProducts.findIndex((p) => p.id === id);
+      const normalizedId = String(id).trim();
+      const index = fallbackProducts.findIndex(
+        (p) => String(p.id).trim() === normalizedId,
+      );
       if (index === -1) {
         throw new Error("Product not found");
       }
@@ -352,7 +357,11 @@ export const productDb = {
   // Get a single product by ID
   async getById(id: string): Promise<Product | null> {
     if (!supabase) {
-      return fallbackProducts.find((p) => p.id === id) || null;
+      const normalizedId = String(id).trim();
+      return (
+        fallbackProducts.find((p) => String(p.id).trim() === normalizedId) ||
+        null
+      );
     }
 
     try {
@@ -370,13 +379,21 @@ export const productDb = {
           "Supabase error, falling back to in-memory storage:",
           error.message,
         );
-        return fallbackProducts.find((p) => p.id === id) || null;
+        const normalizedId = String(id).trim();
+        return (
+          fallbackProducts.find((p) => String(p.id).trim() === normalizedId) ||
+          null
+        );
       }
 
       return data;
     } catch (error) {
       console.warn("Supabase connection failed, using in-memory storage");
-      return fallbackProducts.find((p) => p.id === id) || null;
+      const normalizedId = String(id).trim();
+      return (
+        fallbackProducts.find((p) => String(p.id).trim() === normalizedId) ||
+        null
+      );
     }
   },
 };
