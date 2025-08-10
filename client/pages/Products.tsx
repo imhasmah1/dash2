@@ -53,7 +53,7 @@ export default function Products() {
     price: 0,
     images: [] as string[],
     variants: [] as ProductVariant[],
-    stock: 0,
+    total_stock: 0,
     category_id: "",
   });
 
@@ -72,7 +72,7 @@ export default function Products() {
       price: 0,
       images: [],
       variants: [],
-      stock: 0,
+      total_stock: 0,
       category_id: "",
     });
     setEditingProduct(null);
@@ -87,10 +87,7 @@ export default function Products() {
         price: product.price,
         images: [...product.images],
         variants: [...product.variants],
-        stock:
-          product.variants.length === 0
-            ? product.totalStock || product.total_stock || 0
-            : 0,
+        total_stock: product.total_stock || 0,
         category_id: product.category_id || "",
       });
     } else {
@@ -135,10 +132,10 @@ export default function Products() {
   };
 
   const getTotalStock = () => {
-    if (formData.variants.length === 0) {
-      return formData.stock;
+    if (formData.variants.length > 0) {
+      return formData.variants.reduce((acc, v) => acc + v.stock, 0);
     }
-    return formData.variants.reduce((sum, variant) => sum + variant.stock, 0);
+    return formData.total_stock;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,17 +143,12 @@ export default function Products() {
     try {
       const productData = {
         ...formData,
-        totalStock: getTotalStock(),
+        total_stock: getTotalStock(),
       };
 
-      console.log("Submitting product data:", productData);
-      console.log("Editing product:", editingProduct);
-
       if (editingProduct) {
-        console.log("Updating product with ID:", editingProduct.id);
         await updateProduct(editingProduct.id, productData);
       } else {
-        console.log("Creating new product");
         await addProduct(productData);
       }
       closeDialog();
@@ -346,11 +338,11 @@ export default function Products() {
                           id="stock"
                           type="number"
                           min="0"
-                          value={formData.stock === 0 ? "" : formData.stock}
+                          value={formData.total_stock === 0 ? "" : formData.total_stock}
                           onChange={(e) =>
                             setFormData((prev) => ({
                               ...prev,
-                              stock: parseInt(e.target.value) || 0,
+                              total_stock: parseInt(e.target.value) || 0,
                             }))
                           }
                           onFocus={(e) => {
@@ -558,9 +550,7 @@ export default function Products() {
                   type="submit"
                   className="bg-dashboard-primary hover:bg-dashboard-primary-light"
                 >
-                  {editingProduct
-                    ? t("products.save")
-                    : t("products.addProduct")}
+                  {editingProduct ? t("products.saveChanges") : t("products.addProduct")}
                 </Button>
               </DialogFooter>
             </form>
@@ -568,153 +558,81 @@ export default function Products() {
         </Dialog>
       </div>
 
-      {/* Search Bar */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 [dir=rtl]:left-auto [dir=rtl]:right-3" />
-            <Input
-              placeholder={t("products.search")}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 [dir=rtl]:pl-3 [dir=rtl]:pr-10"
-            />
-          </div>
-        </CardContent>
-      </Card>
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+        <Input
+          type="text"
+          placeholder={t("products.search")}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="pl-10 w-full sm:w-72 bg-white"
+        />
+      </div>
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => {
-          const stockStatus = getStockStatus(
-            product.totalStock || product.total_stock || 0,
-          );
-          const primaryImage = product.images[0];
+          const category = getCategoryById(product.category_id || "");
+          const stockStatus = getStockStatus(product.total_stock || 0);
 
           return (
             <Card
               key={product.id}
-              className="group hover:shadow-lg transition-shadow"
+              className="overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
             >
-              <CardHeader className="pb-4">
-                <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 mb-4 relative">
-                  {primaryImage ? (
+              <CardHeader className="p-0 relative">
+                <div className="aspect-square w-full bg-gray-100">
+                  {product.images && product.images.length > 0 ? (
                     <img
-                      src={primaryImage}
+                      src={product.images[0]}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src =
-                          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlmYTZiMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-                      }}
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <Package className="w-16 h-16 text-gray-400" />
-                    </div>
-                  )}
-
-                  {product.images.length > 1 && (
-                    <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                      +{product.images.length - 1} more
+                      <Package className="w-16 h-16 text-gray-300" />
                     </div>
                   )}
                 </div>
-
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg line-clamp-2">
-                      {product.name}
-                    </CardTitle>
-                    <CardDescription className="mt-1 line-clamp-2">
-                      {product.description}
-                    </CardDescription>
-                    {product.category_id && (
-                      <div className="mt-2">
-                        <Badge variant="outline" className="text-xs">
-                          {getCategoryById(product.category_id)?.name
-                            ? translateCategory(
-                                getCategoryById(product.category_id).name,
-                              )
-                            : "Unknown Category"}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
+                <div className="absolute top-3 right-3 flex items-center gap-2">
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="w-8 h-8 bg-white/80 backdrop-blur-sm hover:bg-white"
+                    onClick={() => openDialog(product)}
+                  >
+                    <Edit className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="w-8 h-8 bg-white/80 backdrop-blur-sm hover:bg-white text-red-600 hover:text-red-700"
+                    onClick={() => handleDeleteProduct(product.id)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
                 </div>
               </CardHeader>
-
-              <CardContent className="pt-0">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-dashboard-primary">
-                      BD {product.price.toFixed(2)}
-                    </span>
-                    <Badge className={stockStatus.color}>
-                      {stockStatus.text}
+              <CardContent className="p-4 flex-grow flex flex-col">
+                <div className="flex-grow">
+                  {category && (
+                    <Badge variant="secondary" className="mb-2">
+                      {translateCategory(category.name)}
                     </Badge>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Package className="w-4 h-4" />
-                    <span>
-                      {product.totalStock || product.total_stock || 0}{" "}
-                      {t("products.stock")}
-                    </span>
-                  </div>
-
-                  {product.variants.length > 0 && (
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium text-gray-700">
-                        {t("products.variants")}:
-                      </p>
-                      <div className="space-y-2">
-                        {product.variants.slice(0, 2).map((variant) => (
-                          <div
-                            key={variant.id}
-                            className="flex items-center gap-2"
-                          >
-                            {variant.image && (
-                              <img
-                                src={variant.image}
-                                alt={variant.name}
-                                className="w-8 h-8 object-cover rounded border"
-                              />
-                            )}
-                            <Badge variant="outline" className="text-xs">
-                              {variant.name} ({variant.stock})
-                            </Badge>
-                          </div>
-                        ))}
-                        {product.variants.length > 2 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{product.variants.length - 2} more variants
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
                   )}
-
-                  <div className="flex gap-2 pt-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1"
-                      onClick={() => openDialog(product)}
-                    >
-                      <Edit className="w-4 h-4 mr-1" />
-                      {t("products.edit")}
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                      onClick={() => handleDeleteProduct(product.id)}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 truncate">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 h-10 overflow-hidden">
+                    {product.description}
+                  </p>
+                </div>
+                <div className="flex justify-between items-center mt-4 pt-4 border-t">
+                  <span className="text-xl font-bold text-dashboard-primary">
+                    {product.price.toFixed(2)} BD
+                  </span>
+                  <Badge className={`${stockStatus.color} px-2 py-1`}>
+                    {product.total_stock} {stockStatus.text}
+                  </Badge>
                 </div>
               </CardContent>
             </Card>
@@ -723,26 +641,11 @@ export default function Products() {
       </div>
 
       {filteredProducts.length === 0 && (
-        <Card>
-          <CardContent className="text-center py-12">
-            <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {t("empty.noProductsFound")}
-            </h3>
-            <p className="text-gray-600">
-              {searchTerm
-                ? t("empty.adjustSearch")
-                : t("empty.addFirstProduct")}
-            </p>
-            <Button
-              className="mt-4 bg-dashboard-primary hover:bg-dashboard-primary-light"
-              onClick={() => openDialog()}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              {t("empty.addProduct")}
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="text-center py-16 text-gray-500">
+          <Package className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+          <h3 className="text-xl font-semibold">{t("empty.noProductsFound")}</h3>
+          <p className="mt-2">{t("empty.noProductsMatch")}</p>
+        </div>
       )}
     </div>
   );

@@ -40,7 +40,7 @@ export interface Product {
   images: string[];
   variants: ProductVariant[];
   category_id?: string;
-  totalStock?: number; // For backward compatibility
+
   total_stock?: number; // Database field name
 }
 
@@ -127,11 +127,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
           categoryApi.getAll(),
         ]);
       setCustomers(customersData);
-      // Ensure totalStock is properly mapped for backward compatibility
-      const normalizedProducts = productsData.map((product: any) => ({
-        ...product,
-        totalStock: product.total_stock || product.totalStock || 0,
-      }));
+      const normalizedProducts = productsData as Product[];
       setProducts(normalizedProducts);
       setOrders(ordersData);
       setCategories(categoriesData);

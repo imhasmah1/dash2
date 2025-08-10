@@ -37,6 +37,7 @@ interface Product {
     stock: number;
   }>;
   total_stock: number;
+  category_id?: string;
 }
 
 export default function Store() {
@@ -60,7 +61,7 @@ export default function Store() {
         const normalized = data.map((p: any) => ({
           ...p,
           category_id: p.category_id || "",
-          total_stock: p.total_stock ?? p.totalStock ?? 0,
+          
         }));
         setProducts(normalized);
         setFilteredProducts(normalized);
@@ -292,9 +293,9 @@ export default function Store() {
                       <span className="text-lg font-bold text-primary auto-text">
                         BD {product.price.toFixed(2)}
                       </span>
-                      {(product.total_stock || product.totalStock || 0) > 0 && (
+                      {(product.total_stock || 0) > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.total_stock || product.totalStock || 0}{" "}
+                          {product.total_stock || 0}{" "}
                           {t("products.stock")}
                         </p>
                       )}
@@ -303,16 +304,14 @@ export default function Store() {
                     <Button
                       size="sm"
                       onClick={() => handleAddToCart(product)}
-                      disabled={
-                        (product.total_stock || product.totalStock || 0) === 0
-                      }
+                      disabled={(product.total_stock || 0) === 0}
                       className="shrink-0"
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
-                  {(product.total_stock || product.totalStock || 0) === 0 && (
+                  {(product.total_stock || 0) === 0 && (
                     <Badge
                       variant="secondary"
                       className="w-full mt-2 justify-center text-center"

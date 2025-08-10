@@ -23,6 +23,21 @@ import {
 import AddToCartDialog from "../components/AddToCartDialog";
 import CartSidebar from "../components/CartSidebar";
 
+interface DataContextProduct {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  images: string[];
+  variants: Array<{
+    id: string;
+    name: string;
+    stock: number;
+    image?: string; // Added image field for variants
+  }>;
+  total_stock?: number; // Made total_stock optional
+}
+
 interface Product {
   id: string;
   name: string;
@@ -44,7 +59,7 @@ export default function ProductDetail() {
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
 
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<DataContextProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
@@ -66,7 +81,7 @@ export default function ProductDetail() {
           const product = await response.json();
           const normalized = {
             ...product,
-            total_stock: product.total_stock ?? product.totalStock ?? 0,
+            
           };
           setProduct(normalized);
         } else if (response.status === 404) {
@@ -76,7 +91,7 @@ export default function ProductDetail() {
           const products = await getProducts();
           const foundProduct = products.find((p) => p.id === id);
           const normalized = foundProduct
-            ? { ...foundProduct, total_stock: foundProduct.total_stock ?? foundProduct.totalStock ?? 0 }
+            ? foundProduct
             : null;
           setProduct(normalized || null);
         }
@@ -293,12 +308,13 @@ export default function ProductDetail() {
         </div>
       </main>
 
-      {/* Add to Cart Dialog */}
-      <AddToCartDialog
-        product={product}
-        open={isAddToCartOpen}
-        onClose={() => setIsAddToCartOpen(false)}
-      />
+      {isAddToCartOpen && product && (
+        <AddToCartDialog
+          product={{...product, total_stock: product.total_stock || 0}}
+          open={isAddToCartOpen}
+          onClose={() => setIsAddToCartOpen(false)}
+        />
+      )}
 
       {/* Cart Sidebar */}
       <CartSidebar open={isCartOpen} onClose={() => setIsCartOpen(false)} />

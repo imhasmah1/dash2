@@ -420,7 +420,7 @@ export default function Orders() {
                                 max={
                                   selectedVariant
                                     ? selectedVariant.stock
-                                    : product?.totalStock || 999
+                                    : product?.total_stock || 999
                                 }
                                 value={item.quantity === 0 ? "" : item.quantity}
                                 onChange={(e) =>
