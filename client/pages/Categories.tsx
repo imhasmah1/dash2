@@ -99,7 +99,7 @@ export default function Categories() {
   const handleDeleteCategory = async (id: string) => {
     // Check if category is being used by any products
     const productsUsingCategory = products.filter(
-      (product) => product.categoryId === id,
+      (product) => product.category_id === id,
     );
 
     if (productsUsingCategory.length > 0) {
@@ -140,8 +140,8 @@ export default function Categories() {
     }
   };
 
-  const getProductCountForCategory = (categoryId: string) => {
-    return products.filter((product) => product.categoryId === categoryId)
+  const getProductCountForCategory = (category_id: string) => {
+    return products.filter((product) => product.category_id === category_id)
       .length;
   };
 

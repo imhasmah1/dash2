@@ -54,7 +54,7 @@ export default function Products() {
     images: [] as string[],
     variants: [] as ProductVariant[],
     stock: 0,
-    categoryId: "",
+    category_id: "",
   });
 
   const filteredProducts = products.filter(
@@ -73,7 +73,7 @@ export default function Products() {
       images: [],
       variants: [],
       stock: 0,
-      categoryId: "",
+      category_id: "",
     });
     setEditingProduct(null);
   };
@@ -91,7 +91,7 @@ export default function Products() {
           product.variants.length === 0
             ? product.totalStock || product.total_stock || 0
             : 0,
-        categoryId: product.categoryId || "",
+        category_id: product.category_id || "",
       });
     } else {
       resetForm();
@@ -322,11 +322,11 @@ export default function Products() {
                       <Label htmlFor="category">{t("products.category")}</Label>
                       <select
                         id="category"
-                        value={formData.categoryId}
+                        value={formData.category_id}
                         onChange={(e) =>
                           setFormData((prev) => ({
                             ...prev,
-                            categoryId: e.target.value,
+                            category_id: e.target.value,
                           }))
                         }
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -630,12 +630,12 @@ export default function Products() {
                     <CardDescription className="mt-1 line-clamp-2">
                       {product.description}
                     </CardDescription>
-                    {product.categoryId && (
+                    {product.category_id && (
                       <div className="mt-2">
                         <Badge variant="outline" className="text-xs">
-                          {getCategoryById(product.categoryId)?.name
+                          {getCategoryById(product.category_id)?.name
                             ? translateCategory(
-                                getCategoryById(product.categoryId).name,
+                                getCategoryById(product.category_id).name,
                               )
                             : "Unknown Category"}
                         </Badge>

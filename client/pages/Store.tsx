@@ -59,7 +59,7 @@ export default function Store() {
         // Normalize category field for filtering
         const normalized = data.map((p: any) => ({
           ...p,
-          categoryId: p.categoryId || p.category_id || "",
+          category_id: p.category_id || "",
           total_stock: p.total_stock ?? p.totalStock ?? 0,
         }));
         setProducts(normalized);
@@ -81,7 +81,7 @@ export default function Store() {
     // Filter by category
     if (selectedCategory !== "all") {
       filtered = filtered.filter(
-        (product) => product.categoryId === selectedCategory,
+        (product) => product.category_id === selectedCategory,
       );
     }
 

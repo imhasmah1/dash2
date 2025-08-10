@@ -39,7 +39,7 @@ export interface Product {
   price: number;
   images: string[];
   variants: ProductVariant[];
-  categoryId?: string;
+  category_id?: string;
   totalStock?: number; // For backward compatibility
   total_stock?: number; // Database field name
 }
