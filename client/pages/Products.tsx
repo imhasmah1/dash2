@@ -550,7 +550,7 @@ export default function Products() {
                   type="submit"
                   className="bg-dashboard-primary hover:bg-dashboard-primary-light"
                 >
-                  {editingProduct ? t("products.saveChanges") : t("products.addProduct")}
+                  {editingProduct ? t("common.save") : t("products.addProduct")}
                 </Button>
               </DialogFooter>
             </form>
