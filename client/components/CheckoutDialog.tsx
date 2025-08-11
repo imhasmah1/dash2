@@ -140,11 +140,15 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         price: item.price,
       }));
 
+      // Calculate total including delivery fees
+      const deliveryFee = deliveryType === "delivery" ? 1.5 : 0;
+      const orderTotal = totalPrice + deliveryFee;
+
       // Create order
       const order = await createOrder({
         customerId: customer.id,
         items: orderItems,
-        total: totalPrice,
+        total: orderTotal,
         status: "processing",
         deliveryType: deliveryType,
         notes: "",
@@ -299,7 +303,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
                     <p className="auto-text">
                       {language === "ar"
-                        ? "سيصل التوصيل خلال 1-3 أيام عمل"
+                        ? "س��صل التوصيل خلال 1-3 أيام عمل"
                         : "Delivery will arrive in 1-3 business days"
                       }
                     </p>
