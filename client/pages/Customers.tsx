@@ -42,11 +42,18 @@ export default function Customers() {
     town: "",
   });
 
-  const filteredCustomers = customers.filter(
-    (customer) =>
-      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.phone.includes(searchTerm),
-  );
+  const filteredCustomers = customers
+    .filter(
+      (customer) =>
+        customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        customer.phone.includes(searchTerm),
+    )
+    .sort((a, b) => {
+      // Sort by creation date, newest first
+      const dateA = new Date(a.createdAt || "");
+      const dateB = new Date(b.createdAt || "");
+      return dateB.getTime() - dateA.getTime();
+    });
 
   const resetForm = () => {
     setFormData({
