@@ -241,7 +241,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between [dir=rtl]:flex-row-reverse">
                   <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "��لعميل:" : "Customer:"}
+                    {language === "ar" ? "العميل:" : "Customer:"}
                   </span>
                   <span className="font-medium auto-text">{customerInfo.name}</span>
                 </div>
@@ -287,7 +287,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               </h3>
               {deliveryType === "delivery" ? (
                 <div className="space-y-2 text-sm text-blue-800">
-                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
                     <p className="auto-text">
                       {language === "ar"
@@ -296,7 +296,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       }
                     </p>
                   </div>
-                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
                     <p className="auto-text">
                       {language === "ar"
@@ -305,7 +305,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       }
                     </p>
                   </div>
-                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
                     <p className="auto-text">
                       {language === "ar"
@@ -317,7 +317,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 </div>
               ) : (
                 <div className="space-y-3 text-sm text-blue-800">
-                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
                     <p className="auto-text">
                       {language === "ar"
@@ -326,7 +326,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       }
                     </p>
                   </div>
-                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
                     <div>
                       <p className="font-semibold auto-text">
@@ -340,7 +340,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
+                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
                     <p className="auto-text">
                       {language === "ar"
