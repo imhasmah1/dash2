@@ -149,10 +149,10 @@ const Analytics = () => {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-dashboard-primary auto-text">
-            Store Analytics
+            {t("analytics.title")}
           </h1>
           <p className="text-muted-foreground auto-text">
-            Your store performance overview
+            {t("analytics.overview")}
           </p>
         </div>
         <div className="flex items-center gap-3">
