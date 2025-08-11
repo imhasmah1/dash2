@@ -202,33 +202,35 @@ export default function Settings() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 p-4 sm:p-0">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
-          <SettingsIcon className="w-8 h-8 text-dashboard-primary" />
-          <div>
-            <h1 className="text-3xl font-bold text-dashboard-primary auto-text">
+          <SettingsIcon className="w-6 h-6 sm:w-8 sm:h-8 text-dashboard-primary flex-shrink-0" />
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-3xl font-bold text-dashboard-primary auto-text leading-tight">
               {t("settings.title")}
             </h1>
-            <p className="text-gray-600 auto-text">
+            <p className="text-sm sm:text-base text-gray-600 auto-text">
               {t("settings.subtitle")}
             </p>
           </div>
         </div>
         <div className="flex gap-2 [dir=rtl]:flex-row-reverse">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={handleResetSettings}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 h-10 px-3 sm:px-4 text-sm touch-manipulation"
+            size="sm"
           >
             <RefreshCw className="w-4 h-4" />
-            <span className="auto-text">{t("settings.reset")}</span>
+            <span className="auto-text hidden sm:inline">{t("settings.reset")}</span>
           </Button>
-          <Button 
+          <Button
             onClick={handleSaveSettings}
             disabled={!hasChanges || isSaving}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 h-10 px-3 sm:px-4 text-sm touch-manipulation"
+            size="sm"
           >
             <Save className="w-4 h-4" />
             <span className="auto-text">
