@@ -144,7 +144,11 @@ export default function Products() {
       const productData = {
         ...formData,
         total_stock: getTotalStock(),
+        // Convert empty category_id to null
+        category_id: formData.category_id?.trim() === "" ? null : formData.category_id,
       };
+
+      console.log("Submitting product data:", productData);
 
       if (editingProduct) {
         await updateProduct(editingProduct.id, productData);
