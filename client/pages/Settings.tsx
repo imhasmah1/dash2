@@ -371,7 +371,7 @@ export default function Settings() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {/* English Messages */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900 auto-text border-b border-gray-200 pb-2">
