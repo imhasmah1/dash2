@@ -289,7 +289,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <div className="space-y-2 text-sm text-blue-800">
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">1</div>
-                    <p className="auto-text">
+                    <p className="auto-text flex-1">
                       {language === "ar"
                         ? "سنقوم بتجهيز طلبك خلال 2-4 ساعات"
                         : "We'll process your order within 2-4 hours"
@@ -298,7 +298,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">2</div>
-                    <p className="auto-text">
+                    <p className="auto-text flex-1">
                       {language === "ar"
                         ? "سيصل التوصيل خلال 1-3 أيام عمل"
                         : "Delivery will arrive in 1-3 business days"
@@ -307,7 +307,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">3</div>
-                    <p className="auto-text">
+                    <p className="auto-text flex-1">
                       {language === "ar"
                         ? "سيتصل بك السائق عند الوصول"
                         : "Our driver will call you upon arrival"
@@ -319,7 +319,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <div className="space-y-3 text-sm text-blue-800">
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">1</div>
-                    <p className="auto-text">
+                    <p className="auto-text flex-1">
                       {language === "ar"
                         ? "سيكون طلبك جاهزاً للاستلام خلال يوم واحد"
                         : "Your order will be ready for pickup in 1 day"
@@ -342,7 +342,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">3</div>
-                    <p className="auto-text">
+                    <p className="auto-text flex-1">
                       {language === "ar"
                         ? `اتصل بـ ${phoneEl.props.children} عند الوصول`
                         : `Call ${phoneEl} when you arrive`
