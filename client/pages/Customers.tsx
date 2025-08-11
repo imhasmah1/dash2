@@ -118,8 +118,8 @@ export default function Customers() {
       closeDialog();
     } catch (error) {
       showAlert({
-        title: "Error",
-        message: "Failed to save customer. Please try again.",
+        title: t("message.error"),
+        message: t("message.customerSaveError"),
         type: "error",
       });
     }
