@@ -156,9 +156,20 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         notes: "",
       });
 
-      // Success state
-      await refetchData(); // Refresh data first to get updated orders list
-      setOrderNumber(getOrderNumber(order.id).toString());
+      // Success state - preserve order data before clearing cart
+      setOrderItems([...items]);
+      setOrderTotalPrice(totalPrice);
+
+      // Calculate order number more reliably
+      try {
+        await refetchData(); // Refresh data first to get updated orders list
+        const orderNum = getOrderNumber(order.id);
+        setOrderNumber(orderNum > 0 ? orderNum.toString() : order.id.slice(-6));
+      } catch (error) {
+        // Fallback to using last 6 characters of order ID
+        setOrderNumber(order.id.slice(-6));
+      }
+
       setOrderSuccess(true);
       clearCart();
     } catch (error) {
