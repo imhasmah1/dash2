@@ -159,7 +159,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-full p-4 md:p-8 flex flex-col gap-8 bg-gray-50 dark:bg-gray-900 overflow-y-auto">
       {/* Header */}
       <div className="border-b bg-white">
         <div className="container mx-auto px-4 py-4">
