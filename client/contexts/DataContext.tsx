@@ -425,6 +425,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         getProductById,
         getVariantById,
         getCategoryById,
+        getOrderNumber,
         refetchData,
         uploadImage,
       }}
