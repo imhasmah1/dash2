@@ -121,7 +121,7 @@ export default function Settings() {
     pickupEnabled: true,
     deliveryFee: 1.5,
     freeDeliveryThreshold: 50,
-    deliveryAreas: ["المنامة", "المحرق", "سترة", "عيسى", "الرفاع"],
+    deliveryAreas: ["ال��نامة", "المحرق", "سترة", "عيسى", "الرفاع"],
     estimatedDeliveryTime: "1-3 أيام عمل",
     
     // Payment Settings
@@ -356,6 +356,91 @@ export default function Settings() {
                 className="auto-text"
                 rows={3}
               />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Order Messages */}
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
+              <MessageSquare className="w-5 h-5" />
+              {t("settings.orderMessages")}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* English Messages */}
+              <div className="space-y-4">
+                <h4 className="font-medium text-gray-900 auto-text border-b border-gray-200 pb-2">
+                  {t("settings.englishMessages")}
+                </h4>
+                <div className="space-y-2">
+                  <Label htmlFor="orderSuccessMessageEn" className="auto-text">
+                    {t("settings.orderSuccessMessage")}
+                  </Label>
+                  <Textarea
+                    id="orderSuccessMessageEn"
+                    value={settings.orderSuccessMessageEn}
+                    onChange={(e) => handleInputChange("orderSuccessMessageEn", e.target.value)}
+                    className="ltr-text"
+                    rows={3}
+                    placeholder="Thank you for your order! We'll process it within..."
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="orderInstructionsEn" className="auto-text">
+                    {t("settings.orderInstructions")}
+                  </Label>
+                  <Textarea
+                    id="orderInstructionsEn"
+                    value={settings.orderInstructionsEn}
+                    onChange={(e) => handleInputChange("orderInstructionsEn", e.target.value)}
+                    className="ltr-text"
+                    rows={2}
+                    placeholder="For any changes or questions..."
+                  />
+                </div>
+              </div>
+
+              {/* Arabic Messages */}
+              <div className="space-y-4">
+                <h4 className="font-medium text-gray-900 auto-text border-b border-gray-200 pb-2">
+                  {t("settings.arabicMessages")}
+                </h4>
+                <div className="space-y-2">
+                  <Label htmlFor="orderSuccessMessageAr" className="auto-text">
+                    {t("settings.orderSuccessMessage")}
+                  </Label>
+                  <Textarea
+                    id="orderSuccessMessageAr"
+                    value={settings.orderSuccessMessageAr}
+                    onChange={(e) => handleInputChange("orderSuccessMessageAr", e.target.value)}
+                    className="auto-text"
+                    rows={3}
+                    placeholder="شكراً لك على طلبك! سنقوم بتجهيزه خلال..."
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="orderInstructionsAr" className="auto-text">
+                    {t("settings.orderInstructions")}
+                  </Label>
+                  <Textarea
+                    id="orderInstructionsAr"
+                    value={settings.orderInstructionsAr}
+                    onChange={(e) => handleInputChange("orderInstructionsAr", e.target.value)}
+                    className="auto-text"
+                    rows={2}
+                    placeholder="لأي تغييرات أو أسئلة..."
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800 auto-text">
+                <strong className="auto-text">{t("settings.note")}:</strong> {t("settings.orderMessageNote")}
+              </p>
             </div>
           </CardContent>
         </Card>
