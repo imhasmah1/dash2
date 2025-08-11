@@ -31,6 +31,7 @@ const translations = {
     "nav.revenue": "Revenue",
     "nav.analytics": "Analytics",
     "nav.categories": "Categories",
+    "nav.settings": "Settings",
     "nav.logout": "Logout",
     "nav.adminPanel": "Admin Panel",
 
@@ -348,7 +349,7 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجمالي الإيرادات",
+    "dashboard.totalRevenue": "إجم��لي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
@@ -378,7 +379,7 @@ const translations = {
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
-    "products.dragImages": "اس��ب وأفلت الصور هنا، أو انقر للاختيار",
+    "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
@@ -480,7 +481,7 @@ const translations = {
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
     "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
     "revenue.deliveryAnalysis": "تحليل نوع التسليم",
-    "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
+    "revenue.revenueByStatus": "الإيرادات حسب حالة الط��ب",
     "revenue.month": "الشهر",
     "revenue.revenue": "الإيرادات",
     "revenue.day": "اليوم",
@@ -511,7 +512,7 @@ const translations = {
     "empty.noOrdersFound": "لا توجد طلبات",
     "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
-    "empty.addFirstCustomer": "��بدأ بإضافة أول عميل لك",
+    "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
     "empty.addProduct": "إضافة منتج",
     "empty.addCustomer": "إضافة عميل",
@@ -534,7 +535,7 @@ const translations = {
     // Login
     "login.title": "تسجيل دخول الإدارة",
     "login.password": "كلمة المرور",
-    "login.signIn": "تسجيل الدخول",
+    "login.signIn": "تسجيل الدخو��",
     "login.invalidPassword": "كلمة مرور غير صحيحة",
 
     // Language
@@ -586,7 +587,7 @@ const translations = {
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
-    "checkout.cashOnDelivery": "الدفع عند التس��يم",
+    "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.free": "مجاني",
     "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
     "checkout.pickupDescription": "الاستلام من المتجر",
