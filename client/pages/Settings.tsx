@@ -138,7 +138,9 @@ export default function Settings() {
     lowStockThreshold: 5,
     maxOrderQuantity: 50,
     orderProcessingTime: "2-4 ساعات",
-    
+    deliveryConcerns: 24,
+    pickupOrderConfig: 48,
+
     // Notifications
     emailNotifications: true,
     smsNotifications: false,
