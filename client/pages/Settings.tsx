@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDialog } from "@/contexts/DialogContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -87,6 +88,7 @@ interface StoreSettings {
 
 export default function Settings() {
   const { t, language } = useLanguage();
+  const { showAlert, showConfirm } = useDialog();
   const [settings, setSettings] = useState<StoreSettings>({
     // Store Information
     storeName: "أزهار ستور - Azhar Store",
@@ -176,16 +178,30 @@ export default function Settings() {
       setHasChanges(false);
       
       // Show success message
-      alert(t("settings.saveSuccess"));
+      showAlert({
+        title: t("common.success"),
+        message: t("settings.saveSuccess"),
+        type: "success",
+      });
     } catch (error) {
-      alert(t("settings.saveError"));
+      showAlert({
+        title: t("message.error"),
+        message: t("settings.saveError"),
+        type: "error",
+      });
     } finally {
       setIsSaving(false);
     }
   };
 
-  const handleResetSettings = () => {
-    if (confirm(t("settings.resetConfirm"))) {
+  const handleResetSettings = async () => {
+    const confirmed = await showConfirm({
+      title: t("settings.reset"),
+      message: t("settings.resetConfirm"),
+      type: "warning",
+    });
+
+    if (confirmed) {
       localStorage.removeItem('storeSettings');
       window.location.reload();
     }
