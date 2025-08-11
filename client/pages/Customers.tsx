@@ -350,7 +350,7 @@ export default function Customers() {
               </div>
 
               <div className="text-xs text-gray-500">
-                Added: {new Date(customer.createdAt).toLocaleDateString()}
+{t("common.added")}: {new Date(customer.createdAt).toLocaleDateString()}
               </div>
 
               <div className="flex gap-2 pt-2">
