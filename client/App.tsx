@@ -79,6 +79,7 @@ import Customers from "@/pages/Customers";
 import Categories from "@/pages/Categories";
 import Revenue from "@/pages/Revenue";
 import Analytics from "@/pages/Analytics";
+import Settings from "@/pages/Settings";
 import Store from "@/pages/Store";
 import ProductDetail from "@/pages/ProductDetail";
 import NotFound from "@/pages/NotFound";
