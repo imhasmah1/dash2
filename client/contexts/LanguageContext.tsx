@@ -224,6 +224,7 @@ const translations = {
     "message.success": "Operation completed successfully",
     "message.customerSaveError": "Failed to save customer. Please try again.",
     "message.productSaveError": "Failed to save product. Please try again.",
+    "message.uploadError": "Failed to upload images. Please try again.",
 
     // Login
     "login.title": "Admin Login",
@@ -427,7 +428,7 @@ const translations = {
     "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
-    "dashboard.welcome": "مرحباً بك في ��وحة الإدارة",
+    "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
 
     // Products
     "products.title": "المنتجات",
@@ -588,7 +589,7 @@ const translations = {
     "empty.noCustomersFound": "لا يوجد عملاء",
     "empty.noOrdersFound": "لا توجد طلبات",
     "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
-    "empty.addFirstProduct": "ابدأ ��إضافة أول منتج لك",
+    "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
     "empty.addProduct": "إضافة منتج",
@@ -600,7 +601,7 @@ const translations = {
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
-    "message.orderAdded": "تم إضافة الطلب بنجاح",
+    "message.orderAdded": "تم إضافة الطل�� بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
@@ -608,8 +609,9 @@ const translations = {
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
     "message.success": "تمت العملية بنجاح",
-    "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مر�� أخرى.",
+    "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مرة أخرى.",
     "message.productSaveError": "فشل في حفظ المنتج. يرجى المحاولة مرة أخرى.",
+    "message.uploadError": "فشل في رفع الصور. يرجى المحاولة مرة أخرى.",
 
     // Login
     "login.title": "تسجيل دخول الإدارة",
@@ -659,9 +661,9 @@ const translations = {
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
-      "سيتم تجهيز الطلب خلال 1-3 أيام، وسنتواصل معك عند التوصيل",
+      "س��تم تجهيز الطلب خلال 1-3 أيام، وسنتواصل معك عند التوصيل",
     "checkout.orderSuccessMessage": "تم استلام طلبك بنجاح",
-    "checkout.subtotal": "المجموع الفرع��",
+    "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
@@ -724,7 +726,7 @@ const translations = {
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
-    "notFound.returnHome": "العودة للصفحة الرئيسية",
+    "notFound.returnHome": "العودة للصفحة الرئ��سية",
 
     // Settings
     "settings.title": "الإعدادات",
