@@ -488,7 +488,7 @@ export default function Orders() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="grid gap-2">
                       <Label htmlFor="status">{t("orders.status")}</Label>
                       <Select
