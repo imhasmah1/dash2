@@ -59,7 +59,9 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
 
   // Upload routes
+  app.get("/api/upload/info", getStorageInfo);
   app.post("/api/upload", uploadMiddleware, handleImageUpload);
+  app.post("/api/upload/multiple", handleMultipleImageUpload);
   app.delete("/api/upload/:filename", deleteImage);
 
   // Customer routes
