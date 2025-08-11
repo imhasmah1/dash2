@@ -217,7 +217,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 </div>
               </div>
               <h2 className="text-2xl font-bold text-green-600 auto-text">
-                {language === "ar" ? "تم تأكيد الطلب!" : "Order Confirmed!"}
+                {language === "ar" ? "تم ت��كيد الطلب!" : "Order Confirmed!"}
               </h2>
             </div>
 
@@ -269,6 +269,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </span>
                 </div>
               </div>
+            </div>
+
+            {/* Custom Success Message */}
+            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+              <p className="text-green-800 auto-text leading-relaxed">
+                {getOrderMessages().successMessage}
+              </p>
             </div>
 
             {/* Next Steps */}
