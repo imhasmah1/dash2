@@ -393,6 +393,15 @@ const translations = {
     "settings.lowStockThreshold": "Low Stock Threshold",
     "settings.maxOrderQuantity": "Max Order Quantity",
     "settings.orderProcessingTime": "Order Processing Time",
+
+    // Order Messages
+    "settings.orderMessages": "Order Messages",
+    "settings.englishMessages": "English Messages",
+    "settings.arabicMessages": "Arabic Messages",
+    "settings.orderSuccessMessage": "Order Success Message",
+    "settings.orderInstructions": "Order Instructions",
+    "settings.note": "Note",
+    "settings.orderMessageNote": "These messages will be displayed to customers when they successfully place an order. Customize them to match your store's tone and provide relevant information.",
   },
   ar: {
     // Navigation
@@ -454,7 +463,7 @@ const translations = {
 
     // Orders
     "orders.title": "الطلبات",
-    "orders.subtitle": "إدارة طلبات العملاء وا��توصيل",
+    "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
     "orders.orderId": "رقم الطلب",
@@ -647,7 +656,7 @@ const translations = {
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
-    "checkout.cashOnDelivery": "الدفع عند التسليم",
+    "checkout.cashOnDelivery": "الدفع عن�� التسليم",
     "checkout.free": "مجاني",
     "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
     "checkout.pickupDescription": "الاستلام من المتجر",
@@ -677,7 +686,7 @@ const translations = {
 
     // Analytics
     "analytics.title": "تحليلات المتجر",
-    "analytics.overview": "نظرة عامة على أداء متجرك",
+    "analytics.overview": "نظرة عامة على أ��اء متجرك",
     "analytics.totalOrders": "إجمالي الطلبات",
     "analytics.totalRevenue": "إجمالي الإيرادات",
     "analytics.totalCustomers": "إجمالي العملاء",
@@ -710,7 +719,7 @@ const translations = {
     // Settings
     "settings.title": "الإعدادات",
     "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
-    "settings.save": "حفظ ا��إعدادات",
+    "settings.save": "حفظ الإعدادات",
     "settings.reset": "إعادة تعيين",
     "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
