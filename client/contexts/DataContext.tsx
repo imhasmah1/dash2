@@ -95,6 +95,7 @@ interface DataContextType {
     variantId: string,
   ) => ProductVariant | undefined;
   getCategoryById: (id: string) => Category | undefined;
+  getOrderNumber: (orderId: string) => number;
   refetchData: () => Promise<void>;
   uploadImage: (file: File) => Promise<string>;
 }
