@@ -57,6 +57,7 @@ export default function Orders() {
     getCustomerById,
     getProductById,
     getVariantById,
+    getOrderNumber,
     refetchData,
   } = useData();
   const { showConfirm, showAlert } = useDialog();
