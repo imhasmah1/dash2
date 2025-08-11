@@ -751,43 +751,46 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         </ScrollArea>
 
         {/* Footer with Navigation - Fixed at bottom */}
-        <div className="border-t p-4 sm:p-6 bg-white flex-shrink-0">
-          <div className="flex justify-between items-center gap-4">
+        <div className="border-t p-3 sm:p-6 bg-white flex-shrink-0">
+          <div className="flex items-center gap-3 sm:gap-4">
             {/* Back Button */}
             {step > 1 && (
               <Button
                 variant="outline"
                 onClick={handleBack}
-                className="flex items-center gap-2 h-12 px-6 touch-manipulation"
+                className="flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-6 touch-manipulation"
+                size="sm"
               >
-                <ArrowLeft className="w-5 h-5" />
-                {t("common.back")}
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">{t("common.back")}</span>
               </Button>
             )}
 
             {/* Next/Submit Button */}
-            <div className="flex-1 flex justify-end">
+            <div className="flex-1">
               {step < 3 ? (
                 <Button
                   onClick={handleNext}
                   disabled={step === 1 && !isStep1Valid()}
-                  className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                  className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 h-11 sm:h-12 w-full touch-manipulation"
                   size="lg"
                 >
-                  {t("common.next")}
-                  <ArrowRight className="w-5 h-5" />
+                  <span className="auto-text">{t("common.next")}</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               ) : (
                 <Button
                   onClick={handlePlaceOrder}
                   disabled={!isFormValid() || isSubmitting}
-                  className="flex items-center gap-2 bg-primary hover:bg-primary/90 h-12 px-6 touch-manipulation"
+                  className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 h-11 sm:h-12 w-full touch-manipulation"
                   size="lg"
                 >
-                  <CreditCard className="w-5 h-5" />
-                  {isSubmitting
-                    ? t("common.loading")
-                    : t("checkout.placeOrder")}
+                  <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="auto-text">
+                    {isSubmitting
+                      ? t("common.loading")
+                      : t("checkout.placeOrder")}
+                  </span>
                 </Button>
               )}
             </div>
