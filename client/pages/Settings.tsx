@@ -121,7 +121,7 @@ export default function Settings() {
     pickupEnabled: true,
     deliveryFee: 1.5,
     freeDeliveryThreshold: 50,
-    deliveryAreas: ["ال��نامة", "المحرق", "سترة", "عيسى", "الرفاع"],
+    deliveryAreas: ["المنامة", "المحرق", "سترة", "عيسى", "الرفاع"],
     estimatedDeliveryTime: "1-3 أيام عمل",
     
     // Payment Settings
@@ -456,12 +456,15 @@ export default function Settings() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {days.map((day) => (
-                <div key={day.key} className="flex items-center justify-between p-3 border rounded-lg">
+                <div key={day.key} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
                   <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
-                    <Switch
-                      checked={settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen}
-                      onCheckedChange={(checked) => handleBusinessHoursChange(day.key, "isOpen", checked)}
-                    />
+                    <div className="flex items-center gap-2">
+                      <Switch
+                        checked={settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen}
+                        onCheckedChange={(checked) => handleBusinessHoursChange(day.key, "isOpen", checked)}
+                        className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
+                      />
+                    </div>
                     <span className="font-medium auto-text min-w-0">{day.name}</span>
                   </div>
                   {settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen && (
