@@ -125,7 +125,7 @@ export default function Settings() {
     pickupEnabled: true,
     deliveryFee: 1.5,
     freeDeliveryThreshold: 50,
-    deliveryAreas: ["ا��منامة", "المحرق", "سترة", "عيسى", "الرفاع"],
+    deliveryAreas: ["المنامة", "المحرق", "سترة", "عيسى", "الرفاع"],
     estimatedDeliveryTime: "1-3 أيام عمل",
     
     // Payment Settings
@@ -167,7 +167,13 @@ export default function Settings() {
   }, []);
 
   const handleInputChange = (field: string, value: any) => {
-    setSettings(prev => ({ ...prev, [field]: value }));
+    // Ensure number fields are never undefined or NaN
+    let processedValue = value;
+    if (typeof value === 'number' && (isNaN(value) || value === undefined)) {
+      processedValue = 0;
+    }
+
+    setSettings(prev => ({ ...prev, [field]: processedValue }));
     setHasChanges(true);
   };
 
