@@ -349,10 +349,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <h3 className="font-semibold text-orange-900 mb-2 auto-text">
                 {language === "ar" ? "تحتاج مساعدة؟" : "Need Help?"}
               </h3>
-              <p className="text-sm text-orange-800 auto-text">
+              <p className="text-sm text-orange-800 auto-text mb-2">
+                {getOrderMessages().instructions}
+              </p>
+              <p className="text-sm text-orange-700 auto-text">
                 {language === "ar"
-                  ? `لأي تغييرات أو أسئلة أو استفسارات حول طلبك، تواصل معنا على ${phoneEl.props.children}`
-                  : `For any changes, questions, or concerns about your order, contact us at ${phoneEl}`
+                  ? `تواصل معنا على ${phoneEl.props.children}`
+                  : `Contact us at ${phoneEl}`
                 }
               </p>
             </div>
