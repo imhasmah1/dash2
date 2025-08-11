@@ -29,7 +29,7 @@ interface CheckoutDialogProps {
 export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const { t, language } = useLanguage();
   const { items, getTotalPrice, clearCart } = useCart();
-  const { refetchData } = useData();
+  const { refetchData, getOrderNumber } = useData();
 
   // Get custom order messages from settings
   const getOrderMessages = () => {
