@@ -168,7 +168,7 @@ const Analytics = () => {
           </Select>
           <Button onClick={refreshData} variant="outline" size="sm">
             <RefreshCw className="w-4 h-4 mr-2" />
-            Refresh
+            {t("analytics.refresh")}
           </Button>
         </div>
       </div>
