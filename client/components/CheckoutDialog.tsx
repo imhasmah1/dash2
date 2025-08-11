@@ -180,92 +180,108 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   // Success State
   if (orderSuccess) {
     const phoneEl = (
-      <span className="font-extrabold text-primary underline">+973 36283382</span>
-    );
-
-    const successExtra = (
-      <div className="text-sm text-gray-700 space-y-2 auto-text">
-        {deliveryType === "delivery" ? (
-          <>
-            {language === "ar" ? (
-              <div className="space-y-2">
-                <p>{t("checkout.orderSuccessMessage")} {t("checkout.processingMessage")}</p>
-                <div className="p-3 bg-blue-50 rounded border border-blue-200">
-                  <p>
-                    سنقوم بتوصيل الطلب خلال 1-3 أيام. إذا رغبت في تغيير الموقع أو إضافة أو إزالة أو إلغاء الطلب تواصل على الرقم {phoneEl}. وللاستفسار عن التوصيل تواصل على الرقم {phoneEl}.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <p>
-                  {t("checkout.orderSuccessMessage")} {t("checkout.processingMessage")}
-                </p>
-                <div className="p-3 bg-blue-50 rounded border border-blue-200">
-                  <p>
-                    We will deliver the order in 1-3 days. If you would like to change the location or add, remove or cancel the order, contact {phoneEl}. If you have questions about delivery, contact {phoneEl}.
-                  </p>
-                </div>
-              </div>
-            )}
-          </>
-        ) : (
-          <>
-            {language === "ar" ? (
-              <div className="space-y-2">
-                <p>{t("checkout.orderSuccessMessage")}</p>
-                <div className="p-3 bg-blue-50 rounded border border-blue-200 space-y-2">
-                  <p>يمكنك استلام الطلب من العنوان أدناه بعد يوم واحد من الآن.</p>
-                  <p>
-                    <span className="font-semibold">العنوان:</span> منزل 1348، طريق 416، مجمع 604، سترة (القرية).
-                  </p>
-                  <p>
-                    إذا رغبت في تغيير الموقع أو إضافة أو إزالة أو إلغاء الطلب تواصل على الرقم {phoneEl}. عند الوصول اتصل على الرقم {phoneEl}.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <p>{t("checkout.orderSuccessMessage")}</p>
-                <div className="p-3 bg-blue-50 rounded border border-blue-200 space-y-2">
-                  <p>You can pick up the order from the address below after 1 day from now.</p>
-                  <p>
-                    <span className="font-semibold">Address:</span> Home 1348, Road 416, Block 604, Sitra Alqarya.
-                  </p>
-                  <p>
-                    If you would like to change the location or add, remove or cancel the order, contact {phoneEl}. When you arrive, call the number {phoneEl}.
-                  </p>
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </div>
+      <a href="tel:+97336283382" className="font-bold text-primary hover:underline">+973 36283382</a>
     );
 
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:max-w-md max-h-[95vh] p-0 rounded-lg sm:rounded-md">
-          <div className="p-6 text-center space-y-6">
-            <div className="flex justify-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                <Check className="w-8 h-8 text-green-600" />
+        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg">
+          <div className="p-6 space-y-6">
+            {/* Success Icon & Title */}
+            <div className="text-center space-y-3">
+              <div className="flex justify-center">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+                  <Check className="w-10 h-10 text-green-600" />
+                </div>
               </div>
-            </div>
-            <div className="space-y-2">
               <h2 className="text-2xl font-bold text-green-600">
-                {t("checkout.orderSuccess")}
+                Order Confirmed!
               </h2>
-              {successExtra}
             </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium">{t("checkout.orderNumber")}:</p>
-              <Badge variant="outline" className="text-lg px-4 py-2 font-mono">
+
+            {/* Order Number */}
+            <div className="bg-gray-50 p-4 rounded-lg text-center">
+              <p className="text-sm text-gray-600 mb-2">Order Number</p>
+              <Badge variant="outline" className="text-xl px-4 py-2 font-mono">
                 #{orderNumber}
               </Badge>
             </div>
+
+            {/* Order Summary */}
+            <div className="border-t pt-4">
+              <h3 className="font-semibold mb-3">Order Details</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Customer:</span>
+                  <span className="font-medium">{customerInfo.name}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Phone:</span>
+                  <span className="font-medium">{customerInfo.phone}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Total Amount:</span>
+                  <span className="font-bold text-primary">
+                    BD {(totalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Method:</span>
+                  <span className="font-medium capitalize">{deliveryType}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Next Steps */}
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h3 className="font-semibold text-blue-900 mb-3">What's Next?</h3>
+              {deliveryType === "delivery" ? (
+                <div className="space-y-2 text-sm text-blue-800">
+                  <div className="flex items-start gap-2">
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                    <p>We'll process your order within 2-4 hours</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                    <p>Delivery will arrive in 1-3 business days</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                    <p>Our driver will call you upon arrival</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-3 text-sm text-blue-800">
+                  <div className="flex items-start gap-2">
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                    <p>Your order will be ready for pickup in 1 day</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                    <div>
+                      <p className="font-semibold">Pickup Address:</p>
+                      <p className="text-blue-700">Home 1348, Road 416, Block 604, Sitra Alqarya</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                    <p>Call {phoneEl} when you arrive</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Contact Information */}
+            <div className="border border-orange-200 bg-orange-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-orange-900 mb-2">Need Help?</h3>
+              <p className="text-sm text-orange-800">
+                For any changes, questions, or concerns about your order, contact us at {phoneEl}
+              </p>
+            </div>
+
+            {/* Action Button */}
             <Button onClick={handleClose} className="w-full" size="lg">
-              {t("common.close")}
+              Continue Shopping
             </Button>
           </div>
         </DialogContent>
