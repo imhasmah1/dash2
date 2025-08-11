@@ -633,7 +633,7 @@ const translations = {
     "checkout.customerName": "الاسم الكامل",
     "checkout.customerPhone": "رقم الهاتف",
     "checkout.customerAddress": "العنوان",
-    "checkout.customerHome": "المنزل:",
+    "checkout.customerHome": "ا��منزل:",
     "checkout.customerRoad": "الطريق:",
     "checkout.customerBlock": "المجمع:",
     "checkout.customerTown": "المنطقة:",
@@ -656,7 +656,7 @@ const translations = {
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
-    "checkout.cashOnDelivery": "الدفع عن�� التسليم",
+    "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.free": "مجاني",
     "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
     "checkout.pickupDescription": "الاستلام من المتجر",
@@ -664,7 +664,7 @@ const translations = {
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
-    "store.viewDetails": "عرض التفاصيل",
+    "store.viewDetails": "عرض التفاصي��",
     "store.productDetails": "تفاصيل المنتج",
     "store.search": "البحث في المنتجات...",
     "store.searchResults": "نتائج البحث",
@@ -686,7 +686,7 @@ const translations = {
 
     // Analytics
     "analytics.title": "تحليلات المتجر",
-    "analytics.overview": "نظرة عامة على أ��اء متجرك",
+    "analytics.overview": "نظرة عامة على أداء متجرك",
     "analytics.totalOrders": "إجمالي الطلبات",
     "analytics.totalRevenue": "إجمالي الإيرادات",
     "analytics.totalCustomers": "إجمالي العملاء",
@@ -774,6 +774,15 @@ const translations = {
     "settings.lowStockThreshold": "حد المخزون المنخفض",
     "settings.maxOrderQuantity": "أقصى كمية للطلب",
     "settings.orderProcessingTime": "وقت معالجة الطلب",
+
+    // Order Messages
+    "settings.orderMessages": "رسائل الطلبات",
+    "settings.englishMessages": "الرسائل الإنجليزية",
+    "settings.arabicMessages": "الرسائل العربية",
+    "settings.orderSuccessMessage": "رسالة نجاح الطلب",
+    "settings.orderInstructions": "تعليمات الطلب",
+    "settings.note": "ملاحظة",
+    "settings.orderMessageNote": "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. قم بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
   },
 } as const;
 
