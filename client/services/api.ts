@@ -18,22 +18,25 @@ async function apiCall<T>(url: string, options?: RequestInit): Promise<T> {
 
       try {
         const errorData = await response.json();
+        console.error("API Error details:", {
+          url: `${API_BASE}${url}`,
+          status: response.status,
+          statusText: response.statusText,
+          errorData,
+        });
+
         if (errorData.error) {
           errorMessage = errorData.error;
+        } else if (errorData.message) {
+          errorMessage = errorData.message;
         } else {
           errorMessage = `${errorMessage} ${response.statusText}`;
         }
-      } catch {
+      } catch (parseError) {
         // If response isn't JSON, use status text
+        console.error("Failed to parse error response:", parseError);
         errorMessage = `${errorMessage} ${response.statusText || "Unknown error"}`;
       }
-
-      console.error("API Error details:", {
-        url: `${API_BASE}${url}`,
-        status: response.status,
-        statusText: response.statusText,
-        errorMessage,
-      });
 
       throw new Error(errorMessage);
     }
