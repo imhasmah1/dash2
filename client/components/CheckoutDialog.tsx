@@ -385,7 +385,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
         {/* Scrollable Content Area */}
         <ScrollArea className="flex-1 min-h-0">
-          <div className="p-4 sm:p-6 auto-text">
+          <div className="p-4 sm:p-6 pb-8 auto-text">
             {/* Step 1: Customer Information */}
             {step === 1 && (
               <Card className="border-2">
