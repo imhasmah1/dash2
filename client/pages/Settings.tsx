@@ -678,7 +678,7 @@ export default function Settings() {
                     id="lowStockThreshold"
                     type="number"
                     value={settings.lowStockThreshold}
-                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value))}
+                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value) || 0)}
                     className="ltr-text h-10 touch-manipulation"
                   />
                 </div>
