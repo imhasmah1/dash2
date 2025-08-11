@@ -198,7 +198,7 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium auto-text">
-              Total Revenue
+              {t("analytics.totalRevenue")}
             </CardTitle>
             <DollarSign className="h-4 w-4 text-dashboard-primary" />
           </CardHeader>
@@ -207,7 +207,7 @@ const Analytics = () => {
               BD {storeAnalytics.totalRevenue.toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground auto-text">
-              Avg: BD {storeAnalytics.avgOrderValue.toFixed(2)} per order
+              {language === "ar" ? "متوسط: د.ب " + storeAnalytics.avgOrderValue.toFixed(2) + " " + t("analytics.avgPerOrder") : "Avg: BD " + storeAnalytics.avgOrderValue.toFixed(2) + " " + t("analytics.avgPerOrder")}
             </p>
           </CardContent>
         </Card>
@@ -215,7 +215,7 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium auto-text">
-              Total Customers
+              {t("analytics.totalCustomers")}
             </CardTitle>
             <Users className="h-4 w-4 text-dashboard-primary" />
           </CardHeader>
@@ -224,7 +224,7 @@ const Analytics = () => {
               {storeAnalytics.totalCustomers}
             </div>
             <p className="text-xs text-muted-foreground auto-text">
-              +{storeAnalytics.newCustomers} new in period
+              +{storeAnalytics.newCustomers} {t("analytics.newInPeriod")}
             </p>
           </CardContent>
         </Card>
@@ -232,7 +232,7 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium auto-text">
-              Total Products
+              {t("analytics.totalProducts")}
             </CardTitle>
             <Package className="h-4 w-4 text-dashboard-primary" />
           </CardHeader>
@@ -241,7 +241,7 @@ const Analytics = () => {
               {storeAnalytics.totalProducts}
             </div>
             <Badge variant="outline" className="mt-1">
-              In Stock
+              {t("analytics.inStock")}
             </Badge>
           </CardContent>
         </Card>
