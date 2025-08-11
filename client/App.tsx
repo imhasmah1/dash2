@@ -109,6 +109,7 @@ function AppContent() {
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/revenue" element={<Revenue />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </DashboardLayout>
