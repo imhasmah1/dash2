@@ -334,6 +334,65 @@ const translations = {
     "notFound.title": "404",
     "notFound.message": "Oops! Page not found",
     "notFound.returnHome": "Return to Home",
+
+    // Settings
+    "settings.title": "Settings",
+    "settings.subtitle": "Configure your store settings and preferences",
+    "settings.save": "Save Settings",
+    "settings.reset": "Reset",
+    "settings.saveSuccess": "Settings saved successfully!",
+    "settings.saveError": "Failed to save settings. Please try again.",
+    "settings.resetConfirm": "Are you sure you want to reset all settings to default values?",
+    "settings.unsavedChanges": "You have unsaved changes. Don't forget to save!",
+
+    // Store Information
+    "settings.storeInformation": "Store Information",
+    "settings.storeName": "Store Name",
+    "settings.storeDescription": "Store Description",
+    "settings.currency": "Currency",
+    "settings.currencySymbol": "Currency Symbol",
+    "settings.bahrainiDinar": "Bahraini Dinar",
+    "settings.usDollar": "US Dollar",
+    "settings.euro": "Euro",
+
+    // Contact Information
+    "settings.contactInformation": "Contact Information",
+    "settings.contactPhone": "Phone Number",
+    "settings.contactEmail": "Email Address",
+    "settings.contactAddress": "Address",
+
+    // Business Hours
+    "settings.businessHours": "Business Hours",
+    "settings.monday": "Monday",
+    "settings.tuesday": "Tuesday",
+    "settings.wednesday": "Wednesday",
+    "settings.thursday": "Thursday",
+    "settings.friday": "Friday",
+    "settings.saturday": "Saturday",
+    "settings.sunday": "Sunday",
+    "settings.closed": "Closed",
+
+    // Shipping & Delivery
+    "settings.shippingDelivery": "Shipping & Delivery",
+    "settings.enableDelivery": "Enable Delivery",
+    "settings.enablePickup": "Enable Pickup",
+    "settings.deliveryFee": "Delivery Fee",
+    "settings.freeDeliveryThreshold": "Free Delivery Threshold",
+    "settings.estimatedDeliveryTime": "Estimated Delivery Time",
+
+    // Payment Settings
+    "settings.paymentSettings": "Payment Settings",
+    "settings.cashOnDelivery": "Cash on Delivery",
+    "settings.bankTransfer": "Bank Transfer",
+    "settings.bankAccountInfo": "Bank Account Information",
+    "settings.bankAccountPlaceholder": "Enter bank account details for customers...",
+
+    // Operational Settings
+    "settings.operationalSettings": "Operational Settings",
+    "settings.autoOrderConfirmation": "Auto Order Confirmation",
+    "settings.lowStockThreshold": "Low Stock Threshold",
+    "settings.maxOrderQuantity": "Max Order Quantity",
+    "settings.orderProcessingTime": "Order Processing Time",
   },
   ar: {
     // Navigation
@@ -349,14 +408,14 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "لوحة التحكم",
-    "dashboard.totalRevenue": "إجم��لي الإيرادات",
+    "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
 
     // Products
     "products.title": "المنتجات",
-    "products.subtitle": "إدارة مخزون المنتجات",
+    "products.subtitle": "إدارة مخزون المنتج��ت",
     "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
@@ -381,7 +440,7 @@ const translations = {
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
-    "products.primaryImage": "أساسية",
+    "products.primaryImage": "أ��اسية",
     "products.uploadImages": "رفع الصور",
     "products.images": "صور",
     "products.noImages": "لم يتم رفع أي صور بعد",
@@ -409,7 +468,7 @@ const translations = {
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
-    "orders.editOrder": "تعديل طلب",
+    "orders.editOrder": "تعد��ل طلب",
     "orders.selectCustomer": "اختر العميل",
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
@@ -481,7 +540,7 @@ const translations = {
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
     "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
     "revenue.deliveryAnalysis": "تحليل نوع التسليم",
-    "revenue.revenueByStatus": "الإيرادات حسب حالة الط��ب",
+    "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
     "revenue.month": "الشهر",
     "revenue.revenue": "الإيرادات",
     "revenue.day": "اليوم",
@@ -535,7 +594,7 @@ const translations = {
     // Login
     "login.title": "تسجيل دخول الإدارة",
     "login.password": "كلمة المرور",
-    "login.signIn": "تسجيل الدخو��",
+    "login.signIn": "تسجيل الدخول",
     "login.invalidPassword": "كلمة مرور غير صحيحة",
 
     // Language
@@ -595,7 +654,7 @@ const translations = {
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
-    "store.viewDetails": "عرض التفاصيل",
+    "store.viewDetails": "عر�� التفاصيل",
     "store.productDetails": "تفاصيل المنتج",
     "store.search": "البحث في المنتجات...",
     "store.searchResults": "نتائج البحث",
