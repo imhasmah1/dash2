@@ -242,7 +242,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <span className="font-medium auto-text">
                     {deliveryType === "delivery"
                       ? (language === "ar" ? "توصيل" : "Delivery")
-                      : (language === "ar" ? "است��ام" : "Pickup")
+                      : (language === "ar" ? "استلام" : "Pickup")
                     }
                   </span>
                 </div>
