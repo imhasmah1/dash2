@@ -125,7 +125,7 @@ export default function Settings() {
     pickupEnabled: true,
     deliveryFee: 1.5,
     freeDeliveryThreshold: 50,
-    deliveryAreas: ["المنامة", "المحرق", "��ترة", "عيسى", "الرفاع"],
+    deliveryAreas: ["ا��منامة", "المحرق", "سترة", "عيسى", "الرفاع"],
     estimatedDeliveryTime: "1-3 أيام عمل",
     
     // Payment Settings
@@ -580,7 +580,7 @@ export default function Settings() {
                   id="freeDeliveryThreshold"
                   type="number"
                   value={settings.freeDeliveryThreshold}
-                  onChange={(e) => handleInputChange("freeDeliveryThreshold", parseInt(e.target.value))}
+                  onChange={(e) => handleInputChange("freeDeliveryThreshold", parseInt(e.target.value) || 0)}
                   className="ltr-text h-10 touch-manipulation"
                 />
               </div>
