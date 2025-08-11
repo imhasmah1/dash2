@@ -27,6 +27,8 @@ import {
   Settings as SettingsIcon,
   Save,
   RefreshCw,
+  MessageSquare,
+  Bell,
 } from "lucide-react";
 
 interface StoreSettings {
@@ -35,12 +37,18 @@ interface StoreSettings {
   storeDescription: string;
   currency: string;
   currencySymbol: string;
-  
+
   // Contact Information
   contactPhone: string;
   contactEmail: string;
   contactAddress: string;
-  
+
+  // Order Messages
+  orderSuccessMessageEn: string;
+  orderSuccessMessageAr: string;
+  orderInstructionsEn: string;
+  orderInstructionsAr: string;
+
   // Business Hours
   businessHours: {
     monday: { open: string; close: string; isOpen: boolean };
@@ -51,7 +59,7 @@ interface StoreSettings {
     saturday: { open: string; close: string; isOpen: boolean };
     sunday: { open: string; close: string; isOpen: boolean };
   };
-  
+
   // Shipping & Delivery
   deliveryEnabled: boolean;
   pickupEnabled: boolean;
@@ -59,18 +67,18 @@ interface StoreSettings {
   freeDeliveryThreshold: number;
   deliveryAreas: string[];
   estimatedDeliveryTime: string;
-  
+
   // Payment Settings
   cashOnDeliveryEnabled: boolean;
   bankTransferEnabled: boolean;
   bankAccountInfo: string;
-  
+
   // Operational Settings
   autoOrderConfirmation: boolean;
   lowStockThreshold: number;
   maxOrderQuantity: number;
   orderProcessingTime: string;
-  
+
   // Notifications
   emailNotifications: boolean;
   smsNotifications: boolean;
@@ -90,6 +98,12 @@ export default function Settings() {
     contactPhone: "+973 36283382",
     contactEmail: "info@azharstore.com",
     contactAddress: "منزل 1348، طريق 416، مجمع 604، سترة القرية، البحرين",
+
+    // Order Messages
+    orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
+    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
+    orderInstructionsEn: "For any changes or questions about your order, please contact us.",
+    orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     
     // Business Hours
     businessHours: {
