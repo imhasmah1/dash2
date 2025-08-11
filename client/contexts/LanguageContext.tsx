@@ -194,6 +194,7 @@ const translations = {
     "common.no": "No",
     "common.back": "Back",
     "common.next": "Next",
+    "common.success": "Success",
 
     // Empty states
     "empty.noProductsFound": "No products found",
@@ -459,7 +460,7 @@ const translations = {
     // Added keys (AR)
     "products.category": "التصنيف",
     "products.selectCategory": "اختر التصنيف",
-    "products.variantImageOptional": "صورة النوع (اختياري)",
+    "products.variantImageOptional": "صورة النوع (��ختياري)",
     "products.removeImage": "إزالة الصورة",
     "products.uploadImage": "رفع صورة",
 
@@ -485,10 +486,10 @@ const translations = {
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
-    "orders.quantity": "الكمي��",
+    "orders.quantity": "الكمية",
     "orders.price": "السعر",
     "orders.subtotal": "المجموع الفرعي",
-    "orders.remove": "إزالة",
+    "orders.remove": "��زالة",
     "orders.notes": "ملاحظات",
     "orders.delivery": "توصيل",
     "orders.pickup": "استلام",
@@ -566,7 +567,7 @@ const translations = {
     "common.delete": "حذف",
     "common.edit": "تعديل",
     "common.add": "إضافة",
-    "common.search": "بحث",
+    "common.search": "ب��ث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
     "common.noData": "لا توجد بيانات",
@@ -720,7 +721,7 @@ const translations = {
 
     // Settings
     "settings.title": "الإعدادات",
-    "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
+    "settings.subtitle": "قم بتهيئة إعدادات المتجر و��لتفضيلات",
     "settings.save": "حفظ الإعدادات",
     "settings.reset": "إعادة تعيين",
     "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
@@ -735,14 +736,14 @@ const translations = {
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
     "settings.bahrainiDinar": "الدينار البحريني",
-    "settings.usDollar": "الدولار ��لأمريكي",
+    "settings.usDollar": "الدولار الأمريكي",
     "settings.euro": "اليورو",
 
     // Contact Information
     "settings.contactInformation": "معلومات الاتصال",
     "settings.contactPhone": "رقم الهاتف",
     "settings.contactEmail": "البريد الإلكتروني",
-    "settings.contactAddress": "العنوان",
+    "settings.contactAddress": "ال��نوان",
 
     // Business Hours
     "settings.businessHours": "ساعات العمل",
