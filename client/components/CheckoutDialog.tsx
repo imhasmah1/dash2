@@ -213,6 +213,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     setDeliveryType("delivery");
     setOrderSuccess(false);
     setOrderNumber("");
+    setOrderItems([]);
+    setOrderTotalPrice(0);
   };
 
   // Success State
