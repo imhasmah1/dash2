@@ -31,6 +31,28 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const { items, getTotalPrice, clearCart } = useCart();
   const { refetchData } = useData();
 
+  // Get custom order messages from settings
+  const getOrderMessages = () => {
+    const savedSettings = localStorage.getItem('storeSettings');
+    if (savedSettings) {
+      const settings = JSON.parse(savedSettings);
+      return {
+        successMessage: language === "ar" ? settings.orderSuccessMessageAr : settings.orderSuccessMessageEn,
+        instructions: language === "ar" ? settings.orderInstructionsAr : settings.orderInstructionsEn,
+      };
+    }
+
+    // Default messages if no custom settings
+    return {
+      successMessage: language === "ar"
+        ? "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل."
+        : "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
+      instructions: language === "ar"
+        ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا."
+        : "For any changes or questions about your order, please contact us."
+    };
+  };
+
   const [step, setStep] = useState(1);
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
