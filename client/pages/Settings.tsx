@@ -105,7 +105,7 @@ export default function Settings() {
 
     // Order Messages
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
+    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسي��ل خلال 1-3 أيام عمل.",
     orderInstructionsEn: "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     
@@ -154,7 +154,15 @@ export default function Settings() {
     // Load settings from localStorage
     const savedSettings = localStorage.getItem('storeSettings');
     if (savedSettings) {
-      setSettings(JSON.parse(savedSettings));
+      const parsedSettings = JSON.parse(savedSettings);
+      // Merge with defaults to ensure all fields have values
+      setSettings(prev => ({
+        ...prev,
+        ...parsedSettings,
+        // Ensure new fields have default values if missing
+        deliveryConcerns: parsedSettings.deliveryConcerns ?? 24,
+        pickupOrderConfig: parsedSettings.pickupOrderConfig ?? 48,
+      }));
     }
   }, []);
 
