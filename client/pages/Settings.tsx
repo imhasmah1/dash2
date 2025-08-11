@@ -266,7 +266,7 @@ export default function Settings() {
                 id="storeName"
                 value={settings.storeName}
                 onChange={(e) => handleInputChange("storeName", e.target.value)}
-                className="auto-text"
+                className="auto-text h-10 touch-manipulation"
               />
             </div>
             <div className="space-y-2">
@@ -277,7 +277,7 @@ export default function Settings() {
                 id="storeDescription"
                 value={settings.storeDescription}
                 onChange={(e) => handleInputChange("storeDescription", e.target.value)}
-                className="auto-text"
+                className="auto-text min-h-[80px] touch-manipulation"
                 rows={3}
               />
             </div>
@@ -308,7 +308,7 @@ export default function Settings() {
                   id="currencySymbol"
                   value={settings.currencySymbol}
                   onChange={(e) => handleInputChange("currencySymbol", e.target.value)}
-                  className="auto-text"
+                  className="auto-text h-10 touch-manipulation"
                 />
               </div>
             </div>
@@ -332,7 +332,8 @@ export default function Settings() {
                 id="contactPhone"
                 value={settings.contactPhone}
                 onChange={(e) => handleInputChange("contactPhone", e.target.value)}
-                className="ltr-text"
+                className="ltr-text h-10 touch-manipulation"
+                type="tel"
               />
             </div>
             <div className="space-y-2">
@@ -344,7 +345,7 @@ export default function Settings() {
                 type="email"
                 value={settings.contactEmail}
                 onChange={(e) => handleInputChange("contactEmail", e.target.value)}
-                className="ltr-text"
+                className="ltr-text h-10 touch-manipulation"
               />
             </div>
             <div className="space-y-2">
@@ -355,7 +356,7 @@ export default function Settings() {
                 id="contactAddress"
                 value={settings.contactAddress}
                 onChange={(e) => handleInputChange("contactAddress", e.target.value)}
-                className="auto-text"
+                className="auto-text min-h-[80px] touch-manipulation"
                 rows={3}
               />
             </div>
