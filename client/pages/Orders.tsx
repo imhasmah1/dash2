@@ -426,8 +426,8 @@ export default function Orders() {
                                 min="1"
                                 max={
                                   selectedVariant
-                                    ? selectedVariant.stock
-                                    : product?.total_stock || 999
+                                    ? Math.min(selectedVariant.stock, 50)
+                                    : Math.min(product?.total_stock || 50, 50)
                                 }
                                 value={item.quantity === 0 ? "" : item.quantity}
                                 onChange={(e) =>
