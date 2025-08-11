@@ -365,6 +365,18 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const getCategoryById = (id: string) =>
     categories.find((category) => category.id === id);
 
+  const getOrderNumber = (orderId: string) => {
+    // Sort all orders by creation date (oldest first) to create consistent numbering
+    const allOrdersSorted = orders.sort((a, b) => {
+      const dateA = new Date(a.createdAt || a.created_at || "");
+      const dateB = new Date(b.createdAt || b.created_at || "");
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    const orderIndex = allOrdersSorted.findIndex(o => o.id === orderId);
+    return orderIndex >= 0 ? orderIndex + 1 : 0; // Start from #1, return 0 if not found
+  };
+
   const refetchData = async () => {
     await loadData();
   };
