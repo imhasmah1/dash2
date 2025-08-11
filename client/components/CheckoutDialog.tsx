@@ -619,23 +619,23 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             {/* Step 3: Order Summary & Payment */}
             {step === 3 && (
               <Card className="border-2">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
-                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
-                      <span className="font-bold">3</span>
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text text-base sm:text-lg">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary text-white rounded-full flex items-center justify-center">
+                      <span className="font-bold text-xs sm:text-sm">3</span>
                     </div>
                     <span className="auto-text">
                       {t("checkout.orderSummary")}
                     </span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-4 sm:space-y-6">
                   {/* Customer Info Review */}
-                  <div className="p-4 bg-gray-50 rounded-lg space-y-3">
-                    <h4 className="font-medium auto-text border-b border-gray-200 pb-2">
+                  <div className="p-3 sm:p-4 bg-gray-50 rounded-lg space-y-3">
+                    <h4 className="font-medium auto-text border-b border-gray-200 pb-2 text-sm sm:text-base">
                       {t("checkout.customerInfo")}
                     </h4>
-                    <div className="space-y-3 text-sm">
+                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
                       <div className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-2">
                         <span className="font-medium text-gray-600 auto-text min-w-0">
                           {t("checkout.customerName")}:
@@ -681,26 +681,26 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   </div>
 
                   {/* Items Review */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium auto-text border-b border-gray-200 pb-2">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="font-medium auto-text border-b border-gray-200 pb-2 text-sm sm:text-base">
                       {t("checkout.orderItems")}
                     </h4>
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       {items.map((item, index) => (
                         <div
                           key={index}
-                          className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-3 py-3 border-b border-gray-100 last:border-b-0"
+                          className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-2 sm:gap-3 py-2 sm:py-3 border-b border-gray-100 last:border-b-0"
                         >
                           <div className="flex-1 min-w-0">
-                            <p className="font-medium auto-text leading-relaxed">
+                            <p className="font-medium auto-text leading-relaxed text-sm sm:text-base">
                               {item.productName}
                             </p>
-                            <p className="text-sm text-gray-500 auto-text mt-1">
+                            <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
                               {item.variantName} × <span className="ltr-text">{item.quantity}</span>
                             </p>
                           </div>
                           <div className="text-end auto-text min-w-0">
-                            <p className="font-medium ltr-text text-lg">
+                            <p className="font-medium ltr-text text-sm sm:text-lg">
                               BD {(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
@@ -712,33 +712,33 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <Separator />
 
                   {/* Total Calculation */}
-                  <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+                  <div className="space-y-3 bg-gray-50 p-3 sm:p-4 rounded-lg">
                     <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-600">{t("checkout.subtotal")}:</span>
-                      <span className="ltr-text font-medium">BD {totalPrice.toFixed(2)}</span>
+                      <span className="auto-text text-gray-600 text-sm sm:text-base">{t("checkout.subtotal")}:</span>
+                      <span className="ltr-text font-medium text-sm sm:text-base">BD {totalPrice.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-600">{t("checkout.deliveryFee")}:</span>
-                      <span className="ltr-text font-medium">{deliveryType === "delivery" ? "BD 1.50" : "BD 0.00"}</span>
+                      <span className="auto-text text-gray-600 text-sm sm:text-base">{t("checkout.deliveryFee")}:</span>
+                      <span className="ltr-text font-medium text-sm sm:text-base">{deliveryType === "delivery" ? "BD 1.50" : "BD 0.00"}</span>
                     </div>
-                    <Separator className="my-3" />
+                    <Separator className="my-2 sm:my-3" />
                     <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center pt-2">
-                      <span className="text-lg font-bold auto-text">{t("checkout.total")}:</span>
-                      <span className="text-xl font-bold text-primary ltr-text">
+                      <span className="text-base sm:text-lg font-bold auto-text">{t("checkout.total")}:</span>
+                      <span className="text-lg sm:text-xl font-bold text-primary ltr-text">
                         BD {(totalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
                       </span>
                     </div>
                   </div>
 
                   {/* Payment Method */}
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-200 mb-4">
                     <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
-                      <CreditCard className="w-5 h-5 text-blue-600 [dir=rtl]:order-2" />
-                      <div className="[dir=rtl]:order-1">
-                        <p className="font-medium text-blue-900 auto-text">
+                      <CreditCard className="w-5 h-5 text-blue-600 [dir=rtl]:order-2 flex-shrink-0" />
+                      <div className="[dir=rtl]:order-1 flex-1">
+                        <p className="font-medium text-blue-900 auto-text text-sm sm:text-base">
                           {t("checkout.paymentMethod")}
                         </p>
-                        <p className="text-sm text-blue-700 auto-text">
+                        <p className="text-xs sm:text-sm text-blue-700 auto-text">
                           {t("checkout.cashOnDelivery")}
                         </p>
                       </div>
