@@ -301,6 +301,27 @@ const translations = {
     "categories.cannotDeleteTitle": "Cannot Delete Category",
     "categories.cannotDeleteMessage": "This category is being used by {count} product(s). Please remove the category from all products before deleting it.",
     "categories.nameRequired": "Category name is required.",
+
+    // Analytics
+    "analytics.title": "Store Analytics",
+    "analytics.overview": "Your store performance overview",
+    "analytics.totalOrders": "Total Orders",
+    "analytics.totalRevenue": "Total Revenue",
+    "analytics.totalCustomers": "Total Customers",
+    "analytics.totalProducts": "Total Products",
+    "analytics.avgPerOrder": "per order",
+    "analytics.newInPeriod": "new in period",
+    "analytics.inStock": "In Stock",
+    "analytics.active": "Active",
+    "analytics.dailyPerformance": "Daily Performance",
+    "analytics.orderStatusDistribution": "Order Status Distribution",
+    "analytics.deliveryMethodBreakdown": "Delivery Method Breakdown",
+    "analytics.orders": "Orders",
+    "analytics.revenue": "Revenue (BD)",
+    "analytics.last7days": "Last 7 Days",
+    "analytics.last30days": "Last 30 Days",
+    "analytics.last90days": "Last 90 Days",
+    "analytics.refresh": "Refresh",
   },
   ar: {
     // Navigation
@@ -361,7 +382,7 @@ const translations = {
 
     // Orders
     "orders.title": "الطلبات",
-    "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
+    "orders.subtitle": "إدارة طلبات العمل��ء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
     "orders.orderId": "رقم الطلب",
@@ -441,7 +462,7 @@ const translations = {
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
-    "revenue.totalRevenue": "إجمالي الإيرادات",
+    "revenue.totalRevenue": "إجمالي الإير��دات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
@@ -521,7 +542,7 @@ const translations = {
     "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
     "store.continueShopping": "متابعة التسوق",
-    "store.removeFromCart": "إزالة من السلة",
+    "store.removeFromCart": "إزالة من ال��لة",
     "store.updateQuantity": "تحديث الكمية",
     "store.clearCart": "إفراغ السلة",
 
@@ -549,7 +570,7 @@ const translations = {
     "checkout.processingMessage":
       "سيتم تجهيز الطلب خلال 1-3 أيام، وسنتواصل معك عند التوصيل",
     "checkout.orderSuccessMessage": "تم استلام طلبك بنجاح",
-    "checkout.subtotal": "المجموع الفرعي",
+    "checkout.subtotal": "المجموع الف��عي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
@@ -581,6 +602,27 @@ const translations = {
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
+
+    // Analytics
+    "analytics.title": "تحليلات المتجر",
+    "analytics.overview": "نظرة عامة على أداء متجرك",
+    "analytics.totalOrders": "إجمالي الطلبات",
+    "analytics.totalRevenue": "إجمالي الإيرادات",
+    "analytics.totalCustomers": "إجمالي العملاء",
+    "analytics.totalProducts": "إجمالي المنتجات",
+    "analytics.avgPerOrder": "لكل طلب",
+    "analytics.newInPeriod": "جديد في الفترة",
+    "analytics.inStock": "متوفر",
+    "analytics.active": "نشط",
+    "analytics.dailyPerformance": "الأداء اليومي",
+    "analytics.orderStatusDistribution": "توزيع حالات الطلبات",
+    "analytics.deliveryMethodBreakdown": "تفصيل طرق التوصيل",
+    "analytics.orders": "الطلبات",
+    "analytics.revenue": "الإيرادات (د.ب)",
+    "analytics.last7days": "آخر 7 أيام",
+    "analytics.last30days": "آخر 30 يوم",
+    "analytics.last90days": "آخر 90 يوم",
+    "analytics.refresh": "تحديث",
   },
 } as const;
 
