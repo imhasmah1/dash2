@@ -241,14 +241,14 @@ export default function Settings() {
       </div>
 
       {hasChanges && (
-        <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-          <p className="text-amber-800 auto-text">
+        <div className="p-3 sm:p-4 bg-amber-50 border border-amber-200 rounded-lg mx-4 sm:mx-0">
+          <p className="text-sm sm:text-base text-amber-800 auto-text">
             {t("settings.unsavedChanges")}
           </p>
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 px-4 sm:px-0">
         {/* Store Information */}
         <Card>
           <CardHeader>
