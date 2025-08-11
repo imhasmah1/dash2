@@ -164,7 +164,7 @@ export default function Customers() {
               {t("customers.addNew")}
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
             <DialogHeader>
               <DialogTitle>
                 {editingCustomer
