@@ -70,6 +70,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
+  const [orderItems, setOrderItems] = useState<typeof items>([]);
+  const [orderTotalPrice, setOrderTotalPrice] = useState(0);
 
   const totalPrice = getTotalPrice();
 
