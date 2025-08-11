@@ -359,7 +359,7 @@ export default function Orders() {
                         return (
                           <div
                             key={index}
-                            className="flex gap-2 items-end p-4 border rounded-lg"
+                            className="flex flex-col sm:flex-row gap-3 sm:gap-2 sm:items-end p-4 border rounded-lg"
                           >
                             <div className="flex-1">
                               <Label>{t("orders.product")}</Label>
