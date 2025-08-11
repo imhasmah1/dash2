@@ -101,7 +101,7 @@ export default function Settings() {
     // Contact Information
     contactPhone: "+973 36283382",
     contactEmail: "info@azharstore.com",
-    contactAddress: "من��ل 1348، طريق 416، مجمع 604، سترة القرية، البحرين",
+    contactAddress: "منزل 1348، طريق 416، مجمع 604، سترة القرية، البحرين",
 
     // Order Messages
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
@@ -125,7 +125,7 @@ export default function Settings() {
     pickupEnabled: true,
     deliveryFee: 1.5,
     freeDeliveryThreshold: 50,
-    deliveryAreas: ["المنامة", "المحرق", "سترة", "عيسى", "الرفاع"],
+    deliveryAreas: ["المنامة", "المحرق", "��ترة", "عيسى", "الرفاع"],
     estimatedDeliveryTime: "1-3 أيام عمل",
     
     // Payment Settings
@@ -568,7 +568,7 @@ export default function Settings() {
                   type="number"
                   step="0.1"
                   value={settings.deliveryFee}
-                  onChange={(e) => handleInputChange("deliveryFee", parseFloat(e.target.value))}
+                  onChange={(e) => handleInputChange("deliveryFee", parseFloat(e.target.value) || 0)}
                   className="ltr-text h-10 touch-manipulation"
                 />
               </div>
