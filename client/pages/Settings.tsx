@@ -101,7 +101,7 @@ export default function Settings() {
     // Contact Information
     contactPhone: "+973 36283382",
     contactEmail: "info@azharstore.com",
-    contactAddress: "��نزل 1348، طريق 416، مجمع 604، سترة القرية، البحرين",
+    contactAddress: "من��ل 1348، طريق 416، مجمع 604، سترة القرية، البحرين",
 
     // Order Messages
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
@@ -690,7 +690,7 @@ export default function Settings() {
                     id="maxOrderQuantity"
                     type="number"
                     value={settings.maxOrderQuantity}
-                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value))}
+                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value) || 0)}
                     className="ltr-text h-10 touch-manipulation"
                   />
                 </div>
