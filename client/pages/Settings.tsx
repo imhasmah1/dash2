@@ -627,14 +627,15 @@ export default function Settings() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="autoOrderConfirmation" className="auto-text">
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg md:col-span-2 lg:col-span-3">
+                <Label htmlFor="autoOrderConfirmation" className="auto-text font-medium">
                   {t("settings.autoOrderConfirmation")}
                 </Label>
                 <Switch
                   id="autoOrderConfirmation"
                   checked={settings.autoOrderConfirmation}
                   onCheckedChange={(checked) => handleInputChange("autoOrderConfirmation", checked)}
+                  className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
                 />
               </div>
               <div className="space-y-2">
