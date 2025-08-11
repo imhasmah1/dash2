@@ -584,82 +584,100 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {/* Customer Info Review */}
-                  <div className="p-4 bg-gray-50 rounded-lg space-y-2">
-                    <h4 className="font-medium auto-text">
+                  <div className="p-4 bg-gray-50 rounded-lg space-y-3">
+                    <h4 className="font-medium auto-text border-b border-gray-200 pb-2">
                       {t("checkout.customerInfo")}
                     </h4>
-                    <div className="space-y-1 text-sm">
-                      <p className="auto-text">
-                        <span className="font-medium">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-2">
+                        <span className="font-medium text-gray-600 auto-text min-w-0">
                           {t("checkout.customerName")}:
-                        </span>{" "}
-                        {customerInfo.name}
-                      </p>
-                      <p className="auto-text">
-                        <span className="font-medium">
+                        </span>
+                        <span className="font-medium auto-text text-end min-w-0 flex-1">
+                          {customerInfo.name}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-2">
+                        <span className="font-medium text-gray-600 auto-text min-w-0">
                           {t("checkout.customerPhone")}:
-                        </span>{" "}
-                        {customerInfo.phone}
-                      </p>
-                      <p className="auto-text">
-                        <span className="font-medium">
+                        </span>
+                        <span className="font-medium ltr-text text-end min-w-0 flex-1">
+                          {customerInfo.phone}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-2">
+                        <span className="font-medium text-gray-600 auto-text min-w-0">
                           {t("checkout.customerAddress")}:
-                        </span>{" "}
-                        {[
-                          customerInfo.home && `House ${customerInfo.home}`,
-                          customerInfo.road && `Road ${customerInfo.road}`,
-                          customerInfo.block && `Block ${customerInfo.block}`,
-                          customerInfo.town,
-                        ]
-                          .filter(Boolean)
-                          .join(", ")}
-                      </p>
+                        </span>
+                        <span className="font-medium auto-text text-end min-w-0 flex-1 leading-relaxed">
+                          {language === "ar" ?
+                            [
+                              customerInfo.town,
+                              customerInfo.block && `مجمع ${customerInfo.block}`,
+                              customerInfo.road && `طريق ${customerInfo.road}`,
+                              customerInfo.home && `منزل ${customerInfo.home}`,
+                            ]
+                              .filter(Boolean)
+                              .join("، ") :
+                            [
+                              customerInfo.home && `House ${customerInfo.home}`,
+                              customerInfo.road && `Road ${customerInfo.road}`,
+                              customerInfo.block && `Block ${customerInfo.block}`,
+                              customerInfo.town,
+                            ]
+                              .filter(Boolean)
+                              .join(", ")
+                          }
+                        </span>
+                      </div>
                     </div>
                   </div>
 
                   {/* Items Review */}
-                  <div className="space-y-3">
-                    <h4 className="font-medium auto-text">
+                  <div className="space-y-4">
+                    <h4 className="font-medium auto-text border-b border-gray-200 pb-2">
                       {t("checkout.orderItems")}
                     </h4>
-                    {items.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex justify-between items-center py-2 border-b last:border-b-0"
-                      >
-                        <div className="flex-1">
-                          <p className="font-medium auto-text">
-                            {item.productName}
-                          </p>
-                          <p className="text-sm text-gray-500 auto-text">
-                            {item.variantName} × {item.quantity}
-                          </p>
+                    <div className="space-y-3">
+                      {items.map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-3 py-3 border-b border-gray-100 last:border-b-0"
+                        >
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium auto-text leading-relaxed">
+                              {item.productName}
+                            </p>
+                            <p className="text-sm text-gray-500 auto-text mt-1">
+                              {item.variantName} × <span className="ltr-text">{item.quantity}</span>
+                            </p>
+                          </div>
+                          <div className="text-end auto-text min-w-0">
+                            <p className="font-medium ltr-text text-lg">
+                              BD {(item.price * item.quantity).toFixed(2)}
+                            </p>
+                          </div>
                         </div>
-                        <div className="text-right auto-text">
-                          <p className="font-medium">
-                            BD {(item.price * item.quantity).toFixed(2)}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
 
                   <Separator />
 
                   {/* Total Calculation */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between auto-text">
-                      <span>{t("checkout.subtotal")}:</span>
-                      <span>BD {totalPrice.toFixed(2)}</span>
+                  <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
+                      <span className="auto-text text-gray-600">{t("checkout.subtotal")}:</span>
+                      <span className="ltr-text font-medium">BD {totalPrice.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between auto-text">
-                      <span>{t("checkout.deliveryFee")}:</span>
-                      <span>{deliveryType === "delivery" ? "BD 1.50" : "BD 0.00"}</span>
+                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
+                      <span className="auto-text text-gray-600">{t("checkout.deliveryFee")}:</span>
+                      <span className="ltr-text font-medium">{deliveryType === "delivery" ? "BD 1.50" : "BD 0.00"}</span>
                     </div>
-                    <Separator />
-                    <div className="flex justify-between text-lg font-bold auto-text">
-                      <span>{t("checkout.total")}:</span>
-                      <span className="text-primary">
+                    <Separator className="my-3" />
+                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center pt-2">
+                      <span className="text-lg font-bold auto-text">{t("checkout.total")}:</span>
+                      <span className="text-xl font-bold text-primary ltr-text">
                         BD {(totalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
                       </span>
                     </div>
@@ -667,9 +685,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                   {/* Payment Method */}
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <div className="flex items-center gap-3">
-                      <CreditCard className="w-5 h-5 text-blue-600" />
-                      <div>
+                    <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
+                      <CreditCard className="w-5 h-5 text-blue-600 [dir=rtl]:order-2" />
+                      <div className="[dir=rtl]:order-1">
                         <p className="font-medium text-blue-900 auto-text">
                           {t("checkout.paymentMethod")}
                         </p>
