@@ -454,7 +454,7 @@ const translations = {
 
     // Orders
     "orders.title": "الطلبات",
-    "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
+    "orders.subtitle": "إدارة طلبات العملاء وا��توصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
     "orders.orderId": "رقم الطلب",
@@ -490,7 +490,7 @@ const translations = {
     "orders.orderTotal": "إجمالي الطلب",
     "orders.save": "حفظ",
     "orders.orderDetailsTitle": "تفاصيل الطلب",
-    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل وال��تبع",
+    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
     "orders.customerInfo": "معلومات العميل",
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
@@ -593,7 +593,7 @@ const translations = {
     "message.success": "تمت العملية بنجاح",
 
     // Login
-    "login.title": "تسجيل دخول الإدا��ة",
+    "login.title": "تسجيل دخول الإدارة",
     "login.password": "كلمة المرور",
     "login.signIn": "تسجيل الدخول",
     "login.invalidPassword": "كلمة مرور غير صحيحة",
@@ -672,7 +672,7 @@ const translations = {
     "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
-    "categories.cannotDeleteMessage": "هذا ا��تصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
+    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
@@ -706,6 +706,65 @@ const translations = {
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
     "notFound.returnHome": "العودة للصفحة الرئيسية",
+
+    // Settings
+    "settings.title": "الإعدادات",
+    "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
+    "settings.save": "حفظ ا��إعدادات",
+    "settings.reset": "إعادة تعيين",
+    "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
+    "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
+    "settings.resetConfirm": "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
+    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس الحفظ!",
+
+    // Store Information
+    "settings.storeInformation": "معلومات المتجر",
+    "settings.storeName": "اسم المتجر",
+    "settings.storeDescription": "وصف المتجر",
+    "settings.currency": "العملة",
+    "settings.currencySymbol": "رمز العملة",
+    "settings.bahrainiDinar": "الدينار البحريني",
+    "settings.usDollar": "الدولار الأمريكي",
+    "settings.euro": "اليورو",
+
+    // Contact Information
+    "settings.contactInformation": "معلومات الاتصال",
+    "settings.contactPhone": "رقم الهاتف",
+    "settings.contactEmail": "البريد الإلكتروني",
+    "settings.contactAddress": "العنوان",
+
+    // Business Hours
+    "settings.businessHours": "ساعات العمل",
+    "settings.monday": "الاثنين",
+    "settings.tuesday": "الثلاثاء",
+    "settings.wednesday": "الأربعاء",
+    "settings.thursday": "الخميس",
+    "settings.friday": "الجمعة",
+    "settings.saturday": "السبت",
+    "settings.sunday": "الأحد",
+    "settings.closed": "مغلق",
+
+    // Shipping & Delivery
+    "settings.shippingDelivery": "الشحن والتوصيل",
+    "settings.enableDelivery": "تفعيل التوصيل",
+    "settings.enablePickup": "تفعيل الاستلام",
+    "settings.deliveryFee": "رسوم التوصيل",
+    "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
+    "settings.estimatedDeliveryTime": "الوقت المتوقع للتوصيل",
+
+    // Payment Settings
+    "settings.paymentSettings": "إعدادات الدفع",
+    "settings.cashOnDelivery": "الدفع عند التسليم",
+    "settings.bankTransfer": "التحويل البنكي",
+    "settings.bankAccountInfo": "معلومات الحساب البنكي",
+    "settings.bankAccountPlaceholder": "أدخل تفاصيل الحساب البنكي للعملاء...",
+
+    // Operational Settings
+    "settings.operationalSettings": "الإعدادات التشغيلية",
+    "settings.autoOrderConfirmation": "تأكيد الطلب التلقائي",
+    "settings.lowStockThreshold": "حد المخزون المنخفض",
+    "settings.maxOrderQuantity": "أقصى كمية للطلب",
+    "settings.orderProcessingTime": "وقت معالجة الطلب",
   },
 } as const;
 
