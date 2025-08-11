@@ -485,7 +485,7 @@ const translations = {
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
-    "orders.quantity": "الكمية",
+    "orders.quantity": "الكمي��",
     "orders.price": "السعر",
     "orders.subtotal": "المجموع الفرعي",
     "orders.remove": "إزالة",
@@ -735,7 +735,7 @@ const translations = {
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
     "settings.bahrainiDinar": "الدينار البحريني",
-    "settings.usDollar": "الدولار الأمريكي",
+    "settings.usDollar": "الدولار ��لأمريكي",
     "settings.euro": "اليورو",
 
     // Contact Information
@@ -776,6 +776,8 @@ const translations = {
     "settings.lowStockThreshold": "حد المخزون المنخفض",
     "settings.maxOrderQuantity": "أقصى كمية للطلب",
     "settings.orderProcessingTime": "وقت معالجة الطلب",
+    "settings.deliveryConcerns": "مخاوف التوصيل (ساعات)",
+    "settings.pickupOrderConfig": "إعداد طلب الاستلام (ساعات)",
 
     // Order Messages
     "settings.orderMessages": "رسائل الطلبات",
