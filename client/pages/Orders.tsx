@@ -759,7 +759,7 @@ export default function Orders() {
 
       {/* View Order Details Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
           <DialogHeader>
             <DialogTitle>
               {t("orders.orderDetailsTitle")} #{viewingOrder?.id}
