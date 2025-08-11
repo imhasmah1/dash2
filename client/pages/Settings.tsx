@@ -702,7 +702,7 @@ export default function Settings() {
                     id="deliveryConcerns"
                     type="number"
                     value={settings.deliveryConcerns}
-                    onChange={(e) => handleInputChange("deliveryConcerns", parseInt(e.target.value))}
+                    onChange={(e) => handleInputChange("deliveryConcerns", parseInt(e.target.value) || 0)}
                     className="ltr-text h-10 touch-manipulation"
                     placeholder="24"
                   />
