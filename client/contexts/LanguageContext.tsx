@@ -427,7 +427,7 @@ const translations = {
     "dashboard.totalRevenue": "إجمالي الإيرادات",
     "dashboard.totalOrders": "إجمالي الطلبات",
     "dashboard.recentOrders": "الطلبات الأخيرة",
-    "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
+    "dashboard.welcome": "مرحباً بك في ��وحة الإدارة",
 
     // Products
     "products.title": "المنتجات",
@@ -454,7 +454,7 @@ const translations = {
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
-    "products.dragImages": "اسحب وأفلت الصور هنا�� أو انقر للاختيار",
+    "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
@@ -534,7 +534,7 @@ const translations = {
     "customers.actions": "الإجراءات",
     "customers.edit": "تعديل",
     "customers.delete": "حذف",
-    "customers.noCustomers": "لا يوجد عملا��",
+    "customers.noCustomers": "لا يوجد عملاء",
     "customers.addCustomer": "إضافة عميل",
     "customers.editCustomer": "تعديل عميل",
     "customers.customerName": "اسم العميل",
@@ -581,13 +581,14 @@ const translations = {
     "common.back": "السابق",
     "common.next": "التالي",
     "common.success": "نجح",
+    "common.added": "تمت الإضافة",
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
     "empty.noCustomersFound": "لا يوجد عملاء",
     "empty.noOrdersFound": "لا توجد طلبات",
     "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
-    "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
+    "empty.addFirstProduct": "ابدأ ��إضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
     "empty.addProduct": "إضافة منتج",
@@ -607,6 +608,8 @@ const translations = {
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
     "message.success": "تمت العملية بنجاح",
+    "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مر�� أخرى.",
+    "message.productSaveError": "فشل في حفظ المنتج. يرجى المحاولة مرة أخرى.",
 
     // Login
     "login.title": "تسجيل دخول الإدارة",
@@ -658,15 +661,15 @@ const translations = {
     "checkout.processingMessage":
       "سيتم تجهيز الطلب خلال 1-3 أيام، وسنتواصل معك عند التوصيل",
     "checkout.orderSuccessMessage": "تم استلام طلبك بنجاح",
-    "checkout.subtotal": "المجموع الفرعي",
+    "checkout.subtotal": "المجموع الفرع��",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
-    "checkout.cashOnDelivery": "الدفع عند ال��سليم",
+    "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.free": "مجاني",
     "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
-    "checkout.pickupDescription": "الاستلام من الم��جر",
+    "checkout.pickupDescription": "الاستلام من المتجر",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
@@ -688,7 +691,7 @@ const translations = {
     "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
-    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جم��ع المنتجات قبل الحذف.",
+    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
