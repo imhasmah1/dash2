@@ -253,7 +253,7 @@ const Analytics = () => {
         <Card>
           <CardHeader>
             <CardTitle className="auto-text">
-              Daily Performance
+              {t("analytics.dailyPerformance")}
             </CardTitle>
           </CardHeader>
           <CardContent>
