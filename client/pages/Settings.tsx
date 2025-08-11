@@ -487,7 +487,7 @@ export default function Settings() {
                     </div>
                   )}
                   {!settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen && (
-                    <Badge variant="outline" className="auto-text">
+                    <Badge variant="outline" className="auto-text text-xs">
                       {t("settings.closed")}
                     </Badge>
                   )}
