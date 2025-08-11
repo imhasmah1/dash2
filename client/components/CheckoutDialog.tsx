@@ -155,13 +155,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
       });
 
       // Success state
-      setOrderNumber(order.id);
+      await refetchData(); // Refresh data first to get updated orders list
+      setOrderNumber(getOrderNumber(order.id).toString());
       setOrderSuccess(true);
       clearCart();
-      // Ensure admin dashboard receives the order without manual refresh
-      try {
-        await refetchData();
-      } catch {}
     } catch (error) {
       console.error("Error placing order:", error);
       alert(t("errors.orderFailed"));
@@ -294,7 +291,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
                     <p className="auto-text">
                       {language === "ar"
-                        ? "سنقوم بتجهيز طلبك خلال 2-4 ساعات"
+                        ? "سنقوم بتجهيز طلبك خل��ل 2-4 ساعات"
                         : "We'll process your order within 2-4 hours"
                       }
                     </p>
