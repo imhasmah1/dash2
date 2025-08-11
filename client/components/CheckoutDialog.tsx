@@ -218,7 +218,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 </div>
               </div>
               <h2 className="text-2xl font-bold text-green-600 auto-text">
-                {language === "ar" ? "تم ت��كيد الطلب!" : "Order Confirmed!"}
+                {language === "ar" ? "تم تأكيد الطلب!" : "Order Confirmed!"}
               </h2>
             </div>
 
