@@ -51,27 +51,27 @@ export default function AdminAlertDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-white rounded-lg shadow-xl border border-gray-200">
+      <DialogContent className="w-[95vw] sm:max-w-md max-h-[95vh] bg-white rounded-lg shadow-xl border border-gray-200">
         <DialogHeader className="space-y-4">
-          <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-full ${getIconBg()}`}>
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className={`p-2 sm:p-3 rounded-full ${getIconBg()} flex-shrink-0`}>
               {getIcon()}
             </div>
-            <div className="flex-1 space-y-3">
-              <DialogTitle className="text-lg font-semibold text-gray-900 text-left">
+            <div className="flex-1 space-y-2 sm:space-y-3 min-w-0">
+              <DialogTitle className="text-base sm:text-lg font-semibold text-gray-900 auto-text leading-tight">
                 {title}
               </DialogTitle>
-              <DialogDescription className="text-sm text-gray-600 text-left leading-relaxed">
+              <DialogDescription className="text-sm text-gray-600 auto-text leading-relaxed">
                 {message}
               </DialogDescription>
             </div>
           </div>
         </DialogHeader>
 
-        <DialogFooter className="flex justify-center pt-6">
+        <DialogFooter className="flex justify-center pt-4 sm:pt-6">
           <Button
             onClick={onClose}
-            className={`px-8 py-2.5 text-sm font-medium text-white rounded-md transition-colors ${
+            className={`w-full sm:w-auto px-6 sm:px-8 py-2.5 text-sm font-medium text-white rounded-md transition-colors touch-manipulation ${
               type === 'error'
                 ? 'bg-red-600 hover:bg-red-700'
                 : type === 'success'
@@ -81,7 +81,7 @@ export default function AdminAlertDialog({
                 : 'bg-dashboard-primary hover:bg-dashboard-primary-light'
             }`}
           >
-            {finalButtonText}
+            <span className="auto-text">{finalButtonText}</span>
           </Button>
         </DialogFooter>
       </DialogContent>
