@@ -74,18 +74,33 @@ export default function Orders() {
     notes: "",
   });
 
+  // Helper function to get sequential order number
+  const getOrderNumber = (order: Order) => {
+    // Sort all orders by creation date (oldest first) to create consistent numbering
+    const allOrdersSorted = orders.sort((a, b) => {
+      const dateA = new Date(a.createdAt || a.created_at || "");
+      const dateB = new Date(b.createdAt || b.created_at || "");
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    const orderIndex = allOrdersSorted.findIndex(o => o.id === order.id);
+    return orderIndex + 1; // Start from #1
+  };
+
   const filteredOrders = orders
     .filter((order) => {
       const customer = getCustomerById(order.customerId);
+      const orderNumber = getOrderNumber(order);
       return (
         order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        `#${orderNumber}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (customer &&
           customer.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
         order.status.toLowerCase().includes(searchTerm.toLowerCase())
       );
     })
     .sort((a, b) => {
-      // Sort by creation date, newest first
+      // Sort by creation date, newest first for display
       const dateA = new Date(a.createdAt || a.created_at || "");
       const dateB = new Date(b.createdAt || b.created_at || "");
       return dateB.getTime() - dateA.getTime();
