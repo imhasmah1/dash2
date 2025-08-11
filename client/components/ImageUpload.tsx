@@ -84,7 +84,7 @@ export default function ImageUpload({
       const errorMessage =
         error instanceof Error
           ? error.message
-          : "Failed to upload images. Please try again.";
+          : t("message.uploadError");
       showAlert({
         title: t("message.error"),
         message: errorMessage,
