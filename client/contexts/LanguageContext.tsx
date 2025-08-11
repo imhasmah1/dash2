@@ -403,6 +403,7 @@ const translations = {
     "nav.revenue": "الإيرادات",
     "nav.analytics": "التحليلات",
     "nav.categories": "التصنيفات",
+    "nav.settings": "الإعدادات",
     "nav.logout": "تسجيل الخروج",
     "nav.adminPanel": "لوحة الإدارة",
 
@@ -415,7 +416,7 @@ const translations = {
 
     // Products
     "products.title": "المنتجات",
-    "products.subtitle": "إدارة مخزون المنتج��ت",
+    "products.subtitle": "إدارة مخزون المنتجات",
     "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
@@ -440,7 +441,7 @@ const translations = {
     "products.removeVariant": "إزالة",
     "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
-    "products.primaryImage": "أ��اسية",
+    "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
     "products.images": "صور",
     "products.noImages": "لم يتم رفع أي صور بعد",
@@ -468,7 +469,7 @@ const translations = {
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
-    "orders.editOrder": "تعد��ل طلب",
+    "orders.editOrder": "تعديل طلب",
     "orders.selectCustomer": "اختر العميل",
     "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
@@ -489,7 +490,7 @@ const translations = {
     "orders.orderTotal": "إجمالي الطلب",
     "orders.save": "حفظ",
     "orders.orderDetailsTitle": "تفاصيل الطلب",
-    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
+    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل وال��تبع",
     "orders.customerInfo": "معلومات العميل",
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
@@ -592,7 +593,7 @@ const translations = {
     "message.success": "تمت العملية بنجاح",
 
     // Login
-    "login.title": "تسجيل دخول الإدارة",
+    "login.title": "تسجيل دخول الإدا��ة",
     "login.password": "كلمة المرور",
     "login.signIn": "تسجيل الدخول",
     "login.invalidPassword": "كلمة مرور غير صحيحة",
@@ -654,7 +655,7 @@ const translations = {
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
-    "store.viewDetails": "عر�� التفاصيل",
+    "store.viewDetails": "عرض التفاصيل",
     "store.productDetails": "تفاصيل المنتج",
     "store.search": "البحث في المنتجات...",
     "store.searchResults": "نتائج البحث",
@@ -671,7 +672,7 @@ const translations = {
     "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
-    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
+    "categories.cannotDeleteMessage": "هذا ا��تصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
