@@ -149,7 +149,9 @@ export default function Categories() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t("nav.categories")}</h1>
+          <h1 className="text-3xl font-bold text-gray-900">
+            {t("nav.categories")}
+          </h1>
           <p className="text-gray-600 mt-2">{t("products.subtitle")}</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -162,19 +164,20 @@ export default function Categories() {
               {t("common.add")} {t("nav.categories")}
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="w-[95vw] sm:max-w-md max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
             <DialogHeader>
               <DialogTitle>
-                {editingCategory ? t("products.edit") : t("common.add")} {t("nav.categories")}
+                {editingCategory ? t("products.edit") : t("common.add")}{" "}
+                {t("nav.categories")}
               </DialogTitle>
-              <DialogDescription>
-                {t("products.subtitle")}
-              </DialogDescription>
+              <DialogDescription>{t("products.subtitle")}</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">{t("nav.categories")} {t("products.name")}</Label>
+                  <Label htmlFor="name">
+                    {t("nav.categories")} {t("products.name")}
+                  </Label>
                   <Input
                     id="name"
                     value={formData.name}
@@ -287,9 +290,7 @@ export default function Categories() {
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               {searchTerm ? t("common.noData") : t("empty.addFirstProduct")}
             </h3>
-            <p className="text-gray-600">
-              {t("empty.adjustSearch")}
-            </p>
+            <p className="text-gray-600">{t("empty.adjustSearch")}</p>
             {!searchTerm && (
               <Button
                 className="mt-4 bg-dashboard-primary hover:bg-dashboard-primary-light"

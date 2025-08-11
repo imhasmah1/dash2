@@ -24,6 +24,12 @@ export const createProduct: RequestHandler = async (req, res) => {
         .json({ error: "Name, description, and price are required" });
     }
 
+    // Validate category_id if provided
+    if (req.body.category_id && req.body.category_id.trim() === "") {
+      // Convert empty string to null
+      req.body.category_id = null;
+    }
+
     // Calculate total stock from variants or use provided stock
     const totalStock =
       variants && variants.length > 0
@@ -46,14 +52,54 @@ export const createProduct: RequestHandler = async (req, res) => {
             image: v.image || "",
           }))
         : [],
-      category_id: req.body.category_id,
+      category_id: req.body.category_id || null,
       total_stock: totalStock,
     };
+
+    console.log(
+      "Creating product with data:",
+      JSON.stringify(newProduct, null, 2),
+    );
 
     const createdProduct = await productDb.create(newProduct);
     res.status(201).json(createdProduct);
   } catch (error) {
     console.error("Error creating product:", error);
+
+    // Provide specific error messages for common issues
+    if (error instanceof Error) {
+      if (
+        error.message.includes("foreign key constraint") &&
+        error.message.includes("category_id")
+      ) {
+        return res.status(400).json({
+          error:
+            "Invalid category selected. Please choose a valid category or leave it empty.",
+        });
+      }
+      if (
+        error.message.includes("duplicate key") ||
+        error.message.includes("already exists")
+      ) {
+        return res.status(400).json({
+          error:
+            "A product with this name already exists. Please choose a different name.",
+        });
+      }
+      if (
+        error.message.includes("check constraint") ||
+        error.message.includes("price")
+      ) {
+        return res.status(400).json({
+          error: "Invalid price value. Price must be a positive number.",
+        });
+      }
+
+      // Log the actual error for debugging
+      console.error("Detailed error:", error.message);
+      return res.status(400).json({ error: error.message });
+    }
+
     res.status(500).json({ error: "Failed to create product" });
   }
 };
@@ -74,8 +120,6 @@ export const updateProduct: RequestHandler = async (req, res) => {
     if (updates.price !== undefined) {
       updates.price = parseFloat(updates.price);
     }
-
-
 
     // Recalculate total stock if variants are updated or if stock is provided
     if (updates.variants && updates.variants.length > 0) {

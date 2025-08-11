@@ -42,11 +42,18 @@ export default function Customers() {
     town: "",
   });
 
-  const filteredCustomers = customers.filter(
-    (customer) =>
-      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.phone.includes(searchTerm),
-  );
+  const filteredCustomers = customers
+    .filter(
+      (customer) =>
+        customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        customer.phone.includes(searchTerm),
+    )
+    .sort((a, b) => {
+      // Sort by creation date, newest first
+      const dateA = new Date(a.createdAt || "");
+      const dateB = new Date(b.createdAt || "");
+      return dateB.getTime() - dateA.getTime();
+    });
 
   const resetForm = () => {
     setFormData({
@@ -111,8 +118,8 @@ export default function Customers() {
       closeDialog();
     } catch (error) {
       showAlert({
-        title: "Error",
-        message: "Failed to save customer. Please try again.",
+        title: t("message.error"),
+        message: t("message.customerSaveError"),
         type: "error",
       });
     }
@@ -164,7 +171,7 @@ export default function Customers() {
               {t("customers.addNew")}
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
             <DialogHeader>
               <DialogTitle>
                 {editingCustomer
@@ -343,7 +350,8 @@ export default function Customers() {
               </div>
 
               <div className="text-xs text-gray-500">
-                Added: {new Date(customer.createdAt).toLocaleDateString()}
+                {t("common.added")}:{" "}
+                {new Date(customer.createdAt).toLocaleDateString()}
               </div>
 
               <div className="flex gap-2 pt-2">

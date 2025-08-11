@@ -54,11 +54,11 @@ export default function AddToCartDialog({
     (v) => v.id === selectedVariantId,
   );
 
-  // For products without variants, use total_stock; otherwise use variant stock
+  // For products without variants, use total_stock; otherwise use variant stock (max 50)
   const maxQuantity =
     product.variants.length === 0
-      ? product.total_stock
-      : selectedVariant?.stock || 0;
+      ? Math.min(product.total_stock || 0, 50)
+      : Math.min(selectedVariant?.stock || 0, 50);
 
   // Reset form when dialog opens
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function AddToCartDialog({
       quantity,
       price: product.price,
       productName: product.name,
-      variantName: selectedVariant?.name || "Default",
+      variantName: selectedVariant?.name || t("common.default"),
       productImage: product.images[0] || undefined,
     });
 

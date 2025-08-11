@@ -15,6 +15,7 @@ import {
   X,
   Languages,
   FolderOpen,
+  Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -25,11 +26,16 @@ interface DashboardLayoutProps {
 const getNavigation = (t: (key: string) => string) => [
   { name: t("nav.dashboard"), href: "/admin/", icon: LayoutDashboard },
   { name: t("nav.products"), href: "/admin/products", icon: Package },
-  { name: t("nav.categories") as any, href: "/admin/categories", icon: FolderOpen },
+  {
+    name: t("nav.categories") as any,
+    href: "/admin/categories",
+    icon: FolderOpen,
+  },
   { name: t("nav.orders"), href: "/admin/orders", icon: ShoppingCart },
   { name: t("nav.customers"), href: "/admin/customers", icon: Users },
   { name: t("nav.revenue"), href: "/admin/revenue", icon: TrendingUp },
   { name: t("nav.analytics"), href: "/admin/analytics", icon: BarChart3 },
+  { name: t("nav.settings"), href: "/admin/settings", icon: Settings },
 ];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {

@@ -62,6 +62,9 @@ export default function ProductDetail() {
   const [product, setProduct] = useState<DataContextProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(
+    null,
+  );
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
 
   const cartItemsCount = getTotalItems();
@@ -81,7 +84,6 @@ export default function ProductDetail() {
           const product = await response.json();
           const normalized = {
             ...product,
-            
           };
           setProduct(normalized);
         } else if (response.status === 404) {
@@ -90,9 +92,7 @@ export default function ProductDetail() {
           // Fallback to getting all products
           const products = await getProducts();
           const foundProduct = products.find((p) => p.id === id);
-          const normalized = foundProduct
-            ? foundProduct
-            : null;
+          const normalized = foundProduct ? foundProduct : null;
           setProduct(normalized || null);
         }
       } catch (error) {
@@ -207,43 +207,62 @@ export default function ProductDetail() {
           <div className="space-y-4">
             {/* Main Image */}
             <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
-              {product.images.length > 0 ? (
-                <img
-                  src={product.images[selectedImageIndex]}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <span>{t("products.noImages")}</span>
-                </div>
-              )}
+              {(() => {
+                // Create combined image array with product images and variant images
+                const allImages = [
+                  ...product.images,
+                  ...product.variants
+                    .filter((v) => v.image)
+                    .map((v) => v.image as string),
+                ];
+
+                return allImages.length > 0 ? (
+                  <img
+                    src={allImages[selectedImageIndex] || product.images[0]}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    <span>{t("products.noImages")}</span>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Image Thumbnails incl. variant images */}
-            {(product.images.length > 1 || product.variants.some((v) => v.image)) && (
-              <div className="grid grid-cols-4 gap-2">
-                {[...product.images, ...product.variants.filter((v) => v.image).map((v) => v.image as string)].map(
-                  (image, index) => (
-                    <button
-                      key={`${image}-${index}`}
-                      onClick={() => setSelectedImageIndex(index)}
-                      className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
-                        selectedImageIndex === index
-                          ? "border-primary ring-2 ring-primary/20"
-                          : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      <img
-                        src={image}
-                        alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ),
-                )}
-              </div>
-            )}
+            {(() => {
+              const allImages = [
+                ...product.images,
+                ...product.variants
+                  .filter((v) => v.image)
+                  .map((v) => v.image as string),
+              ];
+
+              return (
+                allImages.length > 1 && (
+                  <div className="grid grid-cols-4 gap-2">
+                    {allImages.map((image, index) => (
+                      <button
+                        key={`${image}-${index}`}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
+                          selectedImageIndex === index
+                            ? "border-primary ring-2 ring-primary/20"
+                            : "border-gray-200 hover:border-gray-300"
+                        }`}
+                      >
+                        <img
+                          src={image}
+                          alt={`${product.name} ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )
+              );
+            })()}
           </div>
 
           {/* Product Information */}
@@ -278,17 +297,54 @@ export default function ProductDetail() {
                     {t("products.variants")}:
                   </h3>
                   <div className="grid grid-cols-2 gap-2">
-                    {product.variants.map((variant) => (
-                      <div
-                        key={variant.id}
-                        className="p-3 border rounded-lg text-center"
-                      >
-                        <div className="font-medium">{variant.name}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {variant.stock} {t("products.stock")}
-                        </div>
-                      </div>
-                    ))}
+                    {product.variants.map((variant, variantIndex) => {
+                      const isSelected = selectedVariantId === variant.id;
+                      const allImages = [
+                        ...product.images,
+                        ...product.variants
+                          .filter((v) => v.image)
+                          .map((v) => v.image as string),
+                      ];
+                      const variantImageIndex = variant.image
+                        ? product.images.length +
+                          product.variants.filter(
+                            (v, i) => i < variantIndex && v.image,
+                          ).length
+                        : null;
+
+                      return (
+                        <button
+                          key={variant.id}
+                          onClick={() => {
+                            setSelectedVariantId(
+                              isSelected ? null : variant.id,
+                            );
+                            if (variant.image && variantImageIndex !== null) {
+                              setSelectedImageIndex(variantImageIndex);
+                            }
+                          }}
+                          className={`p-3 border rounded-lg text-center transition-all ${
+                            isSelected
+                              ? "border-primary bg-primary/5 ring-2 ring-primary/20"
+                              : "hover:border-gray-300 hover:bg-gray-50"
+                          }`}
+                        >
+                          <div className="font-medium">{variant.name}</div>
+                          <div className="text-sm text-muted-foreground">
+                            {variant.stock} {t("products.stock")}
+                          </div>
+                          {variant.image && (
+                            <div className="mt-2">
+                              <img
+                                src={variant.image}
+                                alt={variant.name}
+                                className="w-12 h-12 object-cover rounded mx-auto"
+                              />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>
@@ -310,7 +366,7 @@ export default function ProductDetail() {
 
       {isAddToCartOpen && product && (
         <AddToCartDialog
-          product={{...product, total_stock: product.total_stock || 0}}
+          product={{ ...product, total_stock: product.total_stock || 0 }}
           open={isAddToCartOpen}
           onClose={() => setIsAddToCartOpen(false)}
         />

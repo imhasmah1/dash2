@@ -79,6 +79,7 @@ import Customers from "@/pages/Customers";
 import Categories from "@/pages/Categories";
 import Revenue from "@/pages/Revenue";
 import Analytics from "@/pages/Analytics";
+import Settings from "@/pages/Settings";
 import Store from "@/pages/Store";
 import ProductDetail from "@/pages/ProductDetail";
 import NotFound from "@/pages/NotFound";
@@ -108,6 +109,7 @@ function AppContent() {
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/revenue" element={<Revenue />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </DashboardLayout>

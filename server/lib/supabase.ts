@@ -24,6 +24,9 @@ if (isSupabaseConfigured) {
       },
     });
     console.log("✅ Supabase client initialized successfully");
+
+    // Initialize default categories if none exist
+    initializeDefaultCategories();
   } catch (error) {
     console.error("❌ Failed to initialize Supabase client:", error);
     supabase = null;
@@ -35,6 +38,49 @@ if (isSupabaseConfigured) {
   console.warn(
     "   Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to enable database persistence.",
   );
+}
+
+// Initialize default categories if none exist
+async function initializeDefaultCategories() {
+  if (!supabase) return;
+
+  try {
+    const { data: existingCategories, error } = await supabase
+      .from("categories")
+      .select("id")
+      .limit(1);
+
+    if (error) {
+      console.warn("Could not check existing categories:", error.message);
+      return;
+    }
+
+    // If no categories exist, create default ones
+    if (!existingCategories || existingCategories.length === 0) {
+      console.log("No categories found, creating default categories...");
+
+      const defaultCategories = [
+        { id: "1", name: "Electronics" },
+        { id: "2", name: "Accessories" },
+        { id: "3", name: "Home & Office" },
+      ];
+
+      const { error: insertError } = await supabase
+        .from("categories")
+        .insert(defaultCategories);
+
+      if (insertError) {
+        console.warn(
+          "Could not create default categories:",
+          insertError.message,
+        );
+      } else {
+        console.log("✅ Default categories created successfully");
+      }
+    }
+  } catch (error) {
+    console.warn("Could not initialize default categories:", error);
+  }
 }
 
 export { supabase };

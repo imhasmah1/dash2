@@ -31,6 +31,7 @@ const translations = {
     "nav.revenue": "Revenue",
     "nav.analytics": "Analytics",
     "nav.categories": "Categories",
+    "nav.settings": "Settings",
     "nav.logout": "Logout",
     "nav.adminPanel": "Admin Panel",
 
@@ -193,6 +194,8 @@ const translations = {
     "common.no": "No",
     "common.back": "Back",
     "common.next": "Next",
+    "common.success": "Success",
+    "common.added": "Added",
 
     // Empty states
     "empty.noProductsFound": "No products found",
@@ -219,6 +222,9 @@ const translations = {
     "message.customerDeleted": "Customer deleted successfully",
     "message.error": "An error occurred",
     "message.success": "Operation completed successfully",
+    "message.customerSaveError": "Failed to save customer. Please try again.",
+    "message.productSaveError": "Failed to save product. Please try again.",
+    "message.uploadError": "Failed to upload images. Please try again.",
 
     // Login
     "login.title": "Admin Login",
@@ -296,11 +302,120 @@ const translations = {
     "category.homeOffice": "Home & Office",
     // Category dialogs
     "categories.deleteTitle": "Delete Category",
-    "categories.deleteMessage": "Are you sure you want to delete this category? This action cannot be undone.",
+    "categories.deleteMessage":
+      "Are you sure you want to delete this category? This action cannot be undone.",
     "categories.deleteSuccess": "Category deleted successfully.",
     "categories.cannotDeleteTitle": "Cannot Delete Category",
-    "categories.cannotDeleteMessage": "This category is being used by {count} product(s). Please remove the category from all products before deleting it.",
+    "categories.cannotDeleteMessage":
+      "This category is being used by {count} product(s). Please remove the category from all products before deleting it.",
     "categories.nameRequired": "Category name is required.",
+
+    // Analytics
+    "analytics.title": "Store Analytics",
+    "analytics.overview": "Your store performance overview",
+    "analytics.totalOrders": "Total Orders",
+    "analytics.totalRevenue": "Total Revenue",
+    "analytics.totalCustomers": "Total Customers",
+    "analytics.totalProducts": "Total Products",
+    "analytics.avgPerOrder": "per order",
+    "analytics.newInPeriod": "new in period",
+    "analytics.inStock": "In Stock",
+    "analytics.active": "Active",
+    "analytics.dailyPerformance": "Daily Performance",
+    "analytics.orderStatusDistribution": "Order Status Distribution",
+    "analytics.deliveryMethodBreakdown": "Delivery Method Breakdown",
+    "analytics.orders": "Orders",
+    "analytics.revenue": "Revenue (BD)",
+    "analytics.last7days": "Last 7 Days",
+    "analytics.last30days": "Last 30 Days",
+    "analytics.last90days": "Last 90 Days",
+    "analytics.refresh": "Refresh",
+
+    // Missing translations
+    "common.unknownCustomer": "Unknown Customer",
+    "common.unknownProduct": "Unknown Product",
+    "common.product": "Product",
+    "common.default": "Default",
+    "errors.orderFailed": "Failed to place order. Please try again.",
+    "dashboard.noOrdersYet":
+      "No orders yet. Create your first order to see it here!",
+    "notFound.title": "404",
+    "notFound.message": "Oops! Page not found",
+    "notFound.returnHome": "Return to Home",
+
+    // Settings
+    "settings.title": "Settings",
+    "settings.subtitle": "Configure your store settings and preferences",
+    "settings.save": "Save Settings",
+    "settings.reset": "Reset",
+    "settings.saveSuccess": "Settings saved successfully!",
+    "settings.saveError": "Failed to save settings. Please try again.",
+    "settings.resetConfirm":
+      "Are you sure you want to reset all settings to default values?",
+    "settings.unsavedChanges":
+      "You have unsaved changes. Don't forget to save!",
+
+    // Store Information
+    "settings.storeInformation": "Store Information",
+    "settings.storeName": "Store Name",
+    "settings.storeDescription": "Store Description",
+    "settings.currency": "Currency",
+    "settings.currencySymbol": "Currency Symbol",
+    "settings.bahrainiDinar": "Bahraini Dinar",
+    "settings.usDollar": "US Dollar",
+    "settings.euro": "Euro",
+
+    // Contact Information
+    "settings.contactInformation": "Contact Information",
+    "settings.contactPhone": "Phone Number",
+    "settings.contactEmail": "Email Address",
+    "settings.contactAddress": "Address",
+
+    // Business Hours
+    "settings.businessHours": "Business Hours",
+    "settings.monday": "Monday",
+    "settings.tuesday": "Tuesday",
+    "settings.wednesday": "Wednesday",
+    "settings.thursday": "Thursday",
+    "settings.friday": "Friday",
+    "settings.saturday": "Saturday",
+    "settings.sunday": "Sunday",
+    "settings.closed": "Closed",
+
+    // Shipping & Delivery
+    "settings.shippingDelivery": "Shipping & Delivery",
+    "settings.enableDelivery": "Enable Delivery",
+    "settings.enablePickup": "Enable Pickup",
+    "settings.deliveryFee": "Delivery Fee",
+    "settings.freeDeliveryThreshold": "Free Delivery Threshold",
+    "settings.estimatedDeliveryTime": "Estimated Delivery Time",
+
+    // Payment Settings
+    "settings.paymentSettings": "Payment Settings",
+    "settings.cashOnDelivery": "Cash on Delivery",
+    "settings.bankTransfer": "Bank Transfer",
+    "settings.bankAccountInfo": "Bank Account Information",
+    "settings.bankAccountPlaceholder":
+      "Enter bank account details for customers...",
+
+    // Operational Settings
+    "settings.operationalSettings": "Operational Settings",
+    "settings.autoOrderConfirmation": "Auto Order Confirmation",
+    "settings.lowStockThreshold": "Low Stock Threshold",
+    "settings.maxOrderQuantity": "Max Order Quantity",
+    "settings.orderProcessingTime": "Order Processing Time",
+    "settings.deliveryConcerns": "Delivery Concerns (hours)",
+    "settings.pickupOrderConfig": "Pickup Order Config (hours)",
+
+    // Order Messages
+    "settings.orderMessages": "Order Messages",
+    "settings.englishMessages": "English Messages",
+    "settings.arabicMessages": "Arabic Messages",
+    "settings.orderSuccessMessage": "Order Success Message",
+    "settings.orderInstructions": "Order Instructions",
+    "settings.note": "Note",
+    "settings.orderMessageNote":
+      "These messages will be displayed to customers when they successfully place an order. Customize them to match your store's tone and provide relevant information.",
   },
   ar: {
     // Navigation
@@ -311,6 +426,7 @@ const translations = {
     "nav.revenue": "الإيرادات",
     "nav.analytics": "التحليلات",
     "nav.categories": "التصنيفات",
+    "nav.settings": "الإعدا��ات",
     "nav.logout": "تسجيل الخروج",
     "nav.adminPanel": "لوحة الإدارة",
 
@@ -472,6 +588,8 @@ const translations = {
     "common.no": "لا",
     "common.back": "السابق",
     "common.next": "التالي",
+    "common.success": "نجح",
+    "common.added": "تمت الإضافة",
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
@@ -498,6 +616,9 @@ const translations = {
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
     "message.success": "تمت العملية بنجاح",
+    "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مرة أخرى.",
+    "message.productSaveError": "فشل في حفظ المنتج. يرجى المحاولة مرة أخرى.",
+    "message.uploadError": "فشل في رفع الصور. يرجى المحاولة مرة أخرى.",
 
     // Login
     "login.title": "تسجيل دخول الإدارة",
@@ -541,7 +662,7 @@ const translations = {
     "checkout.orderSummary": "ملخص الطلب",
     "checkout.placeOrder": "تأكيد الطلب",
     "checkout.noCreditCard":
-      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
+      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستل��م",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
@@ -576,11 +697,117 @@ const translations = {
     "category.homeOffice": "المنزل والمكتب",
     // Category dialogs
     "categories.deleteTitle": "حذف التصنيف",
-    "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
+    "categories.deleteMessage":
+      "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
-    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
+    "categories.cannotDeleteMessage":
+      "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
+
+    // Analytics
+    "analytics.title": "تحليلات المتجر",
+    "analytics.overview": "نظرة عامة على أداء متجرك",
+    "analytics.totalOrders": "إجمالي الطلبات",
+    "analytics.totalRevenue": "إجمالي الإيرادات",
+    "analytics.totalCustomers": "إجمالي العملاء",
+    "analytics.totalProducts": "إجمالي المنتجات",
+    "analytics.avgPerOrder": "لكل طلب",
+    "analytics.newInPeriod": "جديد في الفترة",
+    "analytics.inStock": "متوفر",
+    "analytics.active": "نشط",
+    "analytics.dailyPerformance": "الأداء اليومي",
+    "analytics.orderStatusDistribution": "توزيع حالات الطلبات",
+    "analytics.deliveryMethodBreakdown": "تفصيل طرق التوصيل",
+    "analytics.orders": "الطلبات",
+    "analytics.revenue": "الإيرادات (د.ب)",
+    "analytics.last7days": "آخر 7 أيام",
+    "analytics.last30days": "آخر 30 يوم",
+    "analytics.last90days": "آخر 90 يوم",
+    "analytics.refresh": "تحديث",
+
+    // Missing translations
+    "common.unknownCustomer": "عميل غير معروف",
+    "common.unknownProduct": "منتج غير معروف",
+    "common.product": "منتج",
+    "common.default": "افتراضي",
+    "errors.orderFailed": "فشل في إرسال الطلب. يرجى المحاولة مرة أخرى.",
+    "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
+    "notFound.title": "404",
+    "notFound.message": "عذراً! الصفحة غير موجودة",
+    "notFound.returnHome": "العودة للصفحة الرئيسية",
+
+    // Settings
+    "settings.title": "الإعدادات",
+    "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
+    "settings.save": "حفظ الإعدادات",
+    "settings.reset": "إعادة تعيين",
+    "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
+    "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
+    "settings.resetConfirm":
+      "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
+    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس الحفظ!",
+
+    // Store Information
+    "settings.storeInformation": "معلومات المتجر",
+    "settings.storeName": "اسم المتجر",
+    "settings.storeDescription": "وصف المتجر",
+    "settings.currency": "العملة",
+    "settings.currencySymbol": "رمز العملة",
+    "settings.bahrainiDinar": "الدينار البحريني",
+    "settings.usDollar": "الدولار الأمريكي",
+    "settings.euro": "اليورو",
+
+    // Contact Information
+    "settings.contactInformation": "معلومات الاتصال",
+    "settings.contactPhone": "رقم الهاتف",
+    "settings.contactEmail": "البريد الإلكتروني",
+    "settings.contactAddress": "العنوان",
+
+    // Business Hours
+    "settings.businessHours": "ساعات العمل",
+    "settings.monday": "الاثنين",
+    "settings.tuesday": "الثلاثاء",
+    "settings.wednesday": "الأربعاء",
+    "settings.thursday": "الخميس",
+    "settings.friday": "الجمعة",
+    "settings.saturday": "السبت",
+    "settings.sunday": "الأحد",
+    "settings.closed": "مغلق",
+
+    // Shipping & Delivery
+    "settings.shippingDelivery": "الشحن والتوصيل",
+    "settings.enableDelivery": "تفعيل التوصيل",
+    "settings.enablePickup": "تفعيل الاستلام",
+    "settings.deliveryFee": "رسوم التوصيل",
+    "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
+    "settings.estimatedDeliveryTime": "الوقت المتوقع للتوصيل",
+
+    // Payment Settings
+    "settings.paymentSettings": "إعدادات الدفع",
+    "settings.cashOnDelivery": "الدفع عند التسليم",
+    "settings.bankTransfer": "التحويل البنكي",
+    "settings.bankAccountInfo": "معلومات الحساب البنكي",
+    "settings.bankAccountPlaceholder": "أدخل تفاصيل الحساب البنكي للعملاء...",
+
+    // Operational Settings
+    "settings.operationalSettings": "الإعدادات التشغيلية",
+    "settings.autoOrderConfirmation": "تأكيد الطلب التلقائي",
+    "settings.lowStockThreshold": "حد المخزون المنخفض",
+    "settings.maxOrderQuantity": "أقصى كمية للطلب",
+    "settings.orderProcessingTime": "وقت معالجة الطلب",
+    "settings.deliveryConcerns": "مخاوف التوصيل (ساعات)",
+    "settings.pickupOrderConfig": "إعداد طلب الاستلام (ساعات)",
+
+    // Order Messages
+    "settings.orderMessages": "رسائل الطلبات",
+    "settings.englishMessages": "الرسائل الإنجليزية",
+    "settings.arabicMessages": "الرسائل العربية",
+    "settings.orderSuccessMessage": "رسالة نجاح الطلب",
+    "settings.orderInstructions": "تعليمات الطلب",
+    "settings.note": "ملاحظة",
+    "settings.orderMessageNote":
+      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. قم بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
   },
 } as const;
 

@@ -143,6 +143,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                               )
                             }
                             min={1}
+                            max={50}
                             className="w-16 sm:w-20 h-8 text-center text-sm"
                           />
 

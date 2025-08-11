@@ -108,11 +108,11 @@ export default function Dashboard() {
 
       return {
         id: `#${order.id}`,
-        customer: customer?.name || "Unknown Customer",
+        customer: customer?.name || t("common.unknownCustomer"),
         product:
           itemsCount > 1
-            ? `${mainProduct?.name || "Product"} +${itemsCount - 1} more`
-            : mainProduct?.name || "Unknown Product",
+            ? `${mainProduct?.name || t("common.product")} +${itemsCount - 1} more`
+            : mainProduct?.name || t("common.unknownProduct"),
         amount: `BD ${order.total.toFixed(2)}`,
         status: getStatusText(order.status, t),
         date: formattedDate,
@@ -129,25 +129,27 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {stats.map((stat) => (
           <Card
             key={stat.title}
             className="transition-transform hover:scale-105"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 leading-tight">
                 {stat.title}
               </CardTitle>
-              <div className={`p-2 rounded-lg ${stat.bgColor}`}>
-                <stat.icon className={`w-4 h-4 ${stat.color}`} />
+              <div className={`p-1.5 sm:p-2 rounded-lg ${stat.bgColor}`}>
+                <stat.icon className={`w-3 h-3 sm:w-4 sm:h-4 ${stat.color}`} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900">
+              <div className="text-xl sm:text-2xl font-bold text-gray-900">
                 {stat.value}
               </div>
-              <p className="text-xs text-gray-600 mt-1">{stat.description}</p>
+              <p className="text-xs text-gray-600 mt-1 leading-tight">
+                {stat.description}
+              </p>
             </CardContent>
           </Card>
         ))}
@@ -163,66 +165,106 @@ export default function Dashboard() {
         </CardHeader>
         <CardContent>
           {recentOrders.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">
-                      {t("orders.orderId")}
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">
-                      {t("orders.customer")}
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">
-                      {t("nav.products")}
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">
-                      {t("orders.total")}
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">
-                      {t("orders.status")}
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">
-                      {t("orders.date")}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {recentOrders.map((order) => (
-                    <tr
-                      key={order.id}
-                      className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="py-3 px-4 font-medium text-dashboard-primary">
-                        {order.id}
-                      </td>
-                      <td className="py-3 px-4 text-gray-900">
-                        {order.customer}
-                      </td>
-                      <td className="py-3 px-4 text-gray-600">
-                        {order.product}
-                      </td>
-                      <td className="py-3 px-4 font-medium text-gray-900">
-                        {order.amount}
-                      </td>
-                      <td className="py-3 px-4">
+            <>
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4 font-medium text-gray-600">
+                        {t("orders.orderId")}
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-600">
+                        {t("orders.customer")}
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-600">
+                        {t("nav.products")}
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-600">
+                        {t("orders.total")}
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-600">
+                        {t("orders.status")}
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-600">
+                        {t("orders.date")}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentOrders.map((order) => (
+                      <tr
+                        key={order.id}
+                        className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                      >
+                        <td className="py-3 px-4 font-medium text-dashboard-primary">
+                          {order.id}
+                        </td>
+                        <td className="py-3 px-4 text-gray-900">
+                          {order.customer}
+                        </td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {order.product}
+                        </td>
+                        <td className="py-3 px-4 font-medium text-gray-900">
+                          {order.amount}
+                        </td>
+                        <td className="py-3 px-4">
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}
+                          >
+                            {order.status}
+                          </span>
+                        </td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {order.date}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className="md:hidden space-y-3">
+                {recentOrders.map((order) => (
+                  <div
+                    key={order.id}
+                    className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <p className="font-medium text-dashboard-primary text-sm">
+                          #{order.id}
+                        </p>
+                        <p className="text-gray-900 font-medium">
+                          {order.customer}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium text-gray-900">
+                          {order.amount}
+                        </p>
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}
                         >
                           {order.status}
                         </span>
-                      </td>
-                      <td className="py-3 px-4 text-gray-600">{order.date}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-gray-600">
+                      <p>{order.product}</p>
+                      <p>{order.date}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           ) : (
             <div className="text-center py-8">
               <ShoppingBag className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">
-                No orders yet. Create your first order to see it here!
+              <p className="text-gray-600 auto-text">
+                {t("dashboard.noOrdersYet")}
               </p>
             </div>
           )}

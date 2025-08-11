@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -8,14 +14,14 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const ADMIN_PASSWORD = 'admin123'; // In production, this would be environment variable
+const ADMIN_PASSWORD = "azhar2311"; // In production, this would be environment variable
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const authStatus = localStorage.getItem('adminAuth');
-    if (authStatus === 'true') {
+    const authStatus = localStorage.getItem("adminAuth");
+    if (authStatus === "true") {
       setIsAuthenticated(true);
     }
   }, []);
@@ -23,7 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = (password: string): boolean => {
     if (password === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
-      localStorage.setItem('adminAuth', 'true');
+      localStorage.setItem("adminAuth", "true");
       return true;
     }
     return false;
@@ -31,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('adminAuth');
+    localStorage.removeItem("adminAuth");
   };
 
   return (
@@ -44,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

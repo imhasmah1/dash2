@@ -57,6 +57,7 @@ export default function Orders() {
     getCustomerById,
     getProductById,
     getVariantById,
+    getOrderNumber,
     refetchData,
   } = useData();
   const { showConfirm, showAlert } = useDialog();
@@ -74,15 +75,24 @@ export default function Orders() {
     notes: "",
   });
 
-  const filteredOrders = orders.filter((order) => {
-    const customer = getCustomerById(order.customerId);
-    return (
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (customer &&
-        customer.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      order.status.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  });
+  const filteredOrders = orders
+    .filter((order) => {
+      const customer = getCustomerById(order.customerId);
+      const orderNumber = getOrderNumber(order.id);
+      return (
+        order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        `#${orderNumber}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (customer &&
+          customer.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        order.status.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    })
+    .sort((a, b) => {
+      // Sort by creation date, newest first for display
+      const dateA = new Date(a.createdAt || a.created_at || "");
+      const dateB = new Date(b.createdAt || b.created_at || "");
+      return dateB.getTime() - dateA.getTime();
+    });
 
   const resetForm = () => {
     setFormData({
@@ -304,7 +314,7 @@ export default function Orders() {
                 {t("orders.addNew")}
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="w-[95vw] sm:max-w-4xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
               <DialogHeader>
                 <DialogTitle>
                   {editingOrder ? t("orders.editOrder") : t("orders.addOrder")}
@@ -352,7 +362,7 @@ export default function Orders() {
                         return (
                           <div
                             key={index}
-                            className="flex gap-2 items-end p-4 border rounded-lg"
+                            className="flex flex-col sm:flex-row gap-3 sm:gap-2 sm:items-end p-4 border rounded-lg"
                           >
                             <div className="flex-1">
                               <Label>{t("orders.product")}</Label>
@@ -419,8 +429,8 @@ export default function Orders() {
                                 min="1"
                                 max={
                                   selectedVariant
-                                    ? selectedVariant.stock
-                                    : product?.total_stock || 999
+                                    ? Math.min(selectedVariant.stock, 50)
+                                    : Math.min(product?.total_stock || 50, 50)
                                 }
                                 value={item.quantity === 0 ? "" : item.quantity}
                                 onChange={(e) =>
@@ -481,7 +491,7 @@ export default function Orders() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="grid gap-2">
                       <Label htmlFor="status">{t("orders.status")}</Label>
                       <Select
@@ -603,14 +613,14 @@ export default function Orders() {
           return (
             <Card key={order.id} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
                   <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                     <div className="w-10 h-10 bg-dashboard-primary rounded-full flex items-center justify-center">
                       <ShoppingCart className="w-5 h-5 text-white" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <CardTitle className="text-lg">
-                        {t("orders.orderId")} #{order.id}
+                        {t("orders.orderId")} #{getOrderNumber(order.id)}
                       </CardTitle>
                       <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
                         <User className="w-4 h-4" />
@@ -618,18 +628,18 @@ export default function Orders() {
                       </CardDescription>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-dashboard-primary">
+                  <div className="flex flex-col sm:items-end gap-2">
+                    <div className="text-xl sm:text-2xl font-bold text-dashboard-primary">
                       BD {order.total.toFixed(2)}
                     </div>
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="w-full sm:w-auto">
                       <Select
                         value={order.status}
                         onValueChange={(value: Order["status"]) =>
                           handleStatusChange(order.id, value)
                         }
                       >
-                        <SelectTrigger className="w-auto">
+                        <SelectTrigger className="w-full sm:w-auto min-w-32">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -752,10 +762,11 @@ export default function Orders() {
 
       {/* View Order Details Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
           <DialogHeader>
             <DialogTitle>
-              {t("orders.orderDetailsTitle")} #{viewingOrder?.id}
+              {t("orders.orderDetailsTitle")} #
+              {viewingOrder ? getOrderNumber(viewingOrder.id) : ""}
             </DialogTitle>
             <DialogDescription>
               {t("orders.orderDetailsDesc")}
