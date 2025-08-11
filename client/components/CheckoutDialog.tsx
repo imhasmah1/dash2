@@ -383,13 +383,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg sm:rounded-md flex flex-col">
         {/* Header */}
-        <DialogHeader className="px-4 sm:px-6 py-4 border-b flex-shrink-0">
-          <DialogTitle className="text-2xl font-bold text-center">
+        <DialogHeader className="px-3 sm:px-6 py-3 sm:py-4 border-b flex-shrink-0">
+          <DialogTitle className="text-lg sm:text-2xl font-bold text-center">
             {t("checkout.title")}
           </DialogTitle>
 
           {/* Step indicator */}
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-3 sm:mt-4">
             <div className="flex items-center space-x-2 sm:space-x-4 [dir=rtl]:space-x-reverse">
               {[1, 2, 3].map((stepNum) => (
                 <div key={stepNum} className="flex items-center">
@@ -417,24 +417,24 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
         {/* Scrollable Content Area */}
         <ScrollArea className="flex-1 min-h-0">
-          <div className="p-4 sm:p-6 pb-8 auto-text">
+          <div className="p-3 sm:p-6 pb-6 sm:pb-8 auto-text">
             {/* Step 1: Customer Information */}
             {step === 1 && (
               <Card className="border-2">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
-                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
-                      <span className="font-bold">1</span>
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text text-base sm:text-lg">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary text-white rounded-full flex items-center justify-center">
+                      <span className="font-bold text-xs sm:text-sm">1</span>
                     </div>
                     <span className="auto-text">
                       {t("checkout.customerInfo")}
                     </span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
+                <CardContent className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-1 gap-3 sm:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="block auto-text">
+                      <Label htmlFor="name" className="block auto-text text-sm sm:text-base">
                         {t("checkout.customerName")}
                       </Label>
                       <Input
@@ -444,101 +444,106 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           handleInputChange("name", e.target.value)
                         }
                         placeholder={t("checkout.customerName")}
-                        className="auto-text"
+                        className="auto-text h-11 sm:h-10 text-base touch-manipulation"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="block auto-text">
+                      <Label htmlFor="phone" className="block auto-text text-sm sm:text-base">
                         {t("checkout.customerPhone")}
                       </Label>
                       <Input
                         id="phone"
+                        type="tel"
                         value={customerInfo.phone}
                         onChange={(e) =>
                           handleInputChange("phone", e.target.value)
                         }
                         placeholder={t("checkout.customerPhone")}
-                        className="auto-text"
+                        className="ltr-text h-11 sm:h-10 text-base touch-manipulation"
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="block auto-text">
+                    <Label className="block auto-text text-sm sm:text-base">
                       {t("checkout.customerAddress")}
                     </Label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <Label
-                          htmlFor="home"
-                          className="text-sm text-gray-600 auto-text"
-                        >
-                          {t("checkout.customerHome")}
-                        </Label>
-                        <Input
-                          id="home"
-                          value={customerInfo.home}
-                          onChange={(e) =>
-                            handleInputChange("home", e.target.value)
-                          }
-                          placeholder="123"
-                          className="text-center auto-text"
-                        />
+                    <div className="grid grid-cols-1 gap-3">
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                        <div className="space-y-1">
+                          <Label
+                            htmlFor="home"
+                            className="text-xs sm:text-sm text-gray-600 auto-text"
+                          >
+                            {t("checkout.customerHome")}
+                          </Label>
+                          <Input
+                            id="home"
+                            value={customerInfo.home}
+                            onChange={(e) =>
+                              handleInputChange("home", e.target.value)
+                            }
+                            placeholder="123"
+                            className="text-center auto-text h-11 sm:h-10 touch-manipulation"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label
+                            htmlFor="road"
+                            className="text-xs sm:text-sm text-gray-600 auto-text"
+                          >
+                            {t("checkout.customerRoad")}
+                          </Label>
+                          <Input
+                            id="road"
+                            value={customerInfo.road}
+                            onChange={(e) =>
+                              handleInputChange("road", e.target.value)
+                            }
+                            placeholder="456"
+                            className="text-center auto-text h-11 sm:h-10 touch-manipulation"
+                          />
+                        </div>
                       </div>
-                      <div className="space-y-1">
-                        <Label
-                          htmlFor="road"
-                          className="text-sm text-gray-600 auto-text"
-                        >
-                          {t("checkout.customerRoad")}
-                        </Label>
-                        <Input
-                          id="road"
-                          value={customerInfo.road}
-                          onChange={(e) =>
-                            handleInputChange("road", e.target.value)
-                          }
-                          placeholder="456"
-                          className="text-center auto-text"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label
-                          htmlFor="block"
-                          className="text-sm text-gray-600 auto-text"
-                        >
-                          {t("checkout.customerBlock")}
-                        </Label>
-                        <Input
-                          id="block"
-                          value={customerInfo.block}
-                          onChange={(e) =>
-                            handleInputChange("block", e.target.value)
-                          }
-                          placeholder="789"
-                          className="text-center auto-text"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label
-                          htmlFor="town"
-                          className="text-sm text-gray-600 auto-text"
-                        >
-                          {t("checkout.customerTown")}
-                        </Label>
-                        <Input
-                          id="town"
-                          value={customerInfo.town}
-                          onChange={(e) =>
-                            handleInputChange("town", e.target.value)
-                          }
-                          placeholder="Manama"
-                          className="auto-text"
-                          required
-                        />
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                        <div className="space-y-1">
+                          <Label
+                            htmlFor="block"
+                            className="text-xs sm:text-sm text-gray-600 auto-text"
+                          >
+                            {t("checkout.customerBlock")}
+                          </Label>
+                          <Input
+                            id="block"
+                            value={customerInfo.block}
+                            onChange={(e) =>
+                              handleInputChange("block", e.target.value)
+                            }
+                            placeholder="789"
+                            className="text-center auto-text h-11 sm:h-10 touch-manipulation"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label
+                            htmlFor="town"
+                            className="text-xs sm:text-sm text-gray-600 auto-text"
+                          >
+                            {t("checkout.customerTown")}
+                          </Label>
+                          <Input
+                            id="town"
+                            value={customerInfo.town}
+                            onChange={(e) =>
+                              handleInputChange("town", e.target.value)
+                            }
+                            placeholder="Manama"
+                            className="auto-text h-11 sm:h-10 touch-manipulation"
+                            required
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
