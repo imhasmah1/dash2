@@ -208,9 +208,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg flex flex-col">
-          <ScrollArea className="flex-1 min-h-0">
-            <div className="p-6 space-y-6">
+        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[85vh] p-0 rounded-lg flex flex-col">
+          <ScrollArea className="flex-1 min-h-0 max-h-[75vh]">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 pb-8">
             {/* Success Icon & Title */}
             <div className="text-center space-y-3">
               <div className="flex justify-center">
@@ -241,7 +241,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between [dir=rtl]:flex-row-reverse">
                   <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "العميل:" : "Customer:"}
+                    {language === "ar" ? "��لعميل:" : "Customer:"}
                   </span>
                   <span className="font-medium auto-text">{customerInfo.name}</span>
                 </div>
