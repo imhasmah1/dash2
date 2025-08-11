@@ -438,7 +438,7 @@ const translations = {
     "products.actions": "الإجراءات",
     "products.edit": "تعديل",
     "products.delete": "حذف",
-    "products.noProducts": "لا توجد منتجات",
+    "products.noProducts": "��ا توجد منتجات",
     "products.addProduct": "إضافة منتج",
     "products.editProduct": "تعديل منتج",
     "products.productName": "اسم المنتج",
@@ -460,7 +460,7 @@ const translations = {
     // Added keys (AR)
     "products.category": "التصنيف",
     "products.selectCategory": "اختر التصنيف",
-    "products.variantImageOptional": "صورة النوع (��ختياري)",
+    "products.variantImageOptional": "صورة النوع (اختياري)",
     "products.removeImage": "إزالة الصورة",
     "products.uploadImage": "رفع صورة",
 
@@ -489,7 +489,7 @@ const translations = {
     "orders.quantity": "الكمية",
     "orders.price": "السعر",
     "orders.subtotal": "المجموع الفرعي",
-    "orders.remove": "��زالة",
+    "orders.remove": "إزالة",
     "orders.notes": "ملاحظات",
     "orders.delivery": "توصيل",
     "orders.pickup": "استلام",
@@ -544,7 +544,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلات الإيرادات",
+    "revenue.title": "تحليلا�� الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -567,7 +567,7 @@ const translations = {
     "common.delete": "حذف",
     "common.edit": "تعديل",
     "common.add": "إضافة",
-    "common.search": "ب��ث",
+    "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
     "common.noData": "لا توجد بيانات",
@@ -577,6 +577,7 @@ const translations = {
     "common.no": "لا",
     "common.back": "السابق",
     "common.next": "التالي",
+    "common.success": "نجح",
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
@@ -594,7 +595,7 @@ const translations = {
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
-    "message.productDeleted": "تم حذف المنتج بنجاح",
+    "message.productDeleted": "تم حذف المنتج ��نجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
@@ -623,7 +624,7 @@ const translations = {
     "store.variant": "النوع",
     "store.selectVariant": "اختر النوع",
     "store.cartEmpty": "سلتك فارغة",
-    "store.cartTotal": "إجمالي السلة",
+    "store.cartTotal": "إ��مالي السلة",
     "store.checkout": "إتمام الطلب",
     "store.continueShopping": "متابعة التسوق",
     "store.removeFromCart": "إزالة من السلة",
@@ -648,7 +649,7 @@ const translations = {
     "checkout.noCreditCard":
       "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
-    "checkout.thankYou": "شكراً لك على طلبك",
+    "checkout.thankYou": "ش��راً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
@@ -680,7 +681,7 @@ const translations = {
     "category.accessories": "الإكسسوارات",
     "category.homeOffice": "المنزل والمكتب",
     // Category dialogs
-    "categories.deleteTitle": "حذف التصنيف",
+    "categories.deleteTitle": "حذف التصن��ف",
     "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
@@ -699,7 +700,7 @@ const translations = {
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
     "analytics.dailyPerformance": "الأداء اليومي",
-    "analytics.orderStatusDistribution": "توزيع حالات الطلبات",
+    "analytics.orderStatusDistribution": "توزيع ��الات الطلبات",
     "analytics.deliveryMethodBreakdown": "تفصيل طرق التوصيل",
     "analytics.orders": "الطلبات",
     "analytics.revenue": "الإيرادات (د.ب)",
@@ -721,9 +722,9 @@ const translations = {
 
     // Settings
     "settings.title": "الإعدادات",
-    "settings.subtitle": "قم بتهيئة إعدادات المتجر و��لتفضيلات",
+    "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
     "settings.save": "حفظ الإعدادات",
-    "settings.reset": "إعادة تعيين",
+    "settings.reset": "إعادة ��عيين",
     "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
     "settings.resetConfirm": "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
@@ -743,7 +744,7 @@ const translations = {
     "settings.contactInformation": "معلومات الاتصال",
     "settings.contactPhone": "رقم الهاتف",
     "settings.contactEmail": "البريد الإلكتروني",
-    "settings.contactAddress": "ال��نوان",
+    "settings.contactAddress": "العنوان",
 
     // Business Hours
     "settings.businessHours": "ساعات العمل",
