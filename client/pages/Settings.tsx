@@ -386,7 +386,7 @@ export default function Settings() {
                     id="orderSuccessMessageEn"
                     value={settings.orderSuccessMessageEn}
                     onChange={(e) => handleInputChange("orderSuccessMessageEn", e.target.value)}
-                    className="ltr-text"
+                    className="ltr-text min-h-[80px] touch-manipulation"
                     rows={3}
                     placeholder="Thank you for your order! We'll process it within..."
                   />
@@ -399,7 +399,7 @@ export default function Settings() {
                     id="orderInstructionsEn"
                     value={settings.orderInstructionsEn}
                     onChange={(e) => handleInputChange("orderInstructionsEn", e.target.value)}
-                    className="ltr-text"
+                    className="ltr-text min-h-[60px] touch-manipulation"
                     rows={2}
                     placeholder="For any changes or questions..."
                   />
@@ -419,7 +419,7 @@ export default function Settings() {
                     id="orderSuccessMessageAr"
                     value={settings.orderSuccessMessageAr}
                     onChange={(e) => handleInputChange("orderSuccessMessageAr", e.target.value)}
-                    className="auto-text"
+                    className="auto-text min-h-[80px] touch-manipulation"
                     rows={3}
                     placeholder="شكراً لك على طلبك! سنقوم بتجهيزه خلال..."
                   />
@@ -432,7 +432,7 @@ export default function Settings() {
                     id="orderInstructionsAr"
                     value={settings.orderInstructionsAr}
                     onChange={(e) => handleInputChange("orderInstructionsAr", e.target.value)}
-                    className="auto-text"
+                    className="auto-text min-h-[60px] touch-manipulation"
                     rows={2}
                     placeholder="لأي تغييرات أو أسئلة..."
                   />
@@ -541,7 +541,7 @@ export default function Settings() {
                   step="0.1"
                   value={settings.deliveryFee}
                   onChange={(e) => handleInputChange("deliveryFee", parseFloat(e.target.value))}
-                  className="ltr-text"
+                  className="ltr-text h-10 touch-manipulation"
                 />
               </div>
               <div className="space-y-2">
@@ -553,7 +553,7 @@ export default function Settings() {
                   type="number"
                   value={settings.freeDeliveryThreshold}
                   onChange={(e) => handleInputChange("freeDeliveryThreshold", parseInt(e.target.value))}
-                  className="ltr-text"
+                  className="ltr-text h-10 touch-manipulation"
                 />
               </div>
             </div>
@@ -565,7 +565,7 @@ export default function Settings() {
                 id="estimatedDeliveryTime"
                 value={settings.estimatedDeliveryTime}
                 onChange={(e) => handleInputChange("estimatedDeliveryTime", e.target.value)}
-                className="auto-text"
+                className="auto-text h-10 touch-manipulation"
               />
             </div>
           </CardContent>
@@ -612,7 +612,7 @@ export default function Settings() {
                   value={settings.bankAccountInfo}
                   onChange={(e) => handleInputChange("bankAccountInfo", e.target.value)}
                   placeholder={t("settings.bankAccountPlaceholder")}
-                  className="auto-text"
+                  className="auto-text min-h-[80px] touch-manipulation"
                   rows={3}
                 />
               </div>
@@ -676,7 +676,7 @@ export default function Settings() {
                 id="orderProcessingTime"
                 value={settings.orderProcessingTime}
                 onChange={(e) => handleInputChange("orderProcessingTime", e.target.value)}
-                className="auto-text"
+                className="auto-text h-10 touch-manipulation"
               />
             </div>
           </CardContent>
