@@ -269,7 +269,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     {language === "ar" ? "المبلغ الإجمالي:" : "Total Amount:"}
                   </span>
                   <span className="font-bold text-primary ltr-text">
-                    BD {(totalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
+                    BD {(orderTotalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between [dir=rtl]:flex-row-reverse">
