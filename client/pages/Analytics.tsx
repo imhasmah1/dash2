@@ -278,14 +278,14 @@ const Analytics = () => {
                   dataKey="orders"
                   stroke="#742370"
                   strokeWidth={2}
-                  name="Orders"
+                  name={t("analytics.orders")}
                 />
                 <Line
                   type="monotone"
                   dataKey="revenue"
                   stroke="#8b4d89"
                   strokeWidth={2}
-                  name="Revenue (BD)"
+                  name={t("analytics.revenue")}
                 />
               </LineChart>
             </ResponsiveContainer>
