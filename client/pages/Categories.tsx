@@ -162,7 +162,7 @@ export default function Categories() {
               {t("common.add")} {t("nav.categories")}
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="w-[95vw] sm:max-w-md max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
             <DialogHeader>
               <DialogTitle>
                 {editingCategory ? t("products.edit") : t("common.add")} {t("nav.categories")}
