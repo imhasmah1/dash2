@@ -644,7 +644,7 @@ export default function Products() {
         <div className="text-center py-16 text-gray-500">
           <Package className="w-16 h-16 mx-auto mb-4 text-gray-400" />
           <h3 className="text-xl font-semibold">{t("empty.noProductsFound")}</h3>
-          <p className="mt-2">{t("empty.noProductsMatch")}</p>
+          <p className="mt-2">{searchTerm ? t("empty.adjustSearch") : t("empty.addFirstProduct")}</p>
         </div>
       )}
     </div>
