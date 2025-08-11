@@ -419,7 +419,7 @@ const translations = {
     "nav.revenue": "الإيرادات",
     "nav.analytics": "التحليلات",
     "nav.categories": "التصنيفات",
-    "nav.settings": "الإعدادات",
+    "nav.settings": "الإعدا��ات",
     "nav.logout": "تسجيل الخروج",
     "nav.adminPanel": "لوحة الإدارة",
 
@@ -601,7 +601,7 @@ const translations = {
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
-    "message.orderAdded": "تم إضافة الطل�� بنجاح",
+    "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
@@ -655,13 +655,13 @@ const translations = {
     "checkout.orderSummary": "ملخص الطلب",
     "checkout.placeOrder": "تأكيد الطلب",
     "checkout.noCreditCard":
-      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
+      "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستل��م",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
-      "س��تم تجهيز الطلب خلال 1-3 أيام، وسنتواصل معك عند التوصيل",
+      "سيتم تجهيز الطلب خلال 1-3 أيام، وسنتواصل معك عند التوصيل",
     "checkout.orderSuccessMessage": "تم استلام طلبك بنجاح",
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
@@ -726,7 +726,7 @@ const translations = {
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
-    "notFound.returnHome": "العودة للصفحة الرئ��سية",
+    "notFound.returnHome": "العودة للصفحة الرئيسية",
 
     // Settings
     "settings.title": "الإعدادات",
