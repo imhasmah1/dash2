@@ -554,10 +554,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             {/* Step 2: Delivery Options */}
             {step === 2 && (
               <Card className="border-2">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text">
-                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center">
-                      <span className="font-bold">2</span>
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="flex items-center gap-2 [dir=rtl]:flex-row-reverse auto-text text-base sm:text-lg">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary text-white rounded-full flex items-center justify-center">
+                      <span className="font-bold text-xs sm:text-sm">2</span>
                     </div>
                     <span className="auto-text">{t("checkout.deliveryOptions")}</span>
                   </CardTitle>
@@ -566,10 +566,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <RadioGroup
                     value={deliveryType}
                     onValueChange={(value) => setDeliveryType(value as "delivery" | "pickup")}
-                    className="grid grid-cols-1 gap-4"
+                    className="grid grid-cols-1 gap-3 sm:gap-4"
                   >
                     <div
-                      className={`flex items-center space-x-3 [dir=rtl]:space-x-reverse p-5 border-2 rounded-xl cursor-pointer transition-all touch-manipulation ${
+                      className={`flex items-center space-x-3 [dir=rtl]:space-x-reverse p-4 sm:p-5 border-2 rounded-xl cursor-pointer transition-all touch-manipulation ${
                         deliveryType === "delivery" ? "border-primary bg-primary/5" : "hover:bg-gray-50"
                       }`}
                       onClick={() => setDeliveryType("delivery")}
@@ -577,16 +577,21 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       tabIndex={0}
                     >
                       <RadioGroupItem value="delivery" id="delivery" />
-                      <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse flex-1">
-                        <Truck className="w-6 h-6 text-primary" />
-                        <Label htmlFor="delivery" className="text-base font-medium cursor-pointer auto-text">
-                          {t("checkout.delivery")}
-                        </Label>
+                      <div className="flex items-center space-x-3 sm:space-x-4 [dir=rtl]:space-x-reverse flex-1">
+                        <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+                        <div className="flex-1">
+                          <Label htmlFor="delivery" className="text-sm sm:text-base font-medium cursor-pointer auto-text block">
+                            {t("checkout.delivery")}
+                          </Label>
+                          <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
+                            {t("checkout.deliveryDescription")}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
                     <div
-                      className={`flex items-center space-x-3 [dir=rtl]:space-x-reverse p-5 border-2 rounded-xl cursor-pointer transition-all touch-manipulation ${
+                      className={`flex items-center space-x-3 [dir=rtl]:space-x-reverse p-4 sm:p-5 border-2 rounded-xl cursor-pointer transition-all touch-manipulation ${
                         deliveryType === "pickup" ? "border-primary bg-primary/5" : "hover:bg-gray-50"
                       }`}
                       onClick={() => setDeliveryType("pickup")}
@@ -594,11 +599,16 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       tabIndex={0}
                     >
                       <RadioGroupItem value="pickup" id="pickup" />
-                      <div className="flex items-center space-x-4 [dir=rtl]:space-x-reverse flex-1">
-                        <Package className="w-6 h-6 text-primary" />
-                        <Label htmlFor="pickup" className="text-base font-medium cursor-pointer auto-text">
-                          {t("checkout.pickup")}
-                        </Label>
+                      <div className="flex items-center space-x-3 sm:space-x-4 [dir=rtl]:space-x-reverse flex-1">
+                        <Package className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+                        <div className="flex-1">
+                          <Label htmlFor="pickup" className="text-sm sm:text-base font-medium cursor-pointer auto-text block">
+                            {t("checkout.pickup")}
+                          </Label>
+                          <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
+                            {t("checkout.pickupDescription")}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </RadioGroup>
