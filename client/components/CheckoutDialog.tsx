@@ -194,14 +194,16 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <Check className="w-10 h-10 text-green-600" />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-green-600">
-                Order Confirmed!
+              <h2 className="text-2xl font-bold text-green-600 auto-text">
+                {language === "ar" ? "تم تأكيد الطلب!" : "Order Confirmed!"}
               </h2>
             </div>
 
             {/* Order Number */}
             <div className="bg-gray-50 p-4 rounded-lg text-center">
-              <p className="text-sm text-gray-600 mb-2">Order Number</p>
+              <p className="text-sm text-gray-600 mb-2 auto-text">
+                {language === "ar" ? "رقم الطلب" : "Order Number"}
+              </p>
               <Badge variant="outline" className="text-xl px-4 py-2 font-mono">
                 #{orderNumber}
               </Badge>
@@ -209,63 +211,112 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
             {/* Order Summary */}
             <div className="border-t pt-4">
-              <h3 className="font-semibold mb-3">Order Details</h3>
+              <h3 className="font-semibold mb-3 auto-text">
+                {language === "ar" ? "تفاصيل الطلب" : "Order Details"}
+              </h3>
               <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Customer:</span>
-                  <span className="font-medium">{customerInfo.name}</span>
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                  <span className="text-gray-600 auto-text">
+                    {language === "ar" ? "العميل:" : "Customer:"}
+                  </span>
+                  <span className="font-medium auto-text">{customerInfo.name}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Phone:</span>
-                  <span className="font-medium">{customerInfo.phone}</span>
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                  <span className="text-gray-600 auto-text">
+                    {language === "ar" ? "الهاتف:" : "Phone:"}
+                  </span>
+                  <span className="font-medium ltr-text">{customerInfo.phone}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Total Amount:</span>
-                  <span className="font-bold text-primary">
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                  <span className="text-gray-600 auto-text">
+                    {language === "ar" ? "المبلغ الإجمالي:" : "Total Amount:"}
+                  </span>
+                  <span className="font-bold text-primary ltr-text">
                     BD {(totalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Method:</span>
-                  <span className="font-medium capitalize">{deliveryType}</span>
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                  <span className="text-gray-600 auto-text">
+                    {language === "ar" ? "الطريقة:" : "Method:"}
+                  </span>
+                  <span className="font-medium auto-text">
+                    {deliveryType === "delivery"
+                      ? (language === "ar" ? "توصيل" : "Delivery")
+                      : (language === "ar" ? "استلام" : "Pickup")
+                    }
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Next Steps */}
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h3 className="font-semibold text-blue-900 mb-3">What's Next?</h3>
+              <h3 className="font-semibold text-blue-900 mb-3 auto-text">
+                {language === "ar" ? "ما هي الخطوات التالية؟" : "What's Next?"}
+              </h3>
               {deliveryType === "delivery" ? (
                 <div className="space-y-2 text-sm text-blue-800">
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
-                    <p>We'll process your order within 2-4 hours</p>
+                    <p className="auto-text">
+                      {language === "ar"
+                        ? "سنقوم بتجهيز طلبك خلال 2-4 ساعات"
+                        : "We'll process your order within 2-4 hours"
+                      }
+                    </p>
                   </div>
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
-                    <p>Delivery will arrive in 1-3 business days</p>
+                    <p className="auto-text">
+                      {language === "ar"
+                        ? "سيصل التوصيل خلال 1-3 أيام عمل"
+                        : "Delivery will arrive in 1-3 business days"
+                      }
+                    </p>
                   </div>
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
-                    <p>Our driver will call you upon arrival</p>
+                    <p className="auto-text">
+                      {language === "ar"
+                        ? "سيتصل بك السائق عند الوصول"
+                        : "Our driver will call you upon arrival"
+                      }
+                    </p>
                   </div>
                 </div>
               ) : (
                 <div className="space-y-3 text-sm text-blue-800">
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
-                    <p>Your order will be ready for pickup in 1 day</p>
+                    <p className="auto-text">
+                      {language === "ar"
+                        ? "سيكون طلبك جاهزاً للاستلام خلال يوم واحد"
+                        : "Your order will be ready for pickup in 1 day"
+                      }
+                    </p>
                   </div>
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
                     <div>
-                      <p className="font-semibold">Pickup Address:</p>
-                      <p className="text-blue-700">Home 1348, Road 416, Block 604, Sitra Alqarya</p>
+                      <p className="font-semibold auto-text">
+                        {language === "ar" ? "عنوان الاستلام:" : "Pickup Address:"}
+                      </p>
+                      <p className="text-blue-700 auto-text">
+                        {language === "ar"
+                          ? "منزل 1348، طريق 416، مجمع 604، سترة القرية"
+                          : "Home 1348, Road 416, Block 604, Sitra Alqarya"
+                        }
+                      </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 [dir=rtl]:flex-row-reverse">
                     <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
-                    <p>Call {phoneEl} when you arrive</p>
+                    <p className="auto-text">
+                      {language === "ar"
+                        ? `اتصل بـ ${phoneEl.props.children} عند الوصول`
+                        : `Call ${phoneEl} when you arrive`
+                      }
+                    </p>
                   </div>
                 </div>
               )}
@@ -273,15 +324,22 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
             {/* Contact Information */}
             <div className="border border-orange-200 bg-orange-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-orange-900 mb-2">Need Help?</h3>
-              <p className="text-sm text-orange-800">
-                For any changes, questions, or concerns about your order, contact us at {phoneEl}
+              <h3 className="font-semibold text-orange-900 mb-2 auto-text">
+                {language === "ar" ? "تحتاج مساعدة؟" : "Need Help?"}
+              </h3>
+              <p className="text-sm text-orange-800 auto-text">
+                {language === "ar"
+                  ? `لأي تغييرات أو أسئلة أو استفسارات حول طلبك، تواصل معنا على ${phoneEl.props.children}`
+                  : `For any changes, questions, or concerns about your order, contact us at ${phoneEl}`
+                }
               </p>
             </div>
 
             {/* Action Button */}
             <Button onClick={handleClose} className="w-full" size="lg">
-              Continue Shopping
+              <span className="auto-text">
+                {language === "ar" ? "متابعة التسوق" : "Continue Shopping"}
+              </span>
             </Button>
           </div>
         </DialogContent>
