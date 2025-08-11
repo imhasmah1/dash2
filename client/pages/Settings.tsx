@@ -458,7 +458,7 @@ export default function Settings() {
           <CardContent>
             <div className="grid grid-cols-1 gap-4">
               {days.map((day) => (
-                <div key={day.key} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
+                <div key={day.key} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors space-y-3 sm:space-y-0 touch-manipulation">
                   <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                     <div className="flex items-center gap-2">
                       <Switch
@@ -475,14 +475,14 @@ export default function Settings() {
                         type="time"
                         value={settings.businessHours[day.key as keyof typeof settings.businessHours].open}
                         onChange={(e) => handleBusinessHoursChange(day.key, "open", e.target.value)}
-                        className="w-24 ltr-text"
+                        className="w-20 sm:w-24 ltr-text text-sm h-10 touch-manipulation"
                       />
-                      <span className="text-gray-500">-</span>
+                      <span className="text-gray-500 text-sm">-</span>
                       <Input
                         type="time"
                         value={settings.businessHours[day.key as keyof typeof settings.businessHours].close}
                         onChange={(e) => handleBusinessHoursChange(day.key, "close", e.target.value)}
-                        className="w-24 ltr-text"
+                        className="w-20 sm:w-24 ltr-text text-sm h-10 touch-manipulation"
                       />
                     </div>
                   )}
