@@ -74,15 +74,22 @@ export default function Orders() {
     notes: "",
   });
 
-  const filteredOrders = orders.filter((order) => {
-    const customer = getCustomerById(order.customerId);
-    return (
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (customer &&
-        customer.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      order.status.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  });
+  const filteredOrders = orders
+    .filter((order) => {
+      const customer = getCustomerById(order.customerId);
+      return (
+        order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (customer &&
+          customer.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        order.status.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    })
+    .sort((a, b) => {
+      // Sort by creation date, newest first
+      const dateA = new Date(a.createdAt || a.created_at || "");
+      const dateB = new Date(b.createdAt || b.created_at || "");
+      return dateB.getTime() - dateA.getTime();
+    });
 
   const resetForm = () => {
     setFormData({
