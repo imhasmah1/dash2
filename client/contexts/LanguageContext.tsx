@@ -195,6 +195,7 @@ const translations = {
     "common.back": "Back",
     "common.next": "Next",
     "common.success": "Success",
+    "common.added": "Added",
 
     // Empty states
     "empty.noProductsFound": "No products found",
@@ -221,6 +222,8 @@ const translations = {
     "message.customerDeleted": "Customer deleted successfully",
     "message.error": "An error occurred",
     "message.success": "Operation completed successfully",
+    "message.customerSaveError": "Failed to save customer. Please try again.",
+    "message.productSaveError": "Failed to save product. Please try again.",
 
     // Login
     "login.title": "Admin Login",
@@ -438,7 +441,7 @@ const translations = {
     "products.actions": "الإجراءات",
     "products.edit": "تعديل",
     "products.delete": "حذف",
-    "products.noProducts": "��ا توجد منتجات",
+    "products.noProducts": "لا توجد منتجات",
     "products.addProduct": "إضافة منتج",
     "products.editProduct": "تعديل منتج",
     "products.productName": "اسم المنتج",
@@ -451,7 +454,7 @@ const translations = {
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
-    "products.dragImages": "اسحب وأفلت الصور هنا، أو انقر للاختيار",
+    "products.dragImages": "اسحب وأفلت الصور هنا�� أو انقر للاختيار",
     "products.maxImages": "الحد الأقصى 10 صور",
     "products.primaryImage": "أساسية",
     "products.uploadImages": "رفع الصور",
@@ -531,7 +534,7 @@ const translations = {
     "customers.actions": "الإجراءات",
     "customers.edit": "تعديل",
     "customers.delete": "حذف",
-    "customers.noCustomers": "لا يوجد عملاء",
+    "customers.noCustomers": "لا يوجد عملا��",
     "customers.addCustomer": "إضافة عميل",
     "customers.editCustomer": "تعديل عميل",
     "customers.customerName": "اسم العميل",
@@ -544,7 +547,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلا�� الإيرادات",
+    "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -595,7 +598,7 @@ const translations = {
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
-    "message.productDeleted": "تم حذف المنتج ��نجاح",
+    "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
@@ -624,7 +627,7 @@ const translations = {
     "store.variant": "النوع",
     "store.selectVariant": "اختر النوع",
     "store.cartEmpty": "سلتك فارغة",
-    "store.cartTotal": "إ��مالي السلة",
+    "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
     "store.continueShopping": "متابعة التسوق",
     "store.removeFromCart": "إزالة من السلة",
@@ -649,7 +652,7 @@ const translations = {
     "checkout.noCreditCard":
       "لا تحتاج بطاقة ائتمان - ادفع عند التسليم/الاستلام",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
-    "checkout.thankYou": "ش��راً لك على طلبك",
+    "checkout.thankYou": "شكراً لك على طلبك",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
     "checkout.processingMessage":
@@ -660,10 +663,10 @@ const translations = {
     "checkout.total": "المجموع الكلي",
     "checkout.orderItems": "محتويات الطلب",
     "checkout.paymentMethod": "طريقة الدفع",
-    "checkout.cashOnDelivery": "الدفع عند التسليم",
+    "checkout.cashOnDelivery": "الدفع عند ال��سليم",
     "checkout.free": "مجاني",
     "checkout.deliveryDescription": "سيتم التوصيل إلى عنوانك",
-    "checkout.pickupDescription": "الاستلام من المتجر",
+    "checkout.pickupDescription": "الاستلام من الم��جر",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
@@ -681,11 +684,11 @@ const translations = {
     "category.accessories": "الإكسسوارات",
     "category.homeOffice": "المنزل والمكتب",
     // Category dialogs
-    "categories.deleteTitle": "حذف التصن��ف",
+    "categories.deleteTitle": "حذف التصنيف",
     "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
-    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
+    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جم��ع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
@@ -700,7 +703,7 @@ const translations = {
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
     "analytics.dailyPerformance": "الأداء اليومي",
-    "analytics.orderStatusDistribution": "توزيع ��الات الطلبات",
+    "analytics.orderStatusDistribution": "توزيع حالات الطلبات",
     "analytics.deliveryMethodBreakdown": "تفصيل طرق التوصيل",
     "analytics.orders": "الطلبات",
     "analytics.revenue": "الإيرادات (د.ب)",
@@ -724,7 +727,7 @@ const translations = {
     "settings.title": "الإعدادات",
     "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
     "settings.save": "حفظ الإعدادات",
-    "settings.reset": "إعادة ��عيين",
+    "settings.reset": "إعادة تعيين",
     "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
     "settings.resetConfirm": "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
