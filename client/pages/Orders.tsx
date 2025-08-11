@@ -620,7 +620,7 @@ export default function Orders() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <CardTitle className="text-lg">
-                        {t("orders.orderId")} #{getOrderNumber(order)}
+                        {t("orders.orderId")} #{getOrderNumber(order.id)}
                       </CardTitle>
                       <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
                         <User className="w-4 h-4" />
