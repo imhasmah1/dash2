@@ -78,7 +78,7 @@ export default function AddToCartDialog({
       quantity,
       price: product.price,
       productName: product.name,
-      variantName: selectedVariant?.name || "Default",
+      variantName: selectedVariant?.name || t("common.default"),
       productImage: product.images[0] || undefined,
     });
 
