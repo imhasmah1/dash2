@@ -114,17 +114,7 @@ const Analytics = () => {
         return orderDate.toDateString() === date.toDateString();
       });
 
-<<<<<<< Updated upstream
       const dayRevenue = dayOrders.reduce((sum, order) => sum + order.total, 0);
-=======
-      // Count customers created on this day
-      const dayCustomers = customers.filter((customer) => {
-        const customerDate = new Date(
-          customer.createdAt || "",
-        );
-        return customerDate.toDateString() === date.toDateString();
-      });
->>>>>>> Stashed changes
 
       trends.push({
         date: dateStr,
