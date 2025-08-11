@@ -288,7 +288,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               {deliveryType === "delivery" ? (
                 <div className="space-y-2 text-sm text-blue-800">
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">1</div>
                     <p className="auto-text">
                       {language === "ar"
                         ? "سنقوم بتجهيز طلبك خلال 2-4 ساعات"
@@ -297,7 +297,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </p>
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">2</div>
                     <p className="auto-text">
                       {language === "ar"
                         ? "سيصل التوصيل خلال 1-3 أيام عمل"
@@ -306,7 +306,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </p>
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">3</div>
                     <p className="auto-text">
                       {language === "ar"
                         ? "سيتصل بك السائق عند الوصول"
@@ -318,7 +318,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               ) : (
                 <div className="space-y-3 text-sm text-blue-800">
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">1</div>
                     <p className="auto-text">
                       {language === "ar"
                         ? "سيكون طلبك جاهزاً للاستلام خلال يوم واحد"
@@ -327,7 +327,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </p>
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">2</div>
                     <div>
                       <p className="font-semibold auto-text">
                         {language === "ar" ? "عنوان الاستلام:" : "Pickup Address:"}
@@ -341,7 +341,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">3</div>
                     <p className="auto-text">
                       {language === "ar"
                         ? `اتصل بـ ${phoneEl.props.children} عند الوصول`
