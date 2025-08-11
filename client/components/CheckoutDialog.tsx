@@ -138,7 +138,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
       } catch {}
     } catch (error) {
       console.error("Error placing order:", error);
-      alert("Failed to place order. Please try again.");
+      alert(t("errors.orderFailed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -242,7 +242,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <span className="font-medium auto-text">
                     {deliveryType === "delivery"
                       ? (language === "ar" ? "توصيل" : "Delivery")
-                      : (language === "ar" ? "استلام" : "Pickup")
+                      : (language === "ar" ? "است��ام" : "Pickup")
                     }
                   </span>
                 </div>
