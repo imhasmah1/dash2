@@ -296,7 +296,7 @@ const Analytics = () => {
         <Card>
           <CardHeader>
             <CardTitle className="auto-text">
-              Order Status Distribution
+              {t("analytics.orderStatusDistribution")}
             </CardTitle>
           </CardHeader>
           <CardContent>
