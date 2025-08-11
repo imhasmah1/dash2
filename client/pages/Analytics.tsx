@@ -161,9 +161,9 @@ const Analytics = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="7days">Last 7 Days</SelectItem>
-              <SelectItem value="30days">Last 30 Days</SelectItem>
-              <SelectItem value="90days">Last 90 Days</SelectItem>
+              <SelectItem value="7days">{t("analytics.last7days")}</SelectItem>
+              <SelectItem value="30days">{t("analytics.last30days")}</SelectItem>
+              <SelectItem value="90days">{t("analytics.last90days")}</SelectItem>
             </SelectContent>
           </Select>
           <Button onClick={refreshData} variant="outline" size="sm">
