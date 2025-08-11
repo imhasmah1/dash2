@@ -101,7 +101,7 @@ export default function Settings() {
 
     // Order Messages
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيز�� خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
+    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
     orderInstructionsEn: "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     
@@ -439,8 +439,8 @@ export default function Settings() {
               </div>
             </div>
 
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-sm text-blue-800 auto-text">
+            <div className="p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-xs sm:text-sm text-blue-800 auto-text leading-relaxed">
                 <strong className="auto-text">{t("settings.note")}:</strong> {t("settings.orderMessageNote")}
               </p>
             </div>
