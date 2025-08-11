@@ -34,7 +34,9 @@ import {
 import {
   uploadMiddleware,
   handleImageUpload,
+  handleMultipleImageUpload,
   deleteImage,
+  getStorageInfo,
 } from "./routes/upload";
 
 export function createServer() {
