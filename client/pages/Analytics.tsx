@@ -326,7 +326,7 @@ const Analytics = () => {
       {/* Delivery Types */}
       <Card>
         <CardHeader>
-          <CardTitle className="auto-text">Delivery Method Breakdown</CardTitle>
+          <CardTitle className="auto-text">{t("analytics.deliveryMethodBreakdown")}</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
