@@ -161,7 +161,7 @@ export default function Products() {
       const errorMessage =
         error instanceof Error
           ? error.message
-          : "Failed to save product. Please try again.";
+          : t("message.productSaveError");
       showAlert({
         title: t("message.error"),
         message: errorMessage,
