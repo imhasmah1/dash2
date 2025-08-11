@@ -311,7 +311,7 @@ export default function Orders() {
                 {t("orders.addNew")}
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="w-[95vw] sm:max-w-4xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
               <DialogHeader>
                 <DialogTitle>
                   {editingOrder ? t("orders.editOrder") : t("orders.addOrder")}
