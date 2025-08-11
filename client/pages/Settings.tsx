@@ -686,6 +686,32 @@ export default function Settings() {
                     className="ltr-text h-10 touch-manipulation"
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="deliveryConcerns" className="auto-text">
+                    {t("settings.deliveryConcerns")}
+                  </Label>
+                  <Input
+                    id="deliveryConcerns"
+                    type="number"
+                    value={settings.deliveryConcerns}
+                    onChange={(e) => handleInputChange("deliveryConcerns", parseInt(e.target.value))}
+                    className="ltr-text h-10 touch-manipulation"
+                    placeholder="24"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="pickupOrderConfig" className="auto-text">
+                    {t("settings.pickupOrderConfig")}
+                  </Label>
+                  <Input
+                    id="pickupOrderConfig"
+                    type="number"
+                    value={settings.pickupOrderConfig}
+                    onChange={(e) => handleInputChange("pickupOrderConfig", parseInt(e.target.value))}
+                    className="ltr-text h-10 touch-manipulation"
+                    placeholder="48"
+                  />
+                </div>
               </div>
             </div>
             <div className="space-y-2">
