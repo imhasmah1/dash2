@@ -208,24 +208,37 @@ export default function ProductDetail() {
           <div className="space-y-4">
             {/* Main Image */}
             <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
-              {product.images.length > 0 ? (
-                <img
-                  src={product.images[selectedImageIndex]}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <span>{t("products.noImages")}</span>
-                </div>
-              )}
+              {(() => {
+                // Create combined image array with product images and variant images
+                const allImages = [
+                  ...product.images,
+                  ...product.variants.filter((v) => v.image).map((v) => v.image as string)
+                ];
+
+                return allImages.length > 0 ? (
+                  <img
+                    src={allImages[selectedImageIndex] || product.images[0]}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    <span>{t("products.noImages")}</span>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Image Thumbnails incl. variant images */}
-            {(product.images.length > 1 || product.variants.some((v) => v.image)) && (
-              <div className="grid grid-cols-4 gap-2">
-                {[...product.images, ...product.variants.filter((v) => v.image).map((v) => v.image as string)].map(
-                  (image, index) => (
+            {(() => {
+              const allImages = [
+                ...product.images,
+                ...product.variants.filter((v) => v.image).map((v) => v.image as string)
+              ];
+
+              return (allImages.length > 1) && (
+                <div className="grid grid-cols-4 gap-2">
+                  {allImages.map((image, index) => (
                     <button
                       key={`${image}-${index}`}
                       onClick={() => setSelectedImageIndex(index)}
@@ -241,10 +254,10 @@ export default function ProductDetail() {
                         className="w-full h-full object-cover"
                       />
                     </button>
-                  ),
-                )}
-              </div>
-            )}
+                  ))}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Product Information */}
