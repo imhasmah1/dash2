@@ -62,6 +62,7 @@ export default function ProductDetail() {
   const [product, setProduct] = useState<DataContextProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
 
   const cartItemsCount = getTotalItems();
