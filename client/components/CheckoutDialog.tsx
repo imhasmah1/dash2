@@ -33,23 +33,31 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   // Get custom order messages from settings
   const getOrderMessages = () => {
-    const savedSettings = localStorage.getItem('storeSettings');
+    const savedSettings = localStorage.getItem("storeSettings");
     if (savedSettings) {
       const settings = JSON.parse(savedSettings);
       return {
-        successMessage: language === "ar" ? settings.orderSuccessMessageAr : settings.orderSuccessMessageEn,
-        instructions: language === "ar" ? settings.orderInstructionsAr : settings.orderInstructionsEn,
+        successMessage:
+          language === "ar"
+            ? settings.orderSuccessMessageAr
+            : settings.orderSuccessMessageEn,
+        instructions:
+          language === "ar"
+            ? settings.orderInstructionsAr
+            : settings.orderInstructionsEn,
       };
     }
 
     // Default messages if no custom settings
     return {
-      successMessage: language === "ar"
-        ? "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل."
-        : "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-      instructions: language === "ar"
-        ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا."
-        : "For any changes or questions about your order, please contact us."
+      successMessage:
+        language === "ar"
+          ? "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل."
+          : "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
+      instructions:
+        language === "ar"
+          ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا."
+          : "For any changes or questions about your order, please contact us.",
     };
   };
 
@@ -220,7 +228,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   // Success State
   if (orderSuccess) {
     const phoneEl = (
-      <a href="tel:+97336283382" className="font-bold text-primary hover:underline">+973 36283382</a>
+      <a
+        href="tel:+97336283382"
+        className="font-bold text-primary hover:underline"
+      >
+        +973 36283382
+      </a>
     );
 
     return (
@@ -228,234 +241,273 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         <DialogContent className="w-[95vw] sm:max-w-lg max-h-[85vh] p-0 rounded-lg flex flex-col">
           <ScrollArea className="flex-1 min-h-0 max-h-[75vh]">
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 pb-8">
-            {/* Success Icon & Title */}
-            <div className="text-center space-y-3">
-              <div className="flex justify-center">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
-                  <Check className="w-10 h-10 text-green-600" />
+              {/* Success Icon & Title */}
+              <div className="text-center space-y-3">
+                <div className="flex justify-center">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+                    <Check className="w-10 h-10 text-green-600" />
+                  </div>
+                </div>
+                <h2 className="text-2xl font-bold text-green-600 auto-text">
+                  {language === "ar" ? "تم تأكيد الطلب!" : "Order Confirmed!"}
+                </h2>
+              </div>
+
+              {/* Order Number */}
+              <div className="bg-gray-50 p-4 rounded-lg text-center">
+                <p className="text-sm text-gray-600 mb-2 auto-text">
+                  {language === "ar" ? "رقم الطلب" : "Order Number"}
+                </p>
+                <Badge
+                  variant="outline"
+                  className="text-xl px-4 py-2 font-mono"
+                >
+                  #{orderNumber}
+                </Badge>
+              </div>
+
+              {/* Order Summary */}
+              <div className="border-t pt-4">
+                <h3 className="font-semibold mb-3 auto-text">
+                  {language === "ar" ? "تفاصيل الطلب" : "Order Details"}
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                    <span className="text-gray-600 auto-text">
+                      {language === "ar" ? "العميل:" : "Customer:"}
+                    </span>
+                    <span className="font-medium auto-text">
+                      {customerInfo.name}
+                    </span>
+                  </div>
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                    <span className="text-gray-600 auto-text">
+                      {language === "ar" ? "الهاتف:" : "Phone:"}
+                    </span>
+                    <span className="font-medium ltr-text">
+                      {customerInfo.phone}
+                    </span>
+                  </div>
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                    <span className="text-gray-600 auto-text">
+                      {language === "ar" ? "المبلغ الإجمالي:" : "Total Amount:"}
+                    </span>
+                    <span className="font-bold text-primary ltr-text">
+                      BD{" "}
+                      {(
+                        orderTotalPrice +
+                        (deliveryType === "delivery" ? 1.5 : 0)
+                      ).toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                    <span className="text-gray-600 auto-text">
+                      {language === "ar" ? "الطريقة:" : "Method:"}
+                    </span>
+                    <span className="font-medium auto-text">
+                      {deliveryType === "delivery"
+                        ? language === "ar"
+                          ? "توصيل"
+                          : "Delivery"
+                        : language === "ar"
+                          ? "استلام"
+                          : "Pickup"}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-green-600 auto-text">
-                {language === "ar" ? "تم تأكيد الطلب!" : "Order Confirmed!"}
-              </h2>
-            </div>
 
-            {/* Order Number */}
-            <div className="bg-gray-50 p-4 rounded-lg text-center">
-              <p className="text-sm text-gray-600 mb-2 auto-text">
-                {language === "ar" ? "رقم الطلب" : "Order Number"}
-              </p>
-              <Badge variant="outline" className="text-xl px-4 py-2 font-mono">
-                #{orderNumber}
-              </Badge>
-            </div>
-
-            {/* Order Summary */}
-            <div className="border-t pt-4">
-              <h3 className="font-semibold mb-3 auto-text">
-                {language === "ar" ? "تفاصيل الطلب" : "Order Details"}
-              </h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
-                  <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "العميل:" : "Customer:"}
-                  </span>
-                  <span className="font-medium auto-text">{customerInfo.name}</span>
-                </div>
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
-                  <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "الهاتف:" : "Phone:"}
-                  </span>
-                  <span className="font-medium ltr-text">{customerInfo.phone}</span>
-                </div>
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
-                  <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "المبلغ الإجمالي:" : "Total Amount:"}
-                  </span>
-                  <span className="font-bold text-primary ltr-text">
-                    BD {(orderTotalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
-                  <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "الطريقة:" : "Method:"}
-                  </span>
-                  <span className="font-medium auto-text">
-                    {deliveryType === "delivery"
-                      ? (language === "ar" ? "توصيل" : "Delivery")
-                      : (language === "ar" ? "استلام" : "Pickup")
-                    }
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Order Items */}
-            <div className="border-t pt-4">
-              <h3 className="font-semibold mb-3 auto-text">
-                {language === "ar" ? "محتويات الطلب:" : "Order Items:"}
-              </h3>
-              <div className="space-y-2">
-                {orderItems.map((item, index) => (
-                  <div key={`${item.productId}-${item.variantId}-${index}`} className="flex justify-between items-center p-2 bg-gray-50 rounded [dir=rtl]:flex-row-reverse">
-                    <div className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
-                      {item.image && (
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-10 h-10 object-cover rounded"
-                        />
-                      )}
-                      <div className="[dir=rtl]:text-right">
-                        <p className="font-medium text-sm auto-text">{item.name}</p>
-                        {item.variantName && (
-                          <p className="text-xs text-gray-600 auto-text">
-                            {language === "ar" ? "النوع:" : "Variant:"} {item.variantName}
-                          </p>
+              {/* Order Items */}
+              <div className="border-t pt-4">
+                <h3 className="font-semibold mb-3 auto-text">
+                  {language === "ar" ? "محتويات الطلب:" : "Order Items:"}
+                </h3>
+                <div className="space-y-2">
+                  {orderItems.map((item, index) => (
+                    <div
+                      key={`${item.productId}-${item.variantId}-${index}`}
+                      className="flex justify-between items-center p-2 bg-gray-50 rounded [dir=rtl]:flex-row-reverse"
+                    >
+                      <div className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                        {item.image && (
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-10 h-10 object-cover rounded"
+                          />
                         )}
+                        <div className="[dir=rtl]:text-right">
+                          <p className="font-medium text-sm auto-text">
+                            {item.name}
+                          </p>
+                          {item.variantName && (
+                            <p className="text-xs text-gray-600 auto-text">
+                              {language === "ar" ? "النوع:" : "Variant:"}{" "}
+                              {item.variantName}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="text-right [dir=rtl]:text-left">
+                        <p className="text-sm font-medium ltr-text">
+                          {item.quantity} × BD {item.price.toFixed(2)}
+                        </p>
+                        <p className="text-xs text-gray-600 ltr-text">
+                          BD {(item.quantity * item.price).toFixed(2)}
+                        </p>
                       </div>
                     </div>
-                    <div className="text-right [dir=rtl]:text-left">
-                      <p className="text-sm font-medium ltr-text">
-                        {item.quantity} × BD {item.price.toFixed(2)}
-                      </p>
-                      <p className="text-xs text-gray-600 ltr-text">
-                        BD {(item.quantity * item.price).toFixed(2)}
-                      </p>
-                    </div>
+                  ))}
+                </div>
+
+                {/* Order Subtotal */}
+                <div className="border-t pt-3 mt-3 space-y-2">
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                    <span className="text-gray-600 auto-text">
+                      {language === "ar" ? "المجموع الفرعي:" : "Subtotal:"}
+                    </span>
+                    <span className="font-medium ltr-text">
+                      BD {orderTotalPrice.toFixed(2)}
+                    </span>
                   </div>
-                ))}
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                    <span className="text-gray-600 auto-text">
+                      {language === "ar" ? "رسوم التوصيل:" : "Delivery Fee:"}
+                    </span>
+                    <span className="font-medium ltr-text">
+                      {deliveryType === "delivery"
+                        ? "BD 1.50"
+                        : language === "ar"
+                          ? "مجاني"
+                          : "Free"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between [dir=rtl]:flex-row-reverse border-t pt-2">
+                    <span className="font-bold auto-text">
+                      {language === "ar" ? "المجموع الكلي:" : "Total:"}
+                    </span>
+                    <span className="font-bold text-primary ltr-text">
+                      BD{" "}
+                      {(
+                        orderTotalPrice +
+                        (deliveryType === "delivery" ? 1.5 : 0)
+                      ).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              {/* Order Subtotal */}
-              <div className="border-t pt-3 mt-3 space-y-2">
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
-                  <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "المجموع الفرعي:" : "Subtotal:"}
-                  </span>
-                  <span className="font-medium ltr-text">BD {orderTotalPrice.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
-                  <span className="text-gray-600 auto-text">
-                    {language === "ar" ? "رسوم التوصيل:" : "Delivery Fee:"}
-                  </span>
-                  <span className="font-medium ltr-text">
-                    {deliveryType === "delivery" ? "BD 1.50" : language === "ar" ? "مجاني" : "Free"}
-                  </span>
-                </div>
-                <div className="flex justify-between [dir=rtl]:flex-row-reverse border-t pt-2">
-                  <span className="font-bold auto-text">
-                    {language === "ar" ? "المجموع الكلي:" : "Total:"}
-                  </span>
-                  <span className="font-bold text-primary ltr-text">
-                    BD {(orderTotalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
-                  </span>
-                </div>
+              {/* Custom Success Message */}
+              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <p className="text-green-800 auto-text leading-relaxed">
+                  {getOrderMessages().successMessage}
+                </p>
               </div>
-            </div>
 
-            {/* Custom Success Message */}
-            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-              <p className="text-green-800 auto-text leading-relaxed">
-                {getOrderMessages().successMessage}
-              </p>
-            </div>
-
-            {/* Next Steps */}
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h3 className="font-semibold text-blue-900 mb-3 auto-text">
-                {language === "ar" ? "ما هي الخطوات التالية؟" : "What's Next?"}
-              </h3>
-              {deliveryType === "delivery" ? (
-                <div className="space-y-2 text-sm text-blue-800">
-                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">1</div>
-                    <p className="auto-text flex-1">
-                      {language === "ar"
-                        ? "سنقوم بتجهيز طلبك خلال 2-4 ساعات"
-                        : "We'll process your order within 2-4 hours"
-                      }
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">2</div>
-                    <p className="auto-text flex-1">
-                      {language === "ar"
-                        ? "سيصل التوصيل خلال 1-3 أيام عمل"
-                        : "Delivery will arrive in 1-3 business days"
-                      }
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">3</div>
-                    <p className="auto-text flex-1">
-                      {language === "ar"
-                        ? "سيتصل بك السائق عند الوصول"
-                        : "Our driver will call you upon arrival"
-                      }
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-3 text-sm text-blue-800">
-                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">1</div>
-                    <p className="auto-text flex-1">
-                      {language === "ar"
-                        ? "سيكون طلبك جاهزاً للاستلام خلال يوم واحد"
-                        : "Your order will be ready for pickup in 1 day"
-                      }
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">2</div>
-                    <div>
-                      <p className="font-semibold auto-text">
-                        {language === "ar" ? "عنوان الاستلام:" : "Pickup Address:"}
-                      </p>
-                      <p className="text-blue-700 auto-text">
+              {/* Next Steps */}
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h3 className="font-semibold text-blue-900 mb-3 auto-text">
+                  {language === "ar"
+                    ? "ما هي الخطوات التالية؟"
+                    : "What's Next?"}
+                </h3>
+                {deliveryType === "delivery" ? (
+                  <div className="space-y-2 text-sm text-blue-800">
+                    <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
+                      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
+                        1
+                      </div>
+                      <p className="auto-text flex-1">
                         {language === "ar"
-                          ? "منزل 1348، طريق 416، مجمع 604، سترة القرية"
-                          : "Home 1348, Road 416, Block 604, Sitra Alqarya"
-                        }
+                          ? "سنقوم بتجهيز طلبك خلال 2-4 ساعات"
+                          : "We'll process your order within 2-4 hours"}
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
+                      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
+                        2
+                      </div>
+                      <p className="auto-text flex-1">
+                        {language === "ar"
+                          ? "سيصل التوصيل خلال 1-3 أيام عمل"
+                          : "Delivery will arrive in 1-3 business days"}
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
+                      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
+                        3
+                      </div>
+                      <p className="auto-text flex-1">
+                        {language === "ar"
+                          ? "سيتصل بك السائق عند الوصول"
+                          : "Our driver will call you upon arrival"}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
-                    <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">3</div>
-                    <p className="auto-text flex-1">
-                      {language === "ar"
-                        ? `اتصل بـ ${phoneEl.props.children} عند الوصول`
-                        : `Call ${phoneEl} when you arrive`
-                      }
-                    </p>
+                ) : (
+                  <div className="space-y-3 text-sm text-blue-800">
+                    <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
+                      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
+                        1
+                      </div>
+                      <p className="auto-text flex-1">
+                        {language === "ar"
+                          ? "سيكون طلبك جاهزاً للاستلام خلال يوم واحد"
+                          : "Your order will be ready for pickup in 1 day"}
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
+                      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
+                        2
+                      </div>
+                      <div>
+                        <p className="font-semibold auto-text">
+                          {language === "ar"
+                            ? "عنوان الاستلام:"
+                            : "Pickup Address:"}
+                        </p>
+                        <p className="text-blue-700 auto-text">
+                          {language === "ar"
+                            ? "منزل 1348، طريق 416، مجمع 604، سترة القرية"
+                            : "Home 1348, Road 416, Block 604, Sitra Alqarya"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse [dir=rtl]:text-right">
+                      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
+                        3
+                      </div>
+                      <p className="auto-text flex-1">
+                        {language === "ar"
+                          ? `اتصل بـ ${phoneEl.props.children} عند الوصول`
+                          : `Call ${phoneEl} when you arrive`}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            {/* Contact Information */}
-            <div className="border border-orange-200 bg-orange-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-orange-900 mb-2 auto-text [dir=rtl]:text-right">
-                {language === "ar" ? "تحتاج مساعدة؟" : "Need Help?"}
-              </h3>
-              <p className="text-sm text-orange-800 auto-text mb-2 [dir=rtl]:text-right">
-                {getOrderMessages().instructions}
-              </p>
-              <p className="text-sm text-orange-700 auto-text [dir=rtl]:text-right">
-                {language === "ar"
-                  ? `تواصل معنا على ${phoneEl.props.children}`
-                  : `Contact us at ${phoneEl}`
-                }
-              </p>
-            </div>
+              {/* Contact Information */}
+              <div className="border border-orange-200 bg-orange-50 p-4 rounded-lg">
+                <h3 className="font-semibold text-orange-900 mb-2 auto-text [dir=rtl]:text-right">
+                  {language === "ar" ? "تحتاج مساعدة؟" : "Need Help?"}
+                </h3>
+                <p className="text-sm text-orange-800 auto-text mb-2 [dir=rtl]:text-right">
+                  {getOrderMessages().instructions}
+                </p>
+                <p className="text-sm text-orange-700 auto-text [dir=rtl]:text-right">
+                  {language === "ar"
+                    ? `تواصل معنا على ${phoneEl.props.children}`
+                    : `Contact us at ${phoneEl}`}
+                </p>
+              </div>
 
-            {/* Action Button */}
-            <Button onClick={handleClose} className="w-full" size="lg">
-              <span className="auto-text">
-                {language === "ar" ? "متابعة التسوق" : "Continue Shopping"}
-              </span>
-            </Button>
+              {/* Action Button */}
+              <Button onClick={handleClose} className="w-full" size="lg">
+                <span className="auto-text">
+                  {language === "ar" ? "متابعة التسوق" : "Continue Shopping"}
+                </span>
+              </Button>
             </div>
           </ScrollArea>
         </DialogContent>
@@ -518,7 +570,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 <CardContent className="space-y-3 sm:space-y-4">
                   <div className="grid grid-cols-1 gap-3 sm:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="block auto-text text-sm sm:text-base">
+                      <Label
+                        htmlFor="name"
+                        className="block auto-text text-sm sm:text-base"
+                      >
                         {t("checkout.customerName")}
                       </Label>
                       <Input
@@ -534,7 +589,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="block auto-text text-sm sm:text-base">
+                      <Label
+                        htmlFor="phone"
+                        className="block auto-text text-sm sm:text-base"
+                      >
                         {t("checkout.customerPhone")}
                       </Label>
                       <Input
@@ -643,18 +701,24 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary text-white rounded-full flex items-center justify-center">
                       <span className="font-bold text-xs sm:text-sm">2</span>
                     </div>
-                    <span className="auto-text">{t("checkout.deliveryOptions")}</span>
+                    <span className="auto-text">
+                      {t("checkout.deliveryOptions")}
+                    </span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <RadioGroup
                     value={deliveryType}
-                    onValueChange={(value) => setDeliveryType(value as "delivery" | "pickup")}
+                    onValueChange={(value) =>
+                      setDeliveryType(value as "delivery" | "pickup")
+                    }
                     className="grid grid-cols-1 gap-3 sm:gap-4"
                   >
                     <div
                       className={`flex items-center space-x-3 [dir=rtl]:space-x-reverse p-4 sm:p-5 border-2 rounded-xl cursor-pointer transition-all touch-manipulation ${
-                        deliveryType === "delivery" ? "border-primary bg-primary/5" : "hover:bg-gray-50"
+                        deliveryType === "delivery"
+                          ? "border-primary bg-primary/5"
+                          : "hover:bg-gray-50"
                       }`}
                       onClick={() => setDeliveryType("delivery")}
                       role="button"
@@ -664,7 +728,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="flex items-center space-x-3 sm:space-x-4 [dir=rtl]:space-x-reverse flex-1">
                         <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
                         <div className="flex-1">
-                          <Label htmlFor="delivery" className="text-sm sm:text-base font-medium cursor-pointer auto-text block">
+                          <Label
+                            htmlFor="delivery"
+                            className="text-sm sm:text-base font-medium cursor-pointer auto-text block"
+                          >
                             {t("checkout.delivery")}
                           </Label>
                           <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
@@ -676,7 +743,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
                     <div
                       className={`flex items-center space-x-3 [dir=rtl]:space-x-reverse p-4 sm:p-5 border-2 rounded-xl cursor-pointer transition-all touch-manipulation ${
-                        deliveryType === "pickup" ? "border-primary bg-primary/5" : "hover:bg-gray-50"
+                        deliveryType === "pickup"
+                          ? "border-primary bg-primary/5"
+                          : "hover:bg-gray-50"
                       }`}
                       onClick={() => setDeliveryType("pickup")}
                       role="button"
@@ -686,7 +755,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="flex items-center space-x-3 sm:space-x-4 [dir=rtl]:space-x-reverse flex-1">
                         <Package className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
                         <div className="flex-1">
-                          <Label htmlFor="pickup" className="text-sm sm:text-base font-medium cursor-pointer auto-text block">
+                          <Label
+                            htmlFor="pickup"
+                            className="text-sm sm:text-base font-medium cursor-pointer auto-text block"
+                          >
                             {t("checkout.pickup")}
                           </Label>
                           <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
@@ -741,24 +813,29 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           {t("checkout.customerAddress")}:
                         </span>
                         <span className="font-medium auto-text text-end min-w-0 flex-1 leading-relaxed">
-                          {language === "ar" ?
-                            [
-                              customerInfo.town,
-                              customerInfo.block && `مجمع ${customerInfo.block}`,
-                              customerInfo.road && `طريق ${customerInfo.road}`,
-                              customerInfo.home && `منزل ${customerInfo.home}`,
-                            ]
-                              .filter(Boolean)
-                              .join("، ") :
-                            [
-                              customerInfo.home && `House ${customerInfo.home}`,
-                              customerInfo.road && `Road ${customerInfo.road}`,
-                              customerInfo.block && `Block ${customerInfo.block}`,
-                              customerInfo.town,
-                            ]
-                              .filter(Boolean)
-                              .join(", ")
-                          }
+                          {language === "ar"
+                            ? [
+                                customerInfo.town,
+                                customerInfo.block &&
+                                  `مجمع ${customerInfo.block}`,
+                                customerInfo.road &&
+                                  `طريق ${customerInfo.road}`,
+                                customerInfo.home &&
+                                  `منزل ${customerInfo.home}`,
+                              ]
+                                .filter(Boolean)
+                                .join("، ")
+                            : [
+                                customerInfo.home &&
+                                  `House ${customerInfo.home}`,
+                                customerInfo.road &&
+                                  `Road ${customerInfo.road}`,
+                                customerInfo.block &&
+                                  `Block ${customerInfo.block}`,
+                                customerInfo.town,
+                              ]
+                                .filter(Boolean)
+                                .join(", ")}
                         </span>
                       </div>
                     </div>
@@ -780,7 +857,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                               {item.productName}
                             </p>
                             <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
-                              {item.variantName} × <span className="ltr-text">{item.quantity}</span>
+                              {item.variantName} ×{" "}
+                              <span className="ltr-text">{item.quantity}</span>
                             </p>
                           </div>
                           <div className="text-end auto-text min-w-0">
@@ -798,18 +876,31 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   {/* Total Calculation */}
                   <div className="space-y-3 bg-gray-50 p-3 sm:p-4 rounded-lg">
                     <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-600 text-sm sm:text-base">{t("checkout.subtotal")}:</span>
-                      <span className="ltr-text font-medium text-sm sm:text-base">BD {totalPrice.toFixed(2)}</span>
+                      <span className="auto-text text-gray-600 text-sm sm:text-base">
+                        {t("checkout.subtotal")}:
+                      </span>
+                      <span className="ltr-text font-medium text-sm sm:text-base">
+                        BD {totalPrice.toFixed(2)}
+                      </span>
                     </div>
                     <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-600 text-sm sm:text-base">{t("checkout.deliveryFee")}:</span>
-                      <span className="ltr-text font-medium text-sm sm:text-base">{deliveryType === "delivery" ? "BD 1.50" : "BD 0.00"}</span>
+                      <span className="auto-text text-gray-600 text-sm sm:text-base">
+                        {t("checkout.deliveryFee")}:
+                      </span>
+                      <span className="ltr-text font-medium text-sm sm:text-base">
+                        {deliveryType === "delivery" ? "BD 1.50" : "BD 0.00"}
+                      </span>
                     </div>
                     <Separator className="my-2 sm:my-3" />
                     <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center pt-2">
-                      <span className="text-base sm:text-lg font-bold auto-text">{t("checkout.total")}:</span>
+                      <span className="text-base sm:text-lg font-bold auto-text">
+                        {t("checkout.total")}:
+                      </span>
                       <span className="text-lg sm:text-xl font-bold text-primary ltr-text">
-                        BD {(totalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
+                        BD{" "}
+                        {(
+                          totalPrice + (deliveryType === "delivery" ? 1.5 : 0)
+                        ).toFixed(2)}
                       </span>
                     </div>
                   </div>

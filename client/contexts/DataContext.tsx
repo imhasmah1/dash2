@@ -373,7 +373,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
       return dateA.getTime() - dateB.getTime();
     });
 
-    const orderIndex = allOrdersSorted.findIndex(o => o.id === orderId);
+    const orderIndex = allOrdersSorted.findIndex((o) => o.id === orderId);
     return orderIndex >= 0 ? orderIndex + 1 : 0; // Start from #1, return 0 if not found
   };
 

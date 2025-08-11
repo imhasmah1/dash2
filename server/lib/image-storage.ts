@@ -9,7 +9,7 @@ const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const generateFileName = (originalName: string): string => {
   const timestamp = Date.now();
   const randomStr = Math.random().toString(36).substring(2, 8);
-  const extension = originalName.split('.').pop()?.toLowerCase() || 'jpg';
+  const extension = originalName.split(".").pop()?.toLowerCase() || "jpg";
   return `${timestamp}-${randomStr}.${extension}`;
 };
 
@@ -18,17 +18,17 @@ const validateFile = (file: File): { valid: boolean; error?: string } => {
   if (!ALLOWED_TYPES.includes(file.type)) {
     return {
       valid: false,
-      error: `Invalid file type. Allowed types: ${ALLOWED_TYPES.join(', ')}`
+      error: `Invalid file type. Allowed types: ${ALLOWED_TYPES.join(", ")}`,
     };
   }
-  
+
   if (file.size > MAX_FILE_SIZE) {
     return {
       valid: false,
-      error: `File too large. Maximum size: ${MAX_FILE_SIZE / (1024 * 1024)}MB`
+      error: `File too large. Maximum size: ${MAX_FILE_SIZE / (1024 * 1024)}MB`,
     };
   }
-  
+
   return { valid: true };
 };
 
@@ -56,7 +56,7 @@ export const imageStorage = {
     if (!supabase) {
       return {
         success: false,
-        error: "Supabase not configured. Image upload not available."
+        error: "Supabase not configured. Image upload not available.",
       };
     }
 
@@ -66,7 +66,7 @@ export const imageStorage = {
       if (!validation.valid) {
         return {
           success: false,
-          error: validation.error
+          error: validation.error,
         };
       }
 
@@ -78,15 +78,15 @@ export const imageStorage = {
       const { data, error } = await supabase.storage
         .from(STORAGE_BUCKET)
         .upload(filePath, file, {
-          cacheControl: '3600',
-          upsert: false
+          cacheControl: "3600",
+          upsert: false,
         });
 
       if (error) {
         console.error("Supabase storage upload error:", error);
         return {
           success: false,
-          error: `Upload failed: ${error.message}`
+          error: `Upload failed: ${error.message}`,
         };
       }
 
@@ -98,13 +98,13 @@ export const imageStorage = {
       return {
         success: true,
         url: urlData.publicUrl,
-        fileName: filePath
+        fileName: filePath,
       };
     } catch (error) {
       console.error("Image upload error:", error);
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Unknown upload error"
+        error: error instanceof Error ? error.message : "Unknown upload error",
       };
     }
   },
@@ -115,8 +115,11 @@ export const imageStorage = {
    * @param folder - Optional folder path
    * @returns Promise with array of upload results
    */
-  async uploadMultipleImages(files: File[], folder?: string): Promise<ImageUploadResult[]> {
-    const uploadPromises = files.map(file => this.uploadImage(file, folder));
+  async uploadMultipleImages(
+    files: File[],
+    folder?: string,
+  ): Promise<ImageUploadResult[]> {
+    const uploadPromises = files.map((file) => this.uploadImage(file, folder));
     return Promise.all(uploadPromises);
   },
 
@@ -129,7 +132,7 @@ export const imageStorage = {
     if (!supabase) {
       return {
         success: false,
-        error: "Supabase not configured. Image deletion not available."
+        error: "Supabase not configured. Image deletion not available.",
       };
     }
 
@@ -142,7 +145,7 @@ export const imageStorage = {
         console.error("Supabase storage delete error:", error);
         return {
           success: false,
-          error: `Delete failed: ${error.message}`
+          error: `Delete failed: ${error.message}`,
         };
       }
 
@@ -151,7 +154,7 @@ export const imageStorage = {
       console.error("Image delete error:", error);
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Unknown delete error"
+        error: error instanceof Error ? error.message : "Unknown delete error",
       };
     }
   },
@@ -165,7 +168,7 @@ export const imageStorage = {
     if (!supabase) {
       return {
         success: false,
-        error: "Supabase not configured. Image deletion not available."
+        error: "Supabase not configured. Image deletion not available.",
       };
     }
 
@@ -178,7 +181,7 @@ export const imageStorage = {
         console.error("Supabase storage delete error:", error);
         return {
           success: false,
-          error: `Delete failed: ${error.message}`
+          error: `Delete failed: ${error.message}`,
         };
       }
 
@@ -187,7 +190,7 @@ export const imageStorage = {
       console.error("Image delete error:", error);
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Unknown delete error"
+        error: error instanceof Error ? error.message : "Unknown delete error",
       };
     }
   },
@@ -220,7 +223,7 @@ export const imageStorage = {
    */
   isAvailable(): boolean {
     return !!supabase;
-  }
+  },
 };
 
 // Export bucket name for use in other modules

@@ -29,26 +29,26 @@ export const createOrder: RequestHandler = async (req, res) => {
       const product = await productDb.getById(item.productId);
       if (!product) {
         return res.status(400).json({
-          error: `Product ${item.productId} not found`
+          error: `Product ${item.productId} not found`,
         });
       }
 
       if (item.variantId && item.variantId !== "no-variant") {
-        const variant = product.variants.find(v => v.id === item.variantId);
+        const variant = product.variants.find((v) => v.id === item.variantId);
         if (!variant) {
           return res.status(400).json({
-            error: `Variant ${item.variantId} not found for product ${product.name}`
+            error: `Variant ${item.variantId} not found for product ${product.name}`,
           });
         }
         if (variant.stock < item.quantity) {
           return res.status(400).json({
-            error: `Insufficient stock for ${product.name} (${variant.name}). Available: ${variant.stock}, Requested: ${item.quantity}`
+            error: `Insufficient stock for ${product.name} (${variant.name}). Available: ${variant.stock}, Requested: ${item.quantity}`,
           });
         }
       } else {
         if ((product.total_stock || 0) < item.quantity) {
           return res.status(400).json({
-            error: `Insufficient stock for ${product.name}. Available: ${product.total_stock || 0}, Requested: ${item.quantity}`
+            error: `Insufficient stock for ${product.name}. Available: ${product.total_stock || 0}, Requested: ${item.quantity}`,
           });
         }
       }
@@ -79,7 +79,7 @@ export const createOrder: RequestHandler = async (req, res) => {
       if (product) {
         if (item.variantId && item.variantId !== "no-variant") {
           // Update variant stock
-          const updatedVariants = product.variants.map(variant => {
+          const updatedVariants = product.variants.map((variant) => {
             if (variant.id === item.variantId) {
               return { ...variant, stock: variant.stock - item.quantity };
             }
@@ -87,23 +87,29 @@ export const createOrder: RequestHandler = async (req, res) => {
           });
 
           // Recalculate total stock
-          const newTotalStock = updatedVariants.reduce((sum, v) => sum + v.stock, 0);
+          const newTotalStock = updatedVariants.reduce(
+            (sum, v) => sum + v.stock,
+            0,
+          );
 
           await productDb.update(product.id, {
             variants: updatedVariants,
-            total_stock: newTotalStock
+            total_stock: newTotalStock,
           });
         } else {
           // Update total stock directly
           const newTotalStock = (product.total_stock || 0) - item.quantity;
           await productDb.update(product.id, {
-            total_stock: Math.max(0, newTotalStock)
+            total_stock: Math.max(0, newTotalStock),
           });
         }
       }
     }
 
-    console.log("Order created successfully with stock reduction:", newOrder.id);
+    console.log(
+      "Order created successfully with stock reduction:",
+      newOrder.id,
+    );
     res.status(201).json(newOrder);
   } catch (error) {
     console.error("Error creating order:", error);

@@ -765,7 +765,8 @@ export default function Orders() {
         <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
           <DialogHeader>
             <DialogTitle>
-              {t("orders.orderDetailsTitle")} #{viewingOrder ? getOrderNumber(viewingOrder.id) : ''}
+              {t("orders.orderDetailsTitle")} #
+              {viewingOrder ? getOrderNumber(viewingOrder.id) : ""}
             </DialogTitle>
             <DialogDescription>
               {t("orders.orderDetailsDesc")}

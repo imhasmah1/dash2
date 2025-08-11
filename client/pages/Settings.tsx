@@ -97,18 +97,21 @@ export default function Settings() {
     storeDescription: "متجر أزهار للأجهزة الإل��ترونية والإكسسوارات",
     currency: "BHD",
     currencySymbol: "BD",
-    
+
     // Contact Information
     contactPhone: "+973 36283382",
     contactEmail: "info@azharstore.com",
     contactAddress: "منزل 1348، طريق 416، مجمع 604، سترة القرية، البحرين",
 
     // Order Messages
-    orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
-    orderInstructionsEn: "For any changes or questions about your order, please contact us.",
+    orderSuccessMessageEn:
+      "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
+    orderSuccessMessageAr:
+      "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
+    orderInstructionsEn:
+      "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
-    
+
     // Business Hours
     businessHours: {
       monday: { open: "09:00", close: "22:00", isOpen: true },
@@ -119,7 +122,7 @@ export default function Settings() {
       saturday: { open: "09:00", close: "22:00", isOpen: true },
       sunday: { open: "09:00", close: "22:00", isOpen: true },
     },
-    
+
     // Shipping & Delivery
     deliveryEnabled: true,
     pickupEnabled: true,
@@ -127,12 +130,12 @@ export default function Settings() {
     freeDeliveryThreshold: 50,
     deliveryAreas: ["المنامة", "المحرق", "سترة", "عيسى", "الرفاع"],
     estimatedDeliveryTime: "1-3 أيام عمل",
-    
+
     // Payment Settings
     cashOnDeliveryEnabled: true,
     bankTransferEnabled: false,
     bankAccountInfo: "",
-    
+
     // Operational Settings
     autoOrderConfirmation: true,
     lowStockThreshold: 5,
@@ -152,11 +155,11 @@ export default function Settings() {
 
   useEffect(() => {
     // Load settings from localStorage
-    const savedSettings = localStorage.getItem('storeSettings');
+    const savedSettings = localStorage.getItem("storeSettings");
     if (savedSettings) {
       const parsedSettings = JSON.parse(savedSettings);
       // Merge with defaults to ensure all fields have values
-      setSettings(prev => ({
+      setSettings((prev) => ({
         ...prev,
         ...parsedSettings,
         // Ensure new fields have default values if missing
@@ -169,21 +172,28 @@ export default function Settings() {
   const handleInputChange = (field: string, value: any) => {
     // Ensure number fields are never undefined or NaN
     let processedValue = value;
-    if (typeof value === 'number' && (isNaN(value) || value === undefined)) {
+    if (typeof value === "number" && (isNaN(value) || value === undefined)) {
       processedValue = 0;
     }
 
-    setSettings(prev => ({ ...prev, [field]: processedValue }));
+    setSettings((prev) => ({ ...prev, [field]: processedValue }));
     setHasChanges(true);
   };
 
-  const handleBusinessHoursChange = (day: string, field: string, value: any) => {
-    setSettings(prev => ({
+  const handleBusinessHoursChange = (
+    day: string,
+    field: string,
+    value: any,
+  ) => {
+    setSettings((prev) => ({
       ...prev,
       businessHours: {
         ...prev.businessHours,
-        [day]: { ...prev.businessHours[day as keyof typeof prev.businessHours], [field]: value }
-      }
+        [day]: {
+          ...prev.businessHours[day as keyof typeof prev.businessHours],
+          [field]: value,
+        },
+      },
     }));
     setHasChanges(true);
   };
@@ -192,9 +202,9 @@ export default function Settings() {
     setIsSaving(true);
     try {
       // Save to localStorage (in production, this would be an API call)
-      localStorage.setItem('storeSettings', JSON.stringify(settings));
+      localStorage.setItem("storeSettings", JSON.stringify(settings));
       setHasChanges(false);
-      
+
       // Show success message
       showAlert({
         title: t("common.success"),
@@ -220,19 +230,19 @@ export default function Settings() {
     });
 
     if (confirmed) {
-      localStorage.removeItem('storeSettings');
+      localStorage.removeItem("storeSettings");
       window.location.reload();
     }
   };
 
   const days = [
-    { key: 'monday', name: t("settings.monday") },
-    { key: 'tuesday', name: t("settings.tuesday") },
-    { key: 'wednesday', name: t("settings.wednesday") },
-    { key: 'thursday', name: t("settings.thursday") },
-    { key: 'friday', name: t("settings.friday") },
-    { key: 'saturday', name: t("settings.saturday") },
-    { key: 'sunday', name: t("settings.sunday") },
+    { key: "monday", name: t("settings.monday") },
+    { key: "tuesday", name: t("settings.tuesday") },
+    { key: "wednesday", name: t("settings.wednesday") },
+    { key: "thursday", name: t("settings.thursday") },
+    { key: "friday", name: t("settings.friday") },
+    { key: "saturday", name: t("settings.saturday") },
+    { key: "sunday", name: t("settings.sunday") },
   ];
 
   return (
@@ -258,7 +268,9 @@ export default function Settings() {
             size="sm"
           >
             <RefreshCw className="w-4 h-4" />
-            <span className="auto-text hidden sm:inline">{t("settings.reset")}</span>
+            <span className="auto-text hidden sm:inline">
+              {t("settings.reset")}
+            </span>
           </Button>
           <Button
             onClick={handleSaveSettings}
@@ -310,7 +322,9 @@ export default function Settings() {
               <Textarea
                 id="storeDescription"
                 value={settings.storeDescription}
-                onChange={(e) => handleInputChange("storeDescription", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("storeDescription", e.target.value)
+                }
                 className="auto-text min-h-[80px] touch-manipulation"
                 rows={3}
               />
@@ -320,17 +334,25 @@ export default function Settings() {
                 <Label htmlFor="currency" className="auto-text">
                   {t("settings.currency")}
                 </Label>
-                <Select 
-                  value={settings.currency} 
-                  onValueChange={(value) => handleInputChange("currency", value)}
+                <Select
+                  value={settings.currency}
+                  onValueChange={(value) =>
+                    handleInputChange("currency", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="BHD">BHD - {t("settings.bahrainiDinar")}</SelectItem>
-                    <SelectItem value="USD">USD - {t("settings.usDollar")}</SelectItem>
-                    <SelectItem value="EUR">EUR - {t("settings.euro")}</SelectItem>
+                    <SelectItem value="BHD">
+                      BHD - {t("settings.bahrainiDinar")}
+                    </SelectItem>
+                    <SelectItem value="USD">
+                      USD - {t("settings.usDollar")}
+                    </SelectItem>
+                    <SelectItem value="EUR">
+                      EUR - {t("settings.euro")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -341,7 +363,9 @@ export default function Settings() {
                 <Input
                   id="currencySymbol"
                   value={settings.currencySymbol}
-                  onChange={(e) => handleInputChange("currencySymbol", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("currencySymbol", e.target.value)
+                  }
                   className="auto-text h-10 touch-manipulation"
                 />
               </div>
@@ -365,7 +389,9 @@ export default function Settings() {
               <Input
                 id="contactPhone"
                 value={settings.contactPhone}
-                onChange={(e) => handleInputChange("contactPhone", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("contactPhone", e.target.value)
+                }
                 className="ltr-text h-10 touch-manipulation"
                 type="tel"
               />
@@ -378,7 +404,9 @@ export default function Settings() {
                 id="contactEmail"
                 type="email"
                 value={settings.contactEmail}
-                onChange={(e) => handleInputChange("contactEmail", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("contactEmail", e.target.value)
+                }
                 className="ltr-text h-10 touch-manipulation"
               />
             </div>
@@ -389,7 +417,9 @@ export default function Settings() {
               <Textarea
                 id="contactAddress"
                 value={settings.contactAddress}
-                onChange={(e) => handleInputChange("contactAddress", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("contactAddress", e.target.value)
+                }
                 className="auto-text min-h-[80px] touch-manipulation"
                 rows={3}
               />
@@ -419,7 +449,9 @@ export default function Settings() {
                   <Textarea
                     id="orderSuccessMessageEn"
                     value={settings.orderSuccessMessageEn}
-                    onChange={(e) => handleInputChange("orderSuccessMessageEn", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderSuccessMessageEn", e.target.value)
+                    }
                     className="ltr-text min-h-[80px] touch-manipulation"
                     rows={3}
                     placeholder="Thank you for your order! We'll process it within..."
@@ -432,7 +464,9 @@ export default function Settings() {
                   <Textarea
                     id="orderInstructionsEn"
                     value={settings.orderInstructionsEn}
-                    onChange={(e) => handleInputChange("orderInstructionsEn", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderInstructionsEn", e.target.value)
+                    }
                     className="ltr-text min-h-[60px] touch-manipulation"
                     rows={2}
                     placeholder="For any changes or questions..."
@@ -452,7 +486,9 @@ export default function Settings() {
                   <Textarea
                     id="orderSuccessMessageAr"
                     value={settings.orderSuccessMessageAr}
-                    onChange={(e) => handleInputChange("orderSuccessMessageAr", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderSuccessMessageAr", e.target.value)
+                    }
                     className="auto-text min-h-[80px] touch-manipulation"
                     rows={3}
                     placeholder="شكراً لك على طلبك! سنقوم بتجهيزه خلال..."
@@ -465,7 +501,9 @@ export default function Settings() {
                   <Textarea
                     id="orderInstructionsAr"
                     value={settings.orderInstructionsAr}
-                    onChange={(e) => handleInputChange("orderInstructionsAr", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderInstructionsAr", e.target.value)
+                    }
                     className="auto-text min-h-[60px] touch-manipulation"
                     rows={2}
                     placeholder="لأي تغييرات أو أسئلة..."
@@ -476,7 +514,8 @@ export default function Settings() {
 
             <div className="p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-xs sm:text-sm text-blue-800 auto-text leading-relaxed">
-                <strong className="auto-text">{t("settings.note")}:</strong> {t("settings.orderMessageNote")}
+                <strong className="auto-text">{t("settings.note")}:</strong>{" "}
+                {t("settings.orderMessageNote")}
               </p>
             </div>
           </CardContent>
@@ -493,35 +532,70 @@ export default function Settings() {
           <CardContent>
             <div className="grid grid-cols-1 gap-4">
               {days.map((day) => (
-                <div key={day.key} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors space-y-3 sm:space-y-0 touch-manipulation">
+                <div
+                  key={day.key}
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors space-y-3 sm:space-y-0 touch-manipulation"
+                >
                   <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                     <div className="flex items-center gap-2">
                       <Switch
-                        checked={settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen}
-                        onCheckedChange={(checked) => handleBusinessHoursChange(day.key, "isOpen", checked)}
+                        checked={
+                          settings.businessHours[
+                            day.key as keyof typeof settings.businessHours
+                          ].isOpen
+                        }
+                        onCheckedChange={(checked) =>
+                          handleBusinessHoursChange(day.key, "isOpen", checked)
+                        }
                         className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
                       />
                     </div>
-                    <span className="font-medium auto-text min-w-0">{day.name}</span>
+                    <span className="font-medium auto-text min-w-0">
+                      {day.name}
+                    </span>
                   </div>
-                  {settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen && (
+                  {settings.businessHours[
+                    day.key as keyof typeof settings.businessHours
+                  ].isOpen && (
                     <div className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
                       <Input
                         type="time"
-                        value={settings.businessHours[day.key as keyof typeof settings.businessHours].open}
-                        onChange={(e) => handleBusinessHoursChange(day.key, "open", e.target.value)}
+                        value={
+                          settings.businessHours[
+                            day.key as keyof typeof settings.businessHours
+                          ].open
+                        }
+                        onChange={(e) =>
+                          handleBusinessHoursChange(
+                            day.key,
+                            "open",
+                            e.target.value,
+                          )
+                        }
                         className="w-20 sm:w-24 ltr-text text-sm h-10 touch-manipulation"
                       />
                       <span className="text-gray-500 text-sm">-</span>
                       <Input
                         type="time"
-                        value={settings.businessHours[day.key as keyof typeof settings.businessHours].close}
-                        onChange={(e) => handleBusinessHoursChange(day.key, "close", e.target.value)}
+                        value={
+                          settings.businessHours[
+                            day.key as keyof typeof settings.businessHours
+                          ].close
+                        }
+                        onChange={(e) =>
+                          handleBusinessHoursChange(
+                            day.key,
+                            "close",
+                            e.target.value,
+                          )
+                        }
                         className="w-20 sm:w-24 ltr-text text-sm h-10 touch-manipulation"
                       />
                     </div>
                   )}
-                  {!settings.businessHours[day.key as keyof typeof settings.businessHours].isOpen && (
+                  {!settings.businessHours[
+                    day.key as keyof typeof settings.businessHours
+                  ].isOpen && (
                     <Badge variant="outline" className="auto-text text-xs">
                       {t("settings.closed")}
                     </Badge>
@@ -542,13 +616,18 @@ export default function Settings() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <Label htmlFor="deliveryEnabled" className="auto-text font-medium">
+              <Label
+                htmlFor="deliveryEnabled"
+                className="auto-text font-medium"
+              >
                 {t("settings.enableDelivery")}
               </Label>
               <Switch
                 id="deliveryEnabled"
                 checked={settings.deliveryEnabled}
-                onCheckedChange={(checked) => handleInputChange("deliveryEnabled", checked)}
+                onCheckedChange={(checked) =>
+                  handleInputChange("deliveryEnabled", checked)
+                }
                 className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
@@ -559,7 +638,9 @@ export default function Settings() {
               <Switch
                 id="pickupEnabled"
                 checked={settings.pickupEnabled}
-                onCheckedChange={(checked) => handleInputChange("pickupEnabled", checked)}
+                onCheckedChange={(checked) =>
+                  handleInputChange("pickupEnabled", checked)
+                }
                 className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
@@ -574,7 +655,12 @@ export default function Settings() {
                   type="number"
                   step="0.1"
                   value={settings.deliveryFee}
-                  onChange={(e) => handleInputChange("deliveryFee", parseFloat(e.target.value) || 0)}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "deliveryFee",
+                      parseFloat(e.target.value) || 0,
+                    )
+                  }
                   className="ltr-text h-10 touch-manipulation"
                 />
               </div>
@@ -586,7 +672,12 @@ export default function Settings() {
                   id="freeDeliveryThreshold"
                   type="number"
                   value={settings.freeDeliveryThreshold}
-                  onChange={(e) => handleInputChange("freeDeliveryThreshold", parseInt(e.target.value) || 0)}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "freeDeliveryThreshold",
+                      parseInt(e.target.value) || 0,
+                    )
+                  }
                   className="ltr-text h-10 touch-manipulation"
                 />
               </div>
@@ -598,7 +689,9 @@ export default function Settings() {
               <Input
                 id="estimatedDeliveryTime"
                 value={settings.estimatedDeliveryTime}
-                onChange={(e) => handleInputChange("estimatedDeliveryTime", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("estimatedDeliveryTime", e.target.value)
+                }
                 className="auto-text h-10 touch-manipulation"
               />
             </div>
@@ -615,24 +708,34 @@ export default function Settings() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <Label htmlFor="cashOnDeliveryEnabled" className="auto-text font-medium">
+              <Label
+                htmlFor="cashOnDeliveryEnabled"
+                className="auto-text font-medium"
+              >
                 {t("settings.cashOnDelivery")}
               </Label>
               <Switch
                 id="cashOnDeliveryEnabled"
                 checked={settings.cashOnDeliveryEnabled}
-                onCheckedChange={(checked) => handleInputChange("cashOnDeliveryEnabled", checked)}
+                onCheckedChange={(checked) =>
+                  handleInputChange("cashOnDeliveryEnabled", checked)
+                }
                 className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
             <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <Label htmlFor="bankTransferEnabled" className="auto-text font-medium">
+              <Label
+                htmlFor="bankTransferEnabled"
+                className="auto-text font-medium"
+              >
                 {t("settings.bankTransfer")}
               </Label>
               <Switch
                 id="bankTransferEnabled"
                 checked={settings.bankTransferEnabled}
-                onCheckedChange={(checked) => handleInputChange("bankTransferEnabled", checked)}
+                onCheckedChange={(checked) =>
+                  handleInputChange("bankTransferEnabled", checked)
+                }
                 className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
@@ -644,7 +747,9 @@ export default function Settings() {
                 <Textarea
                   id="bankAccountInfo"
                   value={settings.bankAccountInfo}
-                  onChange={(e) => handleInputChange("bankAccountInfo", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("bankAccountInfo", e.target.value)
+                  }
                   placeholder={t("settings.bankAccountPlaceholder")}
                   className="auto-text min-h-[80px] touch-manipulation"
                   rows={3}
@@ -665,13 +770,18 @@ export default function Settings() {
           <CardContent className="space-y-4">
             <div className="space-y-4">
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg touch-manipulation">
-                <Label htmlFor="autoOrderConfirmation" className="auto-text font-medium text-sm sm:text-base">
+                <Label
+                  htmlFor="autoOrderConfirmation"
+                  className="auto-text font-medium text-sm sm:text-base"
+                >
                   {t("settings.autoOrderConfirmation")}
                 </Label>
                 <Switch
                   id="autoOrderConfirmation"
                   checked={settings.autoOrderConfirmation}
-                  onCheckedChange={(checked) => handleInputChange("autoOrderConfirmation", checked)}
+                  onCheckedChange={(checked) =>
+                    handleInputChange("autoOrderConfirmation", checked)
+                  }
                   className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
                 />
               </div>
@@ -684,7 +794,12 @@ export default function Settings() {
                     id="lowStockThreshold"
                     type="number"
                     value={settings.lowStockThreshold}
-                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value) || 0)}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "lowStockThreshold",
+                        parseInt(e.target.value) || 0,
+                      )
+                    }
                     className="ltr-text h-10 touch-manipulation"
                   />
                 </div>
@@ -696,7 +811,12 @@ export default function Settings() {
                     id="maxOrderQuantity"
                     type="number"
                     value={settings.maxOrderQuantity}
-                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value) || 0)}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "maxOrderQuantity",
+                        parseInt(e.target.value) || 0,
+                      )
+                    }
                     className="ltr-text h-10 touch-manipulation"
                   />
                 </div>
@@ -708,7 +828,12 @@ export default function Settings() {
                     id="deliveryConcerns"
                     type="number"
                     value={settings.deliveryConcerns}
-                    onChange={(e) => handleInputChange("deliveryConcerns", parseInt(e.target.value) || 0)}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "deliveryConcerns",
+                        parseInt(e.target.value) || 0,
+                      )
+                    }
                     className="ltr-text h-10 touch-manipulation"
                     placeholder="24"
                   />
@@ -721,7 +846,12 @@ export default function Settings() {
                     id="pickupOrderConfig"
                     type="number"
                     value={settings.pickupOrderConfig}
-                    onChange={(e) => handleInputChange("pickupOrderConfig", parseInt(e.target.value) || 0)}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "pickupOrderConfig",
+                        parseInt(e.target.value) || 0,
+                      )
+                    }
                     className="ltr-text h-10 touch-manipulation"
                     placeholder="48"
                   />
@@ -735,7 +865,9 @@ export default function Settings() {
               <Input
                 id="orderProcessingTime"
                 value={settings.orderProcessingTime}
-                onChange={(e) => handleInputChange("orderProcessingTime", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("orderProcessingTime", e.target.value)
+                }
                 className="auto-text h-10 touch-manipulation"
               />
             </div>

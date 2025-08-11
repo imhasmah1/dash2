@@ -62,7 +62,9 @@ export default function ProductDetail() {
   const [product, setProduct] = useState<DataContextProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
+  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(
+    null,
+  );
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
 
   const cartItemsCount = getTotalItems();
@@ -82,7 +84,6 @@ export default function ProductDetail() {
           const product = await response.json();
           const normalized = {
             ...product,
-            
           };
           setProduct(normalized);
         } else if (response.status === 404) {
@@ -91,9 +92,7 @@ export default function ProductDetail() {
           // Fallback to getting all products
           const products = await getProducts();
           const foundProduct = products.find((p) => p.id === id);
-          const normalized = foundProduct
-            ? foundProduct
-            : null;
+          const normalized = foundProduct ? foundProduct : null;
           setProduct(normalized || null);
         }
       } catch (error) {
@@ -212,7 +211,9 @@ export default function ProductDetail() {
                 // Create combined image array with product images and variant images
                 const allImages = [
                   ...product.images,
-                  ...product.variants.filter((v) => v.image).map((v) => v.image as string)
+                  ...product.variants
+                    .filter((v) => v.image)
+                    .map((v) => v.image as string),
                 ];
 
                 return allImages.length > 0 ? (
@@ -233,29 +234,33 @@ export default function ProductDetail() {
             {(() => {
               const allImages = [
                 ...product.images,
-                ...product.variants.filter((v) => v.image).map((v) => v.image as string)
+                ...product.variants
+                  .filter((v) => v.image)
+                  .map((v) => v.image as string),
               ];
 
-              return (allImages.length > 1) && (
-                <div className="grid grid-cols-4 gap-2">
-                  {allImages.map((image, index) => (
-                    <button
-                      key={`${image}-${index}`}
-                      onClick={() => setSelectedImageIndex(index)}
-                      className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
-                        selectedImageIndex === index
-                          ? "border-primary ring-2 ring-primary/20"
-                          : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      <img
-                        src={image}
-                        alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
+              return (
+                allImages.length > 1 && (
+                  <div className="grid grid-cols-4 gap-2">
+                    {allImages.map((image, index) => (
+                      <button
+                        key={`${image}-${index}`}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
+                          selectedImageIndex === index
+                            ? "border-primary ring-2 ring-primary/20"
+                            : "border-gray-200 hover:border-gray-300"
+                        }`}
+                      >
+                        <img
+                          src={image}
+                          alt={`${product.name} ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )
               );
             })()}
           </div>
@@ -296,17 +301,24 @@ export default function ProductDetail() {
                       const isSelected = selectedVariantId === variant.id;
                       const allImages = [
                         ...product.images,
-                        ...product.variants.filter((v) => v.image).map((v) => v.image as string)
+                        ...product.variants
+                          .filter((v) => v.image)
+                          .map((v) => v.image as string),
                       ];
-                      const variantImageIndex = variant.image ?
-                        product.images.length + product.variants.filter((v, i) => i < variantIndex && v.image).length :
-                        null;
+                      const variantImageIndex = variant.image
+                        ? product.images.length +
+                          product.variants.filter(
+                            (v, i) => i < variantIndex && v.image,
+                          ).length
+                        : null;
 
                       return (
                         <button
                           key={variant.id}
                           onClick={() => {
-                            setSelectedVariantId(isSelected ? null : variant.id);
+                            setSelectedVariantId(
+                              isSelected ? null : variant.id,
+                            );
                             if (variant.image && variantImageIndex !== null) {
                               setSelectedImageIndex(variantImageIndex);
                             }
@@ -354,7 +366,7 @@ export default function ProductDetail() {
 
       {isAddToCartOpen && product && (
         <AddToCartDialog
-          product={{...product, total_stock: product.total_stock || 0}}
+          product={{ ...product, total_stock: product.total_stock || 0 }}
           open={isAddToCartOpen}
           onClose={() => setIsAddToCartOpen(false)}
         />

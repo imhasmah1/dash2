@@ -12,9 +12,10 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Configure multer for file uploads
 // When using Supabase, we use memory storage instead of disk storage
-const storage = imageStorage.isAvailable() 
+const storage = imageStorage.isAvailable()
   ? multer.memoryStorage() // Use memory storage for Supabase
-  : multer.diskStorage({   // Use disk storage as fallback
+  : multer.diskStorage({
+      // Use disk storage as fallback
       destination: (req, file, cb) => {
         cb(null, uploadsDir);
       },
@@ -51,42 +52,47 @@ export const handleImageUpload: RequestHandler = async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    console.log("File uploaded:", req.file.originalname, "Size:", req.file.size);
+    console.log(
+      "File uploaded:",
+      req.file.originalname,
+      "Size:",
+      req.file.size,
+    );
 
     // Check if Supabase storage is available
     if (imageStorage.isAvailable()) {
       // Use Supabase storage
       console.log("Using Supabase storage for image upload");
-      
+
       // Convert buffer to File object for Supabase
       const file = new File([req.file.buffer], req.file.originalname, {
-        type: req.file.mimetype
+        type: req.file.mimetype,
       });
 
       // Determine folder based on request context (optional)
-      const folder = req.body.folder || 'products';
-      
+      const folder = req.body.folder || "products";
+
       const result = await imageStorage.uploadImage(file, folder);
-      
+
       if (!result.success) {
         console.error("Supabase upload failed:", result.error);
         return res.status(500).json({ error: result.error });
       }
 
       console.log("Image uploaded to Supabase successfully:", result.url);
-      res.json({ 
+      res.json({
         url: result.url,
         fileName: result.fileName,
-        storage: 'supabase'
+        storage: "supabase",
       });
     } else {
       // Fallback to local storage
       console.log("Using local storage for image upload");
       const fileUrl = `/uploads/${req.file.filename}`;
-      res.json({ 
+      res.json({
         url: fileUrl,
         fileName: req.file.filename,
-        storage: 'local'
+        storage: "local",
       });
     }
   } catch (error) {
@@ -96,8 +102,8 @@ export const handleImageUpload: RequestHandler = async (req, res) => {
 };
 
 export const handleMultipleImageUpload: RequestHandler = async (req, res) => {
-  const uploadMultiple = upload.array('images', 10); // Allow up to 10 images
-  
+  const uploadMultiple = upload.array("images", 10); // Allow up to 10 images
+
   uploadMultiple(req, res, async (err) => {
     if (err) {
       console.error("Multer error:", err);
@@ -113,16 +119,20 @@ export const handleMultipleImageUpload: RequestHandler = async (req, res) => {
       if (imageStorage.isAvailable()) {
         // Use Supabase storage
         console.log("Using Supabase storage for multiple image upload");
-        
-        const fileObjects = files.map(file => 
-          new File([file.buffer], file.originalname, { type: file.mimetype })
+
+        const fileObjects = files.map(
+          (file) =>
+            new File([file.buffer], file.originalname, { type: file.mimetype }),
         );
 
-        const folder = req.body.folder || 'products';
-        const results = await imageStorage.uploadMultipleImages(fileObjects, folder);
-        
-        const successfulUploads = results.filter(r => r.success);
-        const failedUploads = results.filter(r => !r.success);
+        const folder = req.body.folder || "products";
+        const results = await imageStorage.uploadMultipleImages(
+          fileObjects,
+          folder,
+        );
+
+        const successfulUploads = results.filter((r) => r.success);
+        const failedUploads = results.filter((r) => !r.success);
 
         if (failedUploads.length > 0) {
           console.warn("Some uploads failed:", failedUploads);
@@ -131,21 +141,21 @@ export const handleMultipleImageUpload: RequestHandler = async (req, res) => {
         res.json({
           success: successfulUploads,
           failed: failedUploads,
-          storage: 'supabase'
+          storage: "supabase",
         });
       } else {
         // Fallback to local storage
         console.log("Using local storage for multiple image upload");
-        const urls = files.map(file => ({
+        const urls = files.map((file) => ({
           success: true,
           url: `/uploads/${file.filename}`,
-          fileName: file.filename
+          fileName: file.filename,
         }));
 
         res.json({
           success: urls,
           failed: [],
-          storage: 'local'
+          storage: "local",
         });
       }
     } catch (error) {
@@ -160,11 +170,11 @@ export const deleteImage: RequestHandler = async (req, res) => {
   const { storage } = req.query;
 
   try {
-    if (storage === 'supabase' && imageStorage.isAvailable()) {
+    if (storage === "supabase" && imageStorage.isAvailable()) {
       // Delete from Supabase storage
       console.log("Deleting image from Supabase:", filename);
       const result = await imageStorage.deleteImage(filename);
-      
+
       if (!result.success) {
         console.error("Supabase delete failed:", result.error);
         return res.status(500).json({ error: result.error });
@@ -175,7 +185,7 @@ export const deleteImage: RequestHandler = async (req, res) => {
       // Delete from local storage
       console.log("Deleting image from local storage:", filename);
       const filePath = path.join(uploadsDir, filename);
-      
+
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
         res.status(204).send();
@@ -192,9 +202,9 @@ export const deleteImage: RequestHandler = async (req, res) => {
 // Health check endpoint for image storage
 export const getStorageInfo: RequestHandler = (req, res) => {
   res.json({
-    storageType: imageStorage.isAvailable() ? 'supabase' : 'local',
+    storageType: imageStorage.isAvailable() ? "supabase" : "local",
     supabaseAvailable: imageStorage.isAvailable(),
-    maxFileSize: '10MB',
-    allowedTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+    maxFileSize: "10MB",
+    allowedTypes: ["image/jpeg", "image/jpg", "image/png", "image/webp"],
   });
 };

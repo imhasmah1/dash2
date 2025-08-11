@@ -302,10 +302,12 @@ const translations = {
     "category.homeOffice": "Home & Office",
     // Category dialogs
     "categories.deleteTitle": "Delete Category",
-    "categories.deleteMessage": "Are you sure you want to delete this category? This action cannot be undone.",
+    "categories.deleteMessage":
+      "Are you sure you want to delete this category? This action cannot be undone.",
     "categories.deleteSuccess": "Category deleted successfully.",
     "categories.cannotDeleteTitle": "Cannot Delete Category",
-    "categories.cannotDeleteMessage": "This category is being used by {count} product(s). Please remove the category from all products before deleting it.",
+    "categories.cannotDeleteMessage":
+      "This category is being used by {count} product(s). Please remove the category from all products before deleting it.",
     "categories.nameRequired": "Category name is required.",
 
     // Analytics
@@ -335,7 +337,8 @@ const translations = {
     "common.product": "Product",
     "common.default": "Default",
     "errors.orderFailed": "Failed to place order. Please try again.",
-    "dashboard.noOrdersYet": "No orders yet. Create your first order to see it here!",
+    "dashboard.noOrdersYet":
+      "No orders yet. Create your first order to see it here!",
     "notFound.title": "404",
     "notFound.message": "Oops! Page not found",
     "notFound.returnHome": "Return to Home",
@@ -347,8 +350,10 @@ const translations = {
     "settings.reset": "Reset",
     "settings.saveSuccess": "Settings saved successfully!",
     "settings.saveError": "Failed to save settings. Please try again.",
-    "settings.resetConfirm": "Are you sure you want to reset all settings to default values?",
-    "settings.unsavedChanges": "You have unsaved changes. Don't forget to save!",
+    "settings.resetConfirm":
+      "Are you sure you want to reset all settings to default values?",
+    "settings.unsavedChanges":
+      "You have unsaved changes. Don't forget to save!",
 
     // Store Information
     "settings.storeInformation": "Store Information",
@@ -390,7 +395,8 @@ const translations = {
     "settings.cashOnDelivery": "Cash on Delivery",
     "settings.bankTransfer": "Bank Transfer",
     "settings.bankAccountInfo": "Bank Account Information",
-    "settings.bankAccountPlaceholder": "Enter bank account details for customers...",
+    "settings.bankAccountPlaceholder":
+      "Enter bank account details for customers...",
 
     // Operational Settings
     "settings.operationalSettings": "Operational Settings",
@@ -408,7 +414,8 @@ const translations = {
     "settings.orderSuccessMessage": "Order Success Message",
     "settings.orderInstructions": "Order Instructions",
     "settings.note": "Note",
-    "settings.orderMessageNote": "These messages will be displayed to customers when they successfully place an order. Customize them to match your store's tone and provide relevant information.",
+    "settings.orderMessageNote":
+      "These messages will be displayed to customers when they successfully place an order. Customize them to match your store's tone and provide relevant information.",
   },
   ar: {
     // Navigation
@@ -690,10 +697,12 @@ const translations = {
     "category.homeOffice": "المنزل والمكتب",
     // Category dialogs
     "categories.deleteTitle": "حذف التصنيف",
-    "categories.deleteMessage": "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
+    "categories.deleteMessage":
+      "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
-    "categories.cannotDeleteMessage": "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
+    "categories.cannotDeleteMessage":
+      "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
@@ -735,7 +744,8 @@ const translations = {
     "settings.reset": "إعادة تعيين",
     "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
-    "settings.resetConfirm": "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
+    "settings.resetConfirm":
+      "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
     "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس الحفظ!",
 
     // Store Information
@@ -796,7 +806,8 @@ const translations = {
     "settings.orderSuccessMessage": "رسالة نجاح الطلب",
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
-    "settings.orderMessageNote": "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. قم بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
+    "settings.orderMessageNote":
+      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. قم بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
   },
 } as const;
 

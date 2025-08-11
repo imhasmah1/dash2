@@ -147,7 +147,9 @@ export default function Dashboard() {
               <div className="text-xl sm:text-2xl font-bold text-gray-900">
                 {stat.value}
               </div>
-              <p className="text-xs text-gray-600 mt-1 leading-tight">{stat.description}</p>
+              <p className="text-xs text-gray-600 mt-1 leading-tight">
+                {stat.description}
+              </p>
             </CardContent>
           </Card>
         ))}
@@ -214,7 +216,9 @@ export default function Dashboard() {
                             {order.status}
                           </span>
                         </td>
-                        <td className="py-3 px-4 text-gray-600">{order.date}</td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {order.date}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -233,10 +237,14 @@ export default function Dashboard() {
                         <p className="font-medium text-dashboard-primary text-sm">
                           #{order.id}
                         </p>
-                        <p className="text-gray-900 font-medium">{order.customer}</p>
+                        <p className="text-gray-900 font-medium">
+                          {order.customer}
+                        </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium text-gray-900">{order.amount}</p>
+                        <p className="font-medium text-gray-900">
+                          {order.amount}
+                        </p>
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}
                         >

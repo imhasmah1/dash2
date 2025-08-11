@@ -145,7 +145,8 @@ export default function Products() {
         ...formData,
         total_stock: getTotalStock(),
         // Convert empty category_id to null
-        category_id: formData.category_id?.trim() === "" ? null : formData.category_id,
+        category_id:
+          formData.category_id?.trim() === "" ? null : formData.category_id,
       };
 
       console.log("Submitting product data:", productData);
@@ -159,9 +160,7 @@ export default function Products() {
     } catch (error) {
       console.error("Product save error:", error);
       const errorMessage =
-        error instanceof Error
-          ? error.message
-          : t("message.productSaveError");
+        error instanceof Error ? error.message : t("message.productSaveError");
       showAlert({
         title: t("message.error"),
         message: errorMessage,
@@ -342,7 +341,11 @@ export default function Products() {
                           id="stock"
                           type="number"
                           min="0"
-                          value={formData.total_stock === 0 ? "" : formData.total_stock}
+                          value={
+                            formData.total_stock === 0
+                              ? ""
+                              : formData.total_stock
+                          }
                           onChange={(e) =>
                             setFormData((prev) => ({
                               ...prev,
@@ -647,8 +650,12 @@ export default function Products() {
       {filteredProducts.length === 0 && (
         <div className="text-center py-16 text-gray-500">
           <Package className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-xl font-semibold">{t("empty.noProductsFound")}</h3>
-          <p className="mt-2">{searchTerm ? t("empty.adjustSearch") : t("empty.addFirstProduct")}</p>
+          <h3 className="text-xl font-semibold">
+            {t("empty.noProductsFound")}
+          </h3>
+          <p className="mt-2">
+            {searchTerm ? t("empty.adjustSearch") : t("empty.addFirstProduct")}
+          </p>
         </div>
       )}
     </div>

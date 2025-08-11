@@ -73,16 +73,17 @@ const Analytics = () => {
 
     // Order status breakdown
     const ordersByStatus = {
-      processing: recentOrders.filter(o => o.status === "processing").length,
-      ready: recentOrders.filter(o => o.status === "ready").length,
-      delivered: recentOrders.filter(o => o.status === "delivered").length,
-      "picked-up": recentOrders.filter(o => o.status === "picked-up").length,
+      processing: recentOrders.filter((o) => o.status === "processing").length,
+      ready: recentOrders.filter((o) => o.status === "ready").length,
+      delivered: recentOrders.filter((o) => o.status === "delivered").length,
+      "picked-up": recentOrders.filter((o) => o.status === "picked-up").length,
     };
 
     // Delivery type breakdown
     const deliveryTypes = {
-      delivery: recentOrders.filter(o => o.deliveryType === "delivery").length,
-      pickup: recentOrders.filter(o => o.deliveryType === "pickup").length,
+      delivery: recentOrders.filter((o) => o.deliveryType === "delivery")
+        .length,
+      pickup: recentOrders.filter((o) => o.deliveryType === "pickup").length,
     };
 
     return {
@@ -127,11 +128,27 @@ const Analytics = () => {
 
   // Order status data for pie chart
   const statusData = [
-    { name: "Processing", value: storeAnalytics.ordersByStatus.processing, color: "#3b82f6" },
-    { name: "Ready", value: storeAnalytics.ordersByStatus.ready, color: "#f59e0b" },
-    { name: "Delivered", value: storeAnalytics.ordersByStatus.delivered, color: "#10b981" },
-    { name: "Picked Up", value: storeAnalytics.ordersByStatus["picked-up"], color: "#8b5cf6" },
-  ].filter(item => item.value > 0);
+    {
+      name: "Processing",
+      value: storeAnalytics.ordersByStatus.processing,
+      color: "#3b82f6",
+    },
+    {
+      name: "Ready",
+      value: storeAnalytics.ordersByStatus.ready,
+      color: "#f59e0b",
+    },
+    {
+      name: "Delivered",
+      value: storeAnalytics.ordersByStatus.delivered,
+      color: "#10b981",
+    },
+    {
+      name: "Picked Up",
+      value: storeAnalytics.ordersByStatus["picked-up"],
+      color: "#8b5cf6",
+    },
+  ].filter((item) => item.value > 0);
 
   // Delivery type data for chart
   const deliveryData = [
@@ -162,8 +179,12 @@ const Analytics = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="7days">{t("analytics.last7days")}</SelectItem>
-              <SelectItem value="30days">{t("analytics.last30days")}</SelectItem>
-              <SelectItem value="90days">{t("analytics.last90days")}</SelectItem>
+              <SelectItem value="30days">
+                {t("analytics.last30days")}
+              </SelectItem>
+              <SelectItem value="90days">
+                {t("analytics.last90days")}
+              </SelectItem>
             </SelectContent>
           </Select>
           <Button onClick={refreshData} variant="outline" size="sm">
@@ -207,7 +228,15 @@ const Analytics = () => {
               BD {storeAnalytics.totalRevenue.toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground auto-text">
-              {language === "ar" ? "متوسط: د.ب " + storeAnalytics.avgOrderValue.toFixed(2) + " " + t("analytics.avgPerOrder") : "Avg: BD " + storeAnalytics.avgOrderValue.toFixed(2) + " " + t("analytics.avgPerOrder")}
+              {language === "ar"
+                ? "متوسط: د.ب " +
+                  storeAnalytics.avgOrderValue.toFixed(2) +
+                  " " +
+                  t("analytics.avgPerOrder")
+                : "Avg: BD " +
+                  storeAnalytics.avgOrderValue.toFixed(2) +
+                  " " +
+                  t("analytics.avgPerOrder")}
             </p>
           </CardContent>
         </Card>
@@ -264,7 +293,10 @@ const Analytics = () => {
                   dataKey="date"
                   tick={{ fontSize: 12 }}
                   tickFormatter={(value) =>
-                    new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+                    new Date(value).toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                    })
                   }
                 />
                 <YAxis tick={{ fontSize: 12 }} />
@@ -326,7 +358,9 @@ const Analytics = () => {
       {/* Delivery Types */}
       <Card>
         <CardHeader>
-          <CardTitle className="auto-text">{t("analytics.deliveryMethodBreakdown")}</CardTitle>
+          <CardTitle className="auto-text">
+            {t("analytics.deliveryMethodBreakdown")}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>

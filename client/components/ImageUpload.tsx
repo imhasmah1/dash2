@@ -82,9 +82,7 @@ export default function ImageUpload({
       onImagesChange([...images, ...uploadedUrls]);
     } catch (error) {
       const errorMessage =
-        error instanceof Error
-          ? error.message
-          : t("message.uploadError");
+        error instanceof Error ? error.message : t("message.uploadError");
       showAlert({
         title: t("message.error"),
         message: errorMessage,

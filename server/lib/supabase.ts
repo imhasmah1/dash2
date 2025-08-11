@@ -70,7 +70,10 @@ async function initializeDefaultCategories() {
         .insert(defaultCategories);
 
       if (insertError) {
-        console.warn("Could not create default categories:", insertError.message);
+        console.warn(
+          "Could not create default categories:",
+          insertError.message,
+        );
       } else {
         console.log("✅ Default categories created successfully");
       }
