@@ -101,7 +101,7 @@ export default function Settings() {
 
     // Order Messages
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيزه خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
+    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بتجهيز�� خلال 2-4 ساعات وسيصل خلال 1-3 أيام عمل.",
     orderInstructionsEn: "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     
@@ -628,9 +628,9 @@ export default function Settings() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg md:col-span-2 lg:col-span-3">
-                <Label htmlFor="autoOrderConfirmation" className="auto-text font-medium">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg touch-manipulation">
+                <Label htmlFor="autoOrderConfirmation" className="auto-text font-medium text-sm sm:text-base">
                   {t("settings.autoOrderConfirmation")}
                 </Label>
                 <Switch
@@ -640,29 +640,31 @@ export default function Settings() {
                   className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="lowStockThreshold" className="auto-text">
-                  {t("settings.lowStockThreshold")}
-                </Label>
-                <Input
-                  id="lowStockThreshold"
-                  type="number"
-                  value={settings.lowStockThreshold}
-                  onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value))}
-                  className="ltr-text"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="maxOrderQuantity" className="auto-text">
-                  {t("settings.maxOrderQuantity")}
-                </Label>
-                <Input
-                  id="maxOrderQuantity"
-                  type="number"
-                  value={settings.maxOrderQuantity}
-                  onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value))}
-                  className="ltr-text"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="lowStockThreshold" className="auto-text">
+                    {t("settings.lowStockThreshold")}
+                  </Label>
+                  <Input
+                    id="lowStockThreshold"
+                    type="number"
+                    value={settings.lowStockThreshold}
+                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value))}
+                    className="ltr-text h-10 touch-manipulation"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="maxOrderQuantity" className="auto-text">
+                    {t("settings.maxOrderQuantity")}
+                  </Label>
+                  <Input
+                    id="maxOrderQuantity"
+                    type="number"
+                    value={settings.maxOrderQuantity}
+                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value))}
+                    className="ltr-text h-10 touch-manipulation"
+                  />
+                </div>
               </div>
             </div>
             <div className="space-y-2">
