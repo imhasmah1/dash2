@@ -79,6 +79,8 @@ interface StoreSettings {
   lowStockThreshold: number;
   maxOrderQuantity: number;
   orderProcessingTime: string;
+  deliveryConcerns: number;
+  pickupOrderConfig: number;
 
   // Notifications
   emailNotifications: boolean;
