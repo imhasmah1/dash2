@@ -286,6 +286,70 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
               </div>
             </div>
 
+            {/* Order Items */}
+            <div className="border-t pt-4">
+              <h3 className="font-semibold mb-3 auto-text">
+                {language === "ar" ? "محتويات الطلب:" : "Order Items:"}
+              </h3>
+              <div className="space-y-2">
+                {orderItems.map((item, index) => (
+                  <div key={`${item.productId}-${item.variantId}-${index}`} className="flex justify-between items-center p-2 bg-gray-50 rounded [dir=rtl]:flex-row-reverse">
+                    <div className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                      {item.image && (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-10 h-10 object-cover rounded"
+                        />
+                      )}
+                      <div className="[dir=rtl]:text-right">
+                        <p className="font-medium text-sm auto-text">{item.name}</p>
+                        {item.variantName && (
+                          <p className="text-xs text-gray-600 auto-text">
+                            {language === "ar" ? "النوع:" : "Variant:"} {item.variantName}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-right [dir=rtl]:text-left">
+                      <p className="text-sm font-medium ltr-text">
+                        {item.quantity} × BD {item.price.toFixed(2)}
+                      </p>
+                      <p className="text-xs text-gray-600 ltr-text">
+                        BD {(item.quantity * item.price).toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Order Subtotal */}
+              <div className="border-t pt-3 mt-3 space-y-2">
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                  <span className="text-gray-600 auto-text">
+                    {language === "ar" ? "المجموع الفرعي:" : "Subtotal:"}
+                  </span>
+                  <span className="font-medium ltr-text">BD {orderTotalPrice.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse">
+                  <span className="text-gray-600 auto-text">
+                    {language === "ar" ? "رسوم التوصيل:" : "Delivery Fee:"}
+                  </span>
+                  <span className="font-medium ltr-text">
+                    {deliveryType === "delivery" ? "BD 1.50" : language === "ar" ? "مجاني" : "Free"}
+                  </span>
+                </div>
+                <div className="flex justify-between [dir=rtl]:flex-row-reverse border-t pt-2">
+                  <span className="font-bold auto-text">
+                    {language === "ar" ? "المجموع الكلي:" : "Total:"}
+                  </span>
+                  <span className="font-bold text-primary ltr-text">
+                    BD {(orderTotalPrice + (deliveryType === "delivery" ? 1.5 : 0)).toFixed(2)}
+                  </span>
+                </div>
+              </div>
+            </div>
+
             {/* Custom Success Message */}
             <div className="bg-green-50 p-4 rounded-lg border border-green-200">
               <p className="text-green-800 auto-text leading-relaxed">
