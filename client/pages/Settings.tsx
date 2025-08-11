@@ -504,24 +504,26 @@ export default function Settings() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="deliveryEnabled" className="auto-text">
+            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <Label htmlFor="deliveryEnabled" className="auto-text font-medium">
                 {t("settings.enableDelivery")}
               </Label>
               <Switch
                 id="deliveryEnabled"
                 checked={settings.deliveryEnabled}
                 onCheckedChange={(checked) => handleInputChange("deliveryEnabled", checked)}
+                className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
-            <div className="flex items-center justify-between">
-              <Label htmlFor="pickupEnabled" className="auto-text">
+            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <Label htmlFor="pickupEnabled" className="auto-text font-medium">
                 {t("settings.enablePickup")}
               </Label>
               <Switch
                 id="pickupEnabled"
                 checked={settings.pickupEnabled}
                 onCheckedChange={(checked) => handleInputChange("pickupEnabled", checked)}
+                className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
             <Separator />
@@ -575,24 +577,26 @@ export default function Settings() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="cashOnDeliveryEnabled" className="auto-text">
+            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <Label htmlFor="cashOnDeliveryEnabled" className="auto-text font-medium">
                 {t("settings.cashOnDelivery")}
               </Label>
               <Switch
                 id="cashOnDeliveryEnabled"
                 checked={settings.cashOnDeliveryEnabled}
                 onCheckedChange={(checked) => handleInputChange("cashOnDeliveryEnabled", checked)}
+                className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
-            <div className="flex items-center justify-between">
-              <Label htmlFor="bankTransferEnabled" className="auto-text">
+            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <Label htmlFor="bankTransferEnabled" className="auto-text font-medium">
                 {t("settings.bankTransfer")}
               </Label>
               <Switch
                 id="bankTransferEnabled"
                 checked={settings.bankTransferEnabled}
                 onCheckedChange={(checked) => handleInputChange("bankTransferEnabled", checked)}
+                className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-300"
               />
             </div>
             {settings.bankTransferEnabled && (
