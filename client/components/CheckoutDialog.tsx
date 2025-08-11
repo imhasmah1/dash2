@@ -355,13 +355,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
             {/* Contact Information */}
             <div className="border border-orange-200 bg-orange-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-orange-900 mb-2 auto-text">
+              <h3 className="font-semibold text-orange-900 mb-2 auto-text [dir=rtl]:text-right">
                 {language === "ar" ? "تحتاج مساعدة؟" : "Need Help?"}
               </h3>
-              <p className="text-sm text-orange-800 auto-text mb-2">
+              <p className="text-sm text-orange-800 auto-text mb-2 [dir=rtl]:text-right">
                 {getOrderMessages().instructions}
               </p>
-              <p className="text-sm text-orange-700 auto-text">
+              <p className="text-sm text-orange-700 auto-text [dir=rtl]:text-right">
                 {language === "ar"
                   ? `تواصل معنا على ${phoneEl.props.children}`
                   : `Contact us at ${phoneEl}`
