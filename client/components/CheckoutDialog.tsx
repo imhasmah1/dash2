@@ -207,8 +207,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg">
-          <div className="p-6 space-y-6">
+        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg flex flex-col">
+          <ScrollArea className="flex-1 min-h-0">
+            <div className="p-6 space-y-6">
             {/* Success Icon & Title */}
             <div className="text-center space-y-3">
               <div className="flex justify-center">
@@ -373,7 +374,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 {language === "ar" ? "متابعة التسوق" : "Continue Shopping"}
               </span>
             </Button>
-          </div>
+            </div>
+          </ScrollArea>
         </DialogContent>
       </Dialog>
     );
