@@ -610,12 +610,12 @@ export default function Orders() {
           return (
             <Card key={order.id} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
                   <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                     <div className="w-10 h-10 bg-dashboard-primary rounded-full flex items-center justify-center">
                       <ShoppingCart className="w-5 h-5 text-white" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <CardTitle className="text-lg">
                         {t("orders.orderId")} #{order.id}
                       </CardTitle>
@@ -625,18 +625,18 @@ export default function Orders() {
                       </CardDescription>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-dashboard-primary">
+                  <div className="flex flex-col sm:items-end gap-2">
+                    <div className="text-xl sm:text-2xl font-bold text-dashboard-primary">
                       BD {order.total.toFixed(2)}
                     </div>
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="w-full sm:w-auto">
                       <Select
                         value={order.status}
                         onValueChange={(value: Order["status"]) =>
                           handleStatusChange(order.id, value)
                         }
                       >
-                        <SelectTrigger className="w-auto">
+                        <SelectTrigger className="w-full sm:w-auto min-w-32">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
