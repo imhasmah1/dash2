@@ -108,11 +108,11 @@ export default function Dashboard() {
 
       return {
         id: `#${order.id}`,
-        customer: customer?.name || "Unknown Customer",
+        customer: customer?.name || t("common.unknownCustomer"),
         product:
           itemsCount > 1
-            ? `${mainProduct?.name || "Product"} +${itemsCount - 1} more`
-            : mainProduct?.name || "Unknown Product",
+            ? `${mainProduct?.name || t("common.product")} +${itemsCount - 1} more`
+            : mainProduct?.name || t("common.unknownProduct"),
         amount: `BD ${order.total.toFixed(2)}`,
         status: getStatusText(order.status, t),
         date: formattedDate,
@@ -255,8 +255,8 @@ export default function Dashboard() {
           ) : (
             <div className="text-center py-8">
               <ShoppingBag className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">
-                No orders yet. Create your first order to see it here!
+              <p className="text-gray-600 auto-text">
+                {t("dashboard.noOrdersYet")}
               </p>
             </div>
           )}
