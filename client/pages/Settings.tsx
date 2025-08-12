@@ -993,7 +993,7 @@ export default function Settings() {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableNotifications" className="auto-text">Notifications</Label>
+                  <Label htmlFor="enableNotifications" className="auto-text">{t("settings.enableNotifications")}</Label>
                   <Switch
                     id="enableNotifications"
                     checked={settings.enableNotifications}
