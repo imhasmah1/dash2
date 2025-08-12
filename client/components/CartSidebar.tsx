@@ -221,43 +221,55 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
               </ScrollArea>
 
-              <DialogFooter className="flex-col space-y-4 px-6 py-6 border-t bg-gray-50">
+              <DialogFooter className="flex-col space-y-5 px-6 py-6 border-t bg-gradient-to-br from-gray-50 to-gray-100">
                 {/* Summary */}
-                <div className="w-full space-y-3">
-                  <div className="flex justify-between items-center text-lg font-semibold">
-                    <span className="auto-text text-gray-700">{t("store.cartTotal")}:</span>
-                                         <span className="text-2xl font-bold text-primary">
-                       {language === "ar" ? t("common.currencyAr") + " " : t("common.currency") + " "}{totalPrice.toFixed(2)}
-                     </span>
+                <div className="w-full space-y-4">
+                  <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+                    <div className="flex justify-between items-center [dir=rtl]:flex-row-reverse mb-3">
+                      <span className="auto-text text-gray-700 font-semibold text-lg">{t("store.cartTotal")}:</span>
+                      <span className="text-2xl font-bold text-primary ltr-text">
+                        {language === "ar" ? t("common.currencyAr") : t("common.currency")} {totalPrice.toFixed(2)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-lg py-2">
+                      <Package className="h-4 w-4" />
+                      <span className="auto-text font-medium">
+                        {items.length} {language === "ar" ? (items.length === 1 ? t("common.itemAr") : t("common.itemsAr")) : (items.length === 1 ? t("common.item") : t("common.items"))}
+                      </span>
+                    </div>
                   </div>
-                  
-                                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                     <Package className="h-4 w-4" />
-                     <span className="auto-text">
-                       {items.length} {language === "ar" ? (items.length === 1 ? t("common.itemAr") : t("common.itemsAr")) : (items.length === 1 ? t("common.item") : t("common.items"))}
-                     </span>
-                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 w-full">
-                  <Button
-                    variant="outline"
-                    onClick={clearCart}
-                    className="flex-1 h-12 touch-manipulation border-gray-300 hover:border-red-300 hover:bg-red-50 hover:text-red-600"
-                    disabled={items.length === 0}
-                  >
-                    {t("store.clearCart")}
-                  </Button>
+                <div className="flex flex-col gap-3 w-full">
                   <Button
                     onClick={handleCheckout}
-                    className="flex-1 h-12 touch-manipulation bg-primary hover:bg-primary/90 shadow-lg"
+                    className="w-full h-14 touch-manipulation bg-primary hover:bg-primary/90 shadow-lg text-lg font-semibold rounded-xl"
                     disabled={items.length === 0}
                     size="lg"
                   >
-                    <Truck className="h-4 w-4 mr-2" />
-                    {t("store.checkout")}
+                    <Truck className="h-5 w-5 mr-3 [dir=rtl]:ml-3 [dir=rtl]:mr-0" />
+                    <span className="auto-text">{t("store.checkout")}</span>
                   </Button>
+
+                  <div className="flex gap-3">
+                    <Button
+                      variant="outline"
+                      onClick={onClose}
+                      className="flex-1 h-12 touch-manipulation border-gray-300 hover:border-primary hover:bg-primary/5 rounded-xl"
+                    >
+                      <span className="auto-text">{t("store.continueShopping")}</span>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={clearCart}
+                      className="flex-1 h-12 touch-manipulation border-gray-300 hover:border-red-300 hover:bg-red-50 hover:text-red-600 rounded-xl"
+                      disabled={items.length === 0}
+                    >
+                      <span className="auto-text">{t("store.clearCart")}</span>
+                    </Button>
+                  </div>
                 </div>
               </DialogFooter>
             </>
