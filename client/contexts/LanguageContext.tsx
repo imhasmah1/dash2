@@ -618,7 +618,7 @@ const translations = {
     "orders.created": "تاريخ الإنشاء",
     "orders.lastUpdated": "آخر تحديث",
     "orders.close": "إغلاق",
-    "orders.selectProduct": "اختر المنتج",
+    "orders.selectProduct": "اختر ��لمنتج",
     "orders.selectVariant": "اختر النوع",
     "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
     // Added key
@@ -648,7 +648,7 @@ const translations = {
     "customers.save": "حف��",
 
     // Revenue
-    "revenue.title": "��حليلات الإي��ادات",
+    "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -813,7 +813,7 @@ const translations = {
     "analytics.totalCustomers": "إجمال�� العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
     "analytics.avgPerOrder": "����كل طلب",
-    "analytics.newInPeriod": "جدي�� في الفترة",
+    "analytics.newInPeriod": "جديد في الفترة",
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
     "analytics.dailyPerformance": "الأداء اليومي",
@@ -893,7 +893,7 @@ const translations = {
     "settings.adminEmail": "بريد الإدارة الإلكتروني",
     "settings.changePassword": "تغيير كلمة المرور",
     "settings.currentPassword": "كلمة المرور الحالية",
-    "settings.newPassword": "كلمة المرور الجد��دة",
+    "settings.newPassword": "��لمة المرور الجد��دة",
     "settings.confirmPassword": "تأكيد كلمة المرور",
     "settings.passwordsDoNotMatch": "كلمات ��لمرور غ��ر متطابقة",
     "settings.passwordChanged": "تم تغيير كلمة المرو�� بنجاح",
@@ -911,7 +911,7 @@ const translations = {
     "settings.pickupAddressAr": "عنوان الاستلام (عربي)",
     "settings.enablePerformanceMode": "وض�� الأداء",
     "settings.enableImageCompression": "ضغط الصور",
-    "settings.maxImageSizeMB": "الحد الأقصى لحجم ال��ورة (ميجابايت)",
+    "settings.maxImageSizeMB": "الحد الأقصى لحجم الصورة (ميجابايت)",
     "settings.enableAutoSave": "الحفظ التلقائي",
     "settings.enableDarkMode": "الوضع المظلم",
     "settings.enableAccessibilityFeatures": "ميزات إمكانية الوصول",
@@ -928,7 +928,7 @@ const translations = {
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.adminEmail": "بريد المدير الإلكتروني",
     "settings.adminPassword": "كلمة م��ور المدير",
-    "settings.adminPasswordHint": "قم بتغيير كلمة الم��ور للوصول إلى لوحة الت��كم",
+    "settings.adminPasswordHint": "قم بتغيير كلمة الم��ور للوصول إلى لوحة التحكم",
 
     // Store Information
     "settings.storeInformation": "معلومات ا��متجر",
@@ -961,7 +961,7 @@ const translations = {
     "settings.shippingDelivery": "الشحن والتوصيل",
     "settings.enableDelivery": "تفعيل التوصيل",
     "settings.enablePickup": "تفعيل الاستلام",
-    "settings.deliveryFee": "رسوم التوصيل",
+    "settings.deliveryFee": "رسوم التو��يل",
     "settings.freeDeliveryThreshold": "حد ال��وصيل المجاني",
     "settings.estimatedDeliveryTime": "الو��ت المتوقع للتو��يل",
 
