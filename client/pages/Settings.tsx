@@ -142,7 +142,7 @@ export default function Settings() {
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
     orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 ساعات والتوصيل خلال 1-3 أيام عمل.",
     orderInstructionsEn: "For any changes or questions about your order, please contact us.",
-    orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
+    orderInstructionsAr: "لأي ت��ييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     businessHours: {
       monday: { open: "09:00", close: "18:00", isOpen: true },
       tuesday: { open: "09:00", close: "18:00", isOpen: true },
@@ -931,7 +931,7 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enablePerformanceMode" className="auto-text">Performance Mode</Label>
+                  <Label htmlFor="enablePerformanceMode" className="auto-text">{t("settings.enablePerformanceMode")}</Label>
                   <Switch
                     id="enablePerformanceMode"
                     checked={settings.enablePerformanceMode}
