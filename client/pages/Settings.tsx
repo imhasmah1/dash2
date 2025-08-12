@@ -276,13 +276,13 @@ export default function Settings() {
           const importedSettings = JSON.parse(e.target?.result as string);
           setSettings((prev) => ({ ...prev, ...importedSettings }));
           setHasChanges(true);
-          showDialog({
+          showAlert({
             title: t("checkout.settingsImported"),
             message: t("checkout.settingsImported"),
             type: "success",
           });
         } catch (error) {
-          showDialog({
+          showAlert({
             title: t("checkout.importError"),
             message: t("checkout.importError"),
             type: "error",
