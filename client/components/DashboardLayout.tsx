@@ -105,7 +105,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     to={item.href}
                     onClick={() => setSidebarOpen(false)}
                     className={cn(
-                      "flex items-center px-3 sm:px-4 py-4 sm:py-3 text-sm sm:text-sm font-medium rounded-xl transition-colors touch-manipulation [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
+                      "flex items-center px-3 sm:px-4 py-4 sm:py-3 text-sm sm:text-sm font-medium rounded-xl transition-colors touch-manipulation",
+                      isRTL ? "flex-row-reverse text-right" : "text-left",
                       isActive
                         ? "bg-dashboard-primary text-white shadow-md"
                         : "text-gray-700 hover:bg-gray-100 active:bg-gray-200",
