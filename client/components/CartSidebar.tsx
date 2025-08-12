@@ -112,13 +112,13 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
 
                         {/* Product Details */}
                         <div className="flex-1 min-w-0 space-y-2 sm:space-y-3">
-                          <div className="flex items-start justify-between gap-3 [dir=rtl]:flex-row-reverse">
+                          <div className={cn("flex items-start justify-between gap-2 sm:gap-3", isRTL ? "flex-row-reverse" : "")}>
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-bold text-lg text-gray-900 leading-tight auto-text mb-1">
+                              <h4 className="font-bold text-base sm:text-lg text-gray-900 leading-tight auto-text mb-1">
                                 {item.productName}
                               </h4>
                               {item.variantName && (
-                                <p className="text-sm text-gray-600 font-medium auto-text">
+                                <p className="text-xs sm:text-sm text-gray-600 font-medium auto-text">
                                   {item.variantName}
                                 </p>
                               )}
@@ -131,9 +131,9 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                               onClick={() =>
                                 removeItem(item.productId, item.variantId)
                               }
-                              className="shrink-0 h-9 w-9 p-0 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200"
+                              className="shrink-0 h-8 w-8 sm:h-9 sm:w-9 p-0 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl opacity-0 group-hover:opacity-100 sm:opacity-0 opacity-100 transition-all duration-200"
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
 
