@@ -130,7 +130,7 @@ interface StoreSettings {
 
 export default function Settings() {
   const { t, language } = useLanguage();
-  const { showDialog } = useDialog();
+  const { showConfirm, showAlert } = useDialog();
   const [settings, setSettings] = useState<StoreSettings>({
     storeName: "",
     storeDescription: "",
