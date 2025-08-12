@@ -985,7 +985,7 @@ export default function Settings() {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableAccessibility" className="auto-text">Accessibility Features</Label>
+                  <Label htmlFor="enableAccessibility" className="auto-text">{t("settings.enableAccessibilityFeatures")}</Label>
                   <Switch
                     id="enableAccessibility"
                     checked={settings.enableAccessibility}
