@@ -409,7 +409,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                                 </p>
                               )}
                               <p className="text-gray-500 auto-text">
-                                {t("store.quantity")}: {item.quantity}
+                                {t("store.quantity")}: <span className="ltr-text font-medium">{item.quantity}</span>
                               </p>
                             </div>
                             <div className="text-end flex-shrink-0">
