@@ -749,7 +749,7 @@ const translations = {
     "checkout.customerHome": "رقم المنزل",
     "checkout.customerRoad": "رقم الطريق",
     "checkout.customerBlock": "رقم المجمع",
-    "checkout.customerTown": "البلدة/المنطقة",
+    "checkout.customerTown": "البلدة/المنط��ة",
     "checkout.deliveryOptions": "خ��ارات التوصيل",
     "checkout.delivery": "توصيل",
     "checkout.pickup": "استلام",
@@ -769,7 +769,7 @@ const translations = {
     "checkout.orderItems": "عناصر الطلب",
     "checkout.whatsNext": "ما هي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
-    "checkout.nextSteps": "الخطوات التالية",
+    "checkout.nextSteps": "الخط��ات التالية",
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف لل��أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
@@ -834,7 +834,7 @@ const translations = {
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
-    "notFound.returnHome": "العودة للصفحة الرئيسية",
+    "notFound.returnHome": "العودة للصفحة الرئي��ية",
 
     // Settings
     "settings.title": "الإعدادات",
@@ -913,7 +913,7 @@ const translations = {
     "settings.maxImageSizeMB": "الحد الأقصى لحجم الصورة (ميجابايت)",
     "settings.enableAutoSave": "الحفظ التلقائي",
     "settings.enableDarkMode": "الوضع المظلم",
-    "settings.enableAccessibilityFeatures": "ميزات إمكا��ية الوصول",
+    "settings.enableAccessibilityFeatures": "ميزات إمكانية الوصول",
     "settings.enableNotifications": "الإشعارات",
     "settings.enableAnalytics": "التحليلات",
     "settings.enableAutoBackup": "النسخ الاحتياطي التلقائي",
@@ -987,7 +987,7 @@ const translations = {
     "common.languageAr": "العربية",
     
     // Order success messages
-    "orderSuccess.headline": "تم تأكيد الطلب!",
+    "orderSuccess.headline": "تم تأ��يد الطلب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
     "orderSuccess.prepareOrder": "سنق��م بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
