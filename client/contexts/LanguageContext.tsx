@@ -482,7 +482,7 @@ const translations = {
     "common.itemAr": "منتج",
     "common.itemsAr": "منتجات",
     "common.language": "Language",
-    "common.languageAr": "العربية",
+    "common.languageAr": "ا��عربية",
     
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
@@ -535,7 +535,7 @@ const translations = {
     "products.productImages": "صور المنتج",
     "products.addVariant": "إضافة نوع",
     "products.variantName": "اسم النوع",
-    "products.variantStock": "مخزون النوع",
+    "products.variantStock": "مخ��ون النوع",
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
@@ -625,10 +625,10 @@ const translations = {
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
-    "customers.customerHome": "المنزل:",
-    "customers.customerRoad": "الطريق:",
-    "customers.customerBlock": "المجمع:",
-    "customers.customerTown": "المنطقة:",
+    "customers.customerHome": "رقم المنزل",
+    "customers.customerRoad": "رقم الطريق",
+    "customers.customerBlock": "رقم المجمع",
+    "customers.customerTown": "البلدة/المنطقة",
     "customers.save": "حفظ",
 
     // Revenue
@@ -830,7 +830,7 @@ const translations = {
     "settings.resetConfirm":
       "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
     "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس الحفظ!",
-    "settings.advancedSettings": "الإعدادات المتقدمة",
+    "settings.advancedSettings": "الإعد��دات المتقدمة",
     "settings.performanceMode": "وضع الأداء",
     "settings.imageCompression": "ضغط الصور",
     "settings.maxImageSize": "الحد الأقصى لحجم الصورة (ميجابايت)",
@@ -887,7 +887,7 @@ const translations = {
     "settings.chooseFile": "اختر الملف",
     "settings.noFileChosen": "لم يتم اختيار ملف",
     "settings.displayOptions": "خيارات العرض",
-    "settings.paymentSettings": "إعدادات الدفع",
+    "settings.paymentSettings": "إعداد��ت الدفع",
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.adminSettings": "إعدادات المدير",
     "settings.displayOptions": "خيارات العرض",
