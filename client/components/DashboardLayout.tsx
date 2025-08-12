@@ -63,17 +63,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed inset-y-0 z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+          "z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+          // Desktop: always visible, static positioning
+          "lg:relative lg:block",
+          // Mobile: fixed positioning with conditional visibility
+          "fixed inset-y-0 lg:inset-auto",
           isRTL ? "right-0" : "left-0",
-          // Desktop: always visible and static
-          "lg:static lg:!translate-x-0",
-          // Mobile: conditional positioning
-          "lg:transform-none lg:relative",
-          sidebarOpen
-            ? "translate-x-0"
-            : isRTL
-              ? "translate-x-full"
-              : "-translate-x-full",
+          // Mobile transform logic
+          "lg:translate-x-0",
+          !sidebarOpen && (isRTL ? "max-lg:translate-x-full" : "max-lg:-translate-x-full"),
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
