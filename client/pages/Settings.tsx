@@ -547,48 +547,6 @@ export default function Settings() {
           </div>
         )}
 
-        {/* Payment Settings */}
-        {activeTab === "payment" && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CreditCard className="w-5 h-5" />
-                {t("settings.paymentSettings")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="cashOnDeliveryEnabled" className="auto-text">{t("settings.cashOnDelivery")}</Label>
-                <Switch
-                  id="cashOnDeliveryEnabled"
-                  checked={settings.cashOnDeliveryEnabled}
-                  onCheckedChange={(checked) => handleInputChange("cashOnDeliveryEnabled", checked)}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="bankTransferEnabled" className="auto-text">{t("settings.bankTransfer")}</Label>
-                <Switch
-                  id="bankTransferEnabled"
-                  checked={settings.bankTransferEnabled}
-                  onCheckedChange={(checked) => handleInputChange("bankTransferEnabled", checked)}
-                />
-              </div>
-              {settings.bankTransferEnabled && (
-                <div>
-                  <Label htmlFor="bankAccountInfo" className="auto-text">{t("settings.bankAccountInfo")}</Label>
-                  <Textarea
-                    id="bankAccountInfo"
-                    value={settings.bankAccountInfo}
-                    onChange={(e) => handleInputChange("bankAccountInfo", e.target.value)}
-                    placeholder={t("settings.bankAccountPlaceholder")}
-                    className="auto-text"
-                    rows={4}
-                  />
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        )}
 
         {/* Message Settings */}
         {activeTab === "messages" && (
