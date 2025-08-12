@@ -845,17 +845,6 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="adminEmail" className="auto-text">{t("settings.adminEmail")}</Label>
-                  <Input
-                    id="adminEmail"
-                    type="email"
-                    value={settings.adminEmail}
-                    onChange={(e) => handleInputChange("adminEmail", e.target.value)}
-                    placeholder="admin@store.com"
-                    className="ltr-text"
-                  />
-                </div>
-                <div>
                   <Label htmlFor="adminPassword" className="auto-text">{t("settings.adminPassword")}</Label>
                   <Input
                     id="adminPassword"
