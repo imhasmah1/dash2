@@ -1050,7 +1050,7 @@ export default function Settings() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label htmlFor="autoScrollToSummary" className="auto-text">{t("settings.autoScrollToSummary")}</Label>
-                    <p className="text-sm text-gray-600 auto-text">Automatically scroll to order summary in checkout</p>
+                    <p className="text-sm text-gray-600 auto-text">{t("settings.autoScrollDesc")}</p>
                   </div>
                   <Switch
                     id="autoScrollToSummary"
