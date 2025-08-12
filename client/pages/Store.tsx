@@ -176,9 +176,9 @@ export default function Store() {
         </div>
       </header>
 
-      {/* Search and Category Filter */}
+      {/* Search and Category Filter - Mobile Optimized */}
       <div className="border-b bg-gray-50/50">
-        <div className="container mx-auto px-4 py-6 space-y-4">
+        <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-4">
           {/* Search Bar + Categories row */}
           <div className="flex flex-col gap-4">
             <div className="max-w-2xl mx-auto w-full relative">
@@ -189,35 +189,35 @@ export default function Store() {
                   placeholder={t("store.search")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-10 [dir=rtl]:pl-10 [dir=rtl]:pr-10 text-center [dir=rtl]:text-right [dir=ltr]:text-left"
+                  className="pl-10 pr-10 [dir=rtl]:pl-10 [dir=rtl]:pr-10 auto-text h-12 sm:h-10 text-base sm:text-sm"
                 />
                 {searchQuery && (
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={clearSearch}
-                    className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 [dir=rtl]:right-auto [dir=rtl]:left-1"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 [dir=rtl]:right-auto [dir=rtl]:left-1 touch-manipulation"
                   >
                     <X className="h-4 w-4" />
                   </Button>
                 )}
               </div>
               {searchQuery && (
-                <p className="text-sm text-muted-foreground mt-2 text-center">
+                <p className="text-sm text-muted-foreground mt-2 text-center auto-text">
                   {filteredProducts.length} {t("store.searchResults")}
                 </p>
               )}
             </div>
 
-            {/* Category chips aligned with search */}
-            <div className="flex flex-wrap justify-center gap-2">
+            {/* Category chips - mobile optimized */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
               <Button
                 variant={selectedCategory === "all" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory("all")}
-                className="rounded-full"
+                className="rounded-full h-10 sm:h-8 px-4 sm:px-3 touch-manipulation"
               >
-                {t("store.allProducts")}
+                <span className="auto-text text-sm">{t("store.allProducts")}</span>
               </Button>
               {categories.map((category) => (
                 <Button
@@ -225,9 +225,9 @@ export default function Store() {
                   variant={selectedCategory === category.id ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory(category.id)}
-                  className="rounded-full"
+                  className="rounded-full h-10 sm:h-8 px-4 sm:px-3 touch-manipulation"
                 >
-                  {translateCategory(category.name)}
+                  <span className="auto-text text-sm">{translateCategory(category.name)}</span>
                 </Button>
               ))}
             </div>
