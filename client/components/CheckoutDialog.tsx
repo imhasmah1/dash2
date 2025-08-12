@@ -813,56 +813,94 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <Separator />
 
                   {/* Total Calculation - Enhanced Design */}
-                  <div className="space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl border border-gray-200 shadow-sm">
-                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-700 text-base font-medium">
-                        {t("checkout.subtotal")}:
-                      </span>
-                      <span className="ltr-text font-semibold text-base">
-                        {currencySymbol} {totalPrice.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-700 text-base font-medium">
-                        {t("checkout.deliveryFee")}:
-                      </span>
-                      <span className="ltr-text font-semibold text-base">
-                        {deliveryType === "delivery"
-                          ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}`
-                          : `${currencySymbol} 0.00`}
-                      </span>
-                    </div>
-                    <Separator className="my-4" />
-                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center pt-3">
-                      <span className="text-xl font-bold auto-text text-gray-900">
-                        {t("checkout.total")}:
-                      </span>
-                      <span className="text-2xl font-bold text-primary ltr-text">
-                        {currencySymbol}{" "}
-                        {(totalPrice + (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}
-                      </span>
+                  <div className="space-y-4 bg-gradient-to-br from-white to-gray-50 p-6 rounded-2xl border-2 border-gray-200 shadow-lg">
+                    <h4 className="font-bold text-lg text-gray-900 auto-text mb-4 flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                      <CreditCard className="h-5 w-5 text-primary" />
+                      {t("checkout.orderTotal")}
+                    </h4>
+
+                    <div className="space-y-3">
+                      <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center py-2">
+                        <span className="auto-text text-gray-700 text-base font-medium">
+                          {t("checkout.subtotal")}:
+                        </span>
+                        <span className="ltr-text font-semibold text-lg text-gray-900">
+                          {currencySymbol} {totalPrice.toFixed(2)}
+                        </span>
+                      </div>
+
+                      <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center py-2">
+                        <span className="auto-text text-gray-700 text-base font-medium">
+                          {t("checkout.deliveryFee")}:
+                        </span>
+                        <span className="ltr-text font-semibold text-lg text-gray-900">
+                          {deliveryType === "delivery"
+                            ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}`
+                            : `${currencySymbol} 0.00`}
+                        </span>
+                      </div>
+
+                      <Separator className="my-3" />
+
+                      <div className="bg-primary/10 rounded-xl p-4">
+                        <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
+                          <span className="text-xl font-bold auto-text text-gray-900">
+                            {t("checkout.total")}:
+                          </span>
+                          <span className="text-3xl font-bold text-primary ltr-text">
+                            {currencySymbol}{" "}
+                            {(totalPrice + (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Payment Method - Enhanced Design */}
-                  <div className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-2 border-blue-200 shadow-sm">
-                    <div className="flex items-center gap-4 [dir=rtl]:flex-row-reverse">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center [dir=rtl]:order-2 flex-shrink-0">
-                        <CreditCard className="w-6 h-6 text-blue-600" />
+                  {/* Payment Method - Enhanced Design with Better Visibility */}
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border-2 border-green-300 shadow-lg overflow-hidden">
+                    <div className="bg-green-600 text-white p-4">
+                      <h3 className="font-bold text-xl auto-text flex items-center gap-3 [dir=rtl]:flex-row-reverse">
+                        <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                          <CreditCard className="w-6 h-6" />
+                        </div>
+                        {t("checkout.paymentMethod")}
+                      </h3>
+                    </div>
+
+                    <div className="p-6 space-y-4">
+                      <div className="bg-white rounded-xl p-4 border border-green-200 shadow-sm">
+                        <div className="flex items-center gap-4 [dir=rtl]:flex-row-reverse">
+                          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Check className="w-7 h-7 text-green-600" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-green-900 auto-text text-lg mb-1">
+                              {t("checkout.cashOnDelivery")}
+                            </h4>
+                            <p className="text-green-700 auto-text text-base leading-relaxed">
+                              {language === "ar"
+                                ? "ادفع نقداً عند استلام طلبك - لا حاجة لبطاقة ائتمان"
+                                : "Pay cash when you receive your order - No credit card needed"
+                              }
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="[dir=rtl]:order-1 flex-1">
-                        <h3 className="font-semibold text-blue-900 auto-text text-lg mb-1">
-                          {t("checkout.paymentMethod")}
-                        </h3>
-                        <p className="text-blue-700 auto-text text-base">
-                          {t("checkout.cashOnDelivery")}
-                        </p>
-                        <p className="text-blue-600 auto-text text-sm mt-1">
-                          {language === "ar" 
-                            ? t("checkout.noCreditCard") 
-                            : t("checkout.noCreditCard")
-                          }
-                        </p>
+
+                      <div className="bg-green-100 rounded-lg p-4 border border-green-200">
+                        <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
+                          <div className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Check className="w-4 h-4 text-green-700" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-green-800 auto-text text-sm font-medium leading-relaxed">
+                              {language === "ar"
+                                ? "آمن ومضمون - ادفع فقط عند الاستلام الناجح لطلبك"
+                                : "Safe & Secure - Only pay when you successfully receive your order"
+                              }
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
