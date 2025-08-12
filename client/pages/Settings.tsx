@@ -977,7 +977,7 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableDarkMode" className="auto-text">Dark Mode</Label>
+                  <Label htmlFor="enableDarkMode" className="auto-text">{t("settings.enableDarkMode")}</Label>
                   <Switch
                     id="enableDarkMode"
                     checked={settings.enableDarkMode}
