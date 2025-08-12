@@ -163,8 +163,8 @@ const Analytics = () => {
   return (
     <div className="container mx-auto p-6 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
+        <div className="[dir=rtl]:text-right">
           <h1 className="text-3xl font-bold text-dashboard-primary auto-text">
             {t("analytics.title")}
           </h1>
@@ -172,7 +172,7 @@ const Analytics = () => {
             {t("analytics.overview")}
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
           <Select value={timeRange} onValueChange={setTimeRange}>
             <SelectTrigger className="w-48">
               <SelectValue />
