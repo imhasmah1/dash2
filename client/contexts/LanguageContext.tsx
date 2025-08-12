@@ -564,7 +564,7 @@ const translations = {
     // Added keys (AR)
     "products.category": "التصنيف",
     "products.selectCategory": "اختر التصنيف",
-    "products.variantImageOptional": "صورة النوع (اختياري)",
+    "products.variantImageOptional": "صورة ا��نوع (اختياري)",
     "products.removeImage": "إ��الة الصورة",
     "products.uploadImage": "ر��ع صورة",
 
@@ -770,7 +770,7 @@ const translations = {
     "checkout.orderItems": "عناصر الطلب",
     "checkout.whatsNext": "ما ��ي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
-    "checkout.nextSteps": "الخط��ات التالية",
+    "checkout.nextSteps": "الخط��ات ا��تالية",
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف ل����أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
@@ -928,12 +928,12 @@ const translations = {
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.adminEmail": "بريد المدير الإلكتروني",
     "settings.adminPassword": "كلمة م��ور المدير",
-    "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة التحكم",
+    "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة ��لتحكم",
 
     // Store Information
     "settings.storeInformation": "معلومات المتجر",
     "settings.storeName": "اسم المتجر",
-    "settings.storeDescription": "وصف المتجر",
+    "settings.storeDescription": "وص�� المتجر",
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
     "settings.bahrainiDinar": "الدينار البحريني",
@@ -988,7 +988,7 @@ const translations = {
     "common.languageAr": "العربية",
     
     // Order success messages
-    "orderSuccess.headline": "تم تأ��يد الطلب!",
+    "orderSuccess.headline": "تم تأكيد الطلب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
     "orderSuccess.prepareOrder": "سنق��م بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
