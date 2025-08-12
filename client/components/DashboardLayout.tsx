@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          "fixed inset-y-0 z-50 w-80 sm:w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
           isRTL ? "right-0" : "left-0",
           sidebarOpen
             ? "translate-x-0"
@@ -72,8 +72,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               : "-translate-x-full",
         )}
       >
-        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
-          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
+        <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
+          <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse min-w-0">
             <img
               src={
                 language === "ar"
@@ -81,17 +81,17 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   : "https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2Feb0b70b9250f4bfca41dbc5a78c2ce45?format=webp&width=800"
               }
               alt="أزهار ستور - azharstore"
-              className="h-8 w-8 object-contain"
+              className="h-6 w-6 sm:h-8 sm:w-8 object-contain flex-shrink-0"
             />
-            <h1 className="text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left">
+            <h1 className="text-base sm:text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left truncate">
               {t("nav.adminPanel")}
             </h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-gray-600"
+            className="lg:hidden text-gray-400 hover:text-gray-600 p-2 -mr-2 touch-manipulation"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
