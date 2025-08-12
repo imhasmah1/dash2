@@ -234,7 +234,7 @@ const translations = {
 
     // Language
     "language.english": "English",
-    "language.arabic": "العربية",
+    "language.arabic": "الع��بية",
     "language.switch": "Switch Language",
 
     // Store
@@ -458,6 +458,7 @@ const translations = {
     "settings.uiBehavior": "UI Behavior",
     "settings.adminSettings": "Admin Settings",
     "settings.adminPassword": "Admin Password",
+    "settings.adminPasswordHint": "Change password to access admin dashboard",
     "settings.adminEmail": "Admin Email",
     "settings.changePassword": "Change Password",
     "settings.currentPassword": "Current Password",
@@ -767,7 +768,7 @@ const translations = {
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.orderItems": "عناصر الطلب",
-    "checkout.whatsNext": "ما هي الخطوات التالية؟",
+    "checkout.whatsNext": "ما ��ي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
     "checkout.nextSteps": "الخط��ات التالية",
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
@@ -809,7 +810,7 @@ const translations = {
     "analytics.overview": "نظرة عامة على أداء متجرك",
     "analytics.totalOrders": "إجمالي الطلبات",
     "analytics.totalRevenue": "إجمالي الإيرادات",
-    "analytics.totalCustomers": "إجمالي العملاء",
+    "analytics.totalCustomers": "إجمال�� العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
     "analytics.avgPerOrder": "لكل طلب",
     "analytics.newInPeriod": "جديد في الفترة",
@@ -926,7 +927,7 @@ const translations = {
     "settings.displayNextSteps": "عرض الخطوات التالية",
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.adminEmail": "بريد المدير الإلكتروني",
-    "settings.adminPassword": "كلمة مرور المدير",
+    "settings.adminPassword": "كلمة م��ور المدير",
     "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة التحكم",
 
     // Store Information
