@@ -552,7 +552,39 @@ export default function Settings() {
         {/* Success Screen Settings */}
         {activeTab === "success" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Success Headlines */}
+            {/* Order Success Messages */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5" />
+                  {t("settings.orderSuccessMessage")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="orderSuccessMessageEn" className="auto-text">{t("common.language")}</Label>
+                  <Textarea
+                    id="orderSuccessMessageEn"
+                    value={settings.orderSuccessMessageEn}
+                    onChange={(e) => handleInputChange("orderSuccessMessageEn", e.target.value)}
+                    className="auto-text"
+                    rows={4}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="orderSuccessMessageAr" className="auto-text">{t("common.languageAr")}</Label>
+                  <Textarea
+                    id="orderSuccessMessageAr"
+                    value={settings.orderSuccessMessageAr}
+                    onChange={(e) => handleInputChange("orderSuccessMessageAr", e.target.value)}
+                    className="auto-text"
+                    rows={4}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Success Headlines & Subtext */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -581,38 +613,26 @@ export default function Settings() {
                     className="auto-text"
                   />
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Success Subtext */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MessageSquare className="w-5 h-5" />
-                  {t("settings.successSubtext")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="successSubtextEn" className="auto-text">{t("common.language")}</Label>
+                  <Label htmlFor="successSubtextEn" className="auto-text">{t("settings.successSubtext")} ({t("common.language")})</Label>
                   <Textarea
                     id="successSubtextEn"
                     value={settings.successSubtextEn || ""}
                     onChange={(e) => handleInputChange("successSubtextEn", e.target.value)}
                     placeholder="We'll share updates by phone as your order progresses."
                     className="auto-text"
-                    rows={3}
+                    rows={2}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="successSubtextAr" className="auto-text">{t("common.languageAr")}</Label>
+                  <Label htmlFor="successSubtextAr" className="auto-text">{t("settings.successSubtext")} ({t("common.languageAr")})</Label>
                   <Textarea
                     id="successSubtextAr"
                     value={settings.successSubtextAr || ""}
                     onChange={(e) => handleInputChange("successSubtextAr", e.target.value)}
                     placeholder={t("orderSuccess.contactPhoneAr")}
                     className="auto-text"
-                    rows={3}
+                    rows={2}
                   />
                 </div>
               </CardContent>
