@@ -1001,7 +1001,7 @@ export default function Settings() {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableAnalytics" className="auto-text">Analytics</Label>
+                  <Label htmlFor="enableAnalytics" className="auto-text">{t("settings.enableAnalytics")}</Label>
                   <Switch
                     id="enableAnalytics"
                     checked={settings.enableAnalytics}
