@@ -428,7 +428,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="space-y-3 pt-3 border-t">
                       <div className="flex justify-between items-center text-sm [dir=rtl]:flex-row-reverse">
                         <span className="auto-text">{t("checkout.subtotal")}:</span>
-                        <span className="text-primary ltr-text">{currencySymbol} {totalPrice.toFixed(2)}</span>
+                        <span className="text-primary ltr-text">{currencySymbol} {(orderTotalPrice - (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}</span>
                       </div>
                       <div className="flex justify-between items-center text-sm [dir=rtl]:flex-row-reverse">
                         <span className="auto-text">{t("checkout.deliveryFee")}:</span>
@@ -439,7 +439,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <div className="flex justify-between items-center text-base font-bold pt-3 border-t [dir=rtl]:flex-row-reverse">
                         <span className="auto-text">{t("orders.orderTotal")}:</span>
                         <span className="text-primary text-lg ltr-text">
-                          {currencySymbol} {(totalPrice + (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}
+                          {currencySymbol} {orderTotalPrice.toFixed(2)}
                         </span>
                       </div>
                     </div>
