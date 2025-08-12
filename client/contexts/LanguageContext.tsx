@@ -280,6 +280,7 @@ const translations = {
     "checkout.subtotal": "Subtotal",
     "checkout.deliveryFee": "Delivery Fee",
     "checkout.total": "Total",
+    "checkout.orderTotal": "Order Total",
     "checkout.orderItems": "Order Items",
     "checkout.paymentMethod": "Payment Method",
     "checkout.cashOnDelivery": "Cash on Delivery",
@@ -565,7 +566,7 @@ const translations = {
     "orders.date": "التاريخ",
     "orders.actions": "الإجراءات",
     "orders.view": "عرض",
-    "orders.edit": "تعديل",
+    "orders.edit": "ت��ديل",
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
     "orders.addOrder": "إضافة طلب",
@@ -943,7 +944,7 @@ const translations = {
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
-      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
+      "ستظهر هذه الرسائل للعملاء عند نجح تقدي�� طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
     
     // Currency and formatting
     "common.currency": "د.ب",
