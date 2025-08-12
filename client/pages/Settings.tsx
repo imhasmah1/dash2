@@ -1029,7 +1029,7 @@ export default function Settings() {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableDebugMode" className="auto-text">Debug Mode</Label>
+                  <Label htmlFor="enableDebugMode" className="auto-text">{t("settings.enableDebugMode")}</Label>
                   <Switch
                     id="enableDebugMode"
                     checked={settings.enableDebugMode}
