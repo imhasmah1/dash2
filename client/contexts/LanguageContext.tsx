@@ -566,10 +566,10 @@ const translations = {
     "orders.date": "التاريخ",
     "orders.actions": "الإجراءات",
     "orders.view": "عرض",
-    "orders.edit": "ت��ديل",
+    "orders.edit": "تعديل",
     "orders.delete": "حذف",
     "orders.noOrders": "لا توجد طلبات",
-    "orders.addOrder": "إضافة طلب",
+    "orders.addOrder": "إضافة طل��",
     "orders.editOrder": "تعديل طلب",
     "orders.selectCustomer": "اختر العميل",
     "orders.addItem": "إضافة عنصر",
@@ -622,7 +622,7 @@ const translations = {
     "customers.delete": "حذف",
     "customers.noCustomers": "لا يوجد عملاء",
     "customers.addCustomer": "إضافة عميل",
-    "customers.editCustomer": "تعديل عميل",
+    "customers.editCustomer": "��عديل عميل",
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
@@ -699,7 +699,7 @@ const translations = {
     "message.uploadError": "فشل في رفع الصور. يرجى المحاولة مرة أخرى.",
 
     // Login
-    "login.title": "تسجيل دخول الإدارة",
+    "login.title": "تسجي�� دخول الإدارة",
     "login.password": "كلمة المرور",
     "login.signIn": "تسجيل الدخول",
     "login.invalidPassword": "كلمة مرور غير صحيحة",
@@ -743,12 +743,13 @@ const translations = {
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
+    "checkout.orderTotal": "إجمالي الطلب",
     "checkout.placeOrder": "إرسال الطلب",
     "checkout.orderSuccess": "تم تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك! لقد استلمنا طلبك وسنقوم بمعالجته قريباً.",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
-    "checkout.noCreditCard": "لا حاجة لبطاقة ائتمان - الدفع عند التسليم فقط!",
+    "checkout.noCreditCard": "لا حاجة لبطاقة ائتمان - الدفع عند التسليم ف��ط!",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.orderItems": "عناصر الطلب",
@@ -815,7 +816,7 @@ const translations = {
     "common.unknownProduct": "منتج غير معروف",
     "common.product": "منتج",
     "common.default": "افتراضي",
-    "errors.orderFailed": "فشل في إرسال الطلب. يرجى المحاولة مرة أخرى.",
+    "errors.orderFailed": "فشل في إرسال ��لطلب. يرجى المحاولة مرة أخرى.",
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
@@ -854,7 +855,7 @@ const translations = {
     
     // Settings Tabs
     "settings.basicSettings": "الإعدادات الأساسية",
-    "settings.deliverySettings": "إعدادات التوصيل",
+    "settings.deliverySettings": "إعدادات ا��توصيل",
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.successScreenSettings": "إعدادات شاشة النجاح",
     "settings.displayOrderNumber": "عرض رقم الطلب",
@@ -914,7 +915,7 @@ const translations = {
     // Contact Information
     "settings.contactInformation": "معلومات الاتصال",
     "settings.contactPhone": "رقم الهاتف",
-    "settings.contactEmail": "البريد الإلكتروني",
+    "settings.contactEmail": "ال��ريد الإلكتروني",
     "settings.contactAddress": "العنوان",
 
     // Business Hours
@@ -944,7 +945,7 @@ const translations = {
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
-      "ستظهر هذه الرسائل للعملاء عند نجح تقدي�� طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
+      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
     
     // Currency and formatting
     "common.currency": "د.ب",
