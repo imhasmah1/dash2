@@ -514,7 +514,7 @@ const translations = {
     // Navigation
     "nav.dashboard": "لوحة التحكم",
     "nav.products": "المنتجات",
-    "nav.orders": "ا��طلبات",
+    "nav.orders": "الطلبات",
     "nav.customers": "العملاء",
     "nav.revenue": "الإيرادات",
     "nav.analytics": "التحليلات",
@@ -648,7 +648,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلات الإي��ادات",
+    "revenue.title": "��حليلات الإي��ادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -839,7 +839,7 @@ const translations = {
 
     // Settings
     "settings.title": "الإعدادات",
-    "settings.subtitle": "قم بتهيئة إعدادات المتجر والتفضيلات",
+    "settings.subtitle": "قم بتهيئ�� إعدادات المتجر والتفضيلات",
     "settings.save": "حفظ الإعدادات",
     "settings.reset": "إعادة تعيين",
     "settings.saveSuccess": "تم حفظ الإعدادات بنجاح!",
@@ -895,7 +895,7 @@ const translations = {
     "settings.currentPassword": "كلمة المرور الحالية",
     "settings.newPassword": "كلمة المرور الجديدة",
     "settings.confirmPassword": "تأكيد كلمة المرور",
-    "settings.passwordsDoNotMatch": "كلمات ��لمرور غير متطابقة",
+    "settings.passwordsDoNotMatch": "كلمات ��لمرور غ��ر متطابقة",
     "settings.passwordChanged": "تم تغيير كلمة المرو�� بنجاح",
     "settings.exportSettings": "تصدير الإعدادات",
     "settings.importSettings": "استيراد الإعدادات",
