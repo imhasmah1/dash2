@@ -295,7 +295,6 @@ export default function Settings() {
   const tabs = [
     { id: "basic", label: t("settings.basicSettings"), icon: Store },
     { id: "delivery", label: t("settings.deliverySettings"), icon: Truck },
-    { id: "payment", label: t("settings.paymentSettings"), icon: CreditCard },
     { id: "messages", label: t("settings.messageSettings"), icon: MessageSquare },
     { id: "success", label: t("settings.successScreenSettings"), icon: CheckCircle },
     { id: "admin", label: t("settings.adminSettings"), icon: Shield },
