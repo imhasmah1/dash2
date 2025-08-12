@@ -957,7 +957,7 @@ export default function Settings() {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableAutoSave" className="auto-text">Auto Save</Label>
+                  <Label htmlFor="enableAutoSave" className="auto-text">{t("settings.enableAutoSave")}</Label>
                   <Switch
                     id="enableAutoSave"
                     checked={settings.enableAutoSave}
