@@ -252,6 +252,7 @@ const translations = {
     "store.updateQuantity": "Update Quantity",
     "store.clearCart": "Clear Cart",
     "store.startShopping": "Start shopping to add products to your cart",
+    "store.unitPrice": "Unit Price",
 
     // Checkout
     "checkout.title": "Checkout",
@@ -590,7 +591,7 @@ const translations = {
     "orders.save": "حفظ",
     "orders.orderDetailsTitle": "تفاصيل الطلب",
     "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
-    "orders.customerInfo": "معلومات العميل",
+    "orders.customerInfo": "مع��ومات العميل",
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
     "orders.deliveryAddress": "عنوان التوصيل",
@@ -671,7 +672,7 @@ const translations = {
     "empty.noProductsFound": "لا توجد منتجات",
     "empty.noCustomersFound": "لا يوجد عملاء",
     "empty.noOrdersFound": "لا توجد طلبات",
-    "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
+    "empty.adjustSearch": "حاول تعديل م��طلحات البحث",
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
     "empty.addFirstCustomer": "ابدأ بإضافة أول عميل لك",
     "empty.addFirstOrder": "ابدأ بإنشاء أول طلب لك",
@@ -745,7 +746,7 @@ const translations = {
     "checkout.thankYou": "شكراً لك على طلبك! لقد استلمنا طلبك وسنقوم بمعالجته قريباً.",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
-    "checkout.noCreditCard": "لا حاجة لبطاقة ائتمان - الدفع عند التسليم فقط!",
+    "checkout.noCreditCard": "لا حاجة لبطاقة ائ��مان - الدفع عند التسليم فقط!",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.orderItems": "عناصر الطلب",
@@ -941,7 +942,7 @@ const translations = {
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
-      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. قم بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
+      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. قم بتخصيصها لتتناسب م�� طابع متجرك وتقديم المعلومات ذات الصلة.",
     
     // Currency and formatting
     "common.currency": "د.ب",
