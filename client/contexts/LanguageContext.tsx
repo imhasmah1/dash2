@@ -498,7 +498,7 @@ const translations = {
     "common.itemAr": "منتج",
     "common.itemsAr": "منتجات",
     "common.language": "Language",
-    "common.languageAr": "ا��عربية",
+    "common.languageAr": "العربية",
     
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
@@ -514,7 +514,7 @@ const translations = {
     // Navigation
     "nav.dashboard": "لوحة التحكم",
     "nav.products": "المنتجات",
-    "nav.orders": "الطلبات",
+    "nav.orders": "ا��طلبات",
     "nav.customers": "العملاء",
     "nav.revenue": "الإيرادات",
     "nav.analytics": "التحليلات",
@@ -699,7 +699,7 @@ const translations = {
     // Messages
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
-    "message.productUpdated": "تم تحديث المنتج بنجاح",
+    "message.productUpdated": "تم ت��ديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضاف�� الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
@@ -909,7 +909,7 @@ const translations = {
     "settings.adminSettings": "إعدادات المدير",
     "settings.pickupAddressEn": "عنوان الاستلام (إنجليزي)",
     "settings.pickupAddressAr": "عنوان الاستلام (عربي)",
-    "settings.enablePerformanceMode": "وضع الأداء",
+    "settings.enablePerformanceMode": "وض�� الأداء",
     "settings.enableImageCompression": "ضغط الصور",
     "settings.maxImageSizeMB": "الحد الأقصى لحجم الصورة (ميجابايت)",
     "settings.enableAutoSave": "الحفظ التلقائي",
@@ -935,7 +935,7 @@ const translations = {
     "settings.storeName": "اسم المتجر",
     "settings.storeDescription": "وصف المتجر",
     "settings.currency": "العملة",
-    "settings.currencySymbol": "رمز العملة",
+    "settings.currencySymbol": "رمز العم��ة",
     "settings.bahrainiDinar": "الدينار البحريني",
     "settings.usDollar": "الدولار الأمريكي",
     "settings.euro": "اليورو",
@@ -963,7 +963,7 @@ const translations = {
     "settings.enablePickup": "تفعيل الاستلام",
     "settings.deliveryFee": "رسوم التوصيل",
     "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
-    "settings.estimatedDeliveryTime": "الوقت المتوقع للتو��يل",
+    "settings.estimatedDeliveryTime": "الو��ت المتوقع للتو��يل",
 
     // Order Messages
     "settings.orderMessages": "رسائل الطلب��ت",
