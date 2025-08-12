@@ -356,7 +356,7 @@ export default function Settings() {
       <div className="space-y-6">
         {/* Basic Settings */}
         {activeTab === "basic" && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="max-w-2xl mx-auto">
             {/* Store Information */}
             <Card>
               <CardHeader>
@@ -365,7 +365,7 @@ export default function Settings() {
                   {t("settings.storeInformation")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 <div>
                   <Label htmlFor="storeName" className="auto-text">{t("settings.storeName")}</Label>
                   <Input
@@ -411,50 +411,6 @@ export default function Settings() {
                       className="ltr-text"
                     />
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Contact Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Phone className="w-5 h-5" />
-                  {t("settings.contactInformation")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="contactPhone" className="auto-text">{t("settings.contactPhone")}</Label>
-                  <Input
-                    id="contactPhone"
-                    value={settings.contactPhone}
-                    onChange={(e) => handleInputChange("contactPhone", e.target.value)}
-                    placeholder="+973 36283382"
-                    className="ltr-text"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="contactEmail" className="auto-text">{t("settings.contactEmail")}</Label>
-                  <Input
-                    id="contactEmail"
-                    type="email"
-                    value={settings.contactEmail}
-                    onChange={(e) => handleInputChange("contactEmail", e.target.value)}
-                    placeholder="info@store.com"
-                    className="ltr-text"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="contactAddress" className="auto-text">{t("settings.contactAddress")}</Label>
-                  <Textarea
-                    id="contactAddress"
-                    value={settings.contactAddress}
-                    onChange={(e) => handleInputChange("contactAddress", e.target.value)}
-                    placeholder={t("settings.contactAddress")}
-                    className="auto-text"
-                    rows={3}
-                  />
                 </div>
               </CardContent>
             </Card>
