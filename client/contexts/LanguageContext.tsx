@@ -727,7 +727,7 @@ const translations = {
     // Store
     "store.title": "المتجر",
     "store.cart": "السلة",
-    "store.addToCart": "إضافة للسلة",
+    "store.addToCart": "إ��افة للسلة",
     "store.quantity": "الكمية",
     "store.variant": "النوع",
     "store.selectVariant": "اختر النوع",
@@ -771,7 +771,7 @@ const translations = {
     "checkout.whatsNext": "ما ��ي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج م��اعدة؟",
     "checkout.nextSteps": "الخط��ات التالية",
-    "checkout.prepareOrder": "سنقوم بتجهيز ط��بك خلال 2-4 ساعات",
+    "checkout.prepareOrder": "سنقوم بتج��يز ط��بك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف ل����أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.backupRestore": "النسخ الاحتياطي والاستعادة",
@@ -812,7 +812,7 @@ const translations = {
     "analytics.totalRevenue": "إجمالي الإيرادات",
     "analytics.totalCustomers": "إجمال�� العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
-    "analytics.avgPerOrder": "����كل طلب",
+    "analytics.avgPerOrder": "لكل طلب",
     "analytics.newInPeriod": "جديد في الفترة",
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
@@ -838,7 +838,7 @@ const translations = {
     "notFound.returnHome": "العودة ��لصفحة الرئي��ية",
 
     // Settings
-    "settings.title": "الإعدادات",
+    "settings.title": "��لإعدادات",
     "settings.subtitle": "قم بتهيئ�� إعدادات المتجر والتفضيلات",
     "settings.save": "حفظ الإعدادات",
     "settings.reset": "إعادة تعيين",
@@ -894,7 +894,7 @@ const translations = {
     "settings.changePassword": "تغيير كلمة المرور",
     "settings.currentPassword": "كلمة المرور الحالية",
     "settings.newPassword": "��لمة المرور الجد��دة",
-    "settings.confirmPassword": "تأكيد كلمة المرور",
+    "settings.confirmPassword": "تأكيد كلمة ال��رور",
     "settings.passwordsDoNotMatch": "كلمات ��لمرور غ��ر متطابقة",
     "settings.passwordChanged": "تم تغيير كلمة المرو�� بنجاح",
     "settings.exportSettings": "تصدير الإعدادات",
@@ -962,7 +962,7 @@ const translations = {
     "settings.enableDelivery": "تفعيل التوصيل",
     "settings.enablePickup": "تفعيل الاستلام",
     "settings.deliveryFee": "رسوم التو��يل",
-    "settings.freeDeliveryThreshold": "حد ال��وصيل المجاني",
+    "settings.freeDeliveryThreshold": "حد ال��وص��ل المجاني",
     "settings.estimatedDeliveryTime": "الو��ت المتوقع للتو��يل",
 
     // Order Messages
@@ -988,7 +988,7 @@ const translations = {
     "common.languageAr": "العربية",
     
     // Order success messages
-    "orderSuccess.headline": "تم ت��كيد ال��لب!",
+    "orderSuccess.headline": "تم ت��كيد ال����ب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
     "orderSuccess.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
