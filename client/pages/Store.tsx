@@ -61,7 +61,6 @@ export default function Store() {
         const normalized = data.map((p: any) => ({
           ...p,
           category_id: p.category_id || "",
-          
         }));
         setProducts(normalized);
         setFilteredProducts(normalized);
@@ -138,10 +137,16 @@ export default function Store() {
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-1 sm:gap-2 h-10 px-2 sm:px-3 touch-manipulation">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1 sm:gap-2 h-10 px-2 sm:px-3 touch-manipulation"
+                >
                   <Globe className="h-4 w-4 flex-shrink-0" />
                   <span className="hidden sm:inline">
-                    {language === "ar" ? t("common.languageAr") : t("common.language")}
+                    {language === "ar"
+                      ? t("common.languageAr")
+                      : t("common.language")}
                   </span>
                 </Button>
               </DropdownMenuTrigger>
@@ -217,17 +222,23 @@ export default function Store() {
                 onClick={() => setSelectedCategory("all")}
                 className="rounded-full h-10 sm:h-8 px-4 sm:px-3 touch-manipulation"
               >
-                <span className="auto-text text-sm">{t("store.allProducts")}</span>
+                <span className="auto-text text-sm">
+                  {t("store.allProducts")}
+                </span>
               </Button>
               {categories.map((category) => (
                 <Button
                   key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category.id ? "default" : "outline"
+                  }
                   size="sm"
                   onClick={() => setSelectedCategory(category.id)}
                   className="rounded-full h-10 sm:h-8 px-4 sm:px-3 touch-manipulation"
                 >
-                  <span className="auto-text text-sm">{translateCategory(category.name)}</span>
+                  <span className="auto-text text-sm">
+                    {translateCategory(category.name)}
+                  </span>
                 </Button>
               ))}
             </div>
@@ -243,7 +254,11 @@ export default function Store() {
             <p className="text-muted-foreground mb-4 text-center auto-text">
               {t("store.noSearchResults")}
             </p>
-            <Button variant="outline" onClick={clearSearch} className="touch-manipulation">
+            <Button
+              variant="outline"
+              onClick={clearSearch}
+              className="touch-manipulation"
+            >
               <span className="auto-text">{t("store.clearSearch")}</span>
             </Button>
           </div>
@@ -273,7 +288,9 @@ export default function Store() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                      <span className="text-xs sm:text-sm auto-text">{t("products.noImages")}</span>
+                      <span className="text-xs sm:text-sm auto-text">
+                        {t("products.noImages")}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -297,7 +314,10 @@ export default function Store() {
                       </span>
                       {(product.total_stock || 0) > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          <span className="ltr-text">{product.total_stock || 0}</span> {t("products.stock")}
+                          <span className="ltr-text">
+                            {product.total_stock || 0}
+                          </span>{" "}
+                          {t("products.stock")}
                         </p>
                       )}
                     </div>

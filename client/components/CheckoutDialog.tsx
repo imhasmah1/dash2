@@ -42,11 +42,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const deliveryFeeSetting: number = Number(savedSettings?.deliveryFee ?? 1.5);
   const pickupAddress: string =
     language === "ar"
-      ? savedSettings?.pickupAddressAr || "منزل 1348، طريق 416، مجمع 604، سترة القرية"
-      : savedSettings?.pickupAddressEn || "Home 1348, Road 416, Block 604, Sitra Alqarya";
+      ? savedSettings?.pickupAddressAr ||
+        "منزل 1348، طريق 416، مجمع 604، سترة القرية"
+      : savedSettings?.pickupAddressEn ||
+        "Home 1348, Road 416, Block 604, Sitra Alqarya";
   const contactPhone: string = savedSettings?.contactPhone || "+973 36283382";
-  const enableDialogScroll: boolean =
-    savedSettings?.enableDialogScroll ?? true;
+  const enableDialogScroll: boolean = savedSettings?.enableDialogScroll ?? true;
   const autoScrollToSummary: boolean =
     savedSettings?.autoScrollToSummary ?? true;
 
@@ -70,7 +71,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             : settings.successHeadlineEn || t("orderSuccess.headline"),
         subtext:
           language === "ar"
-            ? settings.successSubtextAr || "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
+            ? settings.successSubtextAr ||
+              "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
             : settings.successSubtextEn ||
               "We'll share updates by phone as your order progresses.",
         toggles: {
@@ -93,7 +95,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         language === "ar"
           ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل مع��ا."
           : "For any changes or questions about your order, please contact us.",
-      headline: language === "ar" ? t("orderSuccess.headlineAr") : t("orderSuccess.headline"),
+      headline:
+        language === "ar"
+          ? t("orderSuccess.headlineAr")
+          : t("orderSuccess.headline"),
       subtext:
         language === "ar"
           ? "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
@@ -294,7 +299,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   // Order Success Screen - Completely Revamped
   if (orderSuccess) {
     const orderMessages = getOrderMessages();
-    
+
     return (
       <Dialog open={open} onOpenChange={onClose}>
         <DialogContent className="max-w-md w-[95vw] mx-auto p-0 overflow-hidden bg-white rounded-2xl border-0 shadow-2xl">
@@ -339,15 +344,27 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <ul className="space-y-3 text-xs text-blue-800 auto-text">
                       <li className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text [dir=rtl]:order-1">{language === "ar" ? t("orderSuccess.prepareOrderAr") : t("orderSuccess.prepareOrder")}</span>
+                        <span className="auto-text [dir=rtl]:order-1">
+                          {language === "ar"
+                            ? t("orderSuccess.prepareOrderAr")
+                            : t("orderSuccess.prepareOrder")}
+                        </span>
                       </li>
                       <li className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text [dir=rtl]:order-1">{language === "ar" ? t("orderSuccess.contactPhoneAr") : t("orderSuccess.contactPhone")}</span>
+                        <span className="auto-text [dir=rtl]:order-1">
+                          {language === "ar"
+                            ? t("orderSuccess.contactPhoneAr")
+                            : t("orderSuccess.contactPhone")}
+                        </span>
                       </li>
                       <li className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text [dir=rtl]:order-1">{language === "ar" ? t("orderSuccess.deliveryTimeAr") : t("orderSuccess.deliveryTime")}</span>
+                        <span className="auto-text [dir=rtl]:order-1">
+                          {language === "ar"
+                            ? t("orderSuccess.deliveryTimeAr")
+                            : t("orderSuccess.deliveryTime")}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -363,11 +380,15 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="space-y-3 text-xs text-gray-700">
                       <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                         <Phone className="w-4 h-4 text-gray-500 [dir=rtl]:order-2" />
-                        <span className="ltr-text font-medium [dir=rtl]:order-1">{contactPhone}</span>
+                        <span className="ltr-text font-medium [dir=rtl]:order-1">
+                          {contactPhone}
+                        </span>
                       </div>
                       <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <MapPin className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text leading-relaxed [dir=rtl]:order-1">{pickupAddress}</span>
+                        <span className="auto-text leading-relaxed [dir=rtl]:order-1">
+                          {pickupAddress}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -381,7 +402,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <p className="text-sm font-medium text-gray-700 auto-text mb-3">
                         {t("checkout.orderNumber")}:
                       </p>
-                      <Badge variant="outline" className="text-lg px-6 py-3 ltr-text font-mono bg-gray-50 border-2">
+                      <Badge
+                        variant="outline"
+                        className="text-lg px-6 py-3 ltr-text font-mono bg-gray-50 border-2"
+                      >
                         #{orderNumber}
                       </Badge>
                     </div>
@@ -409,12 +433,16 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                                 </p>
                               )}
                               <p className="text-gray-500 auto-text">
-                                {t("store.quantity")}: <span className="ltr-text font-medium">{item.quantity}</span>
+                                {t("store.quantity")}:{" "}
+                                <span className="ltr-text font-medium">
+                                  {item.quantity}
+                                </span>
                               </p>
                             </div>
                             <div className="text-end flex-shrink-0">
                               <p className="font-semibold text-primary ltr-text">
-                                {currencySymbol} {(item.price * item.quantity).toFixed(2)}
+                                {currencySymbol}{" "}
+                                {(item.price * item.quantity).toFixed(2)}
                               </p>
                             </div>
                           </div>
@@ -427,17 +455,33 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   {orderMessages.toggles.displayTotals && (
                     <div className="space-y-3 pt-3 border-t">
                       <div className="flex justify-between items-center text-sm [dir=rtl]:flex-row-reverse">
-                        <span className="auto-text">{t("checkout.subtotal")}:</span>
-                        <span className="text-primary ltr-text">{currencySymbol} {(orderTotalPrice - (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}</span>
+                        <span className="auto-text">
+                          {t("checkout.subtotal")}:
+                        </span>
+                        <span className="text-primary ltr-text">
+                          {currencySymbol}{" "}
+                          {(
+                            orderTotalPrice -
+                            (deliveryType === "delivery"
+                              ? deliveryFeeSetting
+                              : 0)
+                          ).toFixed(2)}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center text-sm [dir=rtl]:flex-row-reverse">
-                        <span className="auto-text">{t("checkout.deliveryFee")}:</span>
+                        <span className="auto-text">
+                          {t("checkout.deliveryFee")}:
+                        </span>
                         <span className="text-primary ltr-text">
-                          {deliveryType === "delivery" ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}` : `${currencySymbol} 0.00`}
+                          {deliveryType === "delivery"
+                            ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}`
+                            : `${currencySymbol} 0.00`}
                         </span>
                       </div>
                       <div className="flex justify-between items-center text-base font-bold pt-3 border-t [dir=rtl]:flex-row-reverse">
-                        <span className="auto-text">{t("orders.orderTotal")}:</span>
+                        <span className="auto-text">
+                          {t("orders.orderTotal")}:
+                        </span>
                         <span className="text-primary text-lg ltr-text">
                           {currencySymbol} {orderTotalPrice.toFixed(2)}
                         </span>
@@ -450,7 +494,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
             {/* Footer */}
             <div className="border-t p-4 bg-white">
-              <Button onClick={onClose} className="w-full bg-primary hover:bg-primary/90 touch-manipulation h-12 text-base font-semibold">
+              <Button
+                onClick={onClose}
+                className="w-full bg-primary hover:bg-primary/90 touch-manipulation h-12 text-base font-semibold"
+              >
                 <span className="auto-text">{t("checkout.backToStore")}</span>
               </Button>
             </div>
@@ -497,7 +544,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         </DialogHeader>
 
         {/* Scrollable Content Area */}
-        <ScrollArea className={`flex-1 min-h-0 ${enableDialogScroll ? 'max-h-[70vh]' : ''}`}>
+        <ScrollArea
+          className={`flex-1 min-h-0 ${enableDialogScroll ? "max-h-[70vh]" : ""}`}
+        >
           <div className="p-4 sm:p-6 pb-6 sm:pb-8 auto-text">
             {/* Step 1: Customer Information */}
             {step === 1 && (
@@ -796,13 +845,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                               {item.productName}
                             </p>
                             <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
-                              {item.variantName} × {" "}
+                              {item.variantName} ×{" "}
                               <span className="ltr-text">{item.quantity}</span>
                             </p>
                           </div>
                           <div className="text-end auto-text min-w-0">
                             <p className="font-medium ltr-text text-sm sm:text-lg">
-                              {currencySymbol} {(item.price * item.quantity).toFixed(2)}
+                              {currencySymbol}{" "}
+                              {(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
                         </div>
@@ -849,7 +899,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                           </span>
                           <span className="text-3xl font-bold text-primary ltr-text">
                             {currencySymbol}{" "}
-                            {(totalPrice + (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}
+                            {(
+                              totalPrice +
+                              (deliveryType === "delivery"
+                                ? deliveryFeeSetting
+                                : 0)
+                            ).toFixed(2)}
                           </span>
                         </div>
                       </div>
@@ -880,8 +935,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <p className="text-green-700 auto-text text-base leading-relaxed">
                               {language === "ar"
                                 ? "ادفع نقداً عند استلام طلبك - لا حاجة لبطاقة ائتمان"
-                                : "Pay cash when you receive your order - No credit card needed"
-                              }
+                                : "Pay cash when you receive your order - No credit card needed"}
                             </p>
                           </div>
                         </div>
@@ -896,8 +950,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <p className="text-green-800 auto-text text-sm font-medium leading-relaxed">
                               {language === "ar"
                                 ? "آمن ومضمون - ادفع فقط عند الاستلام الناجح لطلبك"
-                                : "Safe & Secure - Only pay when you successfully receive your order"
-                              }
+                                : "Safe & Secure - Only pay when you successfully receive your order"}
                             </p>
                           </div>
                         </div>
@@ -922,7 +975,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 size="sm"
               >
                 <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 rtl-flip" />
-                <span className="hidden sm:inline auto-text">{t("common.back")}</span>
+                <span className="hidden sm:inline auto-text">
+                  {t("common.back")}
+                </span>
               </Button>
             )}
 

@@ -139,9 +139,12 @@ export default function Settings() {
     contactPhone: "",
     contactEmail: "",
     contactAddress: "",
-    orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 سا��ات والتوصيل خلال 1-3 أيام عمل.",
-    orderInstructionsEn: "For any changes or questions about your order, please contact us.",
+    orderSuccessMessageEn:
+      "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
+    orderSuccessMessageAr:
+      "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 سا��ات والتوصيل خلال 1-3 أيام عمل.",
+    orderInstructionsEn:
+      "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     businessHours: {
       monday: { open: "09:00", close: "18:00", isOpen: true },
@@ -211,12 +214,19 @@ export default function Settings() {
     setHasChanges(true);
   };
 
-  const handleBusinessHoursChange = (day: string, field: string, value: any) => {
+  const handleBusinessHoursChange = (
+    day: string,
+    field: string,
+    value: any,
+  ) => {
     setSettings((prev) => ({
       ...prev,
       businessHours: {
         ...prev.businessHours,
-        [day]: { ...prev.businessHours[day as keyof typeof prev.businessHours], [field]: value },
+        [day]: {
+          ...prev.businessHours[day as keyof typeof prev.businessHours],
+          [field]: value,
+        },
       },
     }));
     setHasChanges(true);
@@ -258,11 +268,11 @@ export default function Settings() {
 
   const exportSettings = () => {
     const dataStr = JSON.stringify(settings, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = 'store-settings.json';
+    link.download = "store-settings.json";
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -304,8 +314,12 @@ export default function Settings() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold auto-text">{t("settings.title")}</h1>
-          <p className="text-muted-foreground auto-text">{t("settings.subtitle")}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold auto-text">
+            {t("settings.title")}
+          </h1>
+          <p className="text-muted-foreground auto-text">
+            {t("settings.subtitle")}
+          </p>
         </div>
         <div className="flex flex-wrap gap-2">
           {hasChanges && (
@@ -313,21 +327,24 @@ export default function Settings() {
               {t("settings.unsavedChanges")}
             </Badge>
           )}
-          <Button 
-            onClick={saveSettings} 
-            disabled={!hasChanges || isSaving} 
+          <Button
+            onClick={saveSettings}
+            disabled={!hasChanges || isSaving}
             className="flex items-center gap-2"
           >
             <Save className="w-4 h-4" />
             {isSaving ? t("common.loading") : t("settings.save")}
           </Button>
-          <Button variant="outline" onClick={resetSettings} className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            onClick={resetSettings}
+            className="flex items-center gap-2"
+          >
             <RefreshCw className="w-4 h-4" />
             {t("settings.reset")}
           </Button>
         </div>
       </div>
-
 
       {/* Tab Navigation */}
       <div className="flex flex-wrap gap-2 border-b pb-2">
@@ -339,8 +356,8 @@ export default function Settings() {
               variant={activeTab === tab.id ? "default" : "ghost"}
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition-all duration-200 ${
-                activeTab === tab.id 
-                  ? "bg-primary text-white shadow-md" 
+                activeTab === tab.id
+                  ? "bg-primary text-white shadow-md"
                   : "hover:bg-gray-100 text-gray-600"
               }`}
             >
@@ -366,21 +383,29 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <Label htmlFor="storeName" className="auto-text">{t("settings.storeName")}</Label>
+                  <Label htmlFor="storeName" className="auto-text">
+                    {t("settings.storeName")}
+                  </Label>
                   <Input
                     id="storeName"
                     value={settings.storeName}
-                    onChange={(e) => handleInputChange("storeName", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("storeName", e.target.value)
+                    }
                     placeholder={t("settings.storeName")}
                     className="auto-text"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="storeDescription" className="auto-text">{t("settings.storeDescription")}</Label>
+                  <Label htmlFor="storeDescription" className="auto-text">
+                    {t("settings.storeDescription")}
+                  </Label>
                   <Textarea
                     id="storeDescription"
                     value={settings.storeDescription}
-                    onChange={(e) => handleInputChange("storeDescription", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("storeDescription", e.target.value)
+                    }
                     placeholder={t("settings.storeDescription")}
                     className="auto-text"
                     rows={3}
@@ -388,24 +413,41 @@ export default function Settings() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="currency" className="auto-text">{t("settings.currency")}</Label>
-                    <Select value={settings.currency} onValueChange={(value) => handleInputChange("currency", value)}>
+                    <Label htmlFor="currency" className="auto-text">
+                      {t("settings.currency")}
+                    </Label>
+                    <Select
+                      value={settings.currency}
+                      onValueChange={(value) =>
+                        handleInputChange("currency", value)
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="BHD">{t("settings.bahrainiDinar")}</SelectItem>
-                        <SelectItem value="USD">{t("settings.usDollar")}</SelectItem>
-                        <SelectItem value="EUR">{t("settings.euro")}</SelectItem>
+                        <SelectItem value="BHD">
+                          {t("settings.bahrainiDinar")}
+                        </SelectItem>
+                        <SelectItem value="USD">
+                          {t("settings.usDollar")}
+                        </SelectItem>
+                        <SelectItem value="EUR">
+                          {t("settings.euro")}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="currencySymbol" className="auto-text">{t("settings.currencySymbol")}</Label>
+                    <Label htmlFor="currencySymbol" className="auto-text">
+                      {t("settings.currencySymbol")}
+                    </Label>
                     <Input
                       id="currencySymbol"
                       value={settings.currencySymbol}
-                      onChange={(e) => handleInputChange("currencySymbol", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("currencySymbol", e.target.value)
+                      }
                       placeholder="BD"
                       className="ltr-text"
                     />
@@ -429,42 +471,67 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="deliveryEnabled" className="auto-text">{t("settings.enableDelivery")}</Label>
+                  <Label htmlFor="deliveryEnabled" className="auto-text">
+                    {t("settings.enableDelivery")}
+                  </Label>
                   <Switch
                     id="deliveryEnabled"
                     checked={settings.deliveryEnabled}
-                    onCheckedChange={(checked) => handleInputChange("deliveryEnabled", checked)}
+                    onCheckedChange={(checked) =>
+                      handleInputChange("deliveryEnabled", checked)
+                    }
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="pickupEnabled" className="auto-text">{t("settings.enablePickup")}</Label>
+                  <Label htmlFor="pickupEnabled" className="auto-text">
+                    {t("settings.enablePickup")}
+                  </Label>
                   <Switch
                     id="pickupEnabled"
                     checked={settings.pickupEnabled}
-                    onCheckedChange={(checked) => handleInputChange("pickupEnabled", checked)}
+                    onCheckedChange={(checked) =>
+                      handleInputChange("pickupEnabled", checked)
+                    }
                   />
                 </div>
                 {settings.deliveryEnabled && (
                   <>
                     <div>
-                      <Label htmlFor="deliveryFee" className="auto-text">{t("settings.deliveryFee")}</Label>
+                      <Label htmlFor="deliveryFee" className="auto-text">
+                        {t("settings.deliveryFee")}
+                      </Label>
                       <Input
                         id="deliveryFee"
                         type="number"
                         step="0.01"
                         value={settings.deliveryFee}
-                        onChange={(e) => handleInputChange("deliveryFee", parseFloat(e.target.value))}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "deliveryFee",
+                            parseFloat(e.target.value),
+                          )
+                        }
                         className="ltr-text"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="freeDeliveryThreshold" className="auto-text">{t("settings.freeDeliveryThreshold")}</Label>
+                      <Label
+                        htmlFor="freeDeliveryThreshold"
+                        className="auto-text"
+                      >
+                        {t("settings.freeDeliveryThreshold")}
+                      </Label>
                       <Input
                         id="freeDeliveryThreshold"
                         type="number"
                         step="0.01"
                         value={settings.freeDeliveryThreshold}
-                        onChange={(e) => handleInputChange("freeDeliveryThreshold", parseFloat(e.target.value))}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "freeDeliveryThreshold",
+                            parseFloat(e.target.value),
+                          )
+                        }
                         className="ltr-text"
                       />
                     </div>
@@ -473,21 +540,29 @@ export default function Settings() {
                 {settings.pickupEnabled && (
                   <>
                     <div>
-                      <Label htmlFor="pickupAddressEn" className="auto-text">{t("settings.pickupAddressEn")}</Label>
+                      <Label htmlFor="pickupAddressEn" className="auto-text">
+                        {t("settings.pickupAddressEn")}
+                      </Label>
                       <Textarea
                         id="pickupAddressEn"
                         value={settings.pickupAddressEn}
-                        onChange={(e) => handleInputChange("pickupAddressEn", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("pickupAddressEn", e.target.value)
+                        }
                         className="auto-text"
                         rows={3}
                       />
                     </div>
                     <div>
-                      <Label htmlFor="pickupAddressAr" className="auto-text">{t("settings.pickupAddressAr")}</Label>
+                      <Label htmlFor="pickupAddressAr" className="auto-text">
+                        {t("settings.pickupAddressAr")}
+                      </Label>
                       <Textarea
                         id="pickupAddressAr"
                         value={settings.pickupAddressAr}
-                        onChange={(e) => handleInputChange("pickupAddressAr", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("pickupAddressAr", e.target.value)
+                        }
                         className="auto-text"
                         rows={3}
                       />
@@ -507,39 +582,63 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="lowStockThreshold" className="auto-text">{t("settings.lowStockThreshold")}</Label>
+                  <Label htmlFor="lowStockThreshold" className="auto-text">
+                    {t("settings.lowStockThreshold")}
+                  </Label>
                   <Input
                     id="lowStockThreshold"
                     type="number"
                     value={settings.lowStockThreshold}
-                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "lowStockThreshold",
+                        parseInt(e.target.value),
+                      )
+                    }
                     className="ltr-text"
                     placeholder="5"
                   />
-                  <p className="text-sm text-gray-600 auto-text mt-1">Show low stock warning when quantity falls below this number</p>
+                  <p className="text-sm text-gray-600 auto-text mt-1">
+                    Show low stock warning when quantity falls below this number
+                  </p>
                 </div>
                 <div>
-                  <Label htmlFor="maxOrderQuantity" className="auto-text">{t("settings.maxOrderQuantity")}</Label>
+                  <Label htmlFor="maxOrderQuantity" className="auto-text">
+                    {t("settings.maxOrderQuantity")}
+                  </Label>
                   <Input
                     id="maxOrderQuantity"
                     type="number"
                     value={settings.maxOrderQuantity}
-                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "maxOrderQuantity",
+                        parseInt(e.target.value),
+                      )
+                    }
                     className="ltr-text"
                     placeholder="10"
                   />
-                  <p className="text-sm text-gray-600 auto-text mt-1">Maximum quantity a customer can order per item</p>
+                  <p className="text-sm text-gray-600 auto-text mt-1">
+                    Maximum quantity a customer can order per item
+                  </p>
                 </div>
                 <div>
-                  <Label htmlFor="orderProcessingTime" className="auto-text">{t("settings.orderProcessingTime")}</Label>
+                  <Label htmlFor="orderProcessingTime" className="auto-text">
+                    {t("settings.orderProcessingTime")}
+                  </Label>
                   <Input
                     id="orderProcessingTime"
                     value={settings.orderProcessingTime}
-                    onChange={(e) => handleInputChange("orderProcessingTime", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderProcessingTime", e.target.value)
+                    }
                     className="auto-text"
                     placeholder="2-4 hours"
                   />
-                  <p className="text-sm text-gray-600 auto-text mt-1">Estimated time to process orders</p>
+                  <p className="text-sm text-gray-600 auto-text mt-1">
+                    Estimated time to process orders
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -554,21 +653,29 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="orderSuccessMessageEn" className="auto-text">{t("common.language")}</Label>
+                  <Label htmlFor="orderSuccessMessageEn" className="auto-text">
+                    {t("common.language")}
+                  </Label>
                   <Textarea
                     id="orderSuccessMessageEn"
                     value={settings.orderSuccessMessageEn}
-                    onChange={(e) => handleInputChange("orderSuccessMessageEn", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderSuccessMessageEn", e.target.value)
+                    }
                     className="auto-text"
                     rows={4}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="orderSuccessMessageAr" className="auto-text">{t("common.languageAr")}</Label>
+                  <Label htmlFor="orderSuccessMessageAr" className="auto-text">
+                    {t("common.languageAr")}
+                  </Label>
                   <Textarea
                     id="orderSuccessMessageAr"
                     value={settings.orderSuccessMessageAr}
-                    onChange={(e) => handleInputChange("orderSuccessMessageAr", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("orderSuccessMessageAr", e.target.value)
+                    }
                     className="auto-text"
                     rows={4}
                   />
@@ -586,22 +693,30 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="pickupAddressEn" className="auto-text">{t("settings.pickupAddressEn")}</Label>
+                  <Label htmlFor="pickupAddressEn" className="auto-text">
+                    {t("settings.pickupAddressEn")}
+                  </Label>
                   <Textarea
                     id="pickupAddressEn"
                     value={settings.pickupAddressEn || ""}
-                    onChange={(e) => handleInputChange("pickupAddressEn", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("pickupAddressEn", e.target.value)
+                    }
                     placeholder="Home 1348, Road 416, Block 604, Sitra Alqarya"
                     className="auto-text"
                     rows={3}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="pickupAddressAr" className="auto-text">{t("settings.pickupAddressAr")}</Label>
+                  <Label htmlFor="pickupAddressAr" className="auto-text">
+                    {t("settings.pickupAddressAr")}
+                  </Label>
                   <Textarea
                     id="pickupAddressAr"
                     value={settings.pickupAddressAr || ""}
-                    onChange={(e) => handleInputChange("pickupAddressAr", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("pickupAddressAr", e.target.value)
+                    }
                     placeholder="منزل 1348، طريق 416، مجمع 604، سترة القرية"
                     className="auto-text"
                     rows={3}
@@ -611,10 +726,6 @@ export default function Settings() {
             </Card>
           </div>
         )}
-
-
-
-
 
         {/* Admin Settings */}
         {activeTab === "admin" && (
@@ -629,12 +740,16 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="adminPassword" className="auto-text">{t("settings.adminPassword")}</Label>
+                  <Label htmlFor="adminPassword" className="auto-text">
+                    {t("settings.adminPassword")}
+                  </Label>
                   <Input
                     id="adminPassword"
                     type="password"
                     value={settings.adminPassword}
-                    onChange={(e) => handleInputChange("adminPassword", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("adminPassword", e.target.value)
+                    }
                     placeholder="••••••••"
                     className="ltr-text"
                   />

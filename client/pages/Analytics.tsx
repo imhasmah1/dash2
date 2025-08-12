@@ -55,9 +55,7 @@ const Analytics = () => {
 
     // Filter customers within time range
     const recentCustomers = customers.filter((customer) => {
-      const customerDate = new Date(
-        customer.createdAt || "",
-      );
+      const customerDate = new Date(customer.createdAt || "");
       return customerDate >= startDate;
     });
 

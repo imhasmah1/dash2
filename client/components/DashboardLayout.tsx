@@ -63,13 +63,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <div
         style={{
-          transform: window.innerWidth >= 1024
-            ? 'translateX(0)'
-            : sidebarOpen
-              ? 'translateX(0)'
-              : isRTL
-                ? 'translateX(100%)'
-                : 'translateX(-100%)'
+          transform:
+            window.innerWidth >= 1024
+              ? "translateX(0)"
+              : sidebarOpen
+                ? "translateX(0)"
+                : isRTL
+                  ? "translateX(100%)"
+                  : "translateX(-100%)",
         }}
         className={cn(
           "z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
@@ -78,7 +79,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
-          <div className={cn("flex items-center gap-2 sm:gap-3 min-w-0", isRTL ? "flex-row-reverse" : "")}>
+          <div
+            className={cn(
+              "flex items-center gap-2 sm:gap-3 min-w-0",
+              isRTL ? "flex-row-reverse" : "",
+            )}
+          >
             <img
               src={
                 language === "ar"
@@ -88,13 +94,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               alt="أزهار ستور - azharstore"
               className="h-6 w-6 sm:h-8 sm:w-8 object-contain flex-shrink-0"
             />
-            <h1 className={cn("text-base sm:text-lg font-bold text-dashboard-primary truncate", isRTL ? "text-right" : "text-left")}>
+            <h1
+              className={cn(
+                "text-base sm:text-lg font-bold text-dashboard-primary truncate",
+                isRTL ? "text-right" : "text-left",
+              )}
+            >
               {t("nav.adminPanel")}
             </h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className={cn("lg:hidden text-gray-400 hover:text-gray-600 p-2 touch-manipulation", isRTL ? "-ml-2" : "-mr-2")}
+            className={cn(
+              "lg:hidden text-gray-400 hover:text-gray-600 p-2 touch-manipulation",
+              isRTL ? "-ml-2" : "-mr-2",
+            )}
           >
             <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
@@ -118,7 +132,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     )}
                   >
                     <item.icon
-                      className={cn("w-5 h-5 flex-shrink-0", isRTL ? "ml-3" : "mr-3")}
+                      className={cn(
+                        "w-5 h-5 flex-shrink-0",
+                        isRTL ? "ml-3" : "mr-3",
+                      )}
                     />
                     <span className="truncate">{item.name}</span>
                   </Link>
@@ -132,17 +149,27 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Button
             onClick={toggleLanguage}
             variant="outline"
-            className={cn("w-full h-12 sm:h-10 touch-manipulation", isRTL ? "justify-end flex-row-reverse" : "justify-start")}
+            className={cn(
+              "w-full h-12 sm:h-10 touch-manipulation",
+              isRTL ? "justify-end flex-row-reverse" : "justify-start",
+            )}
           >
-            <Languages className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
+            <Languages
+              className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")}
+            />
             <span className="truncate">{t("language.switch")}</span>
           </Button>
           <Button
             onClick={logout}
             variant="outline"
-            className={cn("w-full h-12 sm:h-10 touch-manipulation", isRTL ? "justify-end flex-row-reverse" : "justify-start")}
+            className={cn(
+              "w-full h-12 sm:h-10 touch-manipulation",
+              isRTL ? "justify-end flex-row-reverse" : "justify-start",
+            )}
           >
-            <LogOut className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
+            <LogOut
+              className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")}
+            />
             <span className="truncate">{t("nav.logout")}</span>
           </Button>
         </div>
@@ -152,14 +179,27 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="bg-white shadow-sm border-b border-gray-200 lg:hidden">
-          <div className={cn("flex items-center justify-between h-14 sm:h-16 px-4", isRTL ? "flex-row-reverse" : "")}>
+          <div
+            className={cn(
+              "flex items-center justify-between h-14 sm:h-16 px-4",
+              isRTL ? "flex-row-reverse" : "",
+            )}
+          >
             <button
               onClick={() => setSidebarOpen(true)}
-              className={cn("text-gray-400 hover:text-gray-600 p-2 touch-manipulation", isRTL ? "-mr-2" : "-ml-2")}
+              className={cn(
+                "text-gray-400 hover:text-gray-600 p-2 touch-manipulation",
+                isRTL ? "-mr-2" : "-ml-2",
+              )}
             >
               <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
-            <h1 className={cn("text-base sm:text-lg font-semibold text-gray-900 truncate", isRTL ? "text-right" : "text-left")}>
+            <h1
+              className={cn(
+                "text-base sm:text-lg font-semibold text-gray-900 truncate",
+                isRTL ? "text-right" : "text-left",
+              )}
+            >
               {t("dashboard.title")}
             </h1>
             <div className="w-6" /> {/* Spacer */}

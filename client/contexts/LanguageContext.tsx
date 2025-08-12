@@ -292,8 +292,10 @@ const translations = {
     "checkout.backupRestore": "Backup & Restore",
     "checkout.export": "Export",
     "checkout.import": "Import",
-    "checkout.settingsImported": "Settings have been imported successfully. Don't forget to save!",
-    "checkout.importError": "Failed to import settings. Please check the file format.",
+    "checkout.settingsImported":
+      "Settings have been imported successfully. Don't forget to save!",
+    "checkout.importError":
+      "Failed to import settings. Please check the file format.",
 
     // Additional store keys
     "store.outOfStock": "Out of Stock",
@@ -468,7 +470,8 @@ const translations = {
     "settings.passwordChanged": "Password changed successfully",
     "settings.exportSettings": "Export Settings",
     "settings.importSettings": "Import Settings",
-    "settings.exportDescription": "Download your current settings as a backup file",
+    "settings.exportDescription":
+      "Download your current settings as a backup file",
     "settings.importDescription": "Upload a previously exported settings file",
     "settings.chooseFile": "Choose File",
     "settings.noFileChosen": "No file chosen",
@@ -487,7 +490,7 @@ const translations = {
     "settings.enableDebugMode": "Debug Mode",
     "settings.dialogScrollDesc": "Enable scrolling in checkout dialogs",
     "settings.autoScrollDesc": "Automatically scroll to summary section",
-    
+
     // Currency and formatting
     "common.currency": "BD",
     "common.currencyAr": "د.ب",
@@ -499,7 +502,7 @@ const translations = {
     "common.itemsAr": "منتجات",
     "common.language": "Language",
     "common.languageAr": "العربية",
-    
+
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
@@ -761,7 +764,8 @@ const translations = {
     "checkout.orderTotal": "إجمالي الطلب",
     "checkout.placeOrder": "إرسال الطلب",
     "checkout.orderSuccess": "��م تأكيد الطلب بنجاح!",
-    "checkout.thankYou": "شكراً لك على طلبك! لقد استلمنا طلبك وسنقوم بمعالجته قريباً.",
+    "checkout.thankYou":
+      "شكراً لك على طلبك! لقد استلمنا طلبك وسنقوم بمعالجته قريباً.",
     "checkout.orderNumber": "رقم الطلب",
     "checkout.backToStore": "العودة للمتجر",
     "checkout.noCreditCard": "لا حاجة لبطاقة ائتمان - الدفع عند التسليم ف��ط!",
@@ -778,7 +782,8 @@ const translations = {
     "checkout.export": "تصدير",
     "checkout.import": "استيراد",
     "checkout.settingsImported": "تم استيراد الإعدادات بنجاح. لا تنس الحفظ!",
-    "checkout.importError": "فشل في استيراد الإعدادات. يرجى التحقق من ت��سيق الملف.",
+    "checkout.importError":
+      "فشل في استيراد الإعدادات. يرجى التحقق من ت��سيق الملف.",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
@@ -867,7 +872,7 @@ const translations = {
     "settings.performanceOptimization": "الأداء والتحسين",
     "settings.userExperience": "تجربة المستخدم",
     "settings.systemSettings": "إعدادات النظام",
-    
+
     // Settings Tabs
     "settings.basicSettings": "الإعدادات الأساسية",
     "settings.deliverySettings": "إعدادات التوصيل",
@@ -928,7 +933,8 @@ const translations = {
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.adminEmail": "بريد المدير الإلكتروني",
     "settings.adminPassword": "كلمة م��ور المدير",
-    "settings.adminPasswordHint": "قم بتغيير كلمة الم��ور للوصول إلى لوحة التحكم",
+    "settings.adminPasswordHint":
+      "قم بتغيير كلمة الم��ور للوصول إلى لوحة التحكم",
 
     // Store Information
     "settings.storeInformation": "معلومات ا��متجر",
@@ -974,7 +980,7 @@ const translations = {
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
       "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
-    
+
     // Currency and formatting
     "common.currency": "د.ب",
     "common.currencyAr": "د.ب",
@@ -986,7 +992,7 @@ const translations = {
     "common.itemsAr": "منتجات",
     "common.language": "اللغة",
     "common.languageAr": "العربية",
-    
+
     // Order success messages
     "orderSuccess.headline": "تم ت��كيد ال����ب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
