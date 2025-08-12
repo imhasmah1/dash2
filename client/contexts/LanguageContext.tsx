@@ -564,7 +564,7 @@ const translations = {
     "products.category": "التصنيف",
     "products.selectCategory": "اختر التصنيف",
     "products.variantImageOptional": "صورة النوع (اختياري)",
-    "products.removeImage": "إزالة الصورة",
+    "products.removeImage": "إ��الة الصورة",
     "products.uploadImage": "رفع صورة",
 
     // Orders
@@ -641,7 +641,7 @@ const translations = {
     "customers.customerPhone": "هاتف العميل",
     "customers.customerAddress": "عنوان العميل",
     "customers.customerHome": "رقم المنزل",
-    "customers.customerRoad": "رقم ��لطريق",
+    "customers.customerRoad": "رقم الطريق",
     "customers.customerBlock": "رقم المجمع",
     "customers.customerTown": "البلدة/المنطقة",
     "customers.save": "حفظ",
@@ -750,7 +750,7 @@ const translations = {
     "checkout.customerRoad": "رقم الطريق",
     "checkout.customerBlock": "رقم المجمع",
     "checkout.customerTown": "البلدة/المنطقة",
-    "checkout.deliveryOptions": "خيارات التوصيل",
+    "checkout.deliveryOptions": "خ��ارات التوصيل",
     "checkout.delivery": "توصيل",
     "checkout.pickup": "استلام",
     "checkout.orderSummary": "ملخص الطلب",
@@ -855,7 +855,7 @@ const translations = {
     "settings.accessibilityFeatures": "ميزات إمكانية الوصول",
     "settings.notifications": "الإشعارات",
     "settings.analytics": "التحليلات",
-    "settings.autoBackup": "النسخ الاحتياطي التلقائي",
+    "settings.autoBackup": "النس�� الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
     "settings.dialogScroll": "تمرير الحوار",
     "settings.autoScrollToSummary": "التمرير التلقائي للملخص",
@@ -910,7 +910,7 @@ const translations = {
     "settings.pickupAddressAr": "عنوان الاستلام (عربي)",
     "settings.enablePerformanceMode": "وضع الأداء",
     "settings.enableImageCompression": "ضغط الصور",
-    "settings.maxImageSizeMB": "الحد الأق��ى لحجم الصورة (ميجابايت)",
+    "settings.maxImageSizeMB": "الحد الأقصى لحجم الصورة (ميجابايت)",
     "settings.enableAutoSave": "الحفظ التلقائي",
     "settings.enableDarkMode": "الوضع المظلم",
     "settings.enableAccessibilityFeatures": "ميزات إمكانية الوصول",
@@ -918,6 +918,8 @@ const translations = {
     "settings.enableAnalytics": "التحليلات",
     "settings.enableAutoBackup": "النسخ الاحتياطي التلقائي",
     "settings.enableDebugMode": "وضع التصحيح",
+    "settings.dialogScrollDesc": "تفعيل التمرير في حوارات الطلبات",
+    "settings.autoScrollDesc": "التمرير التلقائي إلى قسم الملخص",
     "settings.displayOrderNumber": "عرض رقم الطلب",
     "settings.displayOrderItems": "عرض عناصر الطلب",
     "settings.displayTotals": "عرض المجاميع",
@@ -928,7 +930,7 @@ const translations = {
     "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة التحكم",
 
     // Store Information
-    "settings.storeInformation": "معلومات المتجر",
+    "settings.storeInformation": "مع��ومات المتجر",
     "settings.storeName": "اسم المتجر",
     "settings.storeDescription": "وصف المتجر",
     "settings.currency": "العملة",
@@ -960,7 +962,7 @@ const translations = {
     "settings.enablePickup": "تفعيل الاستلام",
     "settings.deliveryFee": "رسوم التوصيل",
     "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
-    "settings.estimatedDeliveryTime": "الوقت المتوقع للتوصيل",
+    "settings.estimatedDeliveryTime": "الوقت المتوقع للتو��يل",
 
     // Order Messages
     "settings.orderMessages": "رسائل الطلبات",
@@ -987,7 +989,7 @@ const translations = {
     // Order success messages
     "orderSuccess.headline": "تم تأكيد الطلب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
-    "orderSuccess.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
+    "orderSuccess.prepareOrder": "سنق��م بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "orderSuccess.contactPhoneAr": "سيتم التواصل معك عبر الهاتف للتأكيد",
