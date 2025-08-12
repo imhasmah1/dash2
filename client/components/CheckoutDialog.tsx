@@ -412,7 +412,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                                 {t("store.quantity")}: {item.quantity}
                               </p>
                             </div>
-                            <div className="text-right [dir=rtl]:text-left flex-shrink-0">
+                            <div className="text-end flex-shrink-0">
                               <p className="font-semibold text-primary ltr-text">
                                 {currencySymbol} {(item.price * item.quantity).toFixed(2)}
                               </p>
