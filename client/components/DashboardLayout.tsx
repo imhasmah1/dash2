@@ -64,9 +64,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div
         className={cn(
           "fixed inset-y-0 z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
-          "lg:translate-x-0 lg:static lg:inset-0 lg:transform-none",
+          "lg:relative lg:translate-x-0",
           isRTL ? "right-0" : "left-0",
-          sidebarOpen
+          sidebarOpen || "lg:translate-x-0"
             ? "translate-x-0"
             : isRTL
               ? "translate-x-full"
