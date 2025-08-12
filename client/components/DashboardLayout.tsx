@@ -95,8 +95,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </button>
         </div>
 
-        <nav className="mt-8 px-4">
-          <ul className="space-y-2">
+        <nav className="mt-6 px-3 sm:px-4">
+          <ul className="space-y-1">
             {navigation.map((item) => {
               const isActive = location.pathname === item.href;
               return (
@@ -105,16 +105,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     to={item.href}
                     onClick={() => setSidebarOpen(false)}
                     className={cn(
-                      "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
+                      "flex items-center px-3 sm:px-4 py-4 sm:py-3 text-sm sm:text-sm font-medium rounded-xl transition-colors touch-manipulation [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
                       isActive
-                        ? "bg-dashboard-primary text-white"
-                        : "text-gray-700 hover:bg-gray-100",
+                        ? "bg-dashboard-primary text-white shadow-md"
+                        : "text-gray-700 hover:bg-gray-100 active:bg-gray-200",
                     )}
                   >
                     <item.icon
-                      className={cn("w-5 h-5", isRTL ? "ml-3" : "mr-3")}
+                      className={cn("w-5 h-5 flex-shrink-0", isRTL ? "ml-3" : "mr-3")}
                     />
-                    {item.name}
+                    <span className="truncate">{item.name}</span>
                   </Link>
                 </li>
               );
