@@ -518,7 +518,7 @@ const translations = {
     "dashboard.welcome": "مرحباً بك في لوحة الإدارة",
 
     // Products
-    "products.title": "المنتجات",
+    "products.title": "المنتج��ت",
     "products.subtitle": "إدارة مخزون المنتجات",
     "products.addNew": "إضافة منتج جديد",
     "products.search": "البحث في المنتجات...",
@@ -623,7 +623,7 @@ const translations = {
     "customers.edit": "تعديل",
     "customers.delete": "حذف",
     "customers.noCustomers": "لا يوجد عملاء",
-    "customers.addCustomer": "إضافة عميل",
+    "customers.addCustomer": "إضافة عم��ل",
     "customers.editCustomer": "��عديل عميل",
     "customers.customerName": "اسم العميل",
     "customers.customerPhone": "هاتف العميل",
@@ -796,7 +796,7 @@ const translations = {
     "analytics.title": "تحليلات المتجر",
     "analytics.overview": "نظرة عامة على أداء متجرك",
     "analytics.totalOrders": "إجمالي الطلبات",
-    "analytics.totalRevenue": "إجمالي الإيرادات",
+    "analytics.totalRevenue": "إج��الي الإيرادات",
     "analytics.totalCustomers": "إجمالي العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
     "analytics.avgPerOrder": "لكل طلب",
@@ -891,10 +891,11 @@ const translations = {
     "settings.chooseFile": "اختر الملف",
     "settings.noFileChosen": "لم يتم اختيار ملف",
     "settings.displayOptions": "خيارات العرض",
-    "settings.paymentSettings": "إعداد��ت الدفع",
+    "settings.paymentSettings": "إعدادات الدفع",
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.adminSettings": "إعدادات المدير",
-    "settings.displayOptions": "خيارات العرض",
+    "settings.pickupAddressEn": "عنوان الاستلام (إنجليزي)",
+    "settings.pickupAddressAr": "عنوان الاستلام (عربي)",
     "settings.displayOrderNumber": "عرض رقم الطلب",
     "settings.displayOrderItems": "عرض عناصر الطلب",
     "settings.displayTotals": "عرض المجاميع",
@@ -917,7 +918,7 @@ const translations = {
     // Contact Information
     "settings.contactInformation": "معلومات الاتصال",
     "settings.contactPhone": "رقم الهاتف",
-    "settings.contactEmail": "ال��ريد الإلكتروني",
+    "settings.contactEmail": "ال��ريد الإلك��روني",
     "settings.contactAddress": "العنوان",
 
     // Business Hours
