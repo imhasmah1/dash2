@@ -15,6 +15,7 @@ import { Separator } from "./ui/separator";
 import { Minus, Plus, Trash2, ShoppingBag, Package, Truck } from "lucide-react";
 import CheckoutDialog from "./CheckoutDialog";
 import { Badge } from "./ui/badge";
+import { cn } from "@/lib/utils";
 
 interface CartSidebarProps {
   open: boolean;
