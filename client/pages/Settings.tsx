@@ -561,7 +561,7 @@ export default function Settings() {
                 {settings.pickupEnabled && (
                   <>
                     <div>
-                      <Label htmlFor="pickupAddressEn" className="auto-text">Pickup Address (English)</Label>
+                      <Label htmlFor="pickupAddressEn" className="auto-text">{t("settings.pickupAddressEn")}</Label>
                       <Textarea
                         id="pickupAddressEn"
                         value={settings.pickupAddressEn}
