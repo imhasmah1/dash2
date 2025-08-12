@@ -450,8 +450,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
             {/* Footer */}
             <div className="border-t p-4 bg-white">
-              <Button onClick={onClose} className="w-full bg-primary hover:bg-primary/90">
-                {t("checkout.backToStore")}
+              <Button onClick={onClose} className="w-full bg-primary hover:bg-primary/90 touch-manipulation h-12 text-base font-semibold">
+                <span className="auto-text">{t("checkout.backToStore")}</span>
               </Button>
             </div>
           </div>
