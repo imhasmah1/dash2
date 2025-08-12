@@ -834,7 +834,7 @@ export default function Settings() {
 
         {/* Admin Settings */}
         {activeTab === "admin" && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="max-w-xl mx-auto">
             {/* Admin Access */}
             <Card>
               <CardHeader>
@@ -857,53 +857,6 @@ export default function Settings() {
                   <p className="text-sm text-muted-foreground auto-text mt-1">
                     {t("settings.adminPasswordHint")}
                   </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Operational Settings */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <AlertTriangle className="w-5 h-5" />
-                  {t("settings.operationalSettings")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="lowStockThreshold" className="auto-text">{t("settings.lowStockThreshold")}</Label>
-                  <Input
-                    id="lowStockThreshold"
-                    type="number"
-                    value={settings.lowStockThreshold}
-                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value))}
-                    className="ltr-text"
-                    placeholder="5"
-                  />
-                  <p className="text-sm text-gray-600 auto-text mt-1">Show low stock warning when quantity falls below this number</p>
-                </div>
-                <div>
-                  <Label htmlFor="maxOrderQuantity" className="auto-text">{t("settings.maxOrderQuantity")}</Label>
-                  <Input
-                    id="maxOrderQuantity"
-                    type="number"
-                    value={settings.maxOrderQuantity}
-                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value))}
-                    className="ltr-text"
-                    placeholder="10"
-                  />
-                  <p className="text-sm text-gray-600 auto-text mt-1">Maximum quantity a customer can order per item</p>
-                </div>
-                <div>
-                  <Label htmlFor="orderProcessingTime" className="auto-text">{t("settings.orderProcessingTime")}</Label>
-                  <Input
-                    id="orderProcessingTime"
-                    value={settings.orderProcessingTime}
-                    onChange={(e) => handleInputChange("orderProcessingTime", e.target.value)}
-                    className="auto-text"
-                    placeholder="2-4 hours"
-                  />
-                  <p className="text-sm text-gray-600 auto-text mt-1">Estimated time to process orders</p>
                 </div>
               </CardContent>
             </Card>
