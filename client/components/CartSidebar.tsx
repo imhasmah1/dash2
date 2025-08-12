@@ -138,24 +138,24 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                           </div>
 
                           {/* Unit Price */}
-                          <div className="bg-primary/10 rounded-lg px-3 py-2">
-                            <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
-                              <span className="text-sm font-medium text-gray-700 auto-text">
+                          <div className="bg-primary/10 rounded-lg px-2 sm:px-3 py-2">
+                            <div className={cn("flex items-center justify-between", isRTL ? "flex-row-reverse" : "")}>
+                              <span className="text-xs sm:text-sm font-medium text-gray-700 auto-text">
                                 {t("store.unitPrice")}:
                               </span>
-                              <span className="text-lg font-bold text-primary ltr-text">
+                              <span className="text-sm sm:text-lg font-bold text-primary ltr-text">
                                 {language === "ar" ? t("common.currencyAr") : t("common.currency")} {item.price.toFixed(2)}
                               </span>
                             </div>
                           </div>
 
                           {/* Quantity Controls */}
-                          <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
-                            <span className="text-sm font-medium text-gray-700 auto-text">
+                          <div className={cn("flex items-center justify-between", isRTL ? "flex-row-reverse" : "")}>
+                            <span className="text-xs sm:text-sm font-medium text-gray-700 auto-text">
                               {t("store.quantity")}:
                             </span>
 
-                            <div className="flex items-center gap-2 bg-white rounded-xl border-2 border-gray-200 p-1">
+                            <div className="flex items-center gap-1 sm:gap-2 bg-white rounded-xl border-2 border-gray-200 p-1">
                               <Button
                                 variant="ghost"
                                 size="sm"
@@ -166,9 +166,9 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                                     item.quantity - 1,
                                   )
                                 }
-                                className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
+                                className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
                               >
-                                <Minus className="h-4 w-4" />
+                                <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                               </Button>
 
                               <Input
@@ -183,7 +183,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                                 }
                                 min={1}
                                 max={50}
-                                className="w-14 h-8 text-center text-base font-semibold border-0 bg-transparent focus:ring-0 ltr-text"
+                                className="w-10 sm:w-14 h-7 sm:h-8 text-center text-sm sm:text-base font-semibold border-0 bg-transparent focus:ring-0 ltr-text"
                               />
 
                               <Button
@@ -196,9 +196,9 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                                     item.quantity + 1,
                                   )
                                 }
-                                className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
+                                className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
                               >
-                                <Plus className="h-4 w-4" />
+                                <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                               </Button>
                             </div>
                           </div>
