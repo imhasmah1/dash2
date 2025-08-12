@@ -64,14 +64,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div
         className={cn(
           "z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
-          // Desktop: always visible, static positioning
-          "lg:relative lg:block",
-          // Mobile: fixed positioning with conditional visibility
-          "fixed inset-y-0 lg:inset-auto",
+          "fixed inset-y-0 lg:relative lg:translate-x-0",
           isRTL ? "right-0" : "left-0",
-          // Mobile transform logic
-          "lg:translate-x-0",
-          !sidebarOpen && (isRTL ? "max-lg:translate-x-full" : "max-lg:-translate-x-full"),
+          // Conditional transform: only hide when sidebarOpen is false AND on mobile
+          sidebarOpen
+            ? "translate-x-0"
+            : isRTL
+              ? "translate-x-full lg:translate-x-0"
+              : "-translate-x-full lg:translate-x-0",
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
