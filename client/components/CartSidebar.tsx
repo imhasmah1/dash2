@@ -204,12 +204,12 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                           </div>
 
                           {/* Item Total */}
-                          <div className="bg-gray-50 rounded-lg px-3 py-3 border-t-2 border-primary/20">
-                            <div className="flex justify-between items-center [dir=rtl]:flex-row-reverse">
-                              <span className="text-base font-semibold text-gray-700 auto-text">
+                          <div className="bg-gray-50 rounded-lg px-2 sm:px-3 py-2 sm:py-3 border-t-2 border-primary/20">
+                            <div className={cn("flex justify-between items-center", isRTL ? "flex-row-reverse" : "")}>
+                              <span className="text-sm sm:text-base font-semibold text-gray-700 auto-text">
                                 {language === "ar" ? t("common.totalAr") : t("common.total")}:
                               </span>
-                              <span className="text-xl font-bold text-primary ltr-text">
+                              <span className="text-lg sm:text-xl font-bold text-primary ltr-text">
                                 {language === "ar" ? t("common.currencyAr") : t("common.currency")} {(item.price * item.quantity).toFixed(2)}
                               </span>
                             </div>
