@@ -62,16 +62,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Sidebar */}
       <div
+        style={{
+          transform: sidebarOpen
+            ? 'translateX(0)'
+            : window.innerWidth >= 1024
+              ? 'translateX(0)'
+              : isRTL
+                ? 'translateX(100%)'
+                : 'translateX(-100%)'
+        }}
         className={cn(
           "z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
-          "fixed inset-y-0 lg:relative lg:translate-x-0",
+          "fixed inset-y-0 lg:relative",
           isRTL ? "right-0" : "left-0",
-          // Conditional transform: only hide when sidebarOpen is false AND on mobile
-          sidebarOpen
-            ? "translate-x-0"
-            : isRTL
-              ? "translate-x-full lg:translate-x-0"
-              : "-translate-x-full lg:translate-x-0",
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
