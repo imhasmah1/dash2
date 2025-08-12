@@ -68,7 +68,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           sidebarOpen
             ? "translate-x-0"
             : isRTL
-              ? "translate-x-full"
+              ? "-translate-x-full"
               : "-translate-x-full",
         )}
       >
