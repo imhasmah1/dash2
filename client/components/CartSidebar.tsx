@@ -23,7 +23,7 @@ interface CartSidebarProps {
 }
 
 export default function CartSidebar({ open, onClose }: CartSidebarProps) {
-  const { t, language } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } =
     useCart();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
