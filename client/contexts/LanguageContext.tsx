@@ -620,7 +620,7 @@ const translations = {
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
     "orders.selectVariant": "اختر النوع",
-    "orders.notesPlaceholder": "تعليمات ��اص�� أو ملاحظات...",
+    "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
     // Added key
     "orders.refresh": "تحديث",
 
@@ -639,7 +639,7 @@ const translations = {
     "customers.addCustomer": "إضافة عميل",
     "customers.editCustomer": "تعديل عميل",
     "customers.customerName": "اسم العميل",
-    "customers.customerPhone": "هاتف العميل",
+    "customers.customerPhone": "هاتف العمي��",
     "customers.customerAddress": "عنوان العميل",
     "customers.customerHome": "رقم المنزل",
     "customers.customerRoad": "رقم الطريق",
@@ -700,7 +700,7 @@ const translations = {
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم ت��ديث المنتج بنجاح",
-    "message.productDeleted": "تم حذف المنتج بنجاح",
+    "message.productDeleted": "ت�� حذف المنتج بنجاح",
     "message.orderAdded": "تم إضاف�� الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب ��نجاح",
@@ -769,7 +769,7 @@ const translations = {
     "checkout.cashOnDelivery": "الدفع عند التسليم",
     "checkout.orderItems": "عناصر الطلب",
     "checkout.whatsNext": "ما ��ي الخطوات التالية؟",
-    "checkout.needHelp": "تحتاج مساعدة؟",
+    "checkout.needHelp": "تحتاج م��اعدة؟",
     "checkout.nextSteps": "الخط��ات التالية",
     "checkout.prepareOrder": "سنقوم بتجهيز ط��بك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف ل����أكيد",
@@ -931,7 +931,7 @@ const translations = {
     "settings.adminPasswordHint": "قم بتغيير كلمة الم��ور للوصول إلى لوحة التحكم",
 
     // Store Information
-    "settings.storeInformation": "معلومات المتجر",
+    "settings.storeInformation": "معلومات ا��متجر",
     "settings.storeName": "اسم المتجر",
     "settings.storeDescription": "وصف المتجر",
     "settings.currency": "العملة",
