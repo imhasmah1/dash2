@@ -1039,7 +1039,7 @@ export default function Settings() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label htmlFor="enableDialogScroll" className="auto-text">{t("settings.dialogScroll")}</Label>
-                    <p className="text-sm text-gray-600 auto-text">Enable scrolling in checkout dialogs</p>
+                    <p className="text-sm text-gray-600 auto-text">{t("settings.dialogScrollDesc")}</p>
                   </div>
                   <Switch
                     id="enableDialogScroll"
