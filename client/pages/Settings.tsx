@@ -329,47 +329,6 @@ export default function Settings() {
         </div>
       </div>
 
-      {/* Backup & Restore Section */}
-      <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 shadow-sm">
-        <CardContent className="p-6">
-          <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                <Info className="w-5 h-5 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-blue-900 auto-text">{t("settings.exportSettings")}</h3>
-                <p className="text-blue-700 auto-text text-sm">{t("settings.exportDescription")}</p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <Button 
-                variant="outline" 
-                onClick={exportSettings} 
-                className="flex items-center gap-2 bg-white hover:bg-blue-50 border-blue-300"
-              >
-                <Download className="w-4 h-4" />
-                {t("settings.exportSettings")}
-              </Button>
-              <div className="relative">
-                <input
-                  type="file"
-                  accept=".json"
-                  onChange={importSettings}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                />
-                <Button 
-                  variant="outline" 
-                  className="flex items-center gap-2 bg-white hover:bg-blue-50 border-blue-300"
-                >
-                  <Upload className="w-4 h-4" />
-                  {t("settings.importSettings")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Tab Navigation */}
       <div className="flex flex-wrap gap-2 border-b pb-2">
