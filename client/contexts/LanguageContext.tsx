@@ -564,7 +564,7 @@ const translations = {
     // Added keys (AR)
     "products.category": "التصنيف",
     "products.selectCategory": "اختر التصنيف",
-    "products.variantImageOptional": "صورة ا��نوع (اختياري)",
+    "products.variantImageOptional": "صورة النوع (اختياري)",
     "products.removeImage": "إ��الة الصورة",
     "products.uploadImage": "ر��ع صورة",
 
@@ -701,7 +701,7 @@ const translations = {
     "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
-    "message.orderAdded": "تم إضافة الطلب بنجاح",
+    "message.orderAdded": "تم إضاف�� الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب ��نجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
@@ -770,7 +770,7 @@ const translations = {
     "checkout.orderItems": "عناصر الطلب",
     "checkout.whatsNext": "ما ��ي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
-    "checkout.nextSteps": "الخط��ات ا��تالية",
+    "checkout.nextSteps": "الخط��ات التالية",
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف ل����أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
@@ -875,7 +875,7 @@ const translations = {
     "settings.successScreenSettings": "إعدادات شاشة النجاح",
     "settings.displayOrderNumber": "عرض رقم الطلب",
     "settings.displayOrderItems": "عرض عناصر الطلب",
-    "settings.displayTotals": "عرض المجاميع",
+    "settings.displayTotals": "عرض ��لمجاميع",
     "settings.displayNextSteps": "عرض الخطوات الت��لية",
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.successHeadline": "عنوان النجاح",
@@ -928,12 +928,12 @@ const translations = {
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.adminEmail": "بريد المدير الإلكتروني",
     "settings.adminPassword": "كلمة م��ور المدير",
-    "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة ��لتحكم",
+    "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة التحكم",
 
     // Store Information
     "settings.storeInformation": "معلومات المتجر",
     "settings.storeName": "اسم المتجر",
-    "settings.storeDescription": "وص�� المتجر",
+    "settings.storeDescription": "وصف المتجر",
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
     "settings.bahrainiDinar": "الدينار البحريني",
@@ -988,9 +988,9 @@ const translations = {
     "common.languageAr": "العربية",
     
     // Order success messages
-    "orderSuccess.headline": "تم تأكيد الطلب!",
+    "orderSuccess.headline": "تم ت��كيد الطلب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
-    "orderSuccess.prepareOrder": "سنق��م بتجهيز طلبك خلال 2-4 ساعات",
+    "orderSuccess.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "orderSuccess.contactPhoneAr": "سيتم التواصل معك عبر الهاتف للتأكيد",
