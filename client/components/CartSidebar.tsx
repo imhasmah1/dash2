@@ -96,12 +96,12 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl border border-gray-200 p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                      className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl border border-gray-200 p-3 sm:p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
                     >
-                      <div className="flex gap-4 [dir=rtl]:flex-row-reverse">
+                      <div className={cn("flex gap-3 sm:gap-4", isRTL ? "flex-row-reverse" : "")}>
                         {/* Product Image */}
                         {item.productImage && (
-                          <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-100 shrink-0 border-2 border-gray-200 shadow-sm">
+                          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-gray-100 shrink-0 border-2 border-gray-200 shadow-sm">
                             <img
                               src={item.productImage}
                               alt={item.productName}
@@ -111,7 +111,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                         )}
 
                         {/* Product Details */}
-                        <div className="flex-1 min-w-0 space-y-3">
+                        <div className="flex-1 min-w-0 space-y-2 sm:space-y-3">
                           <div className="flex items-start justify-between gap-3 [dir=rtl]:flex-row-reverse">
                             <div className="flex-1 min-w-0">
                               <h4 className="font-bold text-lg text-gray-900 leading-tight auto-text mb-1">
