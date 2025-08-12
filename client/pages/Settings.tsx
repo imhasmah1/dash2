@@ -172,7 +172,7 @@ export default function Settings() {
     successHeadlineEn: "Order Confirmed!",
     successHeadlineAr: "تم تأكيد الطلب!",
     successSubtextEn: "We'll share updates by phone as your order progresses.",
-    successSubtextAr: "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك.",
+    successSubtextAr: "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم ط��بك.",
     displayOrderNumber: true,
     displayOrderItems: true,
     displayTotals: true,
@@ -571,7 +571,7 @@ export default function Settings() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="pickupAddressAr" className="auto-text">عنوان الاستلام (العربية)</Label>
+                      <Label htmlFor="pickupAddressAr" className="auto-text">{t("settings.pickupAddressAr")}</Label>
                       <Textarea
                         id="pickupAddressAr"
                         value={settings.pickupAddressAr}
