@@ -147,14 +147,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="bg-white shadow-sm border-b border-gray-200 lg:hidden">
-          <div className="flex items-center justify-between h-14 sm:h-16 px-4 [dir=rtl]:flex-row-reverse">
+          <div className={cn("flex items-center justify-between h-14 sm:h-16 px-4", isRTL ? "flex-row-reverse" : "")}>
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-gray-400 hover:text-gray-600 p-2 -ml-2 touch-manipulation"
+              className={cn("text-gray-400 hover:text-gray-600 p-2 touch-manipulation", isRTL ? "-mr-2" : "-ml-2")}
             >
               <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
-            <h1 className="text-base sm:text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left truncate">
+            <h1 className={cn("text-base sm:text-lg font-semibold text-gray-900 truncate", isRTL ? "text-right" : "text-left")}>
               {t("dashboard.title")}
             </h1>
             <div className="w-6" /> {/* Spacer */}
