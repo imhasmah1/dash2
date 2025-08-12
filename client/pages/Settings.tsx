@@ -298,7 +298,6 @@ export default function Settings() {
     { id: "payment", label: t("settings.paymentSettings"), icon: CreditCard },
     { id: "messages", label: t("settings.messageSettings"), icon: MessageSquare },
     { id: "success", label: t("settings.successScreenSettings"), icon: CheckCircle },
-    { id: "advanced", label: t("settings.advancedSettings"), icon: Zap },
     { id: "admin", label: t("settings.adminSettings"), icon: Shield },
   ];
 
