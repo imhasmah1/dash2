@@ -72,8 +72,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               : "-translate-x-full",
         )}
       >
-        <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
-          <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse min-w-0">
+        <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
+          <div className={cn("flex items-center gap-2 sm:gap-3 min-w-0", isRTL ? "flex-row-reverse" : "")}>
             <img
               src={
                 language === "ar"
@@ -83,13 +83,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               alt="أزهار ستور - azharstore"
               className="h-6 w-6 sm:h-8 sm:w-8 object-contain flex-shrink-0"
             />
-            <h1 className="text-base sm:text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left truncate">
+            <h1 className={cn("text-base sm:text-lg font-bold text-dashboard-primary truncate", isRTL ? "text-right" : "text-left")}>
               {t("nav.adminPanel")}
             </h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-gray-600 p-2 -mr-2 touch-manipulation"
+            className={cn("lg:hidden text-gray-400 hover:text-gray-600 p-2 touch-manipulation", isRTL ? "-ml-2" : "-mr-2")}
           >
             <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
