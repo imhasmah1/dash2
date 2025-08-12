@@ -497,7 +497,7 @@ const translations = {
     "common.itemAr": "منتج",
     "common.itemsAr": "منتجات",
     "common.language": "Language",
-    "common.languageAr": "ا��عربية",
+    "common.languageAr": "ا����عربية",
     
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
@@ -550,7 +550,7 @@ const translations = {
     "products.productImages": "صور المنتج",
     "products.addVariant": "إضافة نوع",
     "products.variantName": "اسم النوع",
-    "products.variantStock": "مخ��ون النوع",
+    "products.variantStock": "��خ��ون النوع",
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
@@ -653,7 +653,7 @@ const translations = {
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
-    "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
+    "revenue.dailyRevenue": "الإيرادات اليومية (هذا ال��هر)",
     "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
     "revenue.deliveryAnalysis": "تحليل نوع ال��سليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
@@ -762,7 +762,7 @@ const translations = {
     "checkout.orderSuccess": "��م تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك! لقد استلمنا طلبك وسنقوم بمعالجته قريباً.",
     "checkout.orderNumber": "رقم الطلب",
-    "checkout.backToStore": "العودة للمتجر",
+    "checkout.backToStore": "الع��دة للمتجر",
     "checkout.noCreditCard": "لا حاجة لبطاقة ائتمان - الدفع عند التسليم ف��ط!",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
@@ -802,7 +802,7 @@ const translations = {
     "categories.cannotDeleteTitle": "لا يمكن ح��ف التصنيف",
     "categories.cannotDeleteMessage":
       "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
-    "categories.nameRequired": "اسم التصنيف مطلوب.",
+    "categories.nameRequired": "اسم ا��تصنيف مطلوب.",
 
     // Analytics
     "analytics.title": "تحليلات المتجر",
@@ -930,7 +930,7 @@ const translations = {
     "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة التحكم",
 
     // Store Information
-    "settings.storeInformation": "مع��ومات المتجر",
+    "settings.storeInformation": "معلومات المتجر",
     "settings.storeName": "اسم المتجر",
     "settings.storeDescription": "وصف المتجر",
     "settings.currency": "العملة",
@@ -972,7 +972,7 @@ const translations = {
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
-      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
+      "ستظهر هذه ��لرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
     
     // Currency and formatting
     "common.currency": "د.ب",
