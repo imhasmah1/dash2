@@ -258,7 +258,7 @@ export default function Store() {
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden cursor-pointer group"
+                className="bg-white rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer group"
               >
                 {/* Product Image */}
                 <div
@@ -273,32 +273,31 @@ export default function Store() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                      <span className="text-sm">{t("products.noImages")}</span>
+                      <span className="text-xs sm:text-sm auto-text">{t("products.noImages")}</span>
                     </div>
                   )}
                 </div>
 
-                {/* Product Info */}
-                <div className="p-4">
+                {/* Product Info - Mobile Optimized */}
+                <div className="p-2 sm:p-3 lg:p-4">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors auto-text">
+                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-1 sm:mb-2 line-clamp-2 hover:text-primary transition-colors auto-text leading-tight">
                       {product.name}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 auto-text">
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 auto-text hidden sm:block">
                       {product.description}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
-                    <div>
-                      <span className="text-lg font-bold text-primary auto-text">
+                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse gap-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="text-sm sm:text-base lg:text-lg font-bold text-primary ltr-text block">
                         BD {product.price.toFixed(2)}
                       </span>
                       {(product.total_stock || 0) > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.total_stock || 0}{" "}
-                          {t("products.stock")}
+                          <span className="ltr-text">{product.total_stock || 0}</span> {t("products.stock")}
                         </p>
                       )}
                     </div>
@@ -307,18 +306,18 @@ export default function Store() {
                       size="sm"
                       onClick={() => handleAddToCart(product)}
                       disabled={(product.total_stock || 0) === 0}
-                      className="shrink-0"
+                      className="shrink-0 h-8 w-8 sm:h-9 sm:w-9 p-0 touch-manipulation"
                     >
-                      <Plus className="h-4 w-4" />
+                      <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                   </div>
 
                   {(product.total_stock || 0) === 0 && (
                     <Badge
                       variant="secondary"
-                      className="w-full mt-2 justify-center text-center"
+                      className="w-full mt-2 justify-center text-center text-xs"
                     >
-                      {t("store.outOfStock")}
+                      <span className="auto-text">{t("store.outOfStock")}</span>
                     </Badge>
                   )}
                 </div>
