@@ -122,22 +122,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </ul>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
+        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 border-t border-gray-200 space-y-2">
           <Button
             onClick={toggleLanguage}
             variant="outline"
-            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+            className="w-full justify-start h-12 sm:h-10 touch-manipulation [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
           >
-            <Languages className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            {t("language.switch")}
+            <Languages className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
+            <span className="truncate">{t("language.switch")}</span>
           </Button>
           <Button
             onClick={logout}
             variant="outline"
-            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+            className="w-full justify-start h-12 sm:h-10 touch-manipulation [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
           >
-            <LogOut className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            {t("nav.logout")}
+            <LogOut className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
+            <span className="truncate">{t("nav.logout")}</span>
           </Button>
         </div>
       </div>
