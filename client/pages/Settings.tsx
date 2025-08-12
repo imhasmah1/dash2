@@ -140,7 +140,7 @@ export default function Settings() {
     contactEmail: "",
     contactAddress: "",
     orderSuccessMessageEn: "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
-    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 ساعات والتوصيل خلال 1-3 أيام عمل.",
+    orderSuccessMessageAr: "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 سا��ات والتوصيل خلال 1-3 أيام عمل.",
     orderInstructionsEn: "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
     businessHours: {
@@ -243,16 +243,17 @@ export default function Settings() {
     }
   };
 
-  const resetSettings = () => {
-    showDialog({
+  const resetSettings = async () => {
+    const confirmed = await showConfirm({
       title: t("settings.reset"),
       message: t("settings.resetConfirm"),
-      type: "confirm",
-      onConfirm: () => {
-        localStorage.removeItem("storeSettings");
-        window.location.reload();
-      },
+      type: "warning",
     });
+
+    if (confirmed) {
+      localStorage.removeItem("storeSettings");
+      window.location.reload();
+    }
   };
 
   const exportSettings = () => {
