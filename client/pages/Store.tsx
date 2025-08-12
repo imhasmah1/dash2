@@ -235,26 +235,26 @@ export default function Store() {
         </div>
       </div>
 
-      {/* Product Grid */}
-      <main className="container mx-auto px-4 py-8">
+      {/* Product Grid - Mobile Optimized */}
+      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-8">
         {searchQuery && filteredProducts.length === 0 ? (
           <div className="text-center py-12">
             <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground mb-4 text-center">
+            <p className="text-muted-foreground mb-4 text-center auto-text">
               {t("store.noSearchResults")}
             </p>
-            <Button variant="outline" onClick={clearSearch}>
-              {t("store.clearSearch")}
+            <Button variant="outline" onClick={clearSearch} className="touch-manipulation">
+              <span className="auto-text">{t("store.clearSearch")}</span>
             </Button>
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4 text-center">
+            <p className="text-muted-foreground mb-4 text-center auto-text">
               {t("empty.noProductsFound")}
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
