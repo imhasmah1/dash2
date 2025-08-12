@@ -511,7 +511,7 @@ const translations = {
   },
   ar: {
     // Navigation
-    "nav.dashboard": "لوحة التحكم",
+    "nav.dashboard": "لوحة ال��حكم",
     "nav.products": "المنتجات",
     "nav.orders": "الطلبات",
     "nav.customers": "العملاء",
@@ -792,7 +792,7 @@ const translations = {
 
     // Categories
     "category.electronics": "الأجهزة الإلكترونية",
-    "category.accessories": "الإكسسوارات",
+    "category.accessories": "الإكس��وارات",
     "category.homeOffice": "المنزل والمكتب",
     // Category dialogs
     "categories.deleteTitle": "حذف التصنيف",
@@ -855,7 +855,7 @@ const translations = {
     "settings.accessibilityFeatures": "ميزات إمكانية الوصول",
     "settings.notifications": "الإشعارات",
     "settings.analytics": "التحليلات",
-    "settings.autoBackup": "النس�� الاحتياطي التلقائي",
+    "settings.autoBackup": "النسخ الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
     "settings.dialogScroll": "تمرير الحوار",
     "settings.autoScrollToSummary": "التمرير التلقائي للملخص",
