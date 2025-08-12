@@ -297,19 +297,19 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
     
     return (
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="max-w-md w-full mx-4 p-0 overflow-hidden bg-white rounded-xl">
+        <DialogContent className="max-w-md w-full mx-4 p-0 overflow-hidden bg-white rounded-2xl border-0 shadow-2xl">
           <div className="flex flex-col h-full max-h-[90vh]">
             {/* Header with Success Animation */}
             <DialogHeader className="p-6 pb-4 border-b bg-gradient-to-br from-green-50 to-emerald-50">
               <div className="flex items-center justify-center mb-4">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center animate-pulse">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center animate-pulse shadow-lg">
                   <CheckCircle className="h-10 w-10 text-green-600" />
                 </div>
               </div>
-              <DialogTitle className="text-center text-2xl font-bold text-green-800 auto-text">
+              <DialogTitle className="text-center text-2xl font-bold text-green-800 auto-text leading-tight">
                 {orderMessages.headline}
               </DialogTitle>
-              <p className="text-center text-green-700 auto-text text-sm mt-2">
+              <p className="text-center text-green-700 auto-text text-sm mt-2 leading-relaxed">
                 {orderMessages.subtext}
               </p>
             </DialogHeader>
