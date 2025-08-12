@@ -542,6 +542,72 @@ export default function Settings() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Order Success Messages */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5" />
+                  {t("settings.orderSuccessMessage")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="orderSuccessMessageEn" className="auto-text">{t("common.language")}</Label>
+                  <Textarea
+                    id="orderSuccessMessageEn"
+                    value={settings.orderSuccessMessageEn}
+                    onChange={(e) => handleInputChange("orderSuccessMessageEn", e.target.value)}
+                    className="auto-text"
+                    rows={4}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="orderSuccessMessageAr" className="auto-text">{t("common.languageAr")}</Label>
+                  <Textarea
+                    id="orderSuccessMessageAr"
+                    value={settings.orderSuccessMessageAr}
+                    onChange={(e) => handleInputChange("orderSuccessMessageAr", e.target.value)}
+                    className="auto-text"
+                    rows={4}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Pickup Address */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5" />
+                  {t("settings.pickupAddress")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="pickupAddressEn" className="auto-text">{t("settings.pickupAddressEn")}</Label>
+                  <Textarea
+                    id="pickupAddressEn"
+                    value={settings.pickupAddressEn || ""}
+                    onChange={(e) => handleInputChange("pickupAddressEn", e.target.value)}
+                    placeholder="Home 1348, Road 416, Block 604, Sitra Alqarya"
+                    className="auto-text"
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="pickupAddressAr" className="auto-text">{t("settings.pickupAddressAr")}</Label>
+                  <Textarea
+                    id="pickupAddressAr"
+                    value={settings.pickupAddressAr || ""}
+                    onChange={(e) => handleInputChange("pickupAddressAr", e.target.value)}
+                    placeholder="منزل 1348، طريق 416، مجمع 604، سترة القرية"
+                    className="auto-text"
+                    rows={3}
+                  />
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )}
 
