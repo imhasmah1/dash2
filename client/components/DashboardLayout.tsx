@@ -65,14 +65,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         className={cn(
           "fixed inset-y-0 z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
           isRTL ? "right-0" : "left-0",
-          // Always visible on desktop, toggle on mobile
-          "lg:static lg:translate-x-0",
-          // Mobile behavior
+          // Desktop: always visible and static
+          "lg:static lg:!translate-x-0",
+          // Mobile: conditional positioning
+          "lg:transform-none lg:relative",
           sidebarOpen
-            ? "translate-x-0 lg:translate-x-0"
+            ? "translate-x-0"
             : isRTL
-              ? "translate-x-full lg:translate-x-0"
-              : "-translate-x-full lg:translate-x-0",
+              ? "translate-x-full"
+              : "-translate-x-full",
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
