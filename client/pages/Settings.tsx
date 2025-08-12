@@ -498,45 +498,50 @@ export default function Settings() {
               </CardContent>
             </Card>
 
-            {/* Business Hours */}
+            {/* Operational Settings */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Clock className="w-5 h-5" />
-                  {t("settings.businessHours")}
+                  <AlertTriangle className="w-5 h-5" />
+                  {t("settings.operationalSettings")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {Object.entries(settings.businessHours).map(([day, hours]) => (
-                  <div key={day} className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <Switch
-                        checked={hours.isOpen}
-                        onCheckedChange={(checked) => handleBusinessHoursChange(day, "isOpen", checked)}
-                      />
-                      <Label className="auto-text min-w-20">
-                        {t(`settings.${day}`)}
-                      </Label>
-                    </div>
-                    {hours.isOpen && (
-                      <div className="flex items-center gap-2">
-                        <Input
-                          type="time"
-                          value={hours.open}
-                          onChange={(e) => handleBusinessHoursChange(day, "open", e.target.value)}
-                          className="w-24 ltr-text"
-                        />
-                        <span className="auto-text">-</span>
-                        <Input
-                          type="time"
-                          value={hours.close}
-                          onChange={(e) => handleBusinessHoursChange(day, "close", e.target.value)}
-                          className="w-24 ltr-text"
-                        />
-                      </div>
-                    )}
-                  </div>
-                ))}
+                <div>
+                  <Label htmlFor="lowStockThreshold" className="auto-text">{t("settings.lowStockThreshold")}</Label>
+                  <Input
+                    id="lowStockThreshold"
+                    type="number"
+                    value={settings.lowStockThreshold}
+                    onChange={(e) => handleInputChange("lowStockThreshold", parseInt(e.target.value))}
+                    className="ltr-text"
+                    placeholder="5"
+                  />
+                  <p className="text-sm text-gray-600 auto-text mt-1">Show low stock warning when quantity falls below this number</p>
+                </div>
+                <div>
+                  <Label htmlFor="maxOrderQuantity" className="auto-text">{t("settings.maxOrderQuantity")}</Label>
+                  <Input
+                    id="maxOrderQuantity"
+                    type="number"
+                    value={settings.maxOrderQuantity}
+                    onChange={(e) => handleInputChange("maxOrderQuantity", parseInt(e.target.value))}
+                    className="ltr-text"
+                    placeholder="10"
+                  />
+                  <p className="text-sm text-gray-600 auto-text mt-1">Maximum quantity a customer can order per item</p>
+                </div>
+                <div>
+                  <Label htmlFor="orderProcessingTime" className="auto-text">{t("settings.orderProcessingTime")}</Label>
+                  <Input
+                    id="orderProcessingTime"
+                    value={settings.orderProcessingTime}
+                    onChange={(e) => handleInputChange("orderProcessingTime", e.target.value)}
+                    className="auto-text"
+                    placeholder="2-4 hours"
+                  />
+                  <p className="text-sm text-gray-600 auto-text mt-1">Estimated time to process orders</p>
+                </div>
               </CardContent>
             </Card>
           </div>
