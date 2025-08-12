@@ -63,9 +63,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <div
         style={{
-          transform: sidebarOpen
+          transform: window.innerWidth >= 1024
             ? 'translateX(0)'
-            : window.innerWidth >= 1024
+            : sidebarOpen
               ? 'translateX(0)'
               : isRTL
                 ? 'translateX(100%)'
