@@ -947,7 +947,7 @@ export default function Settings() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="maxImageSize" className="auto-text">Max Image Size (MB)</Label>
+                  <Label htmlFor="maxImageSize" className="auto-text">{t("settings.maxImageSizeMB")}</Label>
                   <Input
                     id="maxImageSize"
                     type="number"
