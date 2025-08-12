@@ -497,7 +497,7 @@ const translations = {
     "common.itemAr": "منتج",
     "common.itemsAr": "منتجات",
     "common.language": "Language",
-    "common.languageAr": "ا����عربية",
+    "common.languageAr": "ا��عربية",
     
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
@@ -550,7 +550,7 @@ const translations = {
     "products.productImages": "صور المنتج",
     "products.addVariant": "إضافة نوع",
     "products.variantName": "اسم النوع",
-    "products.variantStock": "��خ��ون النوع",
+    "products.variantStock": "مخ��ون النوع",
     "products.save": "حفظ",
     "products.cancel": "إلغاء",
     "products.removeVariant": "إزالة",
@@ -616,7 +616,7 @@ const translations = {
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
     "orders.lastUpdated": "آخر تحديث",
-    "orders.close": "إغلاق",
+    "orders.close": "إغلا��",
     "orders.selectProduct": "اختر المنتج",
     "orders.selectVariant": "اختر النوع",
     "orders.notesPlaceholder": "تعليمات خاص�� أو ملاحظات...",
@@ -653,7 +653,7 @@ const translations = {
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
-    "revenue.dailyRevenue": "الإيرادات اليومية (هذا ال��هر)",
+    "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
     "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
     "revenue.deliveryAnalysis": "تحليل نوع ال��سليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
@@ -753,7 +753,7 @@ const translations = {
     "checkout.deliveryOptions": "خ��ارات التوصيل",
     "checkout.delivery": "توصيل",
     "checkout.pickup": "استلام",
-    "checkout.orderSummary": "م��خص الطلب",
+    "checkout.orderSummary": "م����ص الطلب",
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
@@ -762,7 +762,7 @@ const translations = {
     "checkout.orderSuccess": "��م تأكيد الطلب بنجاح!",
     "checkout.thankYou": "شكراً لك على طلبك! لقد استلمنا طلبك وسنقوم بمعالجته قريباً.",
     "checkout.orderNumber": "رقم الطلب",
-    "checkout.backToStore": "الع��دة للمتجر",
+    "checkout.backToStore": "العودة للمتجر",
     "checkout.noCreditCard": "لا حاجة لبطاقة ائتمان - الدفع عند التسليم ف��ط!",
     "checkout.paymentMethod": "طريقة الدفع",
     "checkout.cashOnDelivery": "الدفع عند التسليم",
@@ -771,7 +771,7 @@ const translations = {
     "checkout.needHelp": "تحتاج مساعدة؟",
     "checkout.nextSteps": "الخط��ات التالية",
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف لل��أكيد",
+    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف ل����أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.backupRestore": "النسخ الاحتياطي والاستعادة",
     "checkout.export": "تصدير",
@@ -802,7 +802,7 @@ const translations = {
     "categories.cannotDeleteTitle": "لا يمكن ح��ف التصنيف",
     "categories.cannotDeleteMessage":
       "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
-    "categories.nameRequired": "اسم ا��تصنيف مطلوب.",
+    "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
     "analytics.title": "تحليلات المتجر",
@@ -857,7 +857,7 @@ const translations = {
     "settings.analytics": "التحليلات",
     "settings.autoBackup": "النسخ الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
-    "settings.dialogScroll": "تمرير الحوا��",
+    "settings.dialogScroll": "تمرير ��لحوا��",
     "settings.autoScrollToSummary": "التمرير التلقائي للملخص",
     "settings.autoOrderConfirmation": "تأكيد الطلب التلقائي",
     "settings.lowStockThreshold": "حد المخزون المنخفض",
@@ -895,7 +895,7 @@ const translations = {
     "settings.newPassword": "كلمة المرور الجديدة",
     "settings.confirmPassword": "تأكيد كلمة المرور",
     "settings.passwordsDoNotMatch": "كلمات المرور غير متطابقة",
-    "settings.passwordChanged": "تم تغيير كلمة المرور بنجاح",
+    "settings.passwordChanged": "تم تغيير كلمة المرو�� بنجاح",
     "settings.exportSettings": "تصدير الإعدادات",
     "settings.importSettings": "استيراد الإعدادات",
     "settings.exportDescription": "تحميل إعداداتك الحالية كملف نسخ احتياطي",
@@ -936,7 +936,7 @@ const translations = {
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
     "settings.bahrainiDinar": "الدينار البحريني",
-    "settings.usDollar": "الدولار ��لأمريكي",
+    "settings.usDollar": "الدولار الأمريكي",
     "settings.euro": "اليورو",
 
     // Contact Information
@@ -972,7 +972,7 @@ const translations = {
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
-      "ستظهر هذه ��لرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
+      "ستظهر هذه الرسائل للعملاء عند نجح تقديم طلبهم. ��م بتخصيصها لتتناسب مع طابع متجرك وتقديم المعلومات ذات الصلة.",
     
     // Currency and formatting
     "common.currency": "د.ب",
