@@ -511,7 +511,7 @@ const translations = {
   },
   ar: {
     // Navigation
-    "nav.dashboard": "لوحة ال��حكم",
+    "nav.dashboard": "لوحة التحكم",
     "nav.products": "المنتجات",
     "nav.orders": "الطلبات",
     "nav.customers": "العملاء",
@@ -619,7 +619,7 @@ const translations = {
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
     "orders.selectVariant": "اختر النوع",
-    "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
+    "orders.notesPlaceholder": "تعليمات خاص�� أو ملاحظات...",
     // Added key
     "orders.refresh": "تحديث",
 
@@ -647,7 +647,7 @@ const translations = {
     "customers.save": "حفظ",
 
     // Revenue
-    "revenue.title": "تحليلات الإيرادات",
+    "revenue.title": "تحليلات الإير��دات",
     "revenue.overview": "نظرة عامة على الإيرادات",
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
@@ -672,7 +672,7 @@ const translations = {
     "common.add": "إضافة",
     "common.search": "بحث",
     "common.actions": "الإجراءات",
-    "common.loading": "جارٍ التحميل...",
+    "common.loading": "جارٍ التحم��ل...",
     "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
@@ -702,7 +702,7 @@ const translations = {
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
-    "message.orderDeleted": "تم حذف الطلب بنجاح",
+    "message.orderDeleted": "تم حذف الطلب ��نجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
     "message.customerUpdated": "تم تحديث العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
@@ -753,7 +753,7 @@ const translations = {
     "checkout.deliveryOptions": "خ��ارات التوصيل",
     "checkout.delivery": "توصيل",
     "checkout.pickup": "استلام",
-    "checkout.orderSummary": "ملخص الطلب",
+    "checkout.orderSummary": "م��خص الطلب",
     "checkout.subtotal": "المجموع الفرعي",
     "checkout.deliveryFee": "رسوم التوصيل",
     "checkout.total": "المجموع الكلي",
@@ -771,7 +771,7 @@ const translations = {
     "checkout.needHelp": "تحتاج مساعدة؟",
     "checkout.nextSteps": "الخطوات التالية",
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
+    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف لل��أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.backupRestore": "النسخ الاحتياطي والاستعادة",
     "checkout.export": "تصدير",
@@ -792,7 +792,7 @@ const translations = {
 
     // Categories
     "category.electronics": "الأجهزة الإلكترونية",
-    "category.accessories": "الإكس��وارات",
+    "category.accessories": "الإكسسوارات",
     "category.homeOffice": "المنزل والمكتب",
     // Category dialogs
     "categories.deleteTitle": "حذف التصنيف",
@@ -857,7 +857,7 @@ const translations = {
     "settings.analytics": "التحليلات",
     "settings.autoBackup": "النسخ الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
-    "settings.dialogScroll": "تمرير الحوار",
+    "settings.dialogScroll": "تمرير الحوا��",
     "settings.autoScrollToSummary": "التمرير التلقائي للملخص",
     "settings.autoOrderConfirmation": "تأكيد الطلب التلقائي",
     "settings.lowStockThreshold": "حد المخزون المنخفض",
@@ -869,7 +869,7 @@ const translations = {
     
     // Settings Tabs
     "settings.basicSettings": "الإعدادات الأساسية",
-    "settings.deliverySettings": "إعدادات ا��توصيل",
+    "settings.deliverySettings": "إعدادات التوصيل",
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.successScreenSettings": "إعدادات شاشة النجاح",
     "settings.displayOrderNumber": "عرض رقم الطلب",
@@ -913,7 +913,7 @@ const translations = {
     "settings.maxImageSizeMB": "الحد الأقصى لحجم الصورة (ميجابايت)",
     "settings.enableAutoSave": "الحفظ التلقائي",
     "settings.enableDarkMode": "الوضع المظلم",
-    "settings.enableAccessibilityFeatures": "ميزات إمكانية الوصول",
+    "settings.enableAccessibilityFeatures": "ميزات إمكا��ية الوصول",
     "settings.enableNotifications": "الإشعارات",
     "settings.enableAnalytics": "التحليلات",
     "settings.enableAutoBackup": "النسخ الاحتياطي التلقائي",
@@ -936,7 +936,7 @@ const translations = {
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
     "settings.bahrainiDinar": "الدينار البحريني",
-    "settings.usDollar": "الدولار الأمريكي",
+    "settings.usDollar": "الدولار ��لأمريكي",
     "settings.euro": "اليورو",
 
     // Contact Information
@@ -965,7 +965,7 @@ const translations = {
     "settings.estimatedDeliveryTime": "الوقت المتوقع للتو��يل",
 
     // Order Messages
-    "settings.orderMessages": "رسائل الطلبات",
+    "settings.orderMessages": "رسائل الطلب��ت",
     "settings.englishMessages": "الرسائل الإنجليزية",
     "settings.arabicMessages": "الرسائل العربية",
     "settings.orderSuccessMessage": "رسال�� نجاح الطلب",
