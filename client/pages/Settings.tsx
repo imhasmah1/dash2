@@ -227,13 +227,13 @@ export default function Settings() {
     try {
       localStorage.setItem("storeSettings", JSON.stringify(settings));
       setHasChanges(false);
-      showDialog({
+      showAlert({
         title: t("settings.saveSuccess"),
         message: t("settings.saveSuccess"),
         type: "success",
       });
     } catch (error) {
-      showDialog({
+      showAlert({
         title: t("settings.saveError"),
         message: t("settings.saveError"),
         type: "error",
