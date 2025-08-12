@@ -127,7 +127,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Button
             onClick={toggleLanguage}
             variant="outline"
-            className="w-full justify-start h-12 sm:h-10 touch-manipulation [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+            className={cn("w-full h-12 sm:h-10 touch-manipulation", isRTL ? "justify-end flex-row-reverse" : "justify-start")}
           >
             <Languages className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
             <span className="truncate">{t("language.switch")}</span>
@@ -135,7 +135,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Button
             onClick={logout}
             variant="outline"
-            className="w-full justify-start h-12 sm:h-10 touch-manipulation [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+            className={cn("w-full h-12 sm:h-10 touch-manipulation", isRTL ? "justify-end flex-row-reverse" : "justify-start")}
           >
             <LogOut className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
             <span className="truncate">{t("nav.logout")}</span>
