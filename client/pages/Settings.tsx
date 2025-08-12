@@ -1021,7 +1021,7 @@ export default function Settings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="enableBackup" className="auto-text">Auto Backup</Label>
+                  <Label htmlFor="enableBackup" className="auto-text">{t("settings.enableAutoBackup")}</Label>
                   <Switch
                     id="enableBackup"
                     checked={settings.enableBackup}
