@@ -232,10 +232,10 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-lg py-2">
-                      <Package className="h-4 w-4" />
+                    <div className="flex items-center justify-center gap-3 text-sm text-gray-600 bg-gray-50 rounded-lg py-3 [dir=rtl]:flex-row-reverse">
+                      <Package className="h-4 w-4 flex-shrink-0" />
                       <span className="auto-text font-medium">
-                        {items.length} {language === "ar" ? (items.length === 1 ? t("common.itemAr") : t("common.itemsAr")) : (items.length === 1 ? t("common.item") : t("common.items"))}
+                        <span className="ltr-text">{items.length}</span> {language === "ar" ? (items.length === 1 ? t("common.itemAr") : t("common.itemsAr")) : (items.length === 1 ? t("common.item") : t("common.items"))}
                       </span>
                     </div>
                   </div>
