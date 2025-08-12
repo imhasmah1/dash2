@@ -91,7 +91,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           : "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
       instructions:
         language === "ar"
-          ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا."
+          ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل مع��ا."
           : "For any changes or questions about your order, please contact us.",
       headline: language === "ar" ? t("orderSuccess.headlineAr") : t("orderSuccess.headline"),
       subtext:
@@ -232,7 +232,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
       // Success state - preserve order data before clearing cart
       setOrderItems([...items]);
-      setOrderTotalPrice(totalPrice);
+      setOrderTotalPrice(orderTotal);
 
       // Calculate order number more reliably
       try {
