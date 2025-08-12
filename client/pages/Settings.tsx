@@ -142,7 +142,7 @@ export default function Settings() {
     orderSuccessMessageEn:
       "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
     orderSuccessMessageAr:
-      "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 سا��ات والتوصيل خلال 1-3 أيام عمل.",
+      "شكراً لك على طلبك! سنقوم بمعالجته خلال 2-4 ساعات والتوصيل خلال 1-3 أيام عمل.",
     orderInstructionsEn:
       "For any changes or questions about your order, please contact us.",
     orderInstructionsAr: "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا.",
@@ -175,7 +175,7 @@ export default function Settings() {
     successHeadlineEn: "Order Confirmed!",
     successHeadlineAr: "تم تأكيد الطلب!",
     successSubtextEn: "We'll share updates by phone as your order progresses.",
-    successSubtextAr: "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم ط��بك.",
+    successSubtextAr: "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك.",
     displayOrderNumber: true,
     displayOrderItems: true,
     displayTotals: true,
