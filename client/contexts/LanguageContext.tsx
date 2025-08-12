@@ -472,6 +472,8 @@ const translations = {
     "settings.chooseFile": "Choose File",
     "settings.noFileChosen": "No file chosen",
     "settings.displayOptions": "Display Options",
+    "settings.pickupAddressEn": "Pickup Address (English)",
+    "settings.pickupAddressAr": "Pickup Address (Arabic)",
     
     // Currency and formatting
     "common.currency": "BD",
@@ -591,7 +593,7 @@ const translations = {
     "orders.orderTotal": "إجمالي الطلب",
     "orders.save": "حفظ",
     "orders.orderDetailsTitle": "تفاصيل الطلب",
-    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
+    "orders.orderDetailsDesc": "معلوم��ت الطلب الكاملة للتوصيل والتتبع",
     "orders.customerInfo": "معلومات العميل",
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
@@ -671,7 +673,7 @@ const translations = {
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
-    "empty.noCustomersFound": "لا يوجد عملاء",
+    "empty.noCustomersFound": "لا ي��جد عملاء",
     "empty.noOrdersFound": "لا توجد طلبات",
     "empty.adjustSearch": "حاول تعديل مصطلحات البحث",
     "empty.addFirstProduct": "ابدأ بإضافة أول منتج لك",
@@ -723,7 +725,7 @@ const translations = {
     "store.removeFromCart": "إزالة من السلة",
     "store.updateQuantity": "تحديث الكمية",
     "store.clearCart": "إفراغ السلة",
-    "store.startShoppingAr": "ابدأ التسوق لإضافة منتجات إلى سلتك",
+    "store.startShoppingAr": "��بدأ التسوق لإضافة منتجات إلى سلتك",
     "store.unitPrice": "سعر الوحدة",
 
     // Checkout
@@ -763,7 +765,7 @@ const translations = {
     "checkout.export": "تصدير",
     "checkout.import": "استيراد",
     "checkout.settingsImported": "تم استيراد الإعدادات بنجاح. لا تنس الحفظ!",
-    "checkout.importError": "فشل في استيراد الإعدادات. يرجى التحقق من تنسيق الملف.",
+    "checkout.importError": "فشل في استيراد الإعدادات. يرجى التحقق من ت��سيق الملف.",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
@@ -831,7 +833,7 @@ const translations = {
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
     "settings.resetConfirm":
       "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
-    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس الحفظ!",
+    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. ��ا تنس الحفظ!",
     "settings.advancedSettings": "الإعد��دات المتقدمة",
     "settings.performanceMode": "وضع الأداء",
     "settings.imageCompression": "ضغط الصور",
@@ -870,7 +872,7 @@ const translations = {
     "settings.pickupAddressAr": "عنوان الاستلام (عربي)",
     "settings.deliveryAreas": "مناطق التوصيل",
     "settings.addDeliveryArea": "إضافة منطقة توصيل",
-    "settings.removeDeliveryArea": "إزالة",
+    "settings.removeDeliveryArea": "إزال��",
     "settings.operationalSettings": "الإعدادات التشغيلية",
     "settings.uiBehavior": "سلوك الواجهة",
     "settings.adminSettings": "إعدادات الإدارة",
@@ -941,7 +943,7 @@ const translations = {
     "settings.orderMessages": "رسائل الطلبات",
     "settings.englishMessages": "الرسائل الإنجليزية",
     "settings.arabicMessages": "الرسائل العربية",
-    "settings.orderSuccessMessage": "رسالة نجاح الطلب",
+    "settings.orderSuccessMessage": "رسال�� نجاح الطلب",
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
