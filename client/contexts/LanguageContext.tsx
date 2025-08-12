@@ -617,9 +617,9 @@ const translations = {
     "orders.orderSummary": "ملخص الطلب",
     "orders.created": "تاريخ الإنشاء",
     "orders.lastUpdated": "آخر تحديث",
-    "orders.close": "إغلا��",
+    "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
-    "orders.selectVariant": "اختر الن��ع",
+    "orders.selectVariant": "اختر النوع",
     "orders.notesPlaceholder": "تعليمات ��اص�� أو ملاحظات...",
     // Added key
     "orders.refresh": "تحديث",
@@ -645,7 +645,7 @@ const translations = {
     "customers.customerRoad": "رقم الطريق",
     "customers.customerBlock": "رقم المجمع",
     "customers.customerTown": "البلدة/المنطقة",
-    "customers.save": "حفظ",
+    "customers.save": "حف��",
 
     // Revenue
     "revenue.title": "��حليلات الإي��ادات",
@@ -771,7 +771,7 @@ const translations = {
     "checkout.whatsNext": "ما ��ي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
     "checkout.nextSteps": "الخط��ات التالية",
-    "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
+    "checkout.prepareOrder": "سنقوم بتجهيز ط��بك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف ل����أكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.backupRestore": "النسخ الاحتياطي والاستعادة",
@@ -787,7 +787,7 @@ const translations = {
     "store.productDetails": "تفاصيل المنتج",
     "store.search": "البحث في المنتجات...",
     "store.searchResults": "نتائج البحث",
-    "store.noSearchResults": "لا توجد منتجات للبح�� المطلوب",
+    "store.noSearchResults": "لا توجد منتجات للبحث المطلوب",
     "store.clearSearch": "مسح البحث",
     "store.allProducts": "جميع المنتجات",
 
@@ -856,7 +856,7 @@ const translations = {
     "settings.accessibilityFeatures": "ميزات إمكانية الوصول",
     "settings.notifications": "الإشعارات",
     "settings.analytics": "التحليلات",
-    "settings.autoBackup": "النسخ الاحتياطي التلقائي",
+    "settings.autoBackup": "ال��سخ الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
     "settings.dialogScroll": "تمرير ��لحوا��",
     "settings.autoScrollToSummary": "التمرير التلقائي للملخص",
@@ -872,7 +872,7 @@ const translations = {
     "settings.basicSettings": "الإعدادات الأساسية",
     "settings.deliverySettings": "إعدادات التوصيل",
     "settings.messageSettings": "إعدادات الرسائل",
-    "settings.successScreenSettings": "إعدادات ��اشة النجاح",
+    "settings.successScreenSettings": "إعدادات شاشة النجاح",
     "settings.displayOrderNumber": "عرض رقم الطلب",
     "settings.displayOrderItems": "عرض عناصر الطلب",
     "settings.displayTotals": "عرض ��لمجاميع",
@@ -891,7 +891,7 @@ const translations = {
     "settings.adminSettings": "إعدادات الإدارة",
     "settings.adminPassword": "كلمة مرور الإدارة",
     "settings.adminEmail": "بريد الإدارة الإلكتروني",
-    "settings.changePassword": "تغيير ��لمة المرور",
+    "settings.changePassword": "تغيير كلمة المرور",
     "settings.currentPassword": "كلمة المرور الحالية",
     "settings.newPassword": "كلمة المرور الجد��دة",
     "settings.confirmPassword": "تأكيد كلمة المرور",
@@ -908,7 +908,7 @@ const translations = {
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.adminSettings": "إعدادات المدير",
     "settings.pickupAddressEn": "عنوان الاستلام (إنجليزي)",
-    "settings.pickupAddressAr": "عنوان الاستلام (عر��ي)",
+    "settings.pickupAddressAr": "عنوان الاستلام (عربي)",
     "settings.enablePerformanceMode": "وض�� الأداء",
     "settings.enableImageCompression": "ضغط الصور",
     "settings.maxImageSizeMB": "الحد الأقصى لحجم الصورة (ميجابايت)",
@@ -926,7 +926,7 @@ const translations = {
     "settings.displayTotals": "عرض المجاميع",
     "settings.displayNextSteps": "عرض الخطوات التالية",
     "settings.displayContact": "عرض معلومات الاتصال",
-    "settings.adminEmail": "بريد المدير ��لإلكتروني",
+    "settings.adminEmail": "بريد المدير الإلكتروني",
     "settings.adminPassword": "كلمة م��ور المدير",
     "settings.adminPasswordHint": "قم بتغيير كلمة الم��ور للوصول إلى لوحة التحكم",
 
@@ -962,7 +962,7 @@ const translations = {
     "settings.enableDelivery": "تفعيل التوصيل",
     "settings.enablePickup": "تفعيل الاستلام",
     "settings.deliveryFee": "رسوم التوصيل",
-    "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
+    "settings.freeDeliveryThreshold": "حد ال��وصيل المجاني",
     "settings.estimatedDeliveryTime": "الو��ت المتوقع للتو��يل",
 
     // Order Messages
@@ -988,7 +988,7 @@ const translations = {
     "common.languageAr": "العربية",
     
     // Order success messages
-    "orderSuccess.headline": "تم ت��كيد الطلب!",
+    "orderSuccess.headline": "تم ت��كيد ال��لب!",
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
     "orderSuccess.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
