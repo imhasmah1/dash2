@@ -564,7 +564,7 @@ const translations = {
     // Added keys (AR)
     "products.category": "التصنيف",
     "products.selectCategory": "اختر التصنيف",
-    "products.variantImageOptional": "صورة النوع (اختياري)",
+    "products.variantImageOptional": "صورة ا��نوع (اختياري)",
     "products.removeImage": "إ��الة الصورة",
     "products.uploadImage": "ر��ع صورة",
 
@@ -606,7 +606,7 @@ const translations = {
     "orders.orderTotal": "إجمالي الطلب",
     "orders.save": "حفظ",
     "orders.orderDetailsTitle": "تفاصيل الطلب",
-    "orders.orderDetailsDesc": "معلوم��ت الطلب الكاملة للتوصيل والتتبع",
+    "orders.orderDetailsDesc": "معلومات الطلب الكاملة للتوصيل والتتبع",
     "orders.customerInfo": "معلومات العميل",
     "orders.customerName": "الاسم",
     "orders.customerPhone": "الهاتف",
@@ -812,7 +812,7 @@ const translations = {
     "analytics.totalRevenue": "إجمالي الإيرادات",
     "analytics.totalCustomers": "إجمال�� العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
-    "analytics.avgPerOrder": "��كل طلب",
+    "analytics.avgPerOrder": "����كل طلب",
     "analytics.newInPeriod": "جديد في الفترة",
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
@@ -835,7 +835,7 @@ const translations = {
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
-    "notFound.returnHome": "العودة للصفحة الرئي��ية",
+    "notFound.returnHome": "العودة ��لصفحة الرئي��ية",
 
     // Settings
     "settings.title": "الإعدادات",
@@ -893,7 +893,7 @@ const translations = {
     "settings.adminEmail": "بريد الإدارة الإلكتروني",
     "settings.changePassword": "تغيير كلمة المرور",
     "settings.currentPassword": "كلمة المرور الحالية",
-    "settings.newPassword": "كلمة المرور الجديدة",
+    "settings.newPassword": "كلمة المرور الجد��دة",
     "settings.confirmPassword": "تأكيد كلمة المرور",
     "settings.passwordsDoNotMatch": "كلمات ��لمرور غ��ر متطابقة",
     "settings.passwordChanged": "تم تغيير كلمة المرو�� بنجاح",
@@ -928,7 +928,7 @@ const translations = {
     "settings.displayContact": "عرض معلومات الاتصال",
     "settings.adminEmail": "بريد المدير الإلكتروني",
     "settings.adminPassword": "كلمة م��ور المدير",
-    "settings.adminPasswordHint": "قم بتغيير كلمة المرور للوصول إلى لوحة التحكم",
+    "settings.adminPasswordHint": "قم بتغيير كلمة الم��ور للوصول إلى لوحة التحكم",
 
     // Store Information
     "settings.storeInformation": "معلومات المتجر",
