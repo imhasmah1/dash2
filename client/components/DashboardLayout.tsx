@@ -146,14 +146,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="bg-white shadow-sm border-b border-gray-200 lg:hidden">
-          <div className="flex items-center justify-between h-16 px-4 [dir=rtl]:flex-row-reverse">
+          <div className="flex items-center justify-between h-14 sm:h-16 px-4 [dir=rtl]:flex-row-reverse">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-gray-400 hover:text-gray-600 p-2 -ml-2 touch-manipulation"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
-            <h1 className="text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">
+            <h1 className="text-base sm:text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left truncate">
               {t("dashboard.title")}
             </h1>
             <div className="w-6" /> {/* Spacer */}
@@ -161,7 +161,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-6">{children}</main>
+        <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
       </div>
     </div>
   );
