@@ -61,7 +61,6 @@ export default function Store() {
         const normalized = data.map((p: any) => ({
           ...p,
           category_id: p.category_id || "",
-          
         }));
         setProducts(normalized);
         setFilteredProducts(normalized);
@@ -115,12 +114,12 @@ export default function Store() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header touching the roof */}
+      {/* Header - Mobile Optimized */}
       <header className="border-b bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between [dir=rtl]:flex-row-reverse">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between [dir=rtl]:flex-row-reverse">
           {/* Logo and Title */}
-          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
-            <div className="h-20 flex items-center">
+          <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse min-w-0 flex-1">
+            <div className="h-12 sm:h-16 lg:h-20 flex items-center">
               <img
                 src={
                   language === "ar"
@@ -128,19 +127,27 @@ export default function Store() {
                     : "https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2Feb0b70b9250f4bfca41dbc5a78c2ce45?format=webp&width=800"
                 }
                 alt="أزهار ستور - azharstore"
-                className="h-20 w-auto object-contain"
+                className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
               />
             </div>
           </div>
 
           {/* Right side buttons */}
-          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
+          <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse">
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Globe className="h-4 w-4" />
-                  {language === "ar" ? t("common.languageAr") : t("common.language")}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1 sm:gap-2 h-10 px-2 sm:px-3 touch-manipulation"
+                >
+                  <Globe className="h-4 w-4 flex-shrink-0" />
+                  <span className="hidden sm:inline">
+                    {language === "ar"
+                      ? t("common.languageAr")
+                      : t("common.language")}
+                  </span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -157,10 +164,10 @@ export default function Store() {
             <Button
               variant="outline"
               onClick={() => setIsCartOpen(true)}
-              className="relative hover:bg-primary/5 hover:border-primary transition-colors"
+              className="relative hover:bg-primary/5 hover:border-primary transition-colors h-10 px-3 sm:px-4 touch-manipulation"
             >
-              <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-2 [dir=ltr]:mr-2" />
-              {t("store.cart")}
+              <ShoppingCart className="h-5 w-5 [dir=rtl]:ml-1 [dir=ltr]:mr-1 sm:[dir=rtl]:ml-2 sm:[dir=ltr]:mr-2 flex-shrink-0" />
+              <span className="hidden sm:inline">{t("store.cart")}</span>
               {cartItemsCount > 0 && (
                 <Badge
                   variant="destructive"
@@ -174,9 +181,9 @@ export default function Store() {
         </div>
       </header>
 
-      {/* Search and Category Filter */}
+      {/* Search and Category Filter - Mobile Optimized */}
       <div className="border-b bg-gray-50/50">
-        <div className="container mx-auto px-4 py-6 space-y-4">
+        <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-4">
           {/* Search Bar + Categories row */}
           <div className="flex flex-col gap-4">
             <div className="max-w-2xl mx-auto w-full relative">
@@ -187,45 +194,51 @@ export default function Store() {
                   placeholder={t("store.search")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-10 [dir=rtl]:pl-10 [dir=rtl]:pr-10 text-center [dir=rtl]:text-right [dir=ltr]:text-left"
+                  className="pl-10 pr-10 [dir=rtl]:pl-10 [dir=rtl]:pr-10 auto-text h-12 sm:h-10 text-base sm:text-sm"
                 />
                 {searchQuery && (
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={clearSearch}
-                    className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 [dir=rtl]:right-auto [dir=rtl]:left-1"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 [dir=rtl]:right-auto [dir=rtl]:left-1 touch-manipulation"
                   >
                     <X className="h-4 w-4" />
                   </Button>
                 )}
               </div>
               {searchQuery && (
-                <p className="text-sm text-muted-foreground mt-2 text-center">
+                <p className="text-sm text-muted-foreground mt-2 text-center auto-text">
                   {filteredProducts.length} {t("store.searchResults")}
                 </p>
               )}
             </div>
 
-            {/* Category chips aligned with search */}
-            <div className="flex flex-wrap justify-center gap-2">
+            {/* Category chips - mobile optimized */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
               <Button
                 variant={selectedCategory === "all" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory("all")}
-                className="rounded-full"
+                className="rounded-full h-10 sm:h-8 px-4 sm:px-3 touch-manipulation"
               >
-                {t("store.allProducts")}
+                <span className="auto-text text-sm">
+                  {t("store.allProducts")}
+                </span>
               </Button>
               {categories.map((category) => (
                 <Button
                   key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category.id ? "default" : "outline"
+                  }
                   size="sm"
                   onClick={() => setSelectedCategory(category.id)}
-                  className="rounded-full"
+                  className="rounded-full h-10 sm:h-8 px-4 sm:px-3 touch-manipulation"
                 >
-                  {translateCategory(category.name)}
+                  <span className="auto-text text-sm">
+                    {translateCategory(category.name)}
+                  </span>
                 </Button>
               ))}
             </div>
@@ -233,30 +246,34 @@ export default function Store() {
         </div>
       </div>
 
-      {/* Product Grid */}
-      <main className="container mx-auto px-4 py-8">
+      {/* Product Grid - Mobile Optimized */}
+      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-8">
         {searchQuery && filteredProducts.length === 0 ? (
           <div className="text-center py-12">
             <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground mb-4 text-center">
+            <p className="text-muted-foreground mb-4 text-center auto-text">
               {t("store.noSearchResults")}
             </p>
-            <Button variant="outline" onClick={clearSearch}>
-              {t("store.clearSearch")}
+            <Button
+              variant="outline"
+              onClick={clearSearch}
+              className="touch-manipulation"
+            >
+              <span className="auto-text">{t("store.clearSearch")}</span>
             </Button>
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4 text-center">
+            <p className="text-muted-foreground mb-4 text-center auto-text">
               {t("empty.noProductsFound")}
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow overflow-hidden cursor-pointer group"
+                className="bg-white rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer group"
               >
                 {/* Product Image */}
                 <div
@@ -271,31 +288,35 @@ export default function Store() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                      <span className="text-sm">{t("products.noImages")}</span>
+                      <span className="text-xs sm:text-sm auto-text">
+                        {t("products.noImages")}
+                      </span>
                     </div>
                   )}
                 </div>
 
-                {/* Product Info */}
-                <div className="p-4">
+                {/* Product Info - Mobile Optimized */}
+                <div className="p-2 sm:p-3 lg:p-4">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors auto-text">
+                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-1 sm:mb-2 line-clamp-2 hover:text-primary transition-colors auto-text leading-tight">
                       {product.name}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2 auto-text">
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 auto-text hidden sm:block">
                       {product.description}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse">
-                    <div>
-                      <span className="text-lg font-bold text-primary auto-text">
+                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse gap-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="text-sm sm:text-base lg:text-lg font-bold text-primary ltr-text block">
                         BD {product.price.toFixed(2)}
                       </span>
                       {(product.total_stock || 0) > 0 && (
                         <p className="text-xs text-muted-foreground auto-text">
-                          {product.total_stock || 0}{" "}
+                          <span className="ltr-text">
+                            {product.total_stock || 0}
+                          </span>{" "}
                           {t("products.stock")}
                         </p>
                       )}
@@ -305,18 +326,18 @@ export default function Store() {
                       size="sm"
                       onClick={() => handleAddToCart(product)}
                       disabled={(product.total_stock || 0) === 0}
-                      className="shrink-0"
+                      className="shrink-0 h-8 w-8 sm:h-9 sm:w-9 p-0 touch-manipulation"
                     >
-                      <Plus className="h-4 w-4" />
+                      <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                   </div>
 
                   {(product.total_stock || 0) === 0 && (
                     <Badge
                       variant="secondary"
-                      className="w-full mt-2 justify-center text-center"
+                      className="w-full mt-2 justify-center text-center text-xs"
                     >
-                      {t("store.outOfStock")}
+                      <span className="auto-text">{t("store.outOfStock")}</span>
                     </Badge>
                   )}
                 </div>

@@ -42,11 +42,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   const deliveryFeeSetting: number = Number(savedSettings?.deliveryFee ?? 1.5);
   const pickupAddress: string =
     language === "ar"
-      ? savedSettings?.pickupAddressAr || "منزل 1348، طريق 416، مجمع 604، سترة القرية"
-      : savedSettings?.pickupAddressEn || "Home 1348, Road 416, Block 604, Sitra Alqarya";
+      ? savedSettings?.pickupAddressAr ||
+        "منزل 1348، طريق 416، مجمع 604، سترة القرية"
+      : savedSettings?.pickupAddressEn ||
+        "Home 1348, Road 416, Block 604, Sitra Alqarya";
   const contactPhone: string = savedSettings?.contactPhone || "+973 36283382";
-  const enableDialogScroll: boolean =
-    savedSettings?.enableDialogScroll ?? true;
+  const enableDialogScroll: boolean = savedSettings?.enableDialogScroll ?? true;
   const autoScrollToSummary: boolean =
     savedSettings?.autoScrollToSummary ?? true;
 
@@ -70,7 +71,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
             : settings.successHeadlineEn || t("orderSuccess.headline"),
         subtext:
           language === "ar"
-            ? settings.successSubtextAr || "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
+            ? settings.successSubtextAr ||
+              "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
             : settings.successSubtextEn ||
               "We'll share updates by phone as your order progresses.",
         toggles: {
@@ -91,9 +93,12 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           : "Thank you for your order! We'll process it within 2-4 hours and deliver within 1-3 business days.",
       instructions:
         language === "ar"
-          ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل معنا."
+          ? "لأي تغييرات أو أسئلة حول طلبك، يرجى التواصل مع��ا."
           : "For any changes or questions about your order, please contact us.",
-      headline: language === "ar" ? t("orderSuccess.headlineAr") : t("orderSuccess.headline"),
+      headline:
+        language === "ar"
+          ? t("orderSuccess.headlineAr")
+          : t("orderSuccess.headline"),
       subtext:
         language === "ar"
           ? "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
@@ -232,7 +237,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
       // Success state - preserve order data before clearing cart
       setOrderItems([...items]);
-      setOrderTotalPrice(totalPrice);
+      setOrderTotalPrice(orderTotal);
 
       // Calculate order number more reliably
       try {
@@ -294,22 +299,22 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
   // Order Success Screen - Completely Revamped
   if (orderSuccess) {
     const orderMessages = getOrderMessages();
-    
+
     return (
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="max-w-md w-full mx-4 p-0 overflow-hidden bg-white rounded-xl">
+        <DialogContent className="max-w-md w-[95vw] mx-auto p-0 overflow-hidden bg-white rounded-2xl border-0 shadow-2xl">
           <div className="flex flex-col h-full max-h-[90vh]">
             {/* Header with Success Animation */}
             <DialogHeader className="p-6 pb-4 border-b bg-gradient-to-br from-green-50 to-emerald-50">
               <div className="flex items-center justify-center mb-4">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center animate-pulse">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center animate-pulse shadow-lg">
                   <CheckCircle className="h-10 w-10 text-green-600" />
                 </div>
               </div>
-              <DialogTitle className="text-center text-2xl font-bold text-green-800 auto-text">
+              <DialogTitle className="text-center text-2xl font-bold text-green-800 auto-text leading-tight">
                 {orderMessages.headline}
               </DialogTitle>
-              <p className="text-center text-green-700 auto-text text-sm mt-2">
+              <p className="text-center text-green-700 auto-text text-sm mt-2 leading-relaxed">
                 {orderMessages.subtext}
               </p>
             </DialogHeader>
@@ -339,15 +344,27 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <ul className="space-y-3 text-xs text-blue-800 auto-text">
                       <li className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text [dir=rtl]:order-1">{language === "ar" ? t("orderSuccess.prepareOrderAr") : t("orderSuccess.prepareOrder")}</span>
+                        <span className="auto-text [dir=rtl]:order-1">
+                          {language === "ar"
+                            ? t("orderSuccess.prepareOrderAr")
+                            : t("orderSuccess.prepareOrder")}
+                        </span>
                       </li>
                       <li className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text [dir=rtl]:order-1">{language === "ar" ? t("orderSuccess.contactPhoneAr") : t("orderSuccess.contactPhone")}</span>
+                        <span className="auto-text [dir=rtl]:order-1">
+                          {language === "ar"
+                            ? t("orderSuccess.contactPhoneAr")
+                            : t("orderSuccess.contactPhone")}
+                        </span>
                       </li>
                       <li className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text [dir=rtl]:order-1">{language === "ar" ? t("orderSuccess.deliveryTimeAr") : t("orderSuccess.deliveryTime")}</span>
+                        <span className="auto-text [dir=rtl]:order-1">
+                          {language === "ar"
+                            ? t("orderSuccess.deliveryTimeAr")
+                            : t("orderSuccess.deliveryTime")}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -363,11 +380,15 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     <div className="space-y-3 text-xs text-gray-700">
                       <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
                         <Phone className="w-4 h-4 text-gray-500 [dir=rtl]:order-2" />
-                        <span className="ltr-text font-medium [dir=rtl]:order-1">{contactPhone}</span>
+                        <span className="ltr-text font-medium [dir=rtl]:order-1">
+                          {contactPhone}
+                        </span>
                       </div>
                       <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                         <MapPin className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0 [dir=rtl]:order-2" />
-                        <span className="auto-text leading-relaxed [dir=rtl]:order-1">{pickupAddress}</span>
+                        <span className="auto-text leading-relaxed [dir=rtl]:order-1">
+                          {pickupAddress}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -381,7 +402,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       <p className="text-sm font-medium text-gray-700 auto-text mb-3">
                         {t("checkout.orderNumber")}:
                       </p>
-                      <Badge variant="outline" className="text-lg px-6 py-3 ltr-text font-mono bg-gray-50 border-2">
+                      <Badge
+                        variant="outline"
+                        className="text-lg px-6 py-3 ltr-text font-mono bg-gray-50 border-2"
+                      >
                         #{orderNumber}
                       </Badge>
                     </div>
@@ -409,12 +433,16 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                                 </p>
                               )}
                               <p className="text-gray-500 auto-text">
-                                {t("store.quantity")}: {item.quantity}
+                                {t("store.quantity")}:{" "}
+                                <span className="ltr-text font-medium">
+                                  {item.quantity}
+                                </span>
                               </p>
                             </div>
-                            <div className="text-right [dir=rtl]:text-left flex-shrink-0">
+                            <div className="text-end flex-shrink-0">
                               <p className="font-semibold text-primary ltr-text">
-                                {currencySymbol} {(item.price * item.quantity).toFixed(2)}
+                                {currencySymbol}{" "}
+                                {(item.price * item.quantity).toFixed(2)}
                               </p>
                             </div>
                           </div>
@@ -427,19 +455,35 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   {orderMessages.toggles.displayTotals && (
                     <div className="space-y-3 pt-3 border-t">
                       <div className="flex justify-between items-center text-sm [dir=rtl]:flex-row-reverse">
-                        <span className="auto-text">{t("checkout.subtotal")}:</span>
-                        <span className="text-primary ltr-text">{currencySymbol} {totalPrice.toFixed(2)}</span>
+                        <span className="auto-text">
+                          {t("checkout.subtotal")}:
+                        </span>
+                        <span className="text-primary ltr-text">
+                          {currencySymbol}{" "}
+                          {(
+                            orderTotalPrice -
+                            (deliveryType === "delivery"
+                              ? deliveryFeeSetting
+                              : 0)
+                          ).toFixed(2)}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center text-sm [dir=rtl]:flex-row-reverse">
-                        <span className="auto-text">{t("checkout.deliveryFee")}:</span>
+                        <span className="auto-text">
+                          {t("checkout.deliveryFee")}:
+                        </span>
                         <span className="text-primary ltr-text">
-                          {deliveryType === "delivery" ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}` : `${currencySymbol} 0.00`}
+                          {deliveryType === "delivery"
+                            ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}`
+                            : `${currencySymbol} 0.00`}
                         </span>
                       </div>
                       <div className="flex justify-between items-center text-base font-bold pt-3 border-t [dir=rtl]:flex-row-reverse">
-                        <span className="auto-text">{t("orders.orderTotal")}:</span>
+                        <span className="auto-text">
+                          {t("orders.orderTotal")}:
+                        </span>
                         <span className="text-primary text-lg ltr-text">
-                          {currencySymbol} {(totalPrice + (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}
+                          {currencySymbol} {orderTotalPrice.toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -450,8 +494,11 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
             {/* Footer */}
             <div className="border-t p-4 bg-white">
-              <Button onClick={onClose} className="w-full bg-primary hover:bg-primary/90">
-                {t("checkout.backToStore")}
+              <Button
+                onClick={onClose}
+                className="w-full bg-primary hover:bg-primary/90 touch-manipulation h-12 text-base font-semibold"
+              >
+                <span className="auto-text">{t("checkout.backToStore")}</span>
               </Button>
             </div>
           </div>
@@ -462,10 +509,10 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-lg sm:rounded-md flex flex-col dialog-content-scroll">
+      <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] p-0 rounded-xl border-0 flex flex-col dialog-content-scroll mx-auto">
         {/* Header */}
         <DialogHeader className="px-4 sm:px-6 py-4 sm:py-6 border-b flex-shrink-0 bg-white">
-          <DialogTitle className="text-xl sm:text-2xl font-bold text-center auto-text">
+          <DialogTitle className="text-xl sm:text-2xl font-bold text-center auto-text leading-tight">
             {t("checkout.title")}
           </DialogTitle>
 
@@ -497,7 +544,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
         </DialogHeader>
 
         {/* Scrollable Content Area */}
-        <ScrollArea className={`flex-1 min-h-0 ${enableDialogScroll ? 'max-h-[70vh]' : ''}`}>
+        <ScrollArea
+          className={`flex-1 min-h-0 ${enableDialogScroll ? "max-h-[70vh]" : ""}`}
+        >
           <div className="p-4 sm:p-6 pb-6 sm:pb-8 auto-text">
             {/* Step 1: Customer Information */}
             {step === 1 && (
@@ -796,13 +845,14 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                               {item.productName}
                             </p>
                             <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
-                              {item.variantName} × {" "}
+                              {item.variantName} ×{" "}
                               <span className="ltr-text">{item.quantity}</span>
                             </p>
                           </div>
                           <div className="text-end auto-text min-w-0">
                             <p className="font-medium ltr-text text-sm sm:text-lg">
-                              {currencySymbol} {(item.price * item.quantity).toFixed(2)}
+                              {currencySymbol}{" "}
+                              {(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
                         </div>
@@ -813,56 +863,97 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                   <Separator />
 
                   {/* Total Calculation - Enhanced Design */}
-                  <div className="space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl border border-gray-200 shadow-sm">
-                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-700 text-base font-medium">
-                        {t("checkout.subtotal")}:
-                      </span>
-                      <span className="ltr-text font-semibold text-base">
-                        {currencySymbol} {totalPrice.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
-                      <span className="auto-text text-gray-700 text-base font-medium">
-                        {t("checkout.deliveryFee")}:
-                      </span>
-                      <span className="ltr-text font-semibold text-base">
-                        {deliveryType === "delivery"
-                          ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}`
-                          : `${currencySymbol} 0.00`}
-                      </span>
-                    </div>
-                    <Separator className="my-4" />
-                    <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center pt-3">
-                      <span className="text-xl font-bold auto-text text-gray-900">
-                        {t("checkout.total")}:
-                      </span>
-                      <span className="text-2xl font-bold text-primary ltr-text">
-                        {currencySymbol}{" "}
-                        {(totalPrice + (deliveryType === "delivery" ? deliveryFeeSetting : 0)).toFixed(2)}
-                      </span>
+                  <div className="space-y-4 bg-gradient-to-br from-white to-gray-50 p-6 rounded-2xl border-2 border-gray-200 shadow-lg">
+                    <h4 className="font-bold text-lg text-gray-900 auto-text mb-4 flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                      <CreditCard className="h-5 w-5 text-primary" />
+                      {t("checkout.orderTotal")}
+                    </h4>
+
+                    <div className="space-y-3">
+                      <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center py-2">
+                        <span className="auto-text text-gray-700 text-base font-medium">
+                          {t("checkout.subtotal")}:
+                        </span>
+                        <span className="ltr-text font-semibold text-lg text-gray-900">
+                          {currencySymbol} {totalPrice.toFixed(2)}
+                        </span>
+                      </div>
+
+                      <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center py-2">
+                        <span className="auto-text text-gray-700 text-base font-medium">
+                          {t("checkout.deliveryFee")}:
+                        </span>
+                        <span className="ltr-text font-semibold text-lg text-gray-900">
+                          {deliveryType === "delivery"
+                            ? `${currencySymbol} ${deliveryFeeSetting.toFixed(2)}`
+                            : `${currencySymbol} 0.00`}
+                        </span>
+                      </div>
+
+                      <Separator className="my-3" />
+
+                      <div className="bg-primary/10 rounded-xl p-4">
+                        <div className="flex justify-between [dir=rtl]:flex-row-reverse items-center">
+                          <span className="text-xl font-bold auto-text text-gray-900">
+                            {t("checkout.total")}:
+                          </span>
+                          <span className="text-3xl font-bold text-primary ltr-text">
+                            {currencySymbol}{" "}
+                            {(
+                              totalPrice +
+                              (deliveryType === "delivery"
+                                ? deliveryFeeSetting
+                                : 0)
+                            ).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Payment Method - Enhanced Design */}
-                  <div className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-2 border-blue-200 shadow-sm">
-                    <div className="flex items-center gap-4 [dir=rtl]:flex-row-reverse">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center [dir=rtl]:order-2 flex-shrink-0">
-                        <CreditCard className="w-6 h-6 text-blue-600" />
+                  {/* Payment Method - Enhanced Design with Better Visibility */}
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border-2 border-green-300 shadow-lg overflow-hidden">
+                    <div className="bg-green-600 text-white p-4">
+                      <h3 className="font-bold text-xl auto-text flex items-center gap-3 [dir=rtl]:flex-row-reverse">
+                        <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                          <CreditCard className="w-6 h-6" />
+                        </div>
+                        {t("checkout.paymentMethod")}
+                      </h3>
+                    </div>
+
+                    <div className="p-6 space-y-4">
+                      <div className="bg-white rounded-xl p-4 border border-green-200 shadow-sm">
+                        <div className="flex items-center gap-4 [dir=rtl]:flex-row-reverse">
+                          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Check className="w-7 h-7 text-green-600" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-green-900 auto-text text-lg mb-1">
+                              {t("checkout.cashOnDelivery")}
+                            </h4>
+                            <p className="text-green-700 auto-text text-base leading-relaxed">
+                              {language === "ar"
+                                ? "ادفع نقداً عند استلام طلبك - لا حاجة لبطاقة ائتمان"
+                                : "Pay cash when you receive your order - No credit card needed"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="[dir=rtl]:order-1 flex-1">
-                        <h3 className="font-semibold text-blue-900 auto-text text-lg mb-1">
-                          {t("checkout.paymentMethod")}
-                        </h3>
-                        <p className="text-blue-700 auto-text text-base">
-                          {t("checkout.cashOnDelivery")}
-                        </p>
-                        <p className="text-blue-600 auto-text text-sm mt-1">
-                          {language === "ar" 
-                            ? t("checkout.noCreditCard") 
-                            : t("checkout.noCreditCard")
-                          }
-                        </p>
+
+                      <div className="bg-green-100 rounded-lg p-4 border border-green-200">
+                        <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
+                          <div className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Check className="w-4 h-4 text-green-700" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-green-800 auto-text text-sm font-medium leading-relaxed">
+                              {language === "ar"
+                                ? "آمن ومضمون - ادفع فقط عند الاستلام الناجح لطلبك"
+                                : "Safe & Secure - Only pay when you successfully receive your order"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -884,7 +975,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                 size="sm"
               >
                 <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 rtl-flip" />
-                <span className="hidden sm:inline auto-text">{t("common.back")}</span>
+                <span className="hidden sm:inline auto-text">
+                  {t("common.back")}
+                </span>
               </Button>
             )}
 

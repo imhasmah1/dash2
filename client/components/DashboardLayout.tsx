@@ -62,18 +62,29 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Sidebar */}
       <div
+        style={{
+          transform:
+            window.innerWidth >= 1024
+              ? "translateX(0)"
+              : sidebarOpen
+                ? "translateX(0)"
+                : isRTL
+                  ? "translateX(100%)"
+                  : "translateX(-100%)",
+        }}
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          "z-50 w-80 sm:w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+          "fixed inset-y-0 lg:relative",
           isRTL ? "right-0" : "left-0",
-          sidebarOpen
-            ? "translate-x-0"
-            : isRTL
-              ? "translate-x-full"
-              : "-translate-x-full",
         )}
       >
-        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
-          <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
+        <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-gray-200">
+          <div
+            className={cn(
+              "flex items-center gap-2 sm:gap-3 min-w-0",
+              isRTL ? "flex-row-reverse" : "",
+            )}
+          >
             <img
               src={
                 language === "ar"
@@ -81,22 +92,30 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   : "https://cdn.builder.io/api/v1/image/assets%2F22d5611cd8c847859f0fef8105890b91%2Feb0b70b9250f4bfca41dbc5a78c2ce45?format=webp&width=800"
               }
               alt="أزهار ستور - azharstore"
-              className="h-8 w-8 object-contain"
+              className="h-6 w-6 sm:h-8 sm:w-8 object-contain flex-shrink-0"
             />
-            <h1 className="text-lg font-bold text-dashboard-primary [dir=rtl]:text-right [dir=ltr]:text-left">
+            <h1
+              className={cn(
+                "text-base sm:text-lg font-bold text-dashboard-primary truncate",
+                isRTL ? "text-right" : "text-left",
+              )}
+            >
               {t("nav.adminPanel")}
             </h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-gray-600"
+            className={cn(
+              "lg:hidden text-gray-400 hover:text-gray-600 p-2 touch-manipulation",
+              isRTL ? "-ml-2" : "-mr-2",
+            )}
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
-        <nav className="mt-8 px-4">
-          <ul className="space-y-2">
+        <nav className="mt-6 px-3 sm:px-4">
+          <ul className="space-y-1">
             {navigation.map((item) => {
               const isActive = location.pathname === item.href;
               return (
@@ -105,16 +124,20 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     to={item.href}
                     onClick={() => setSidebarOpen(false)}
                     className={cn(
-                      "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
+                      "flex items-center px-3 sm:px-4 py-4 sm:py-3 text-sm sm:text-sm font-medium rounded-xl transition-colors touch-manipulation",
+                      isRTL ? "flex-row-reverse text-right" : "text-left",
                       isActive
-                        ? "bg-dashboard-primary text-white"
-                        : "text-gray-700 hover:bg-gray-100",
+                        ? "bg-dashboard-primary text-white shadow-md"
+                        : "text-gray-700 hover:bg-gray-100 active:bg-gray-200",
                     )}
                   >
                     <item.icon
-                      className={cn("w-5 h-5", isRTL ? "ml-3" : "mr-3")}
+                      className={cn(
+                        "w-5 h-5 flex-shrink-0",
+                        isRTL ? "ml-3" : "mr-3",
+                      )}
                     />
-                    {item.name}
+                    <span className="truncate">{item.name}</span>
                   </Link>
                 </li>
               );
@@ -122,22 +145,32 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </ul>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
+        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 border-t border-gray-200 space-y-2">
           <Button
             onClick={toggleLanguage}
             variant="outline"
-            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+            className={cn(
+              "w-full h-12 sm:h-10 touch-manipulation",
+              isRTL ? "justify-end flex-row-reverse" : "justify-start",
+            )}
           >
-            <Languages className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            {t("language.switch")}
+            <Languages
+              className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")}
+            />
+            <span className="truncate">{t("language.switch")}</span>
           </Button>
           <Button
             onClick={logout}
             variant="outline"
-            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+            className={cn(
+              "w-full h-12 sm:h-10 touch-manipulation",
+              isRTL ? "justify-end flex-row-reverse" : "justify-start",
+            )}
           >
-            <LogOut className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            {t("nav.logout")}
+            <LogOut
+              className={cn("w-4 h-4 flex-shrink-0", isRTL ? "ml-2" : "mr-2")}
+            />
+            <span className="truncate">{t("nav.logout")}</span>
           </Button>
         </div>
       </div>
@@ -146,14 +179,27 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="bg-white shadow-sm border-b border-gray-200 lg:hidden">
-          <div className="flex items-center justify-between h-16 px-4 [dir=rtl]:flex-row-reverse">
+          <div
+            className={cn(
+              "flex items-center justify-between h-14 sm:h-16 px-4",
+              isRTL ? "flex-row-reverse" : "",
+            )}
+          >
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-gray-400 hover:text-gray-600"
+              className={cn(
+                "text-gray-400 hover:text-gray-600 p-2 touch-manipulation",
+                isRTL ? "-mr-2" : "-ml-2",
+              )}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
-            <h1 className="text-lg font-semibold text-gray-900 [dir=rtl]:text-right [dir=ltr]:text-left">
+            <h1
+              className={cn(
+                "text-base sm:text-lg font-semibold text-gray-900 truncate",
+                isRTL ? "text-right" : "text-left",
+              )}
+            >
               {t("dashboard.title")}
             </h1>
             <div className="w-6" /> {/* Spacer */}
@@ -161,7 +207,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-6">{children}</main>
+        <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
       </div>
     </div>
   );
