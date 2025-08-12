@@ -221,19 +221,19 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
               </ScrollArea>
 
-              <DialogFooter className="flex-col space-y-5 px-6 py-6 border-t bg-gradient-to-br from-gray-50 to-gray-100">
+              <DialogFooter className="flex-col space-y-4 sm:space-y-5 px-4 sm:px-6 py-4 sm:py-6 border-t bg-gradient-to-br from-gray-50 to-gray-100">
                 {/* Summary */}
-                <div className="w-full space-y-4">
-                  <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-                    <div className="flex justify-between items-center [dir=rtl]:flex-row-reverse mb-3">
-                      <span className="auto-text text-gray-700 font-semibold text-lg">{t("store.cartTotal")}:</span>
-                      <span className="text-2xl font-bold text-primary ltr-text">
+                <div className="w-full space-y-3 sm:space-y-4">
+                  <div className="bg-white rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
+                    <div className={cn("flex justify-between items-center mb-2 sm:mb-3", isRTL ? "flex-row-reverse" : "")}>
+                      <span className="auto-text text-gray-700 font-semibold text-base sm:text-lg">{t("store.cartTotal")}:</span>
+                      <span className="text-xl sm:text-2xl font-bold text-primary ltr-text">
                         {language === "ar" ? t("common.currencyAr") : t("common.currency")} {totalPrice.toFixed(2)}
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-center gap-3 text-sm text-gray-600 bg-gray-50 rounded-lg py-3 [dir=rtl]:flex-row-reverse">
-                      <Package className="h-4 w-4 flex-shrink-0" />
+                    <div className={cn("flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600 bg-gray-50 rounded-lg py-2 sm:py-3", isRTL ? "flex-row-reverse" : "")}>
+                      <Package className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                       <span className="auto-text font-medium">
                         <span className="ltr-text">{items.length}</span> {language === "ar" ? (items.length === 1 ? t("common.itemAr") : t("common.itemsAr")) : (items.length === 1 ? t("common.item") : t("common.items"))}
                       </span>
@@ -242,29 +242,29 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col gap-3 w-full">
+                <div className="flex flex-col gap-2 sm:gap-3 w-full">
                   <Button
                     onClick={handleCheckout}
-                    className="w-full h-14 touch-manipulation bg-primary hover:bg-primary/90 shadow-lg text-lg font-semibold rounded-xl"
+                    className="w-full h-12 sm:h-14 touch-manipulation bg-primary hover:bg-primary/90 shadow-lg text-base sm:text-lg font-semibold rounded-xl"
                     disabled={items.length === 0}
                     size="lg"
                   >
-                    <Truck className="h-5 w-5 mr-3 [dir=rtl]:ml-3 [dir=rtl]:mr-0" />
+                    <Truck className={cn("h-4 w-4 sm:h-5 sm:w-5", isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3")} />
                     <span className="auto-text">{t("store.checkout")}</span>
                   </Button>
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-2 sm:gap-3">
                     <Button
                       variant="outline"
                       onClick={onClose}
-                      className="flex-1 h-12 touch-manipulation border-gray-300 hover:border-primary hover:bg-primary/5 rounded-xl"
+                      className="flex-1 h-10 sm:h-12 touch-manipulation border-gray-300 hover:border-primary hover:bg-primary/5 rounded-xl text-sm sm:text-base"
                     >
                       <span className="auto-text">{t("store.continueShopping")}</span>
                     </Button>
                     <Button
                       variant="outline"
                       onClick={clearCart}
-                      className="flex-1 h-12 touch-manipulation border-gray-300 hover:border-red-300 hover:bg-red-50 hover:text-red-600 rounded-xl"
+                      className="flex-1 h-10 sm:h-12 touch-manipulation border-gray-300 hover:border-red-300 hover:bg-red-50 hover:text-red-600 rounded-xl text-sm sm:text-base"
                       disabled={items.length === 0}
                     >
                       <span className="auto-text">{t("store.clearCart")}</span>
