@@ -932,7 +932,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <h4 className="font-bold text-green-900 auto-text text-lg mb-1">
                               {t("checkout.cashOnDelivery")}
                             </h4>
-                            <p className="text-green-700 auto-text text-base leading-relaxed">
+                            <p className="text-green-700 auto-text text-sm sm:text-base leading-relaxed break-words">
                               {language === "ar"
                                 ? "ادفع نقداً عند استلام طلبك - لا حاجة لبطاقة ائتمان"
                                 : "Pay cash when you receive your order - No credit card needed"}
