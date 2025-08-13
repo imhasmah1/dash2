@@ -271,7 +271,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       <span className="auto-text text-gray-700 font-semibold text-base sm:text-lg">
                         {t("store.cartTotal")}:
                       </span>
-                      <div className={cn("flex justify-end pl-4", isRTL ? "pr-4 pl-0" : "pl-4")}>
+                      <div className={cn("flex", isRTL ? "justify-start mr-8" : "justify-end ml-8")}>
                         <span className="text-xl sm:text-2xl font-bold text-primary ltr-text">
                           {language === "ar"
                             ? t("common.currencyAr")
