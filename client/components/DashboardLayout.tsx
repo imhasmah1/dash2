@@ -76,15 +76,25 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div
         key={`sidebar-${language}`}
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out lg:static lg:inset-0",
+          // For RTL: position on right, for LTR: position on left
           isRTL ? "right-0" : "left-0",
-          // Simple approach: always use translate-x-0 when open, and appropriate hide transform when closed
+          // Transform logic based on direction and state
           sidebarOpen
-            ? 'translate-x-0'
+            ? 'translate-x-0 lg:translate-x-0'
             : isRTL
-              ? 'translate-x-full'  // RTL: move right to hide (positive = right direction)
-              : '-translate-x-full' // LTR: move left to hide (negative = left direction)
+              ? 'translate-x-full lg:translate-x-0'  // RTL: slide right to hide on mobile, visible on desktop
+              : '-translate-x-full lg:translate-x-0' // LTR: slide left to hide on mobile, visible on desktop
         )}
+        style={{
+          // Force positioning with style as backup
+          [isRTL ? 'right' : 'left']: '0',
+          transform: sidebarOpen
+            ? 'translateX(0)'
+            : isRTL
+              ? 'translateX(100%)'
+              : 'translateX(-100%)'
+        }}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
