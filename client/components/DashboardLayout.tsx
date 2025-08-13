@@ -44,6 +44,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const { language, setLanguage, isRTL, t } = useLanguage();
   const location = useLocation();
 
+  // Force sidebar to close when language changes to prevent RTL/LTR positioning issues
+  React.useEffect(() => {
+    setSidebarOpen(false);
+  }, [isRTL]);
+
   const navigation = getNavigation(t);
 
   const toggleLanguage = () => {
