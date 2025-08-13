@@ -65,11 +65,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         className={cn(
           "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
           isRTL ? "right-0" : "left-0",
-          sidebarOpen
-            ? 'translate-x-0'
-            : isRTL
-            ? 'translate-x-full'
-            : '-translate-x-full'
+          // RTL: right-positioned sidebar moves right to hide, left to show
+          // LTR: left-positioned sidebar moves left to hide, right to show
+          isRTL
+            ? (sidebarOpen ? 'translate-x-0' : 'translate-x-full')
+            : (sidebarOpen ? 'translate-x-0' : '-translate-x-full')
         )}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
