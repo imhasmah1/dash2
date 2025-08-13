@@ -838,7 +838,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       {items.length === 0 ? (
                         <div className="text-center py-8">
                           <p className="text-gray-500 auto-text text-sm italic">
-                            {language === "ar" ? "لا توجد عناصر في الطلب" : "No items in order"}
+                            {language === "ar"
+                              ? "لا توجد عناصر في الطلب"
+                              : "No items in order"}
                           </p>
                         </div>
                       ) : (
@@ -853,7 +855,9 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                               </p>
                               <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
                                 {item.variantName} ×{" "}
-                                <span className="ltr-text">{item.quantity}</span>
+                                <span className="ltr-text">
+                                  {item.quantity}
+                                </span>
                               </p>
                             </div>
                             <div className="text-end auto-text min-w-0">
