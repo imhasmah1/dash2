@@ -63,13 +63,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
           isRTL ? "right-0" : "left-0",
-          // RTL: right-positioned sidebar moves right to hide, left to show
-          // LTR: left-positioned sidebar moves left to hide, right to show
-          isRTL
-            ? (sidebarOpen ? 'translate-x-0' : 'translate-x-full')
-            : (sidebarOpen ? 'translate-x-0' : '-translate-x-full')
+          // Simple approach: always use translate-x-0 when open, and appropriate hide transform when closed
+          sidebarOpen
+            ? 'translate-x-0'
+            : isRTL
+              ? 'translate-x-full'  // RTL: move right to hide (positive = right direction)
+              : '-translate-x-full' // LTR: move left to hide (negative = left direction)
         )}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
