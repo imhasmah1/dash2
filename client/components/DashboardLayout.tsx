@@ -96,7 +96,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-gray-600"
+            className="lg:hidden text-gray-400 hover:text-gray-600 touch-manipulation z-10 p-2 -m-2"
+            type="button"
+            aria-label={t("common.close")}
           >
             <X className="w-6 h-6" />
           </button>
