@@ -55,6 +55,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     setLanguage(language === "en" ? "ar" : "en");
   };
 
+  const handleCloseSidebar = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Close button clicked, current sidebarOpen:', sidebarOpen);
+    setSidebarOpen(false);
+  };
+
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Mobile sidebar overlay */}
