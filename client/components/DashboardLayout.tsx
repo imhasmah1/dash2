@@ -102,10 +102,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </h1>
           </div>
           <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-gray-600 touch-manipulation z-10 p-2 -m-2"
+            onClick={handleCloseSidebar}
+            onTouchEnd={handleCloseSidebar}
+            className="lg:hidden text-gray-400 hover:text-gray-600 touch-manipulation z-10 p-2 -m-2 relative"
             type="button"
             aria-label={t("common.close")}
+            style={{ pointerEvents: 'auto' }}
           >
             <X className="w-6 h-6" />
           </button>
