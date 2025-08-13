@@ -261,7 +261,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
               <DialogFooter className="flex-col space-y-4 sm:space-y-5 px-4 sm:px-6 py-4 sm:py-6 border-t bg-white">
                 {/* Summary */}
                 <div className="w-full space-y-3 sm:space-y-4">
-                  <div className="bg-white rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 border border-gray-200 shadow-sm mb-4">
                     <div
                       className={cn(
                         "flex justify-between items-center mb-2 sm:mb-3",
@@ -271,7 +271,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       <span className="auto-text text-gray-700 font-semibold text-base sm:text-lg">
                         {t("store.cartTotal")}:
                       </span>
-                      <div className={cn("flex justify-end", isRTL ? "mr-4" : "ml-4")}>
+                      <div className={cn("flex justify-end pl-4", isRTL ? "pr-4 pl-0" : "pl-4")}>
                         <span className="text-xl sm:text-2xl font-bold text-primary ltr-text">
                           {language === "ar"
                             ? t("common.currencyAr")
