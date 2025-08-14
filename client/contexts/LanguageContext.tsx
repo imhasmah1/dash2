@@ -772,7 +772,7 @@ const translations = {
     "checkout.orderItems": "عناصر الطلب",
     "checkout.whatsNext": "ما هي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
-    
+
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك ع��ر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",

@@ -58,7 +58,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const handleCloseSidebar = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Close button clicked, current sidebarOpen:', sidebarOpen);
+    console.log("Close button clicked, current sidebarOpen:", sidebarOpen);
     setSidebarOpen(false);
   };
 
@@ -81,14 +81,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           isRTL ? "right-0" : "left-0",
           // Transform logic based on direction and state (works on all screen sizes)
           sidebarOpen
-            ? 'translate-x-0'
+            ? "translate-x-0"
             : isRTL
-              ? 'translate-x-full'
-              : '-translate-x-full'
+              ? "translate-x-full"
+              : "-translate-x-full",
         )}
         style={{
           // Force positioning with style as backup
-          [isRTL ? 'right' : 'left']: '0',
+          [isRTL ? "right" : "left"]: "0",
         }}
         data-sidebar-open={sidebarOpen}
       >
@@ -113,7 +113,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             className="lg:hidden text-gray-400 hover:text-gray-600 touch-manipulation z-10 p-2 -m-2 relative"
             type="button"
             aria-label={t("common.close")}
-            style={{ pointerEvents: 'auto' }}
+            style={{ pointerEvents: "auto" }}
           >
             <X className="w-6 h-6" />
           </button>
@@ -132,7 +132,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
                       isActive
                         ? "bg-dashboard-primary text-white"
-                        : "text-gray-700 hover:bg-gray-100"
+                        : "text-gray-700 hover:bg-gray-100",
                     )}
                   >
                     <item.icon
