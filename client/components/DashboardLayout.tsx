@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -44,10 +44,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const { language, setLanguage, isRTL, t } = useLanguage();
   const location = useLocation();
 
+  // Force sidebar to close when language changes to prevent RTL/LTR positioning issues
+  React.useEffect(() => {
+    setSidebarOpen(false);
+  }, [isRTL]);
+
   const navigation = getNavigation(t);
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ar" : "en");
+  };
+
+  const handleCloseSidebar = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Close button clicked, current sidebarOpen:", sidebarOpen);
+    setSidebarOpen(false);
   };
 
   return (
@@ -60,17 +72,25 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar - use key to force re-render on language change */}
       <div
+        key={`sidebar-${language}`}
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+          // For RTL: position on right, for LTR: position on left
           isRTL ? "right-0" : "left-0",
+          // Transform logic based on direction and state (works on all screen sizes)
           sidebarOpen
-            ? 'translate-x-0'
+            ? "translate-x-0"
             : isRTL
-            ? 'translate-x-full'
-            : '-translate-x-full'
+              ? "translate-x-full"
+              : "-translate-x-full",
         )}
+        style={{
+          // Force positioning with style as backup
+          [isRTL ? "right" : "left"]: "0",
+        }}
+        data-sidebar-open={sidebarOpen}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
@@ -88,8 +108,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </h1>
           </div>
           <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-gray-600"
+            onClick={handleCloseSidebar}
+            onTouchEnd={handleCloseSidebar}
+            className="lg:hidden text-gray-400 hover:text-gray-600 touch-manipulation z-10 p-2 -m-2 relative"
+            type="button"
+            aria-label={t("common.close")}
+            style={{ pointerEvents: "auto" }}
           >
             <X className="w-6 h-6" />
           </button>
@@ -108,7 +132,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors [dir=rtl]:flex-row-reverse [dir=rtl]:text-right [dir=ltr]:text-left",
                       isActive
                         ? "bg-dashboard-primary text-white"
-                        : "text-gray-700 hover:bg-gray-100"
+                        : "text-gray-700 hover:bg-gray-100",
                     )}
                   >
                     <item.icon
@@ -143,9 +167,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       </div>
 
       {/* Main content */}
-      <div className={cn("flex-1 flex flex-col min-w-0", isRTL ? "lg:mr-64" : "lg:ml-64")}>
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="bg-white shadow-sm border-b border-gray-200 lg:hidden">
+        <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between h-16 px-4 [dir=rtl]:flex-row-reverse">
             <button
               onClick={() => setSidebarOpen(true)}

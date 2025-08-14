@@ -50,7 +50,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
     <>
       <Dialog open={open} onOpenChange={onClose}>
         <DialogContent className="w-[95vw] max-w-md sm:max-w-lg max-h-[95vh] flex flex-col p-0 rounded-2xl border-0 shadow-2xl bg-white mx-auto">
-          <DialogHeader className="px-6 py-6 border-b bg-gradient-to-br from-primary/8 to-primary/12">
+          <DialogHeader className="px-6 py-6 border-b bg-white">
             <DialogTitle className="flex items-center gap-3 text-xl font-bold text-gray-800">
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
                 <ShoppingBag className="h-6 w-6 text-white" />
@@ -99,7 +99,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl border border-gray-200 p-3 sm:p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                      className="group relative bg-white rounded-2xl border border-gray-200 p-3 sm:p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
                     >
                       <div
                         className={cn(
@@ -258,10 +258,10 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
               </ScrollArea>
 
-              <DialogFooter className="flex-col space-y-4 sm:space-y-5 px-4 sm:px-6 py-4 sm:py-6 border-t bg-gradient-to-br from-gray-50 to-gray-100">
+              <DialogFooter className="flex-col space-y-4 sm:space-y-5 px-4 sm:px-6 py-4 sm:py-6 border-t bg-white">
                 {/* Summary */}
                 <div className="w-full space-y-3 sm:space-y-4">
-                  <div className="bg-white rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 border border-gray-200 shadow-sm mb-4">
                     <div
                       className={cn(
                         "flex justify-between items-center mb-2 sm:mb-3",
@@ -271,12 +271,19 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       <span className="auto-text text-gray-700 font-semibold text-base sm:text-lg">
                         {t("store.cartTotal")}:
                       </span>
-                      <span className="text-xl sm:text-2xl font-bold text-primary ltr-text">
-                        {language === "ar"
-                          ? t("common.currencyAr")
-                          : t("common.currency")}{" "}
-                        {totalPrice.toFixed(2)}
-                      </span>
+                      <div
+                        className={cn(
+                          "flex",
+                          isRTL ? "justify-start mr-8" : "justify-end ml-8",
+                        )}
+                      >
+                        <span className="text-xl sm:text-2xl font-bold text-primary ltr-text">
+                          {language === "ar"
+                            ? t("common.currencyAr")
+                            : t("common.currency")}{" "}
+                          {totalPrice.toFixed(2)}
+                        </span>
+                      </div>
                     </div>
 
                     <div

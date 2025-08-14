@@ -580,7 +580,7 @@ const translations = {
     "orders.status": "الحالة",
     "orders.deliveryType": "نوع التسليم",
     "orders.date": "التاريخ",
-
+    "orders.actions": "الإجراءات",
     "orders.view": "عرض",
     "orders.edit": "تعديل",
     "orders.delete": "حذف",
@@ -620,8 +620,10 @@ const translations = {
     "orders.lastUpdated": "آخر تحديث",
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
-    "orders.selectVariant": "اختر النوع",
+    "orders.selectVariant": "اختر ال��وع",
     "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
+    // Added key
+    "orders.refresh": "تحديث",
 
     // Customers
     "customers.title": "العملاء",
@@ -673,7 +675,7 @@ const translations = {
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
-    "common.noData": "لا توجد بيانات",
+    "common.noData": "لا تو��د بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
     "common.yes": "نعم",
@@ -729,7 +731,7 @@ const translations = {
     "store.addToCart": "إضافة للسلة",
     "store.quantity": "الكمية",
     "store.variant": "النوع",
-    "store.selectVariant": "اختر النوع",
+    "store.selectVariant": "اخت�� النوع",
     "store.cartEmpty": "سلتك فارغة",
     "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
@@ -770,9 +772,9 @@ const translations = {
     "checkout.orderItems": "عناصر الطلب",
     "checkout.whatsNext": "ما هي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
-    
+
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
+    "checkout.contactPhone": "سيتم التواصل معك ع��ر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.importError":
       "فشل في استيراد الإعدادات. يرجى التحقق من تنسيق الملف.",
@@ -948,10 +950,10 @@ const translations = {
     // Shipping & Delivery
     "settings.shippingDelivery": "الشحن والتوصيل",
     "settings.enableDelivery": "تفعيل التوصيل",
-    "settings.enablePickup": "تفعيل الاستلام",
+    "settings.enablePickup": "تفعيل الا��تلام",
     "settings.deliveryFee": "رسوم التوصيل",
     "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
-    "settings.estimatedDeliveryTime": "الوقت المتوقع للتوصيل",
+    "settings.estimatedDeliveryTime": "الوقت ��لمتوقع للتوصيل",
 
     // Order Messages
     "settings.orderMessages": "رسائل الطلبات",

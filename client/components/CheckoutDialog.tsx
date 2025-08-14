@@ -101,7 +101,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           : t("orderSuccess.headline"),
       subtext:
         language === "ar"
-          ? "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
+          ? "��نقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
           : "We'll share updates by phone as your order progresses.",
       toggles: {
         displayOrderNumber: true,
@@ -835,28 +835,40 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                       {t("checkout.orderItems")}
                     </h4>
                     <div className="space-y-3 sm:space-y-4 max-h-60 overflow-y-auto">
-                      {items.map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-3 sm:gap-4 py-3 sm:py-4 border-b border-gray-100 last:border-b-0"
-                        >
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium auto-text leading-relaxed text-sm sm:text-base">
-                              {item.productName}
-                            </p>
-                            <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
-                              {item.variantName} ×{" "}
-                              <span className="ltr-text">{item.quantity}</span>
-                            </p>
-                          </div>
-                          <div className="text-end auto-text min-w-0">
-                            <p className="font-medium ltr-text text-sm sm:text-lg">
-                              {currencySymbol}{" "}
-                              {(item.price * item.quantity).toFixed(2)}
-                            </p>
-                          </div>
+                      {items.length === 0 ? (
+                        <div className="text-center py-8">
+                          <p className="text-gray-500 auto-text text-sm italic">
+                            {language === "ar"
+                              ? "لا توجد عناصر في الطلب"
+                              : "No items in order"}
+                          </p>
                         </div>
-                      ))}
+                      ) : (
+                        items.map((item, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between items-start [dir=rtl]:flex-row-reverse gap-3 sm:gap-4 py-3 sm:py-4 border-b border-gray-100 last:border-b-0"
+                          >
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium auto-text leading-relaxed text-sm sm:text-base">
+                                {item.productName}
+                              </p>
+                              <p className="text-xs sm:text-sm text-gray-500 auto-text mt-1">
+                                {item.variantName} ×{" "}
+                                <span className="ltr-text">
+                                  {item.quantity}
+                                </span>
+                              </p>
+                            </div>
+                            <div className="text-end auto-text min-w-0">
+                              <p className="font-medium ltr-text text-sm sm:text-lg">
+                                {currencySymbol}{" "}
+                                {(item.price * item.quantity).toFixed(2)}
+                              </p>
+                            </div>
+                          </div>
+                        ))
+                      )}
                     </div>
                   </div>
 
@@ -923,7 +935,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                     </div>
 
                     <div className="p-6 space-y-4">
-                      <div className="bg-white rounded-xl p-4 border border-green-200 shadow-sm">
+                      <div className="bg-white rounded-xl p-4 border border-green-200 shadow-sm overflow-hidden">
                         <div className="flex items-center gap-4 [dir=rtl]:flex-row-reverse">
                           <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                             <Check className="w-7 h-7 text-green-600" />
@@ -932,7 +944,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                             <h4 className="font-bold text-green-900 auto-text text-lg mb-1">
                               {t("checkout.cashOnDelivery")}
                             </h4>
-                            <p className="text-green-700 auto-text text-base leading-relaxed">
+                            <p className="text-green-700 auto-text text-xs sm:text-sm leading-relaxed break-words whitespace-normal overflow-wrap-anywhere">
                               {language === "ar"
                                 ? "ادفع نقداً عند استلام طلبك - لا حاجة لبطاقة ائتمان"
                                 : "Pay cash when you receive your order - No credit card needed"}
@@ -941,13 +953,13 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
                         </div>
                       </div>
 
-                      <div className="bg-green-100 rounded-lg p-4 border border-green-200">
+                      <div className="bg-green-100 rounded-lg p-3 sm:p-4 border border-green-200 overflow-hidden">
                         <div className="flex items-start gap-3 [dir=rtl]:flex-row-reverse">
                           <div className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                             <Check className="w-4 h-4 text-green-700" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-green-800 auto-text text-sm font-medium leading-relaxed">
+                            <p className="text-green-800 auto-text text-xs sm:text-sm font-medium leading-relaxed break-words whitespace-normal overflow-wrap-anywhere">
                               {language === "ar"
                                 ? "آمن ومضمون - ادفع فقط عند الاستلام الناجح لطلبك"
                                 : "Safe & Secure - Only pay when you successfully receive your order"}
