@@ -76,15 +76,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div
         key={`sidebar-${language}`}
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out lg:static lg:inset-0",
-          // For RTL: position on right, for LTR: position on left
-          isRTL ? "right-0" : "left-0",
-          // Transform logic based on direction and state
+          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+          "lg:static lg:inset-0 lg:translate-x-0 lg:transform-none",
+          // For RTL: position on right, for LTR: position on left (mobile/tablet only)
+          isRTL ? "right-0 lg:right-auto" : "left-0 lg:left-auto",
+          // Transform logic based on direction and state (mobile/tablet only)
           sidebarOpen
-            ? 'translate-x-0 lg:translate-x-0'
+            ? 'translate-x-0'
             : isRTL
-              ? 'translate-x-full lg:translate-x-0'  // RTL: slide right to hide on mobile, visible on desktop
-              : '-translate-x-full lg:translate-x-0' // LTR: slide left to hide on mobile, visible on desktop
+              ? 'translate-x-full'
+              : '-translate-x-full'
         )}
         style={{
           // Force positioning with style as backup
