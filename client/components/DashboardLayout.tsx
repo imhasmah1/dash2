@@ -77,10 +77,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         key={`sidebar-${language}`}
         className={cn(
           "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
-          "lg:static lg:inset-0 lg:translate-x-0 lg:transform-none",
-          // For RTL: position on right, for LTR: position on left (mobile/tablet only)
-          isRTL ? "right-0 lg:right-auto" : "left-0 lg:left-auto",
-          // Transform logic based on direction and state (mobile/tablet only)
+          // For RTL: position on right, for LTR: position on left
+          isRTL ? "right-0" : "left-0",
+          // Transform logic based on direction and state (works on all screen sizes)
           sidebarOpen
             ? 'translate-x-0'
             : isRTL
