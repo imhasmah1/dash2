@@ -2,8 +2,8 @@
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "dist/spa",
   "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
+    "api/index.js": {
+      "runtime": "@vercel/node@3.0.7"
     }
   },
   "rewrites": [
