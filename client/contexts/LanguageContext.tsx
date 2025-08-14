@@ -580,7 +580,7 @@ const translations = {
     "orders.status": "الحالة",
     "orders.deliveryType": "نوع التسليم",
     "orders.date": "التاريخ",
-
+    "orders.actions": "الإجراءات",
     "orders.view": "عرض",
     "orders.edit": "تعديل",
     "orders.delete": "حذف",
@@ -673,7 +673,7 @@ const translations = {
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
-    "common.noData": "لا توجد بيانات",
+    "common.noData": "لا تو��د بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
     "common.yes": "نعم",
@@ -772,7 +772,7 @@ const translations = {
     "checkout.needHelp": "تحتاج مساعدة؟",
     
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
+    "checkout.contactPhone": "سيتم التواصل معك ع��ر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.importError":
       "فشل في استيراد الإعدادات. يرجى التحقق من تنسيق الملف.",
