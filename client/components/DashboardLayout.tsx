@@ -89,12 +89,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         style={{
           // Force positioning with style as backup
           [isRTL ? 'right' : 'left']: '0',
-          transform: sidebarOpen
-            ? 'translateX(0)'
-            : isRTL
-              ? 'translateX(100%)'
-              : 'translateX(-100%)'
         }}
+        data-sidebar-open={sidebarOpen}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 [dir=rtl]:flex-row-reverse">
           <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
