@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
+import { useTheme } from "../contexts/ThemeContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { LoadingScreen } from "../components/ui/loading";
@@ -13,6 +14,9 @@ import {
   Plus,
   Globe,
   Store as StoreIcon,
+  Instagram,
+  Moon,
+  Sun,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -58,6 +62,12 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
+  // Instagram link handler
+  const openInstagram = () => {
+    window.open('https://www.instagram.com/azharstore/', '_blank', 'noopener,noreferrer');
+  };
 
   const [product, setProduct] = useState<DataContextProduct | null>(null);
   const [loading, setLoading] = useState(true);
