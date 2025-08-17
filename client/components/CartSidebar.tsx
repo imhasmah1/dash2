@@ -49,7 +49,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
   return (
     <>
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="w-[95vw] max-w-md sm:max-w-lg max-h-[95vh] flex flex-col p-0 rounded-xl border shadow-lg bg-white mx-auto">
+        <DialogContent className="w-[95vw] max-w-md sm:max-w-lg max-h-[95vh] flex flex-col p-0 rounded-xl border border-border shadow-lg bg-card mx-auto">
           <DialogHeader className="px-4 py-4 border-b">
             <DialogTitle className="flex items-center gap-2 text-lg font-semibold">
               <ShoppingBag className="h-5 w-5 text-primary" />
@@ -94,7 +94,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="group relative bg-gray-50 rounded-lg border p-3 hover:bg-gray-100 transition-colors"
+                      className="group relative bg-card rounded-lg border border-border p-3 hover:bg-muted transition-colors"
                     >
                       <div
                         className={cn(
@@ -256,7 +256,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
               <DialogFooter className="flex-col space-y-3 px-4 py-4 border-t">
                 {/* Summary */}
                 <div className="w-full">
-                  <div className="bg-white rounded-lg border p-3">
+                  <div className="bg-card rounded-lg border border-border p-3">
                     <div
                       className={cn(
                         "flex justify-between items-center",
