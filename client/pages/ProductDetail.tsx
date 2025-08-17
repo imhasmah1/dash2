@@ -246,7 +246,7 @@ export default function ProductDetail() {
           {/* Product Images */}
           <div className="space-y-4">
             {/* Main Image */}
-            <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+            <div className="aspect-square overflow-hidden rounded-lg bg-muted">
               {(() => {
                 // Create combined image array with product images and variant images
                 const allImages = [
