@@ -152,6 +152,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
           <Button
+            onClick={toggleDarkMode}
+            variant="outline"
+            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
+          >
+            {isDarkMode ? (
+              <Sun className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
+            ) : (
+              <Moon className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
+            )}
+            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          </Button>
+          <Button
             onClick={toggleLanguage}
             variant="outline"
             className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
