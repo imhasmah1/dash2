@@ -14,6 +14,9 @@ import {
   Store as StoreIcon,
   Search,
   X,
+  Instagram,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { Badge } from "../components/ui/badge";
 import {
@@ -52,6 +55,18 @@ export default function Store() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Dark mode toggle
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
+  };
+
+  // Instagram link handler
+  const openInstagram = () => {
+    window.open('https://www.instagram.com/azharstore/', '_blank', 'noopener,noreferrer');
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -134,6 +149,34 @@ export default function Store() {
 
           {/* Right side buttons */}
           <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse">
+            {/* Instagram Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={openInstagram}
+              className="h-10 px-2 sm:px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
+            >
+              <Instagram className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline ml-1 sm:ml-2 [dir=rtl]:ml-0 [dir=rtl]:mr-1 [dir=rtl]:sm:mr-2">Instagram</span>
+            </Button>
+
+            {/* Dark Mode Toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleDarkMode}
+              className="h-10 px-2 sm:px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
+            >
+              {isDarkMode ? (
+                <Sun className="h-4 w-4 flex-shrink-0" />
+              ) : (
+                <Moon className="h-4 w-4 flex-shrink-0" />
+              )}
+              <span className="hidden sm:inline ml-1 sm:ml-2 [dir=rtl]:ml-0 [dir=rtl]:mr-1 [dir=rtl]:sm:mr-2">
+                {isDarkMode ? 'Light' : 'Dark'}
+              </span>
+            </Button>
+
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
