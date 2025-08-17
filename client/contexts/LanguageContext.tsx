@@ -675,7 +675,7 @@ const translations = {
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
-    "common.noData": "لا تو��د بيانات",
+    "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
     "common.yes": "نعم",
@@ -773,7 +773,7 @@ const translations = {
     "checkout.whatsNext": "ما هي الخطوات التالية؟",
     "checkout.needHelp": "تحتاج مساعدة؟",
 
-    "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
+    "checkout.prepareOrder": "سنقوم بتجهيز طلبك خل��ل 2-4 ساعات",
     "checkout.contactPhone": "سيتم التواصل معك ع��ر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.importError":
@@ -797,7 +797,7 @@ const translations = {
     // Category dialogs
     "categories.deleteTitle": "حذف التصنيف",
     "categories.deleteMessage":
-      "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
+      "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء ل�� يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage":
