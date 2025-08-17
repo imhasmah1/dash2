@@ -296,19 +296,16 @@ export default function Store() {
                 </div>
 
                 {/* Product Info - Mobile Optimized */}
-                <div className="p-2 sm:p-3 lg:p-4">
+                <div className="p-2 sm:p-3 lg:p-4 flex flex-col h-full">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-1 sm:mb-2 line-clamp-2 hover:text-primary transition-colors auto-text leading-tight">
+                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 line-clamp-2 hover:text-primary transition-colors auto-text leading-tight">
                       {product.name}
                     </h3>
-
-                    <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 auto-text hidden sm:block">
-                      {product.description}
-                    </p>
                   </div>
 
-                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse gap-2">
-                    <div className="min-w-0 flex-1 flex flex-col justify-center">
+                  {/* Fixed layout - price and button always aligned regardless of title length */}
+                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse gap-2 mt-auto">
+                    <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
                         <span className="text-sm sm:text-base lg:text-lg font-bold text-primary ltr-text">
                           BD {product.price.toFixed(2)}
