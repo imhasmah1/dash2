@@ -60,41 +60,44 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Dark mode with purple background as requested */
+    --background: 308 44% 21%; /* Uses secondary purple color */
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 302 50% 26%; /* Uses primary purple color */
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 302 50% 26%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 210 40% 98%; /* Inverted - now white */
+    --primary-foreground: 302 50% 26%; /* Primary purple for text on white */
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 302 50% 26%; /* Primary purple */
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 308 44% 15%; /* Darker purple for muted elements */
+    --muted-foreground: 215 20.2% 75%; /* Lighter for better contrast */
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 302 50% 26%; /* Primary purple */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 308 44% 35%; /* Slightly lighter purple for borders */
+    --input: 308 44% 35%;
+    --ring: 302 50% 50%; /* Brighter purple for focus rings */
+
+    /* Sidebar colors using purple theme */
+    --sidebar-background: 308 44% 18%; /* Darker purple */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%; /* White for primary elements */
+    --sidebar-primary-foreground: 302 50% 26%;
+    --sidebar-accent: 308 44% 25%; /* Medium purple */
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 308 44% 30%;
+    --sidebar-ring: 302 50% 50%;
   }
 }
 
