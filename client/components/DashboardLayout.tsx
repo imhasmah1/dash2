@@ -67,7 +67,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-background">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
@@ -80,7 +80,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div
         key={`sidebar-${language}`}
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+          "fixed inset-y-0 z-50 w-64 bg-card border-r border-border shadow-xl transition-transform duration-300 ease-in-out",
           // For RTL: position on right, for LTR: position on left
           isRTL ? "right-0" : "left-0",
           // Transform logic based on direction and state (works on all screen sizes)
@@ -161,7 +161,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             ) : (
               <Moon className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
             )}
-            {isDarkMode ? "Light Mode" : "Dark Mode"}
+            {isDarkMode
+              ? (language === "ar" ? t("common.lightMode") : t("common.lightMode"))
+              : (language === "ar" ? t("common.darkMode") : t("common.darkMode"))}
           </Button>
           <Button
             onClick={toggleLanguage}
