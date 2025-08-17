@@ -62,42 +62,42 @@
   .dark {
     /* Dark mode with purple background and purple boxes with white borders */
     --background: 308 44% 21%; /* Purple background */
-    --foreground: 210 40% 98%; /* White text */
+    --foreground: 0 0% 100%; /* Pure white text for better readability */
 
     --card: 302 50% 26%; /* Purple boxes */
-    --card-foreground: 210 40% 98%; /* White text on purple */
+    --card-foreground: 0 0% 100%; /* Pure white text on purple */
 
     --popover: 302 50% 26%; /* Purple popover */
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: 0 0% 100%;
 
     --primary: 302 50% 26%; /* Purple primary (not white) */
-    --primary-foreground: 210 40% 98%; /* White text on purple */
+    --primary-foreground: 0 0% 100%; /* Pure white text on purple */
 
     --secondary: 308 44% 21%; /* Darker purple secondary */
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 308 44% 30%; /* Medium purple for muted */
-    --muted-foreground: 215 20.2% 85%; /* Light gray text */
+    --muted-foreground: 0 0% 95%; /* Near white for muted text */
 
     --accent: 302 50% 26%; /* Purple accent */
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 60.2%; /* Brighter red for dark mode */
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 210 40% 98%; /* WHITE borders on purple boxes */
+    --border: 0 0% 100%; /* WHITE borders on purple boxes */
     --input: 302 50% 26%; /* Purple input backgrounds */
-    --ring: 210 40% 98%; /* White focus rings */
+    --ring: 0 0% 100%; /* White focus rings */
 
     /* Sidebar colors using purple theme */
     --sidebar-background: 308 44% 18%; /* Darker purple */
-    --sidebar-foreground: 210 40% 98%;
+    --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 302 50% 26%; /* Purple primary */
-    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 308 44% 25%; /* Medium purple */
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 210 40% 98%; /* White borders */
-    --sidebar-ring: 210 40% 98%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100%; /* White borders */
+    --sidebar-ring: 0 0% 100%;
   }
 }
 
