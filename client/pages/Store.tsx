@@ -125,7 +125,7 @@ export default function Store() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header - Mobile Optimized */}
-      <header className="border-b bg-white shadow-sm sticky top-0 z-50">
+      <header className="border-b bg-card shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between [dir=rtl]:flex-row-reverse">
           {/* Logo and Title */}
           <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse min-w-0 flex-1">
@@ -222,7 +222,7 @@ export default function Store() {
       </header>
 
       {/* Search and Category Filter - Mobile Optimized */}
-      <div className="border-b bg-gray-50/50">
+      <div className="border-b bg-card/50">
         <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-4">
           {/* Search Bar + Categories row */}
           <div className="flex flex-col gap-4">
@@ -313,7 +313,7 @@ export default function Store() {
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer group"
+                className="bg-card rounded-xl border border-border shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer group"
               >
                 {/* Product Image */}
                 <div
