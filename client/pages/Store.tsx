@@ -317,7 +317,7 @@ export default function Store() {
               >
                 {/* Product Image */}
                 <div
-                  className="aspect-square overflow-hidden bg-gray-100"
+                  className="aspect-square overflow-hidden bg-muted"
                   onClick={() => navigate(`/product/${product.id}`)}
                 >
                   {product.images.length > 0 ? (

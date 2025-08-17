@@ -104,7 +104,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       >
                         {/* Product Image */}
                         {item.productImage && (
-                          <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-200 shrink-0">
+                          <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted shrink-0">
                             <img
                               src={item.productImage}
                               alt={item.productName}
