@@ -168,7 +168,9 @@ export default function Store() {
                 <Moon className="h-4 w-4 flex-shrink-0" />
               )}
               <span className="hidden sm:inline ml-1 sm:ml-2 [dir=rtl]:ml-0 [dir=rtl]:mr-1 [dir=rtl]:sm:mr-2">
-                {isDarkMode ? 'Light' : 'Dark'}
+                {isDarkMode
+                  ? (language === "ar" ? "النهاري" : "Light")
+                  : (language === "ar" ? "الليلي" : "Dark")}
               </span>
             </Button>
 
