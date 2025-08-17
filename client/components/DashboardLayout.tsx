@@ -45,6 +45,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { logout } = useAuth();
   const { language, setLanguage, isRTL, t } = useLanguage();
+  const { isDarkMode, toggleDarkMode } = useTheme();
   const location = useLocation();
 
   // Force sidebar to close when language changes to prevent RTL/LTR positioning issues
