@@ -101,7 +101,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           : t("orderSuccess.headline"),
       subtext:
         language === "ar"
-          ? "��نقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
+          ? "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
           : "We'll share updates by phone as your order progresses.",
       toggles: {
         displayOrderNumber: true,
