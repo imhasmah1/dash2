@@ -500,6 +500,8 @@ const translations = {
     "common.itemsAr": "منتجات",
     "common.language": "Language",
     "common.languageAr": "العربية",
+    "common.darkMode": "Dark Mode",
+    "common.lightMode": "Light Mode",
 
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
@@ -657,7 +659,7 @@ const translations = {
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
     "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
-    "revenue.deliveryAnalysis": "تحليل نوع التسليم",
+    "revenue.deliveryAnalysis": "تحل��ل نوع التسليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
     "revenue.month": "الشهر",
     "revenue.revenue": "الإيرادات",
@@ -710,7 +712,7 @@ const translations = {
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
 
-    "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مرة أخرى.",
+    "message.customerSaveError": "��شل في حفظ العميل. يرجى المحاولة مرة أخرى.",
     "message.productSaveError": "فشل في حفظ المنتج. يرجى المحاولة مرة أخرى.",
     "message.uploadError": "فشل في رفع الصور. يرجى المحاولة مرة أخرى.",
 
@@ -783,7 +785,7 @@ const translations = {
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
-    "store.productDetails": "تفاصيل المنتج",
+    "store.productDetails": "تفاصي�� المنتج",
     "store.search": "البحث في المنتجات...",
     "store.searchResults": "نتائج البحث",
     "store.noSearchResults": "لا توجد منتجات للبحث المطلوب",
@@ -830,7 +832,7 @@ const translations = {
     "common.unknownProduct": "منتج غير معروف",
     "common.product": "منتج",
     "common.default": "افتراضي",
-    "errors.orderFailed": "فشل في إرسال الطلب. يرجى المحاولة مرة أخرى.",
+    "errors.orderFailed": "��شل في إرسال الطلب. يرجى المحاولة مرة أخرى.",
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
@@ -869,7 +871,7 @@ const translations = {
 
     // Settings Tabs
     "settings.basicSettings": "الإعدادات الأساسية",
-    "settings.deliverySettings": "إعدادات التوصيل",
+    "settings.deliverySettings": "إ��دادات التوصيل",
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.successScreenSettings": "إعدادات شاشة النجاح",
     "settings.displayOrderNumber": "عرض رقم الطلب",
@@ -959,7 +961,7 @@ const translations = {
     "settings.orderMessages": "رسائل الطلبات",
     "settings.englishMessages": "الرسائل الإنجليزية",
     "settings.arabicMessages": "الرسائل العربية",
-    "settings.orderSuccessMessage": "رسالة نجاح الطلب",
+    "settings.orderSuccessMessage": "رسالة نجاح الطل��",
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
@@ -976,6 +978,8 @@ const translations = {
     "common.itemsAr": "منتجات",
     "common.language": "اللغة",
     "common.languageAr": "العربية",
+    "common.darkMode": "الوضع الليلي",
+    "common.lightMode": "الوضع النهاري",
 
     // Order success messages
     "orderSuccess.headline": "تم تأكيد الطلب!",
