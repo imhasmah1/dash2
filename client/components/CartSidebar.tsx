@@ -49,18 +49,13 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
   return (
     <>
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="w-[95vw] max-w-md sm:max-w-lg max-h-[95vh] flex flex-col p-0 rounded-2xl border-0 shadow-2xl bg-white mx-auto">
-          <DialogHeader className="px-6 py-6 border-b bg-white">
-            <DialogTitle className="flex items-center gap-3 text-xl font-bold text-gray-800">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-                <ShoppingBag className="h-6 w-6 text-white" />
-              </div>
+        <DialogContent className="w-[95vw] max-w-md sm:max-w-lg max-h-[95vh] flex flex-col p-0 rounded-xl border shadow-lg bg-white mx-auto">
+          <DialogHeader className="px-4 py-4 border-b">
+            <DialogTitle className="flex items-center gap-2 text-lg font-semibold">
+              <ShoppingBag className="h-5 w-5 text-primary" />
               <span className="auto-text flex-1">{t("store.cart")}</span>
               {items.length > 0 && (
-                <Badge
-                  variant="secondary"
-                  className="bg-primary text-white font-semibold px-3 py-1"
-                >
+                <Badge variant="outline" className="text-xs">
                   {items.length}
                 </Badge>
               )}
