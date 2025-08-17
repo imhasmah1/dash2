@@ -338,7 +338,7 @@ export default function Store() {
                 {/* Product Info - Mobile Optimized */}
                 <div className="p-2 sm:p-3 lg:p-4 flex flex-col h-full">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 line-clamp-2 hover:text-primary transition-colors auto-text leading-tight">
+                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 line-clamp-2 hover:text-white transition-colors auto-text leading-tight text-white dark:text-white">
                       {product.name}
                     </h3>
                   </div>
