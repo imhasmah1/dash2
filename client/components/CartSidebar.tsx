@@ -253,77 +253,60 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                 </div>
               </ScrollArea>
 
-              <DialogFooter className="flex-col space-y-4 sm:space-y-5 px-4 sm:px-6 py-4 sm:py-6 border-t bg-white">
+              <DialogFooter className="flex-col space-y-3 px-4 py-4 border-t">
                 {/* Summary */}
-                <div className="w-full space-y-3 sm:space-y-4">
-                  <div className="bg-white rounded-xl p-4 sm:p-5 border border-gray-200 shadow-sm mb-4">
+                <div className="w-full">
+                  <div className="bg-white rounded-lg border p-3">
                     <div
                       className={cn(
-                        "flex justify-between items-center mb-2 sm:mb-3",
+                        "flex justify-between items-center",
                         isRTL ? "flex-row-reverse" : "",
                       )}
                     >
-                      <span className="auto-text text-gray-700 font-semibold text-base sm:text-lg">
+                      <span className="auto-text text-gray-700 font-medium">
                         {t("store.cartTotal")}:
                       </span>
-                      <div
-                        className={cn(
-                          "flex",
-                          isRTL ? "justify-start mr-8" : "justify-end ml-8",
-                        )}
-                      >
-                        <span className="text-xl sm:text-2xl font-bold text-primary ltr-text">
-                          {language === "ar"
-                            ? t("common.currencyAr")
-                            : t("common.currency")}{" "}
-                          {totalPrice.toFixed(2)}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div
-                      className={cn(
-                        "flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600 bg-gray-50 rounded-lg py-2 sm:py-3",
-                        isRTL ? "flex-row-reverse" : "",
-                      )}
-                    >
-                      <Package className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                      <span className="auto-text font-medium">
-                        <span className="ltr-text">{items.length}</span>{" "}
+                      <span className="text-lg font-bold text-primary ltr-text">
                         {language === "ar"
-                          ? items.length === 1
-                            ? t("common.itemAr")
-                            : t("common.itemsAr")
-                          : items.length === 1
-                            ? t("common.item")
-                            : t("common.items")}
+                          ? t("common.currencyAr")
+                          : t("common.currency")}{" "}
+                        {totalPrice.toFixed(2)}
                       </span>
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1 text-center">
+                      <span className="ltr-text">{items.length}</span>{" "}
+                      {language === "ar"
+                        ? items.length === 1
+                          ? t("common.itemAr")
+                          : t("common.itemsAr")
+                        : items.length === 1
+                          ? t("common.item")
+                          : t("common.items")}
                     </div>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col gap-2 sm:gap-3 w-full">
+                <div className="flex flex-col gap-2 w-full">
                   <Button
                     onClick={handleCheckout}
-                    className="w-full h-12 sm:h-14 touch-manipulation bg-primary hover:bg-primary/90 shadow-lg text-base sm:text-lg font-semibold rounded-xl"
+                    className="w-full h-11 touch-manipulation bg-primary hover:bg-primary/90"
                     disabled={items.length === 0}
-                    size="lg"
                   >
                     <Truck
                       className={cn(
-                        "h-4 w-4 sm:h-5 sm:w-5",
-                        isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3",
+                        "h-4 w-4",
+                        isRTL ? "ml-2" : "mr-2",
                       )}
                     />
                     <span className="auto-text">{t("store.checkout")}</span>
                   </Button>
 
-                  <div className="flex gap-2 sm:gap-3">
+                  <div className="flex gap-2">
                     <Button
                       variant="outline"
                       onClick={onClose}
-                      className="flex-1 h-10 sm:h-12 touch-manipulation border-gray-300 hover:border-primary hover:bg-primary/5 rounded-xl text-sm sm:text-base"
+                      className="flex-1 h-9 touch-manipulation text-sm"
                     >
                       <span className="auto-text">
                         {t("store.continueShopping")}
@@ -332,7 +315,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                     <Button
                       variant="outline"
                       onClick={clearCart}
-                      className="flex-1 h-10 sm:h-12 touch-manipulation border-gray-300 hover:border-red-300 hover:bg-red-50 hover:text-red-600 rounded-xl text-sm sm:text-base"
+                      className="flex-1 h-9 touch-manipulation text-sm hover:text-red-600"
                       disabled={items.length === 0}
                     >
                       <span className="auto-text">{t("store.clearCart")}</span>
