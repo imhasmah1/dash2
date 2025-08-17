@@ -142,7 +142,7 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-white shadow-sm sticky top-0 z-50">
+      <header className="border-b bg-card shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center gap-3">
@@ -161,6 +161,36 @@ export default function ProductDetail() {
 
           {/* Right side buttons */}
           <div className="flex items-center gap-3">
+            {/* Instagram Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={openInstagram}
+              className="h-10 px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
+            >
+              <Instagram className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline ml-2">Instagram</span>
+            </Button>
+
+            {/* Dark Mode Toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleDarkMode}
+              className="h-10 px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
+            >
+              {isDarkMode ? (
+                <Sun className="h-4 w-4 flex-shrink-0" />
+              ) : (
+                <Moon className="h-4 w-4 flex-shrink-0" />
+              )}
+              <span className="hidden sm:inline ml-2">
+                {isDarkMode
+                  ? (language === "ar" ? "النهاري" : "Light")
+                  : (language === "ar" ? "الليلي" : "Dark")}
+              </span>
+            </Button>
+
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
