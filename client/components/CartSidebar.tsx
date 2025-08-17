@@ -90,11 +90,11 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
           ) : (
             <>
               <ScrollArea className="flex-1 px-4">
-                <div className="space-y-4 py-4">
+                <div className="space-y-3 py-4">
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="group relative bg-white rounded-2xl border border-gray-200 p-3 sm:p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                      className="group relative bg-gray-50 rounded-lg border p-3 hover:bg-gray-100 transition-colors"
                     >
                       <div
                         className={cn(
@@ -104,7 +104,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                       >
                         {/* Product Image */}
                         {item.productImage && (
-                          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-gray-100 shrink-0 border-2 border-gray-200 shadow-sm">
+                          <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-200 shrink-0">
                             <img
                               src={item.productImage}
                               alt={item.productName}
