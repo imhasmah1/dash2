@@ -678,25 +678,31 @@ export default function Orders() {
                         return (
                           <div
                             key={index}
-                            className="flex justify-between items-center p-2 bg-gray-50 rounded"
+                            className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 p-3 sm:p-2 bg-gray-50 rounded-lg"
                           >
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 flex-1">
                               {product?.images?.[0] && (
                                 <img
                                   src={product.images[0]}
                                   alt={product.name}
-                                  className="w-10 h-10 rounded object-cover"
+                                  className="w-12 h-12 sm:w-10 sm:h-10 rounded-lg object-cover border border-gray-200"
                                 />
                               )}
-                              <span>
-                                {product?.name || t("products.title")}
-                                {variant && ` (${variant.name})`}
-                              </span>
+                              <div className="flex-1">
+                                <div className="font-medium text-gray-900">
+                                  {product?.name || t("products.title")}
+                                </div>
+                                {variant && (
+                                  <div className="text-sm text-gray-500">
+                                    {variant.name}
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            <span className="text-sm text-gray-600">
-                              {item.quantity}x BD {item.price.toFixed(2)} = BD{" "}
-                              {(item.quantity * item.price).toFixed(2)}
-                            </span>
+                            <div className="text-sm sm:text-right text-gray-600 font-medium">
+                              <div>{item.quantity}x BD {item.price.toFixed(2)}</div>
+                              <div className="font-bold text-dashboard-primary">BD {(item.quantity * item.price).toFixed(2)}</div>
+                            </div>
                           </div>
                         );
                       })}
