@@ -948,8 +948,12 @@ export default function Orders() {
               </div>
             </div>
           )}
-          <DialogFooter>
-            <Button variant="outline" onClick={closeViewDialog}>
+          <DialogFooter className="pt-6 border-t border-gray-100 gap-4">
+            <Button
+              variant="outline"
+              onClick={closeViewDialog}
+              className="h-12 px-8 text-base font-medium rounded-xl border-2 hover:bg-gray-50"
+            >
               {t("orders.close")}
             </Button>
             <Button
@@ -957,6 +961,7 @@ export default function Orders() {
                 closeViewDialog();
                 if (viewingOrder) openDialog(viewingOrder);
               }}
+              className="h-12 px-8 text-base font-bold rounded-xl bg-dashboard-primary hover:bg-dashboard-primary-dark"
             >
               {t("orders.editOrder")}
             </Button>
