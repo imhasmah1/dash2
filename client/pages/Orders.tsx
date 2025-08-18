@@ -732,12 +732,12 @@ export default function Orders() {
                     </div>
                   </div>
 
-                  <div className="flex gap-2 pt-2">
+                  <div className="flex flex-col sm:flex-row gap-2 pt-3">
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => openViewDialog(order)}
-                      className="flex-1"
+                      className="flex-1 h-10 font-medium"
                     >
                       <Eye className="w-4 h-4 mr-1" />
                       {t("orders.view")}
@@ -746,6 +746,7 @@ export default function Orders() {
                       size="sm"
                       variant="outline"
                       onClick={() => openDialog(order)}
+                      className="flex-1 sm:flex-none h-10 font-medium"
                     >
                       <Edit className="w-4 h-4 mr-1" />
                       {t("orders.edit")}
@@ -753,7 +754,7 @@ export default function Orders() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50 flex-1 sm:flex-none h-10 font-medium"
                       onClick={() => handleDelete(order.id)}
                     >
                       <Trash2 className="w-4 h-4" />
