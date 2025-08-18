@@ -661,14 +661,14 @@ export default function Orders() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
+              <CardContent className="pt-0">
+                <div className="space-y-4 sm:space-y-3">
                   <div>
-                    <h4 className="font-medium mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2 text-gray-900">
                       <Package className="w-4 h-4" />
                       {t("nav.products")} ({order.items.length})
                     </h4>
-                    <div className="space-y-2">
+                    <div className="space-y-2 sm:space-y-1">
                       {order.items.slice(0, 2).map((item, index) => {
                         const product = getProductById(item.productId);
                         const variant =
