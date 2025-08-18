@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
-import { useTheme } from "../contexts/ThemeContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { LoadingScreen } from "../components/ui/loading";
@@ -15,8 +14,6 @@ import {
   Globe,
   Store as StoreIcon,
   Instagram,
-  Moon,
-  Sun,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -62,7 +59,6 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
-  const { isDarkMode, toggleDarkMode } = useTheme();
 
   // Instagram link handler
   const openInstagram = () => {
@@ -142,7 +138,7 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card shadow-sm sticky top-0 z-50">
+      <header className="border-b bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center gap-3">
@@ -172,24 +168,6 @@ export default function ProductDetail() {
               <span className="hidden sm:inline ml-2">Instagram</span>
             </Button>
 
-            {/* Dark Mode Toggle */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleDarkMode}
-              className="h-10 px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
-            >
-              {isDarkMode ? (
-                <Sun className="h-4 w-4 flex-shrink-0" />
-              ) : (
-                <Moon className="h-4 w-4 flex-shrink-0" />
-              )}
-              <span className="hidden sm:inline ml-2">
-                {isDarkMode
-                  ? (language === "ar" ? "النهاري" : "Light")
-                  : (language === "ar" ? "الليلي" : "Dark")}
-              </span>
-            </Button>
 
             {/* Language Switch */}
             <DropdownMenu>
@@ -246,7 +224,7 @@ export default function ProductDetail() {
           {/* Product Images */}
           <div className="space-y-4">
             {/* Main Image */}
-            <div className="aspect-square overflow-hidden rounded-lg bg-muted">
+            <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
               {(() => {
                 // Create combined image array with product images and variant images
                 const allImages = [
