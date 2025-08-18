@@ -53,7 +53,7 @@ export default function Products() {
     price: 0,
     images: [] as string[],
     variants: [] as ProductVariant[],
-    total_stock: 0,
+    total_stock: 1,
     category_id: "",
   });
 
