@@ -822,12 +822,12 @@ export default function Orders() {
               </div>
 
               {/* Order Items */}
-              <div>
-                <h3 className="font-medium mb-3 flex items-center gap-2">
-                  <Package className="w-5 h-5" />
+              <div className="bg-gray-50 p-6 rounded-xl border">
+                <h3 className="font-bold text-gray-900 mb-5 flex items-center gap-3 text-lg">
+                  <Package className="w-6 h-6" />
                   {t("orders.orderItems")}
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   {viewingOrder.items.map((item, index) => {
                     const product = getProductById(item.productId);
                     const variant =
@@ -837,47 +837,51 @@ export default function Orders() {
                     return (
                       <div
                         key={index}
-                        className="flex justify-between items-center p-3 border rounded hover:bg-gray-50 transition-colors"
+                        className="bg-white p-5 border rounded-xl hover:shadow-md transition-all duration-200 border-gray-200"
                       >
-                        <div className="flex items-center gap-3">
-                          {product?.images?.[0] && (
-                            <img
-                              src={product.images[0]}
-                              alt={product.name}
-                              className="w-16 h-16 rounded-lg object-cover border"
-                            />
-                          )}
-                          <div>
-                            <button
-                              onClick={() => {
-                                // Navigate to product page - you can add routing here
-                                window.open(
-                                  `/product/${item.productId}`,
-                                  "_blank",
-                                );
-                              }}
-                              className="font-medium text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left"
-                            >
-                              {product?.name || t("orders.unknownProduct")}
-                            </button>
-                            {variant && (
-                              <span className="text-sm text-gray-600 ml-2 block">
-                                Variant: {variant.name}
-                              </span>
+                        <div className="flex justify-between items-start gap-6">
+                          <div className="flex items-start gap-4 flex-1">
+                            {product?.images?.[0] && (
+                              <img
+                                src={product.images[0]}
+                                alt={product.name}
+                                className="w-20 h-20 rounded-xl object-cover border-2 border-gray-100"
+                              />
                             )}
-                            {product && (
-                              <span className="text-sm text-gray-500 block">
-                                Unit Price: BD {product.price.toFixed(2)}
-                              </span>
-                            )}
+                            <div className="flex-1 space-y-2">
+                              <button
+                                onClick={() => {
+                                  // Navigate to product page - you can add routing here
+                                  window.open(
+                                    `/product/${item.productId}`,
+                                    "_blank",
+                                  );
+                                }}
+                                className="font-bold text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left text-lg leading-snug"
+                              >
+                                {product?.name || t("orders.unknownProduct")}
+                              </button>
+                              {variant && (
+                                <div className="bg-gray-100 px-3 py-1 rounded-lg inline-block">
+                                  <span className="text-sm font-medium text-gray-700">
+                                    Variant: {variant.name}
+                                  </span>
+                                </div>
+                              )}
+                              {product && (
+                                <div className="text-base text-gray-600 font-medium">
+                                  Unit Price: <span className="text-dashboard-primary font-bold">BD {product.price.toFixed(2)}</span>
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm text-gray-600">
-                            {item.quantity} × BD {item.price.toFixed(2)}
-                          </div>
-                          <div className="font-medium text-lg">
-                            BD {(item.quantity * item.price).toFixed(2)}
+                          <div className="text-right space-y-2 min-w-[120px]">
+                            <div className="text-base text-gray-600 font-medium">
+                              <span className="font-bold">{item.quantity}</span> × BD {item.price.toFixed(2)}
+                            </div>
+                            <div className="font-bold text-xl text-dashboard-primary">
+                              BD {(item.quantity * item.price).toFixed(2)}
+                            </div>
                           </div>
                         </div>
                       </div>
