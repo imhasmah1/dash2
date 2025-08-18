@@ -48,6 +48,7 @@ export default function handler(req, res) {
 
     if (path.startsWith("/products/")) {
       const id = path.split("/")[2];
+      if (method === "GET") return handleGetProductById(req, res, id);
       if (method === "PUT") return handleUpdateProduct(req, res, id);
       if (method === "DELETE") return handleDeleteProduct(req, res, id);
     }
@@ -210,6 +211,14 @@ function handleDeleteCustomer(req, res, id) {
 // Product handlers
 function handleGetProducts(req, res) {
   res.json(products);
+}
+
+function handleGetProductById(req, res, id) {
+  const product = products.find((p) => p.id === id);
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+  res.json(product);
 }
 
 function handleCreateProduct(req, res) {
