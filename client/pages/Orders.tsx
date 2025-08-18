@@ -707,28 +707,28 @@ export default function Orders() {
                         );
                       })}
                       {order.items.length > 2 && (
-                        <div className="text-sm text-gray-600 text-center">
+                        <div className="text-sm text-gray-600 text-center py-2 bg-gray-100 rounded">
                           +{order.items.length - 2} {t("orders.items")}
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center text-sm text-gray-600">
-                    <span className="flex items-center gap-1">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 text-sm text-gray-600 pt-2 border-t border-gray-100">
+                    <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       {new Date(order.createdAt).toLocaleDateString()}
-                    </span>
-                    <div className="flex items-center gap-4">
-                      <span className="capitalize font-medium text-dashboard-primary">
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                      <div className="capitalize font-medium text-dashboard-primary">
                         {order.deliveryType === "delivery"
                           ? t("orders.delivery")
                           : t("orders.pickup")}
-                      </span>
-                      <span>
+                      </div>
+                      <div className="text-xs sm:text-sm">
                         {t("orders.date")}:{" "}
                         {new Date(order.updatedAt).toLocaleDateString()}
-                      </span>
+                      </div>
                     </div>
                   </div>
 
