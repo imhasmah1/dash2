@@ -607,32 +607,32 @@ export default function Orders() {
       </Card>
 
       {/* Orders List */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {filteredOrders.map((order) => {
           const customer = getCustomerById(order.customerId);
           return (
-            <Card key={order.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
-                  <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
-                    <div className="w-10 h-10 bg-dashboard-primary rounded-full flex items-center justify-center">
-                      <ShoppingCart className="w-5 h-5 text-white" />
+            <Card key={order.id} className="hover:shadow-lg transition-shadow border-l-4 border-dashboard-primary">
+              <CardHeader className="pb-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4 [dir=rtl]:sm:flex-row-reverse">
+                  <div className="flex items-start gap-3 flex-1 [dir=rtl]:flex-row-reverse">
+                    <div className="w-12 h-12 sm:w-10 sm:h-10 bg-dashboard-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <ShoppingCart className="w-6 h-6 sm:w-5 sm:h-5 text-white" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <CardTitle className="text-lg">
+                    <div className="min-w-0 flex-1 space-y-1">
+                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
                         {t("orders.orderId")} #{getOrderNumber(order.id)}
                       </CardTitle>
-                      <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                      <CardDescription className="flex items-center gap-2 text-sm sm:text-base [dir=rtl]:flex-row-reverse">
                         <User className="w-4 h-4" />
                         {customer?.name || t("orders.customer")}
                       </CardDescription>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:items-end gap-2">
-                    <div className="text-xl sm:text-2xl font-bold text-dashboard-primary">
+                  <div className="flex flex-col sm:items-end gap-3 sm:gap-2 mt-2 sm:mt-0">
+                    <div className="text-2xl sm:text-xl font-bold text-dashboard-primary">
                       BD {order.total.toFixed(2)}
                     </div>
-                    <div className="w-full sm:w-auto">
+                    <div className="w-full sm:w-auto min-w-[140px]">
                       <Select
                         value={order.status}
                         onValueChange={(value: Order["status"]) =>
