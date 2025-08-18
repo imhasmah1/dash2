@@ -106,7 +106,7 @@ export default function Products() {
       ...prev,
       variants: [
         ...prev.variants,
-        { id: generateVariantId(), name: "", stock: 0, image: "" },
+        { id: generateVariantId(), name: "", stock: 1, image: "" },
       ],
     }));
   };
