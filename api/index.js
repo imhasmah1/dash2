@@ -255,11 +255,8 @@ function handleCreateProduct(req, res) {
 
 function handleUpdateProduct(req, res, id) {
   const index = products.findIndex((p) => p.id === id);
-  if (index === -1) {
-    return res.status(404).json({ error: "Product not found" });
-  }
-
   const updates = req.body;
+
   if (updates.price !== undefined) updates.price = parseFloat(updates.price);
 
   if (updates.variants) {
@@ -267,6 +264,23 @@ function handleUpdateProduct(req, res, id) {
       (sum, variant) => sum + variant.stock,
       0,
     );
+  }
+
+  if (index === -1) {
+    // Product not found in memory (common in serverless), create it with the provided data
+    const newProduct = {
+      id,
+      name: updates.name || "Unknown Product",
+      description: updates.description || "",
+      price: updates.price || 0,
+      images: updates.images || [],
+      category_id: updates.category_id || null,
+      variants: updates.variants || [],
+      total_stock: updates.total_stock || updates.totalStock || 0,
+      ...updates
+    };
+    products.push(newProduct);
+    return res.json(newProduct);
   }
 
   products[index] = { ...products[index], ...updates };
