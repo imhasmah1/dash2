@@ -15,7 +15,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 ## Deployment Steps
 
-1. **Connect to Vercel**: 
+1. **Connect to Vercel**:
    - Connect your GitHub repository to Vercel
    - Or use Vercel CLI: `vercel`
 

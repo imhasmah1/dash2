@@ -62,7 +62,11 @@ export default function ProductDetail() {
 
   // Instagram link handler
   const openInstagram = () => {
-    window.open('https://www.instagram.com/azharstore/', '_blank', 'noopener,noreferrer');
+    window.open(
+      "https://www.instagram.com/azharstore/",
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   const [product, setProduct] = useState<DataContextProduct | null>(null);
@@ -168,13 +172,14 @@ export default function ProductDetail() {
               <span className="hidden sm:inline ml-2">Instagram</span>
             </Button>
 
-
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2">
                   <Globe className="h-4 w-4" />
-                  {language === "ar" ? t("common.languageAr") : t("common.language")}
+                  {language === "ar"
+                    ? t("common.languageAr")
+                    : t("common.language")}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">

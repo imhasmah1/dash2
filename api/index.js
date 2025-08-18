@@ -277,7 +277,7 @@ function handleUpdateProduct(req, res, id) {
       category_id: updates.category_id || null,
       variants: updates.variants || [],
       total_stock: updates.total_stock || updates.totalStock || 0,
-      ...updates
+      ...updates,
     };
     products.push(newProduct);
     return res.json(newProduct);

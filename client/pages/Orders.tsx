@@ -789,7 +789,9 @@ export default function Orders() {
                           <span className="font-bold text-gray-700 text-base">
                             {t("orders.customerName")}:
                           </span>
-                          <span className="text-gray-900 text-base font-medium">{customer.name}</span>
+                          <span className="text-gray-900 text-base font-medium">
+                            {customer.name}
+                          </span>
                         </div>
                       </div>
                       <div className="bg-white p-4 rounded-lg border border-blue-200">
@@ -798,7 +800,9 @@ export default function Orders() {
                           <span className="font-bold text-gray-700 text-base">
                             {t("orders.customerPhone")}:
                           </span>
-                          <span className="text-gray-900 text-base font-medium">{customer.phone}</span>
+                          <span className="text-gray-900 text-base font-medium">
+                            {customer.phone}
+                          </span>
                         </div>
                       </div>
                       <div className="bg-white p-4 rounded-lg border border-blue-200">
@@ -808,7 +812,9 @@ export default function Orders() {
                             <span className="font-bold text-gray-700 text-base block mb-2">
                               {t("orders.deliveryAddress")}:
                             </span>
-                            <p className="text-gray-900 text-base leading-relaxed">{customer.address}</p>
+                            <p className="text-gray-900 text-base leading-relaxed">
+                              {customer.address}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -870,14 +876,18 @@ export default function Orders() {
                               )}
                               {product && (
                                 <div className="text-base text-gray-600 font-medium">
-                                  Unit Price: <span className="text-dashboard-primary font-bold">BD {product.price.toFixed(2)}</span>
+                                  Unit Price:{" "}
+                                  <span className="text-dashboard-primary font-bold">
+                                    BD {product.price.toFixed(2)}
+                                  </span>
                                 </div>
                               )}
                             </div>
                           </div>
                           <div className="text-right space-y-2 min-w-[120px]">
                             <div className="text-base text-gray-600 font-medium">
-                              <span className="font-bold">{item.quantity}</span> × BD {item.price.toFixed(2)}
+                              <span className="font-bold">{item.quantity}</span>{" "}
+                              × BD {item.price.toFixed(2)}
                             </div>
                             <div className="font-bold text-xl text-dashboard-primary">
                               BD {(item.quantity * item.price).toFixed(2)}
@@ -892,19 +902,27 @@ export default function Orders() {
 
               {/* Order Summary */}
               <div className="bg-green-50 p-6 rounded-xl border border-green-100">
-                <h3 className="font-bold text-green-900 mb-5 text-lg">Order Summary</h3>
+                <h3 className="font-bold text-green-900 mb-5 text-lg">
+                  Order Summary
+                </h3>
                 <div className="space-y-4">
                   <div className="bg-white p-4 rounded-lg border border-green-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-700 text-base">{t("orders.status")}:</span>
-                      <Badge className={`${getStatusColor(viewingOrder.status)} text-sm font-bold px-3 py-1`}>
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.status")}:
+                      </span>
+                      <Badge
+                        className={`${getStatusColor(viewingOrder.status)} text-sm font-bold px-3 py-1`}
+                      >
                         {getStatusText(viewingOrder.status)}
                       </Badge>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-green-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-700 text-base">{t("orders.deliveryType")}:</span>
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.deliveryType")}:
+                      </span>
                       <span className="capitalize font-bold text-dashboard-primary text-base">
                         {viewingOrder.deliveryType === "delivery"
                           ? t("orders.delivery")
@@ -914,7 +932,9 @@ export default function Orders() {
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-green-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-700 text-base">{t("orders.created")}:</span>
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.created")}:
+                      </span>
                       <span className="font-medium text-gray-900 text-base">
                         {new Date(viewingOrder.createdAt).toLocaleString()}
                       </span>
@@ -922,7 +942,9 @@ export default function Orders() {
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-green-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-700 text-base">{t("orders.lastUpdated")}:</span>
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.lastUpdated")}:
+                      </span>
                       <span className="font-medium text-gray-900 text-base">
                         {new Date(viewingOrder.updatedAt).toLocaleString()}
                       </span>
@@ -930,8 +952,12 @@ export default function Orders() {
                   </div>
                   {viewingOrder.notes && (
                     <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                      <span className="font-bold text-yellow-800 text-base block mb-2">{t("orders.notes")}:</span>
-                      <p className="text-yellow-900 font-medium text-base leading-relaxed">{viewingOrder.notes}</p>
+                      <span className="font-bold text-yellow-800 text-base block mb-2">
+                        {t("orders.notes")}:
+                      </span>
+                      <p className="text-yellow-900 font-medium text-base leading-relaxed">
+                        {viewingOrder.notes}
+                      </p>
                     </div>
                   )}
                   <div className="bg-dashboard-primary p-5 rounded-lg border-2 border-dashboard-primary">

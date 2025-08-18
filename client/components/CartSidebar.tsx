@@ -275,7 +275,9 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center bg-gray-100 rounded-full px-3 py-1">
                         <span className="text-sm text-gray-600 font-medium">
-                          <span className="ltr-text font-bold">{items.length}</span>{" "}
+                          <span className="ltr-text font-bold">
+                            {items.length}
+                          </span>{" "}
                           {language === "ar"
                             ? items.length === 1
                               ? t("common.itemAr")
@@ -296,12 +298,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                     className="w-full h-14 touch-manipulation bg-primary hover:bg-primary/90 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
                     disabled={items.length === 0}
                   >
-                    <Truck
-                      className={cn(
-                        "h-5 w-5",
-                        isRTL ? "ml-3" : "mr-3",
-                      )}
-                    />
+                    <Truck className={cn("h-5 w-5", isRTL ? "ml-3" : "mr-3")} />
                     <span className="auto-text">{t("store.checkout")}</span>
                   </Button>
 
