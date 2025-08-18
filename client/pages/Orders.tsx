@@ -762,53 +762,65 @@ export default function Orders() {
 
       {/* View Order Details Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
-          <DialogHeader>
-            <DialogTitle>
+        <DialogContent className="w-[95vw] sm:max-w-3xl max-h-[95vh] overflow-y-auto rounded-xl border-0 shadow-2xl">
+          <DialogHeader className="pb-6 border-b border-gray-100">
+            <DialogTitle className="text-2xl font-bold text-gray-900">
               {t("orders.orderDetailsTitle")} #
               {viewingOrder ? getOrderNumber(viewingOrder.id) : ""}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-base text-gray-600 mt-2">
               {t("orders.orderDetailsDesc")}
             </DialogDescription>
           </DialogHeader>
           {viewingOrder && (
-            <div className="space-y-6">
+            <div className="space-y-8 py-6">
               {/* Customer Information */}
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h3 className="font-medium text-blue-900 mb-3 flex items-center gap-2">
-                  <User className="w-5 h-5" />
+              <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h3 className="font-bold text-blue-900 mb-5 flex items-center gap-3 text-lg">
+                  <User className="w-6 h-6" />
                   {t("orders.customerInfo")}
                 </h3>
                 {(() => {
                   const customer = getCustomerById(viewingOrder.customerId);
                   return customer ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="font-medium">
-                          {t("orders.customerName")}:
-                        </span>{" "}
-                        {customer.name}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Phone className="w-4 h-4" />
-                        <span className="font-medium">
-                          {t("orders.customerPhone")}:
-                        </span>{" "}
-                        {customer.phone}
-                      </div>
-                      <div className="md:col-span-2 flex items-start gap-1">
-                        <MapPin className="w-4 h-4 mt-0.5" />
-                        <div>
-                          <span className="font-medium">
-                            {t("orders.deliveryAddress")}:
+                    <div className="space-y-4">
+                      <div className="bg-white p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="font-bold text-gray-700 text-base">
+                            {t("orders.customerName")}:
                           </span>
-                          <p>{customer.address}</p>
+                          <span className="text-gray-900 text-base font-medium">
+                            {customer.name}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-center gap-3">
+                          <Phone className="w-5 h-5 text-blue-600" />
+                          <span className="font-bold text-gray-700 text-base">
+                            {t("orders.customerPhone")}:
+                          </span>
+                          <span className="text-gray-900 text-base font-medium">
+                            {customer.phone}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-start gap-3">
+                          <MapPin className="w-5 h-5 text-blue-600 mt-1" />
+                          <div>
+                            <span className="font-bold text-gray-700 text-base block mb-2">
+                              {t("orders.deliveryAddress")}:
+                            </span>
+                            <p className="text-gray-900 text-base leading-relaxed">
+                              {customer.address}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <p className="text-red-600">
+                    <p className="text-red-600 font-medium text-base">
                       {t("orders.customerNotFound")}
                     </p>
                   );
@@ -816,12 +828,12 @@ export default function Orders() {
               </div>
 
               {/* Order Items */}
-              <div>
-                <h3 className="font-medium mb-3 flex items-center gap-2">
-                  <Package className="w-5 h-5" />
+              <div className="bg-gray-50 p-6 rounded-xl border">
+                <h3 className="font-bold text-gray-900 mb-5 flex items-center gap-3 text-lg">
+                  <Package className="w-6 h-6" />
                   {t("orders.orderItems")}
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   {viewingOrder.items.map((item, index) => {
                     const product = getProductById(item.productId);
                     const variant =
@@ -831,47 +843,55 @@ export default function Orders() {
                     return (
                       <div
                         key={index}
-                        className="flex justify-between items-center p-3 border rounded hover:bg-gray-50 transition-colors"
+                        className="bg-white p-5 border rounded-xl hover:shadow-md transition-all duration-200 border-gray-200"
                       >
-                        <div className="flex items-center gap-3">
-                          {product?.images?.[0] && (
-                            <img
-                              src={product.images[0]}
-                              alt={product.name}
-                              className="w-16 h-16 rounded-lg object-cover border"
-                            />
-                          )}
-                          <div>
-                            <button
-                              onClick={() => {
-                                // Navigate to product page - you can add routing here
-                                window.open(
-                                  `/product/${item.productId}`,
-                                  "_blank",
-                                );
-                              }}
-                              className="font-medium text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left"
-                            >
-                              {product?.name || t("orders.unknownProduct")}
-                            </button>
-                            {variant && (
-                              <span className="text-sm text-gray-600 ml-2 block">
-                                Variant: {variant.name}
-                              </span>
+                        <div className="flex justify-between items-start gap-6">
+                          <div className="flex items-start gap-4 flex-1">
+                            {product?.images?.[0] && (
+                              <img
+                                src={product.images[0]}
+                                alt={product.name}
+                                className="w-20 h-20 rounded-xl object-cover border-2 border-gray-100"
+                              />
                             )}
-                            {product && (
-                              <span className="text-sm text-gray-500 block">
-                                Unit Price: BD {product.price.toFixed(2)}
-                              </span>
-                            )}
+                            <div className="flex-1 space-y-2">
+                              <button
+                                onClick={() => {
+                                  // Navigate to product page - you can add routing here
+                                  window.open(
+                                    `/product/${item.productId}`,
+                                    "_blank",
+                                  );
+                                }}
+                                className="font-bold text-dashboard-primary hover:text-dashboard-primary-light hover:underline transition-colors text-left text-lg leading-snug"
+                              >
+                                {product?.name || t("orders.unknownProduct")}
+                              </button>
+                              {variant && (
+                                <div className="bg-gray-100 px-3 py-1 rounded-lg inline-block">
+                                  <span className="text-sm font-medium text-gray-700">
+                                    Variant: {variant.name}
+                                  </span>
+                                </div>
+                              )}
+                              {product && (
+                                <div className="text-base text-gray-600 font-medium">
+                                  Unit Price:{" "}
+                                  <span className="text-dashboard-primary font-bold">
+                                    BD {product.price.toFixed(2)}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm text-gray-600">
-                            {item.quantity} × BD {item.price.toFixed(2)}
-                          </div>
-                          <div className="font-medium text-lg">
-                            BD {(item.quantity * item.price).toFixed(2)}
+                          <div className="text-right space-y-2 min-w-[120px]">
+                            <div className="text-base text-gray-600 font-medium">
+                              <span className="font-bold">{item.quantity}</span>{" "}
+                              × BD {item.price.toFixed(2)}
+                            </div>
+                            <div className="font-bold text-xl text-dashboard-primary">
+                              BD {(item.quantity * item.price).toFixed(2)}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -881,52 +901,85 @@ export default function Orders() {
               </div>
 
               {/* Order Summary */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="flex justify-between items-center mb-2">
-                  <span>{t("orders.status")}:</span>
-                  <Badge className={getStatusColor(viewingOrder.status)}>
-                    {getStatusText(viewingOrder.status)}
-                  </Badge>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span>{t("orders.deliveryType")}:</span>
-                  <span className="capitalize font-medium text-dashboard-primary">
-                    {viewingOrder.deliveryType === "delivery"
-                      ? t("orders.delivery")
-                      : t("orders.pickup")}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span>{t("orders.created")}:</span>
-                  <span>
-                    {new Date(viewingOrder.createdAt).toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mb-3">
-                  <span>{t("orders.lastUpdated")}:</span>
-                  <span>
-                    {new Date(viewingOrder.updatedAt).toLocaleString()}
-                  </span>
-                </div>
-                {viewingOrder.notes && (
-                  <div className="mb-3">
-                    <span className="font-medium">{t("orders.notes")}:</span>
-                    <p className="text-gray-600 mt-1">{viewingOrder.notes}</p>
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100">
+                <h3 className="font-bold text-green-900 mb-5 text-lg">
+                  Order Summary
+                </h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.status")}:
+                      </span>
+                      <Badge
+                        className={`${getStatusColor(viewingOrder.status)} text-sm font-bold px-3 py-1`}
+                      >
+                        {getStatusText(viewingOrder.status)}
+                      </Badge>
+                    </div>
                   </div>
-                )}
-                <div className="border-t pt-3 flex justify-between items-center">
-                  <span className="text-lg font-medium">
-                    {t("orders.total")}:
-                  </span>
-                  <span className="text-2xl font-bold text-dashboard-primary">
-                    BD {viewingOrder.total.toFixed(2)}
-                  </span>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.deliveryType")}:
+                      </span>
+                      <span className="capitalize font-bold text-dashboard-primary text-base">
+                        {viewingOrder.deliveryType === "delivery"
+                          ? t("orders.delivery")
+                          : t("orders.pickup")}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.created")}:
+                      </span>
+                      <span className="font-medium text-gray-900 text-base">
+                        {new Date(viewingOrder.createdAt).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">
+                        {t("orders.lastUpdated")}:
+                      </span>
+                      <span className="font-medium text-gray-900 text-base">
+                        {new Date(viewingOrder.updatedAt).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                  {viewingOrder.notes && (
+                    <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                      <span className="font-bold text-yellow-800 text-base block mb-2">
+                        {t("orders.notes")}:
+                      </span>
+                      <p className="text-yellow-900 font-medium text-base leading-relaxed">
+                        {viewingOrder.notes}
+                      </p>
+                    </div>
+                  )}
+                  <div className="bg-dashboard-primary p-5 rounded-lg border-2 border-dashboard-primary">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xl font-bold text-white">
+                        {t("orders.total")}:
+                      </span>
+                      <span className="text-3xl font-bold text-white">
+                        BD {viewingOrder.total.toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           )}
-          <DialogFooter>
-            <Button variant="outline" onClick={closeViewDialog}>
+          <DialogFooter className="pt-6 border-t border-gray-100 gap-4">
+            <Button
+              variant="outline"
+              onClick={closeViewDialog}
+              className="h-12 px-8 text-base font-medium rounded-xl border-2 hover:bg-gray-50"
+            >
               {t("orders.close")}
             </Button>
             <Button
@@ -934,6 +987,7 @@ export default function Orders() {
                 closeViewDialog();
                 if (viewingOrder) openDialog(viewingOrder);
               }}
+              className="h-12 px-8 text-base font-bold rounded-xl bg-dashboard-primary hover:bg-dashboard-primary-dark"
             >
               {t("orders.editOrder")}
             </Button>

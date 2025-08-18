@@ -48,6 +48,7 @@ export default function handler(req, res) {
 
     if (path.startsWith("/products/")) {
       const id = path.split("/")[2];
+      if (method === "GET") return handleGetProductById(req, res, id);
       if (method === "PUT") return handleUpdateProduct(req, res, id);
       if (method === "DELETE") return handleDeleteProduct(req, res, id);
     }
@@ -100,18 +101,47 @@ let customers = [
 
 let products = [
   {
-    id: "1",
-    name: "Wireless Bluetooth Headphones",
-    description: "Premium quality headphones with noise cancellation",
-    price: 35.0,
+    id: "2",
+    name: "Adjustable Laptop Stand",
+    description: "Ergonomic laptop stand for better posture",
+    price: 17.5,
     images: [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop",
     ],
     variants: [
-      { id: "v1", name: "Black", stock: 25 },
-      { id: "v2", name: "White", stock: 15 },
+      { id: "v1", name: "Natural Wood", stock: 13 },
+      { id: "v2", name: "Black", stock: 10 },
     ],
-    totalStock: 40,
+    totalStock: 23,
+  },
+  {
+    id: "3",
+    name: "USB-C Cable 6ft",
+    description: "Fast charging USB-C to USB-C cable",
+    price: 5.0,
+    images: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+    ],
+    variants: [
+      { id: "v1", name: "Black", stock: 70 },
+      { id: "v2", name: "White", stock: 50 },
+    ],
+    totalStock: 120,
+  },
+  {
+    id: "4",
+    name: "Portable Bluetooth Speaker",
+    description: "Waterproof speaker with 12-hour battery life",
+    price: 50.0,
+    images: [
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+    ],
+    variants: [
+      { id: "v1", name: "Red", stock: 3 },
+      { id: "v2", name: "Blue", stock: 2 },
+      { id: "v3", name: "Black", stock: 3 },
+    ],
+    totalStock: 8,
   },
 ];
 
@@ -119,8 +149,8 @@ let orders = [
   {
     id: "1",
     customerId: "1",
-    items: [{ productId: "1", variantId: "v1", quantity: 1, price: 35.0 }],
-    total: 35.0,
+    items: [{ productId: "2", variantId: "v1", quantity: 1, price: 17.5 }],
+    total: 17.5,
     status: "processing",
     deliveryType: "delivery",
     createdAt: new Date().toISOString(),
@@ -183,6 +213,14 @@ function handleGetProducts(req, res) {
   res.json(products);
 }
 
+function handleGetProductById(req, res, id) {
+  const product = products.find((p) => p.id === id);
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+  res.json(product);
+}
+
 function handleCreateProduct(req, res) {
   const { name, description, price, images, variants } = req.body;
   if (!name || !description || price === undefined) {
@@ -217,11 +255,8 @@ function handleCreateProduct(req, res) {
 
 function handleUpdateProduct(req, res, id) {
   const index = products.findIndex((p) => p.id === id);
-  if (index === -1) {
-    return res.status(404).json({ error: "Product not found" });
-  }
-
   const updates = req.body;
+
   if (updates.price !== undefined) updates.price = parseFloat(updates.price);
 
   if (updates.variants) {
@@ -229,6 +264,23 @@ function handleUpdateProduct(req, res, id) {
       (sum, variant) => sum + variant.stock,
       0,
     );
+  }
+
+  if (index === -1) {
+    // Product not found in memory (common in serverless), create it with the provided data
+    const newProduct = {
+      id,
+      name: updates.name || "Unknown Product",
+      description: updates.description || "",
+      price: updates.price || 0,
+      images: updates.images || [],
+      category_id: updates.category_id || null,
+      variants: updates.variants || [],
+      total_stock: updates.total_stock || updates.totalStock || 0,
+      ...updates,
+    };
+    products.push(newProduct);
+    return res.json(newProduct);
   }
 
   products[index] = { ...products[index], ...updates };

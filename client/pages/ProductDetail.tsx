@@ -13,6 +13,7 @@ import {
   Plus,
   Globe,
   Store as StoreIcon,
+  Instagram,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -58,6 +59,15 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
+
+  // Instagram link handler
+  const openInstagram = () => {
+    window.open(
+      "https://www.instagram.com/azharstore/",
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
 
   const [product, setProduct] = useState<DataContextProduct | null>(null);
   const [loading, setLoading] = useState(true);
@@ -151,12 +161,25 @@ export default function ProductDetail() {
 
           {/* Right side buttons */}
           <div className="flex items-center gap-3">
+            {/* Instagram Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={openInstagram}
+              className="h-10 px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
+            >
+              <Instagram className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline ml-2">Instagram</span>
+            </Button>
+
             {/* Language Switch */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2">
                   <Globe className="h-4 w-4" />
-                  {language === "ar" ? t("common.languageAr") : t("common.language")}
+                  {language === "ar"
+                    ? t("common.languageAr")
+                    : t("common.language")}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">

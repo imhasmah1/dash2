@@ -53,7 +53,7 @@ export default function Products() {
     price: 0,
     images: [] as string[],
     variants: [] as ProductVariant[],
-    total_stock: 0,
+    total_stock: 1,
     category_id: "",
   });
 
@@ -72,7 +72,7 @@ export default function Products() {
       price: 0,
       images: [],
       variants: [],
-      total_stock: 0,
+      total_stock: 1,
       category_id: "",
     });
     setEditingProduct(null);
@@ -106,7 +106,7 @@ export default function Products() {
       ...prev,
       variants: [
         ...prev.variants,
-        { id: generateVariantId(), name: "", stock: 0, image: "" },
+        { id: generateVariantId(), name: "", stock: 1, image: "" },
       ],
     }));
   };

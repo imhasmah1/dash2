@@ -101,7 +101,7 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
           : t("orderSuccess.headline"),
       subtext:
         language === "ar"
-          ? "��نقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
+          ? "سنقوم بإبلاغك بالتحديثات عبر الهاتف حسب تقدم طلبك."
           : "We'll share updates by phone as your order progresses.",
       toggles: {
         displayOrderNumber: true,
@@ -302,8 +302,8 @@ export default function CheckoutDialog({ open, onClose }: CheckoutDialogProps) {
 
     return (
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="max-w-md w-[95vw] mx-auto p-0 overflow-hidden bg-white rounded-2xl border-0 shadow-2xl">
-          <div className="flex flex-col h-full max-h-[90vh]">
+        <DialogContent className="max-w-md w-[95vw] mx-auto p-0 bg-white rounded-2xl border-0 shadow-2xl max-h-[95vh] overflow-hidden">
+          <div className="flex flex-col h-full">
             {/* Header with Success Animation */}
             <DialogHeader className="p-6 pb-4 border-b bg-gradient-to-br from-green-50 to-emerald-50">
               <div className="flex items-center justify-center mb-4">

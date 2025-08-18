@@ -600,7 +600,7 @@ const translations = {
     "orders.pickup": "استلام",
     "orders.processing": "قيد المعالجة",
     "orders.ready": "جاهز",
-    "orders.delivered": "تم التسليم",
+    "orders.delivered": "تم ال��سليم",
     "orders.pickedUp": "تم الاستلام",
     "orders.orderDetails": "تفاصيل الطلب",
     "orders.items": "العناصر",
@@ -620,7 +620,7 @@ const translations = {
     "orders.lastUpdated": "آخر تحديث",
     "orders.close": "إغلاق",
     "orders.selectProduct": "اختر المنتج",
-    "orders.selectVariant": "اختر ال��وع",
+    "orders.selectVariant": "اختر النوع",
     "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
     // Added key
     "orders.refresh": "تحديث",
@@ -675,7 +675,7 @@ const translations = {
     "common.search": "بحث",
     "common.actions": "الإجراءات",
     "common.loading": "جارٍ التحميل...",
-    "common.noData": "لا تو��د بيانات",
+    "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
     "common.close": "إغلاق",
     "common.yes": "نعم",
@@ -709,6 +709,7 @@ const translations = {
     "message.customerUpdated": "تم تحديث العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
+    "message.success": "تمت العملية بنجاح",
 
     "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مرة أخرى.",
     "message.productSaveError": "فشل في حفظ المنتج. يرجى المحاولة مرة أخرى.",
@@ -731,7 +732,7 @@ const translations = {
     "store.addToCart": "إضافة للسلة",
     "store.quantity": "الكمية",
     "store.variant": "النوع",
-    "store.selectVariant": "اخت�� النوع",
+    "store.selectVariant": "اختر النوع",
     "store.cartEmpty": "سلتك فارغة",
     "store.cartTotal": "إجمالي السلة",
     "store.checkout": "إتمام الطلب",
@@ -774,7 +775,7 @@ const translations = {
     "checkout.needHelp": "تحتاج مساعدة؟",
 
     "checkout.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "checkout.contactPhone": "سيتم التواصل معك ع��ر الهاتف للتأكيد",
+    "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.importError":
       "فشل في استيراد الإعدادات. يرجى التحقق من تنسيق الملف.",
@@ -802,7 +803,7 @@ const translations = {
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage":
       "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
-    "categories.nameRequired": "اسم التصنيف مطلوب.",
+    "categories.nameRequired": "اسم التصنيف ��طلوب.",
 
     // Analytics
     "analytics.title": "تحليلات المتجر",
@@ -811,7 +812,7 @@ const translations = {
     "analytics.totalRevenue": "إجمالي الإيرادات",
     "analytics.totalCustomers": "إجمالي العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
-    "analytics.avgPerOrder": "لكل طلب",
+    "analytics.avgPerOrder": "لكل طل��",
     "analytics.newInPeriod": "جديد في الفترة",
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
@@ -854,7 +855,7 @@ const translations = {
     "settings.darkMode": "الوضع المظلم",
     "settings.accessibilityFeatures": "ميزات إمكانية الوصول",
     "settings.notifications": "الإشعارات",
-    "settings.analytics": "التحليلات",
+    "settings.analytics": "التح��يلات",
     "settings.autoBackup": "النسخ الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
     "settings.dialogScroll": "تمرير الحوار",
@@ -982,7 +983,7 @@ const translations = {
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
     "orderSuccess.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "orderSuccess.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
+    "orderSuccess.contactPhone": "سيتم التواص�� معك عبر الهاتف للتأكيد",
     "orderSuccess.contactPhoneAr": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "orderSuccess.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "orderSuccess.deliveryTimeAr": "التوصيل خلال 1-3 أيام عمل",

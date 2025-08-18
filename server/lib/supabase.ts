@@ -133,24 +133,6 @@ let fallbackCategories: Category[] = [
 
 let fallbackProducts: Product[] = [
   {
-    id: "1",
-    name: "Wireless Bluetooth Headphones",
-    description: "Premium quality headphones with noise cancellation",
-    price: 35.0,
-    images: [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
-    ],
-    variants: [
-      { id: "v1", name: "Black", stock: 25 },
-      { id: "v2", name: "White", stock: 15 },
-      { id: "v3", name: "Silver", stock: 5 },
-    ],
-    category_id: "1",
-    total_stock: 45,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
     id: "2",
     name: "Adjustable Laptop Stand",
     description: "Ergonomic laptop stand for better posture",
