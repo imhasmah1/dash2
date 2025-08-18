@@ -121,7 +121,7 @@ export default function Store() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header - Mobile Optimized */}
-      <header className="border-b bg-card shadow-sm sticky top-0 z-50">
+      <header className="border-b bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between [dir=rtl]:flex-row-reverse">
           {/* Logo and Title */}
           <div className="flex items-center gap-2 sm:gap-3 [dir=rtl]:flex-row-reverse min-w-0 flex-1">
@@ -200,7 +200,7 @@ export default function Store() {
       </header>
 
       {/* Search and Category Filter - Mobile Optimized */}
-      <div className="border-b bg-card/50">
+      <div className="border-b bg-gray-50/50">
         <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-4">
           {/* Search Bar + Categories row */}
           <div className="flex flex-col gap-4">
@@ -291,11 +291,11 @@ export default function Store() {
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-card rounded-xl border border-border shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer group"
+                className="bg-white rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer group"
               >
                 {/* Product Image */}
                 <div
-                  className="aspect-square overflow-hidden bg-muted"
+                  className="aspect-square overflow-hidden bg-gray-100"
                   onClick={() => navigate(`/product/${product.id}`)}
                 >
                   {product.images.length > 0 ? (
@@ -314,22 +314,25 @@ export default function Store() {
                 </div>
 
                 {/* Product Info - Mobile Optimized */}
-                <div className="p-2 sm:p-3 lg:p-4 flex flex-col h-full">
+                <div className="p-2 sm:p-3 lg:p-4">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 line-clamp-2 hover:text-white transition-colors auto-text leading-tight text-white dark:text-white">
+                    <h3 className="font-semibold text-sm sm:text-base lg:text-lg mb-1 sm:mb-2 line-clamp-2 hover:text-primary transition-colors auto-text leading-tight">
                       {product.name}
                     </h3>
+
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 auto-text">
+                      {product.description}
+                    </p>
                   </div>
 
-                  {/* Fixed layout - price and button always aligned regardless of title length */}
-                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse gap-2 mt-auto">
-                    <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between [dir=rtl]:flex-row-reverse gap-2">
+                    <div className="min-w-0 flex-1 flex flex-col justify-center">
                       <div className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
-                        <span className="text-sm sm:text-base lg:text-lg font-bold text-white ltr-text dark:text-white">
+                        <span className="text-sm sm:text-base lg:text-lg font-bold text-primary ltr-text">
                           BD {product.price.toFixed(2)}
                         </span>
                         {(product.total_stock || 0) > 0 && (
-                          <span className="text-xs text-white/80 auto-text dark:text-white/80">
+                          <span className="text-xs text-muted-foreground auto-text">
                             •{" "}
                             <span className="ltr-text">
                               {product.total_stock || 0}
