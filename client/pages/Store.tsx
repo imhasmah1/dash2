@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useCart } from "../contexts/CartContext";
 import { useData } from "../contexts/DataContext";
-import { useTheme } from "../contexts/ThemeContext";
 import { getProducts } from "../services/api";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -16,8 +15,6 @@ import {
   Search,
   X,
   Instagram,
-  Moon,
-  Sun,
 } from "lucide-react";
 import { Badge } from "../components/ui/badge";
 import {
@@ -49,7 +46,6 @@ export default function Store() {
   const { t, language, setLanguage, translateCategory } = useLanguage();
   const { getTotalItems, setIsCartOpen, isCartOpen } = useCart();
   const { categories, getCategoryById } = useData();
-  const { isDarkMode, toggleDarkMode } = useTheme();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
