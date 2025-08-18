@@ -94,89 +94,97 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                   {items.map((item) => (
                     <div
                       key={`${item.productId}-${item.variantId}`}
-                      className="group relative bg-gray-50 rounded-lg border p-3 hover:bg-gray-100 transition-colors"
+                      className="group relative bg-white rounded-xl border shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
                     >
-                      <div
-                        className={cn(
-                          "flex gap-3 sm:gap-4",
-                          isRTL ? "flex-row-reverse" : "",
-                        )}
-                      >
-                        {/* Product Image */}
-                        {item.productImage && (
-                          <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-200 shrink-0">
-                            <img
-                              src={item.productImage}
-                              alt={item.productName}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        )}
-
-                        {/* Product Details */}
-                        <div className="flex-1 min-w-0 space-y-2 sm:space-y-3">
-                          <div
-                            className={cn(
-                              "flex items-start justify-between gap-2 sm:gap-3",
-                              isRTL ? "flex-row-reverse" : "",
-                            )}
-                          >
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-bold text-base sm:text-lg text-gray-900 leading-tight auto-text mb-1">
-                                {item.productName}
-                              </h4>
-                              {item.variantName && (
-                                <p className="text-xs sm:text-sm text-gray-600 font-medium auto-text">
-                                  {item.variantName}
-                                </p>
-                              )}
+                      {/* Product Header Section */}
+                      <div className="p-4 border-b border-gray-100">
+                        <div
+                          className={cn(
+                            "flex gap-4 items-start",
+                            isRTL ? "flex-row-reverse" : "",
+                          )}
+                        >
+                          {/* Product Image */}
+                          {item.productImage && (
+                            <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0 shadow-sm">
+                              <img
+                                src={item.productImage}
+                                alt={item.productName}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
+                          )}
 
-                            {/* Remove Button */}
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() =>
-                                removeItem(item.productId, item.variantId)
-                              }
-                              className="shrink-0 h-8 w-8 sm:h-9 sm:w-9 p-0 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl opacity-0 group-hover:opacity-100 sm:opacity-0 opacity-100 transition-all duration-200"
-                            >
-                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
-                            </Button>
-                          </div>
-
-                          {/* Unit Price */}
-                          <div className="bg-primary/10 rounded-lg px-2 sm:px-3 py-2">
+                          {/* Product Info */}
+                          <div className="flex-1 min-w-0">
                             <div
                               className={cn(
-                                "flex items-center justify-between",
+                                "flex items-start justify-between gap-3",
                                 isRTL ? "flex-row-reverse" : "",
                               )}
                             >
-                              <span className="text-xs sm:text-sm font-medium text-gray-700 auto-text">
-                                {t("store.unitPrice")}:
-                              </span>
-                              <span className="text-sm sm:text-lg font-bold text-primary ltr-text">
-                                {language === "ar"
-                                  ? t("common.currencyAr")
-                                  : t("common.currency")}{" "}
-                                {item.price.toFixed(2)}
-                              </span>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-bold text-lg text-gray-900 leading-tight auto-text mb-1">
+                                  {item.productName}
+                                </h4>
+                                {item.variantName && (
+                                  <p className="text-sm text-gray-600 font-medium auto-text">
+                                    {item.variantName}
+                                  </p>
+                                )}
+                              </div>
+
+                              {/* Remove Button */}
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() =>
+                                  removeItem(item.productId, item.variantId)
+                                }
+                                className="shrink-0 h-9 w-9 p-0 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl opacity-0 group-hover:opacity-100 sm:opacity-100 transition-all duration-200"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
                             </div>
                           </div>
+                        </div>
+                      </div>
 
-                          {/* Quantity Controls */}
+                      {/* Product Details Section */}
+                      <div className="p-4 space-y-4">
+                        {/* Unit Price */}
+                        <div className="bg-gray-50 rounded-xl p-3">
                           <div
                             className={cn(
                               "flex items-center justify-between",
                               isRTL ? "flex-row-reverse" : "",
                             )}
                           >
-                            <span className="text-xs sm:text-sm font-medium text-gray-700 auto-text">
+                            <span className="text-sm font-medium text-gray-700 auto-text">
+                              {t("store.unitPrice")}:
+                            </span>
+                            <span className="text-lg font-bold text-primary ltr-text">
+                              {language === "ar"
+                                ? t("common.currencyAr")
+                                : t("common.currency")}{" "}
+                              {item.price.toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Quantity Controls */}
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <div
+                            className={cn(
+                              "flex items-center justify-between",
+                              isRTL ? "flex-row-reverse" : "",
+                            )}
+                          >
+                            <span className="text-sm font-medium text-gray-700 auto-text">
                               {t("store.quantity")}:
                             </span>
 
-                            <div className="flex items-center gap-1 sm:gap-2 bg-white rounded-xl border-2 border-gray-200 p-1">
+                            <div className="flex items-center gap-2 bg-white rounded-xl border border-gray-200 p-1">
                               <Button
                                 variant="ghost"
                                 size="sm"
@@ -187,25 +195,16 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                                     item.quantity - 1,
                                   )
                                 }
-                                className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
+                                className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
                               >
-                                <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
+                                <Minus className="h-4 w-4" />
                               </Button>
 
-                              <Input
-                                type="number"
-                                value={item.quantity}
-                                onChange={(e) =>
-                                  handleQuantityChange(
-                                    item.productId,
-                                    item.variantId,
-                                    parseInt(e.target.value) || 1,
-                                  )
-                                }
-                                min={1}
-                                max={50}
-                                className="w-10 sm:w-14 h-7 sm:h-8 text-center text-sm sm:text-base font-semibold border-0 bg-transparent focus:ring-0 ltr-text"
-                              />
+                              <div className="w-12 text-center">
+                                <span className="text-base font-semibold ltr-text">
+                                  {item.quantity}
+                                </span>
+                              </div>
 
                               <Button
                                 variant="ghost"
@@ -217,34 +216,34 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                                     item.quantity + 1,
                                   )
                                 }
-                                className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
+                                className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg"
                               >
-                                <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                                <Plus className="h-4 w-4" />
                               </Button>
                             </div>
                           </div>
+                        </div>
 
-                          {/* Item Total */}
-                          <div className="bg-gray-50 rounded-lg px-2 sm:px-3 py-2 sm:py-3 border-t-2 border-primary/20">
-                            <div
-                              className={cn(
-                                "flex justify-between items-center",
-                                isRTL ? "flex-row-reverse" : "",
-                              )}
-                            >
-                              <span className="text-sm sm:text-base font-semibold text-gray-700 auto-text">
-                                {language === "ar"
-                                  ? t("common.totalAr")
-                                  : t("common.total")}
-                                :
-                              </span>
-                              <span className="text-lg sm:text-xl font-bold text-primary ltr-text">
-                                {language === "ar"
-                                  ? t("common.currencyAr")
-                                  : t("common.currency")}{" "}
-                                {(item.price * item.quantity).toFixed(2)}
-                              </span>
-                            </div>
+                        {/* Item Total */}
+                        <div className="bg-primary/5 rounded-xl p-3 border border-primary/20">
+                          <div
+                            className={cn(
+                              "flex justify-between items-center",
+                              isRTL ? "flex-row-reverse" : "",
+                            )}
+                          >
+                            <span className="text-sm font-semibold text-gray-700 auto-text">
+                              {language === "ar"
+                                ? t("common.totalAr")
+                                : t("common.total")}
+                              :
+                            </span>
+                            <span className="text-xl font-bold text-primary ltr-text">
+                              {language === "ar"
+                                ? t("common.currencyAr")
+                                : t("common.currency")}{" "}
+                              {(item.price * item.quantity).toFixed(2)}
+                            </span>
                           </div>
                         </div>
                       </div>
