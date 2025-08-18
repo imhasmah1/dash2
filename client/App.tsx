@@ -70,7 +70,6 @@ import { DataProvider } from "@/contexts/DataContext";
 import { DialogProvider } from "@/contexts/DialogContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import LoginPage from "@/components/LoginPage";
 import DashboardLayout from "@/components/DashboardLayout";
 import Dashboard from "@/pages/Dashboard";
@@ -129,19 +128,17 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ThemeProvider>
-          <LanguageProvider>
-            <CartProvider>
-              <AuthProvider>
-                <DataProvider>
-                  <DialogProvider>
-                    <AppContent />
-                  </DialogProvider>
-                </DataProvider>
-              </AuthProvider>
-            </CartProvider>
-          </LanguageProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <CartProvider>
+            <AuthProvider>
+              <DataProvider>
+                <DialogProvider>
+                  <AppContent />
+                </DialogProvider>
+              </DataProvider>
+            </AuthProvider>
+          </CartProvider>
+        </LanguageProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
