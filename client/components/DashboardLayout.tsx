@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard,
@@ -17,8 +16,6 @@ import {
   Languages,
   FolderOpen,
   Settings,
-  Moon,
-  Sun,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -45,7 +42,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { logout } = useAuth();
   const { language, setLanguage, isRTL, t } = useLanguage();
-  const { isDarkMode, toggleDarkMode } = useTheme();
   const location = useLocation();
 
   // Force sidebar to close when language changes to prevent RTL/LTR positioning issues
@@ -67,7 +63,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-gray-50">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
@@ -80,7 +76,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div
         key={`sidebar-${language}`}
         className={cn(
-          "fixed inset-y-0 z-50 w-64 bg-card border-r border-border shadow-xl transition-transform duration-300 ease-in-out",
+          "fixed inset-y-0 z-50 w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out",
           // For RTL: position on right, for LTR: position on left
           isRTL ? "right-0" : "left-0",
           // Transform logic based on direction and state (works on all screen sizes)
@@ -152,20 +148,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
           <Button
-            onClick={toggleDarkMode}
-            variant="outline"
-            className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
-          >
-            {isDarkMode ? (
-              <Sun className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            ) : (
-              <Moon className={cn("w-4 h-4", isRTL ? "ml-2" : "mr-2")} />
-            )}
-            {isDarkMode
-              ? (language === "ar" ? t("common.lightMode") : t("common.lightMode"))
-              : (language === "ar" ? t("common.darkMode") : t("common.darkMode"))}
-          </Button>
-          <Button
             onClick={toggleLanguage}
             variant="outline"
             className="w-full justify-start [dir=rtl]:justify-end [dir=rtl]:flex-row-reverse"
@@ -187,7 +169,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="bg-card shadow-sm border-b border-border">
+        <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between h-16 px-4 [dir=rtl]:flex-row-reverse">
             <button
               onClick={() => setSidebarOpen(true)}
