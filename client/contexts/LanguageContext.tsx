@@ -574,7 +574,7 @@ const translations = {
     "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
-    "orders.orderId": "��قم الطلب",
+    "orders.orderId": "رقم الطلب",
     "orders.customer": "العميل",
     "orders.total": "الإجمالي",
     "orders.status": "الحالة",
@@ -673,7 +673,7 @@ const translations = {
     "common.edit": "تعديل",
     "common.add": "إضافة",
     "common.search": "بحث",
-    "common.actions": "الإجراءات",
+    "common.actions": "��لإجراءات",
     "common.loading": "جارٍ التحميل...",
     "common.noData": "لا توجد بيانات",
     "common.confirm": "تأكيد",
@@ -797,7 +797,7 @@ const translations = {
     // Category dialogs
     "categories.deleteTitle": "حذف التصنيف",
     "categories.deleteMessage":
-      "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء ل�� يمكن التراجع عنه.",
+      "هل أنت متأكد من حذف هذا التصنيف؟ هذا الإجراء لا يمكن التراجع عنه.",
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage":
@@ -897,7 +897,7 @@ const translations = {
     "settings.passwordsDoNotMatch": "كلمات المرور غير متطابقة",
     "settings.passwordChanged": "تم تغيير كلمة المرور بنجاح",
     "settings.exportSettings": "تصدير الإعدادات",
-    "settings.importSettings": "استيراد الإعدادات",
+    "settings.importSettings": "��ستيراد الإعدادات",
     "settings.exportDescription": "تحميل إعداداتك الحالية كملف نسخ احتياطي",
     "settings.importDescription": "رفع ملف إعدادات مُصدّر مسبقاً",
     "settings.chooseFile": "اختر الملف",
@@ -943,7 +943,7 @@ const translations = {
     "settings.wednesday": "الأربعاء",
     "settings.thursday": "الخميس",
     "settings.friday": "الجمعة",
-    "settings.saturday": "السبت",
+    "settings.saturday": "ا��سبت",
     "settings.sunday": "الأحد",
     "settings.closed": "مغلق",
 
