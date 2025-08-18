@@ -762,53 +762,59 @@ export default function Orders() {
 
       {/* View Order Details Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[95vh] overflow-y-auto rounded-lg sm:rounded-md">
-          <DialogHeader>
-            <DialogTitle>
+        <DialogContent className="w-[95vw] sm:max-w-3xl max-h-[95vh] overflow-y-auto rounded-xl border-0 shadow-2xl">
+          <DialogHeader className="pb-6 border-b border-gray-100">
+            <DialogTitle className="text-2xl font-bold text-gray-900">
               {t("orders.orderDetailsTitle")} #
               {viewingOrder ? getOrderNumber(viewingOrder.id) : ""}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-base text-gray-600 mt-2">
               {t("orders.orderDetailsDesc")}
             </DialogDescription>
           </DialogHeader>
           {viewingOrder && (
-            <div className="space-y-6">
+            <div className="space-y-8 py-6">
               {/* Customer Information */}
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h3 className="font-medium text-blue-900 mb-3 flex items-center gap-2">
-                  <User className="w-5 h-5" />
+              <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h3 className="font-bold text-blue-900 mb-5 flex items-center gap-3 text-lg">
+                  <User className="w-6 h-6" />
                   {t("orders.customerInfo")}
                 </h3>
                 {(() => {
                   const customer = getCustomerById(viewingOrder.customerId);
                   return customer ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="font-medium">
-                          {t("orders.customerName")}:
-                        </span>{" "}
-                        {customer.name}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Phone className="w-4 h-4" />
-                        <span className="font-medium">
-                          {t("orders.customerPhone")}:
-                        </span>{" "}
-                        {customer.phone}
-                      </div>
-                      <div className="md:col-span-2 flex items-start gap-1">
-                        <MapPin className="w-4 h-4 mt-0.5" />
-                        <div>
-                          <span className="font-medium">
-                            {t("orders.deliveryAddress")}:
+                    <div className="space-y-4">
+                      <div className="bg-white p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="font-bold text-gray-700 text-base">
+                            {t("orders.customerName")}:
                           </span>
-                          <p>{customer.address}</p>
+                          <span className="text-gray-900 text-base font-medium">{customer.name}</span>
+                        </div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-center gap-3">
+                          <Phone className="w-5 h-5 text-blue-600" />
+                          <span className="font-bold text-gray-700 text-base">
+                            {t("orders.customerPhone")}:
+                          </span>
+                          <span className="text-gray-900 text-base font-medium">{customer.phone}</span>
+                        </div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-start gap-3">
+                          <MapPin className="w-5 h-5 text-blue-600 mt-1" />
+                          <div>
+                            <span className="font-bold text-gray-700 text-base block mb-2">
+                              {t("orders.deliveryAddress")}:
+                            </span>
+                            <p className="text-gray-900 text-base leading-relaxed">{customer.address}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <p className="text-red-600">
+                    <p className="text-red-600 font-medium text-base">
                       {t("orders.customerNotFound")}
                     </p>
                   );
