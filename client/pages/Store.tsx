@@ -151,24 +151,6 @@ export default function Store() {
               <span className="hidden sm:inline ml-1 sm:ml-2 [dir=rtl]:ml-0 [dir=rtl]:mr-1 [dir=rtl]:sm:mr-2">Instagram</span>
             </Button>
 
-            {/* Dark Mode Toggle */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleDarkMode}
-              className="h-10 px-2 sm:px-3 touch-manipulation hover:bg-primary/5 hover:border-primary transition-colors"
-            >
-              {isDarkMode ? (
-                <Sun className="h-4 w-4 flex-shrink-0" />
-              ) : (
-                <Moon className="h-4 w-4 flex-shrink-0" />
-              )}
-              <span className="hidden sm:inline ml-1 sm:ml-2 [dir=rtl]:ml-0 [dir=rtl]:mr-1 [dir=rtl]:sm:mr-2">
-                {isDarkMode
-                  ? (language === "ar" ? "النهاري" : "Light")
-                  : (language === "ar" ? "الليلي" : "Dark")}
-              </span>
-            </Button>
 
             {/* Language Switch */}
             <DropdownMenu>
