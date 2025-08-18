@@ -891,46 +891,59 @@ export default function Orders() {
               </div>
 
               {/* Order Summary */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="flex justify-between items-center mb-2">
-                  <span>{t("orders.status")}:</span>
-                  <Badge className={getStatusColor(viewingOrder.status)}>
-                    {getStatusText(viewingOrder.status)}
-                  </Badge>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span>{t("orders.deliveryType")}:</span>
-                  <span className="capitalize font-medium text-dashboard-primary">
-                    {viewingOrder.deliveryType === "delivery"
-                      ? t("orders.delivery")
-                      : t("orders.pickup")}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span>{t("orders.created")}:</span>
-                  <span>
-                    {new Date(viewingOrder.createdAt).toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mb-3">
-                  <span>{t("orders.lastUpdated")}:</span>
-                  <span>
-                    {new Date(viewingOrder.updatedAt).toLocaleString()}
-                  </span>
-                </div>
-                {viewingOrder.notes && (
-                  <div className="mb-3">
-                    <span className="font-medium">{t("orders.notes")}:</span>
-                    <p className="text-gray-600 mt-1">{viewingOrder.notes}</p>
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100">
+                <h3 className="font-bold text-green-900 mb-5 text-lg">Order Summary</h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">{t("orders.status")}:</span>
+                      <Badge className={`${getStatusColor(viewingOrder.status)} text-sm font-bold px-3 py-1`}>
+                        {getStatusText(viewingOrder.status)}
+                      </Badge>
+                    </div>
                   </div>
-                )}
-                <div className="border-t pt-3 flex justify-between items-center">
-                  <span className="text-lg font-medium">
-                    {t("orders.total")}:
-                  </span>
-                  <span className="text-2xl font-bold text-dashboard-primary">
-                    BD {viewingOrder.total.toFixed(2)}
-                  </span>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">{t("orders.deliveryType")}:</span>
+                      <span className="capitalize font-bold text-dashboard-primary text-base">
+                        {viewingOrder.deliveryType === "delivery"
+                          ? t("orders.delivery")
+                          : t("orders.pickup")}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">{t("orders.created")}:</span>
+                      <span className="font-medium text-gray-900 text-base">
+                        {new Date(viewingOrder.createdAt).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700 text-base">{t("orders.lastUpdated")}:</span>
+                      <span className="font-medium text-gray-900 text-base">
+                        {new Date(viewingOrder.updatedAt).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                  {viewingOrder.notes && (
+                    <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                      <span className="font-bold text-yellow-800 text-base block mb-2">{t("orders.notes")}:</span>
+                      <p className="text-yellow-900 font-medium text-base leading-relaxed">{viewingOrder.notes}</p>
+                    </div>
+                  )}
+                  <div className="bg-dashboard-primary p-5 rounded-lg border-2 border-dashboard-primary">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xl font-bold text-white">
+                        {t("orders.total")}:
+                      </span>
+                      <span className="text-3xl font-bold text-white">
+                        BD {viewingOrder.total.toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
