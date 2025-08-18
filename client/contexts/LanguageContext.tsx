@@ -500,8 +500,6 @@ const translations = {
     "common.itemsAr": "منتجات",
     "common.language": "Language",
     "common.languageAr": "العربية",
-    "common.darkMode": "Dark Mode",
-    "common.lightMode": "Light Mode",
 
     // Order success messages
     "orderSuccess.headline": "Order Confirmed!",
@@ -576,7 +574,7 @@ const translations = {
     "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
-    "orders.orderId": "رقم الطلب",
+    "orders.orderId": "��قم الطلب",
     "orders.customer": "العميل",
     "orders.total": "الإجمالي",
     "orders.status": "الحالة",
@@ -656,10 +654,10 @@ const translations = {
     "revenue.totalRevenue": "إجمالي الإيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
-    "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
+    "revenue.monthlyTrend": "اتجاه الإير��دات الشهرية",
     "revenue.dailyRevenue": "الإيرادات اليومية (هذا الشهر)",
     "revenue.topProducts": "أفضل المنتجات من حيث الإيرادات",
-    "revenue.deliveryAnalysis": "تحل��ل نوع التسليم",
+    "revenue.deliveryAnalysis": "تحليل نوع التسليم",
     "revenue.revenueByStatus": "الإيرادات حسب حالة الطلب",
     "revenue.month": "الشهر",
     "revenue.revenue": "الإيرادات",
@@ -712,7 +710,7 @@ const translations = {
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
 
-    "message.customerSaveError": "��شل في حفظ العميل. يرجى المحاولة مرة أخرى.",
+    "message.customerSaveError": "فشل في حفظ العميل. يرجى المحاولة مرة أخرى.",
     "message.productSaveError": "فشل في حفظ المنتج. يرجى المحاولة مرة أخرى.",
     "message.uploadError": "فشل في رفع الصور. يرجى المحاولة مرة أخرى.",
 
@@ -739,7 +737,7 @@ const translations = {
     "store.checkout": "إتمام الطلب",
     "store.continueShopping": "متابعة التسوق",
     "store.removeFromCart": "إزالة من السلة",
-    "store.updateQuantity": "تحديث الكمية",
+    "store.updateQuantity": "تحديث ا��كمية",
     "store.clearCart": "إفراغ السلة",
     "store.startShoppingAr": "ابدأ التسوق لإضافة منتجات إلى سلتك",
     "store.unitPrice": "سعر الوحدة",
@@ -785,7 +783,7 @@ const translations = {
     "store.outOfStock": "نفد المخزون",
     "store.inStock": "متوفر",
     "store.viewDetails": "عرض التفاصيل",
-    "store.productDetails": "تفاصي�� المنتج",
+    "store.productDetails": "تفاصيل المنتج",
     "store.search": "البحث في المنتجات...",
     "store.searchResults": "نتائج البحث",
     "store.noSearchResults": "لا توجد منتجات للبحث المطلوب",
@@ -832,7 +830,7 @@ const translations = {
     "common.unknownProduct": "منتج غير معروف",
     "common.product": "منتج",
     "common.default": "افتراضي",
-    "errors.orderFailed": "��شل في إرسال الطلب. يرجى المحاولة مرة أخرى.",
+    "errors.orderFailed": "فشل في إرسال الطلب. يرجى المحاولة مرة أخرى.",
     "dashboard.noOrdersYet": "لا توجد طلبات بعد. أنشئ أول طلب لك لرؤيته هنا!",
     "notFound.title": "404",
     "notFound.message": "عذراً! الصفحة غير موجودة",
@@ -871,7 +869,7 @@ const translations = {
 
     // Settings Tabs
     "settings.basicSettings": "الإعدادات الأساسية",
-    "settings.deliverySettings": "إ��دادات التوصيل",
+    "settings.deliverySettings": "إعدادات التوصيل",
     "settings.messageSettings": "إعدادات الرسائل",
     "settings.successScreenSettings": "إعدادات شاشة النجاح",
     "settings.displayOrderNumber": "عرض رقم الطلب",
@@ -961,7 +959,7 @@ const translations = {
     "settings.orderMessages": "رسائل الطلبات",
     "settings.englishMessages": "الرسائل الإنجليزية",
     "settings.arabicMessages": "الرسائل العربية",
-    "settings.orderSuccessMessage": "رسالة نجاح الطل��",
+    "settings.orderSuccessMessage": "رسالة نجاح الطلب",
     "settings.orderInstructions": "تعليمات الطلب",
     "settings.note": "ملاحظة",
     "settings.orderMessageNote":
@@ -978,8 +976,6 @@ const translations = {
     "common.itemsAr": "منتجات",
     "common.language": "اللغة",
     "common.languageAr": "العربية",
-    "common.darkMode": "الوضع الليلي",
-    "common.lightMode": "الوضع النهاري",
 
     // Order success messages
     "orderSuccess.headline": "تم تأكيد الطلب!",
