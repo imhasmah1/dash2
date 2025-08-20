@@ -535,7 +535,7 @@ const translations = {
     "products.title": "المنتجات",
     "products.subtitle": "إدارة مخزون المنتجات",
     "products.addNew": "إضافة منتج جديد",
-    "products.search": "البحث ف�� المنتجات...",
+    "products.search": "البحث في المنتجات...",
     "products.name": "الاسم",
     "products.price": "السعر",
     "products.stock": "المخزون",
@@ -599,7 +599,7 @@ const translations = {
     "orders.delivery": "توصيل",
     "orders.pickup": "استلام",
     "orders.processing": "قيد المعالجة",
-    "orders.ready": "جاهز",
+    "orders.ready": "جا��ز",
     "orders.delivered": "تم التسليم",
     "orders.pickedUp": "تم الاستلام",
     "orders.orderDetails": "تفاصيل الطلب",
@@ -623,7 +623,7 @@ const translations = {
     "orders.selectVariant": "اختر النوع",
     "orders.notesPlaceholder": "تعليمات خاصة أو ملاحظات...",
     // Added key
-    "orders.refresh": "تحديث",
+    "orders.refresh": "تحدي��",
 
     // Customers
     "customers.title": "العملاء",
@@ -651,7 +651,7 @@ const translations = {
     // Revenue
     "revenue.title": "تحليلات الإيرادات",
     "revenue.overview": "نظرة عامة على الإيرادات",
-    "revenue.totalRevenue": "إجمالي الإيرادات",
+    "revenue.totalRevenue": "إجمالي ا��إيرادات",
     "revenue.ordersCount": "عدد الطلبات",
     "revenue.avgOrderValue": "متوسط قيمة الطلب",
     "revenue.monthlyTrend": "اتجاه الإيرادات الشهرية",
@@ -706,7 +706,7 @@ const translations = {
     "message.orderUpdated": "تم تحديث الطلب بنجاح",
     "message.orderDeleted": "تم حذف الطلب بنجاح",
     "message.customerAdded": "تم إضافة العميل بنجاح",
-    "message.customerUpdated": "تم تحديث العميل بنجاح",
+    "message.customerUpdated": "تم تحدي�� العميل بنجاح",
     "message.customerDeleted": "تم حذف العميل بنجاح",
     "message.error": "حدث خطأ",
     "message.success": "تمت العملية بنجاح",
@@ -778,7 +778,7 @@ const translations = {
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.importError":
-      "فشل في استيراد الإعدادات. يرجى التحقق من تنسيق الملف.",
+      "فشل في استيراد الإعدادات. يرجى التحقق من تنسي�� الملف.",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
@@ -802,7 +802,7 @@ const translations = {
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage":
-      "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
+      "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التص��يف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
@@ -846,7 +846,7 @@ const translations = {
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
     "settings.resetConfirm":
       "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
-    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس الحفظ!",
+    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس ا��حفظ!",
     "settings.advancedSettings": "الإعدادات المتقدمة",
     "settings.performanceMode": "وضع الأداء",
     "settings.imageCompression": "ضغط الصور",
@@ -865,7 +865,7 @@ const translations = {
     "settings.maxOrderQuantity": "الحد الأقصى لكمية الطلب",
     "settings.orderProcessingTime": "وقت معالجة الطلب",
     "settings.performanceOptimization": "الأداء والتحسين",
-    "settings.userExperience": "تجربة المستخدم",
+    "settings.userExperience": "��جربة المستخدم",
     "settings.systemSettings": "إعدادات النظام",
 
     // Settings Tabs
@@ -903,7 +903,7 @@ const translations = {
     "settings.importDescription": "رفع ملف إعدادات مُصدّر مسبقاً",
     "settings.chooseFile": "اختر الملف",
     "settings.noFileChosen": "لم يتم اختيار ملف",
-    "settings.displayOptions": "خيارات العرض",
+    "settings.displayOptions": "خيارات ��لعرض",
     "settings.paymentSettings": "إعدادات الدفع",
 
     "settings.enablePerformanceMode": "وضع الأداء",
@@ -957,7 +957,7 @@ const translations = {
     "settings.estimatedDeliveryTime": "الوقت المتوقع للتوصيل",
 
     // Order Messages
-    "settings.orderMessages": "رسائل الطلبات",
+    "settings.orderMessages": "رسائل الطلب��ت",
     "settings.englishMessages": "الرسائل الإنجليزية",
     "settings.arabicMessages": "الرسائل العربية",
     "settings.orderSuccessMessage": "رسالة نجاح الطلب",
