@@ -18,6 +18,7 @@ import {
   Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Footer from "./Footer";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
