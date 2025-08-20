@@ -187,6 +187,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
         {/* Page content */}
         <main className="flex-1 overflow-auto p-6">{children}</main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );
