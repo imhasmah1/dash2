@@ -132,6 +132,7 @@ interface StoreSettings {
 export default function Settings() {
   const { t, language } = useLanguage();
   const { showConfirm, showAlert } = useDialog();
+  const { products, orders, customers, refetchData } = useData();
   const [settings, setSettings] = useState<StoreSettings>({
     storeName: "",
     storeDescription: "",
