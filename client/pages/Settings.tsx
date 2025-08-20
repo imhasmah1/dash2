@@ -307,6 +307,7 @@ export default function Settings() {
     { id: "basic", label: t("settings.basicSettings"), icon: Store },
     { id: "delivery", label: t("settings.deliverySettings"), icon: Truck },
     { id: "admin", label: t("settings.adminSettings"), icon: Shield },
+    { id: "system", label: t("settings.systemSettings"), icon: Monitor },
   ];
 
   return (
