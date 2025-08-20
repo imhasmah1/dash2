@@ -588,7 +588,7 @@ const translations = {
     "orders.addOrder": "إضافة طلب",
     "orders.editOrder": "تعديل طلب",
     "orders.selectCustomer": "اختر العميل",
-    "orders.addItem": "إضاف�� عنصر",
+    "orders.addItem": "إضافة عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
     "orders.quantity": "الكمية",
