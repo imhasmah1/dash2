@@ -571,7 +571,7 @@ const translations = {
 
     // Orders
     "orders.title": "الطلبات",
-    "orders.subtitle": "إدارة طلبات العملاء والتوصيل",
+    "orders.subtitle": "��دارة طلبات العملاء والتوصيل",
     "orders.addNew": "إضافة طلب جديد",
     "orders.search": "البحث في الطلبات...",
     "orders.orderId": "رقم الطلب",
@@ -645,7 +645,7 @@ const translations = {
     "customers.customerHome": "رقم المنزل",
     "customers.customerRoad": "رقم الطريق",
     "customers.customerBlock": "رقم المجمع",
-    "customers.customerTown": "البلدة/المن��قة",
+    "customers.customerTown": "البلدة/المنطقة",
     "customers.save": "حفظ",
 
     // Revenue
@@ -758,7 +758,7 @@ const translations = {
     "checkout.pickup": "استلام",
     "checkout.orderSummary": "ملخص الطلب",
     "checkout.subtotal": "المجموع الفرعي",
-    "checkout.deliveryFee": "رسوم التوصيل",
+    "checkout.deliveryFee": "رسوم التوص��ل",
     "checkout.total": "المجموع الكلي",
     "checkout.orderTotal": "إجمالي الطلب",
     "checkout.placeOrder": "إرسال الطلب",
@@ -778,7 +778,7 @@ const translations = {
     "checkout.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "checkout.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "checkout.importError":
-      "فشل في استيراد الإعدادات. يرجى التحقق من تنسي�� الملف.",
+      "فشل في استيراد الإعدادات. يرجى الت��قق من تنسي�� الملف.",
 
     // Additional store keys
     "store.outOfStock": "نفد المخزون",
@@ -802,7 +802,7 @@ const translations = {
     "categories.deleteSuccess": "تم حذف التصنيف بنجاح.",
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage":
-      "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التص��يف من جميع المنتجات قبل الحذف.",
+      "هذا التصنيف مستخدم في {count} منتج. ير��ى إزالة التص��يف من جميع المنتجات قبل الحذف.",
     "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
@@ -846,7 +846,7 @@ const translations = {
     "settings.saveError": "فشل في حفظ الإعدادات. يرجى المحاولة مرة أخرى.",
     "settings.resetConfirm":
       "هل أنت متأكد من إعادة تعيين جميع الإعدادات للقيم الافتراضية؟",
-    "settings.unsavedChanges": "لديك تغييرات غير محفوظة. لا تنس ا��حفظ!",
+    "settings.unsavedChanges": "لديك تغييرات غير ��حفوظة. لا تنس ا��حفظ!",
     "settings.advancedSettings": "الإعدادات المتقدمة",
     "settings.performanceMode": "وضع الأداء",
     "settings.imageCompression": "ضغط الصور",
