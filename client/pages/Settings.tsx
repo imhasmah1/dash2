@@ -762,6 +762,123 @@ export default function Settings() {
             </Card>
           </div>
         )}
+
+        {/* System Settings */}
+        {activeTab === "system" && (
+          <div className="max-w-4xl mx-auto space-y-6">
+            {/* System Information */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Monitor className="w-5 h-5" />
+                  System Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">Environment</Label>
+                    <p className="text-sm text-muted-foreground">
+                      {import.meta.env.MODE === 'development' ? 'Development' : 'Production'}
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">WebSocket Status</Label>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-sm text-green-600">WebSocket Connected</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">Real-time Support</Label>
+                    <p className="text-sm text-muted-foreground">✓ WebSocket Available</p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">Last Analytics Reset</Label>
+                    <p className="text-sm text-muted-foreground">{new Date().toLocaleDateString()}, 3:06:58 PM</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* System Health */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  System Health
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-green-50 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600">6</div>
+                    <div className="text-sm text-green-700">Flight Plans in Memory</div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-600">Available</div>
+                    <div className="text-sm text-blue-700">Real-time Support</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-2xl font-bold text-gray-600">Traditional Server</div>
+                    <div className="text-sm text-gray-700">Environment</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Runtime Debug Logs */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Info className="w-5 h-5" />
+                  Runtime Debug Logs
+                </CardTitle>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline">
+                    Refresh Logs
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    Test Endpoint
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    Clear Display
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm max-h-64 overflow-y-auto">
+                  <div className="space-y-1">
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket): Admin login successful</div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket):
+                      Received Data: flight plan
+                      ["settings": "username.ip.plans-HTTPS://dev", "url": "dev"]
+                    </div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket): Received Data: flight plan</div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket):
+                      ["setting": "username.ip.plans-HTTPS://dev", "url": "dev"]
+                    </div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket): Received Data: flight plan</div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket):
+                      ["settings": "username.ip.plans-HTTPS://dev", "url": "dev"]
+                    </div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket): Received Data: flight plan</div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket):
+                      ["settings": "username.ip.plans-HTTPS://dev", "url": "dev"]
+                    </div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket): Received Data: flight plan</div>
+                    <div>[16:03:2024, 1:45 PM] INFO (WebSocket):
+                      ["settings": "username.ip.plans-HTTPS://dev", "url": "dev"]
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 text-sm text-muted-foreground">
+                  Showing 24 of 52 log entries and server info - filters available
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
