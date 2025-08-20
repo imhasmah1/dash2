@@ -535,7 +535,7 @@ const translations = {
     "products.title": "المنتجات",
     "products.subtitle": "إدارة مخزون المنتجات",
     "products.addNew": "إضافة منتج جديد",
-    "products.search": "البحث في المنتجات...",
+    "products.search": "البحث ف�� المنتجات...",
     "products.name": "الاسم",
     "products.price": "السعر",
     "products.stock": "المخزون",
@@ -588,7 +588,7 @@ const translations = {
     "orders.addOrder": "إضافة طلب",
     "orders.editOrder": "تعديل طلب",
     "orders.selectCustomer": "اختر العميل",
-    "orders.addItem": "إضافة عنصر",
+    "orders.addItem": "إضاف�� عنصر",
     "orders.product": "المنتج",
     "orders.variant": "النوع",
     "orders.quantity": "الكمية",
@@ -600,7 +600,7 @@ const translations = {
     "orders.pickup": "استلام",
     "orders.processing": "قيد المعالجة",
     "orders.ready": "جاهز",
-    "orders.delivered": "تم ال��سليم",
+    "orders.delivered": "تم التسليم",
     "orders.pickedUp": "تم الاستلام",
     "orders.orderDetails": "تفاصيل الطلب",
     "orders.items": "العناصر",
@@ -645,7 +645,7 @@ const translations = {
     "customers.customerHome": "رقم المنزل",
     "customers.customerRoad": "رقم الطريق",
     "customers.customerBlock": "رقم المجمع",
-    "customers.customerTown": "البلدة/المنطقة",
+    "customers.customerTown": "البلدة/المن��قة",
     "customers.save": "حفظ",
 
     // Revenue
@@ -699,7 +699,7 @@ const translations = {
 
     // Messages
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
-    "message.productAdded": "تم إضافة المنتج بنجاح",
+    "message.productAdded": "تم إضافة الم��تج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
@@ -803,7 +803,7 @@ const translations = {
     "categories.cannotDeleteTitle": "لا يمكن حذف التصنيف",
     "categories.cannotDeleteMessage":
       "هذا التصنيف مستخدم في {count} منتج. يرجى إزالة التصنيف من جميع المنتجات قبل الحذف.",
-    "categories.nameRequired": "اسم التصنيف ��طلوب.",
+    "categories.nameRequired": "اسم التصنيف مطلوب.",
 
     // Analytics
     "analytics.title": "تحليلات المتجر",
@@ -812,7 +812,7 @@ const translations = {
     "analytics.totalRevenue": "إجمالي الإيرادات",
     "analytics.totalCustomers": "إجمالي العملاء",
     "analytics.totalProducts": "إجمالي المنتجات",
-    "analytics.avgPerOrder": "لكل طل��",
+    "analytics.avgPerOrder": "لكل طلب",
     "analytics.newInPeriod": "جديد في الفترة",
     "analytics.inStock": "متوفر",
     "analytics.active": "نشط",
@@ -855,7 +855,7 @@ const translations = {
     "settings.darkMode": "الوضع المظلم",
     "settings.accessibilityFeatures": "ميزات إمكانية الوصول",
     "settings.notifications": "الإشعارات",
-    "settings.analytics": "التح��يلات",
+    "settings.analytics": "التحليلات",
     "settings.autoBackup": "النسخ الاحتياطي التلقائي",
     "settings.debugMode": "وضع التصحيح",
     "settings.dialogScroll": "تمرير الحوار",
@@ -878,7 +878,7 @@ const translations = {
     "settings.displayTotals": "عرض المجاميع",
     "settings.displayNextSteps": "عرض الخطوات التالية",
     "settings.displayContact": "عرض معلومات الاتصال",
-    "settings.successHeadline": "عنوان النجاح",
+    "settings.successHeadline": "عنوان النج��ح",
     "settings.successSubtext": "نص فرعي للنجاح",
     "settings.pickupAddress": "عنوان الاستلام",
     "settings.pickupAddressEn": "عنوان الاستلام (إنجليزي)",
@@ -951,10 +951,10 @@ const translations = {
     // Shipping & Delivery
     "settings.shippingDelivery": "الشحن والتوصيل",
     "settings.enableDelivery": "تفعيل التوصيل",
-    "settings.enablePickup": "تفعيل الا��تلام",
+    "settings.enablePickup": "تفعيل الاستلام",
     "settings.deliveryFee": "رسوم التوصيل",
     "settings.freeDeliveryThreshold": "حد التوصيل المجاني",
-    "settings.estimatedDeliveryTime": "الوقت ��لمتوقع للتوصيل",
+    "settings.estimatedDeliveryTime": "الوقت المتوقع للتوصيل",
 
     // Order Messages
     "settings.orderMessages": "رسائل الطلبات",
@@ -983,7 +983,7 @@ const translations = {
     "orderSuccess.headlineAr": "تم تأكيد الطلب!",
     "orderSuccess.prepareOrder": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
     "orderSuccess.prepareOrderAr": "سنقوم بتجهيز طلبك خلال 2-4 ساعات",
-    "orderSuccess.contactPhone": "سيتم التواص�� معك عبر الهاتف للتأكيد",
+    "orderSuccess.contactPhone": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "orderSuccess.contactPhoneAr": "سيتم التواصل معك عبر الهاتف للتأكيد",
     "orderSuccess.deliveryTime": "التوصيل خلال 1-3 أيام عمل",
     "orderSuccess.deliveryTimeAr": "التوصيل خلال 1-3 أيام عمل",
