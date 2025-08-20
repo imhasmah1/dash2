@@ -683,7 +683,7 @@ const translations = {
     "common.back": "السابق",
     "common.next": "التالي",
     "common.success": "نجح",
-    "common.added": "تمت الإضافة",
+    "common.added": "تمت الإضاف��",
 
     // Empty states
     "empty.noProductsFound": "لا توجد منتجات",
@@ -699,7 +699,7 @@ const translations = {
 
     // Messages
     "message.deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
-    "message.productAdded": "تم إضافة الم��تج بنجاح",
+    "message.productAdded": "تم إضافة المنتج بنجاح",
     "message.productUpdated": "تم تحديث المنتج بنجاح",
     "message.productDeleted": "تم حذف المنتج بنجاح",
     "message.orderAdded": "تم إضافة الطلب بنجاح",
@@ -902,7 +902,7 @@ const translations = {
     "settings.exportDescription": "تحميل إعداداتك الحالية كملف نسخ احتياطي",
     "settings.importDescription": "رفع ملف إعدادات مُصدّر مسبقاً",
     "settings.chooseFile": "اختر الملف",
-    "settings.noFileChosen": "لم يتم اختيار ملف",
+    "settings.noFileChosen": "لم يتم اخ��يار ملف",
     "settings.displayOptions": "خيارات ��لعرض",
     "settings.paymentSettings": "إعدادات الدفع",
 
@@ -923,7 +923,7 @@ const translations = {
 
     // Store Information
     "settings.storeInformation": "معلومات المتجر",
-    "settings.storeName": "اسم المتجر",
+    "settings.storeName": "اسم ا��متجر",
     "settings.storeDescription": "وصف المتجر",
     "settings.currency": "العملة",
     "settings.currencySymbol": "رمز العملة",
