@@ -607,32 +607,32 @@ export default function Orders() {
       </Card>
 
       {/* Orders List */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {filteredOrders.map((order) => {
           const customer = getCustomerById(order.customerId);
           return (
-            <Card key={order.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [dir=rtl]:sm:flex-row-reverse">
-                  <div className="flex items-center gap-3 [dir=rtl]:flex-row-reverse">
-                    <div className="w-10 h-10 bg-dashboard-primary rounded-full flex items-center justify-center">
-                      <ShoppingCart className="w-5 h-5 text-white" />
+            <Card key={order.id} className="hover:shadow-lg transition-shadow border-l-4 border-dashboard-primary">
+              <CardHeader className="pb-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4 [dir=rtl]:sm:flex-row-reverse">
+                  <div className="flex items-start gap-3 flex-1 [dir=rtl]:flex-row-reverse">
+                    <div className="w-12 h-12 sm:w-10 sm:h-10 bg-dashboard-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <ShoppingCart className="w-6 h-6 sm:w-5 sm:h-5 text-white" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <CardTitle className="text-lg">
+                    <div className="min-w-0 flex-1 space-y-1">
+                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
                         {t("orders.orderId")} #{getOrderNumber(order.id)}
                       </CardTitle>
-                      <CardDescription className="flex items-center gap-2 [dir=rtl]:flex-row-reverse">
+                      <CardDescription className="flex items-center gap-2 text-sm sm:text-base [dir=rtl]:flex-row-reverse">
                         <User className="w-4 h-4" />
                         {customer?.name || t("orders.customer")}
                       </CardDescription>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:items-end gap-2">
-                    <div className="text-xl sm:text-2xl font-bold text-dashboard-primary">
+                  <div className="flex flex-col sm:items-end gap-3 sm:gap-2 mt-2 sm:mt-0">
+                    <div className="text-2xl sm:text-xl font-bold text-dashboard-primary">
                       BD {order.total.toFixed(2)}
                     </div>
-                    <div className="w-full sm:w-auto">
+                    <div className="w-full sm:w-auto min-w-[140px]">
                       <Select
                         value={order.status}
                         onValueChange={(value: Order["status"]) =>
@@ -661,14 +661,14 @@ export default function Orders() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
+              <CardContent className="pt-0">
+                <div className="space-y-4 sm:space-y-3">
                   <div>
-                    <h4 className="font-medium mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2 text-gray-900">
                       <Package className="w-4 h-4" />
                       {t("nav.products")} ({order.items.length})
                     </h4>
-                    <div className="space-y-2">
+                    <div className="space-y-2 sm:space-y-1">
                       {order.items.slice(0, 2).map((item, index) => {
                         const product = getProductById(item.productId);
                         const variant =
@@ -678,60 +678,66 @@ export default function Orders() {
                         return (
                           <div
                             key={index}
-                            className="flex justify-between items-center p-2 bg-gray-50 rounded"
+                            className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 p-3 sm:p-2 bg-gray-50 rounded-lg"
                           >
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 flex-1">
                               {product?.images?.[0] && (
                                 <img
                                   src={product.images[0]}
                                   alt={product.name}
-                                  className="w-10 h-10 rounded object-cover"
+                                  className="w-12 h-12 sm:w-10 sm:h-10 rounded-lg object-cover border border-gray-200"
                                 />
                               )}
-                              <span>
-                                {product?.name || t("products.title")}
-                                {variant && ` (${variant.name})`}
-                              </span>
+                              <div className="flex-1">
+                                <div className="font-medium text-gray-900">
+                                  {product?.name || t("products.title")}
+                                </div>
+                                {variant && (
+                                  <div className="text-sm text-gray-500">
+                                    {variant.name}
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            <span className="text-sm text-gray-600">
-                              {item.quantity}x BD {item.price.toFixed(2)} = BD{" "}
-                              {(item.quantity * item.price).toFixed(2)}
-                            </span>
+                            <div className="text-sm sm:text-right text-gray-600 font-medium">
+                              <div>{item.quantity}x BD {item.price.toFixed(2)}</div>
+                              <div className="font-bold text-dashboard-primary">BD {(item.quantity * item.price).toFixed(2)}</div>
+                            </div>
                           </div>
                         );
                       })}
                       {order.items.length > 2 && (
-                        <div className="text-sm text-gray-600 text-center">
+                        <div className="text-sm text-gray-600 text-center py-2 bg-gray-100 rounded">
                           +{order.items.length - 2} {t("orders.items")}
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center text-sm text-gray-600">
-                    <span className="flex items-center gap-1">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 text-sm text-gray-600 pt-2 border-t border-gray-100">
+                    <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       {new Date(order.createdAt).toLocaleDateString()}
-                    </span>
-                    <div className="flex items-center gap-4">
-                      <span className="capitalize font-medium text-dashboard-primary">
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                      <div className="capitalize font-medium text-dashboard-primary">
                         {order.deliveryType === "delivery"
                           ? t("orders.delivery")
                           : t("orders.pickup")}
-                      </span>
-                      <span>
+                      </div>
+                      <div className="text-xs sm:text-sm">
                         {t("orders.date")}:{" "}
                         {new Date(order.updatedAt).toLocaleDateString()}
-                      </span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex gap-2 pt-2">
+                  <div className="flex flex-col sm:flex-row gap-2 pt-3">
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => openViewDialog(order)}
-                      className="flex-1"
+                      className="flex-1 h-10 font-medium"
                     >
                       <Eye className="w-4 h-4 mr-1" />
                       {t("orders.view")}
@@ -740,6 +746,7 @@ export default function Orders() {
                       size="sm"
                       variant="outline"
                       onClick={() => openDialog(order)}
+                      className="flex-1 sm:flex-none h-10 font-medium"
                     >
                       <Edit className="w-4 h-4 mr-1" />
                       {t("orders.edit")}
@@ -747,7 +754,7 @@ export default function Orders() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50 flex-1 sm:flex-none h-10 font-medium"
                       onClick={() => handleDelete(order.id)}
                     >
                       <Trash2 className="w-4 h-4" />

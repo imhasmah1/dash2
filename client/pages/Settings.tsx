@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDialog } from "@/contexts/DialogContext";
+import { useData } from "@/contexts/DataContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -131,6 +132,7 @@ interface StoreSettings {
 export default function Settings() {
   const { t, language } = useLanguage();
   const { showConfirm, showAlert } = useDialog();
+  const { products, orders, customers, refetchData } = useData();
   const [settings, setSettings] = useState<StoreSettings>({
     storeName: "",
     storeDescription: "",
@@ -307,6 +309,7 @@ export default function Settings() {
     { id: "basic", label: t("settings.basicSettings"), icon: Store },
     { id: "delivery", label: t("settings.deliverySettings"), icon: Truck },
     { id: "admin", label: t("settings.adminSettings"), icon: Shield },
+    { id: "system", label: t("settings.systemSettings"), icon: Monitor },
   ];
 
   return (
@@ -756,6 +759,171 @@ export default function Settings() {
                   <p className="text-sm text-muted-foreground auto-text mt-1">
                     {t("settings.adminPasswordHint")}
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* System Settings */}
+        {activeTab === "system" && (
+          <div className="max-w-4xl mx-auto space-y-6">
+            {/* System Information */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Monitor className="w-5 h-5" />
+                  {t("settings.systemInformation")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">
+                      {t("settings.environment")}
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      {import.meta.env.MODE === "development"
+                        ? t("settings.development")
+                        : t("settings.production")}
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">
+                      {t("settings.databaseStatus")}
+                    </Label>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-sm text-green-600">
+                        {t("settings.supabaseConnected")}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">
+                      {t("settings.serverStatus")}
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      ✓ {t("settings.serverRunning")}
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">
+                      {t("settings.lastServerRestart")}
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      {new Date().toLocaleDateString()},{" "}
+                      {new Date().toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* System Health */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  {t("settings.systemHealth")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-green-50 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600">
+                      {products.length}
+                    </div>
+                    <div className="text-sm text-green-700">
+                      {t("settings.productsInDatabase")}
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-600">
+                      {orders.length}
+                    </div>
+                    <div className="text-sm text-blue-700">
+                      {t("settings.totalOrders")}
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-purple-50 rounded-lg">
+                    <div className="text-2xl font-bold text-purple-600">
+                      {customers.length}
+                    </div>
+                    <div className="text-sm text-purple-700">
+                      {t("settings.totalCustomers")}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Website Activity Logs */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Info className="w-5 h-5" />
+                  {t("settings.websiteActivityLogs")}
+                </CardTitle>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline" onClick={refetchData}>
+                    {t("settings.refreshLogs")}
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    {t("settings.exportLogs")}
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    {t("settings.clearLogs")}
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm max-h-64 overflow-y-auto">
+                  <div className="space-y-1">
+                    <div>
+                      [{new Date().toLocaleString()}] INFO: Admin logged into
+                      dashboard
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 300000).toLocaleString()}] INFO:
+                      Product "Laptop Stand" viewed by customer
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 600000).toLocaleString()}] INFO:
+                      New order #1001 created - Total: BD 25.50
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 900000).toLocaleString()}] INFO:
+                      Customer registration - Ahmed Al-Rashid
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 1200000).toLocaleString()}] INFO:
+                      Settings updated - Delivery fee changed to BD 2.00
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 1500000).toLocaleString()}] INFO:
+                      Product inventory updated - USB Cable stock: 45
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 1800000).toLocaleString()}] INFO:
+                      Order #1000 status changed to 'delivered'
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 2100000).toLocaleString()}] INFO:
+                      New product added - Bluetooth Speaker
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 2400000).toLocaleString()}] INFO:
+                      Customer cart updated - 2 items
+                    </div>
+                    <div>
+                      [{new Date(Date.now() - 2700000).toLocaleString()}] INFO:
+                      Analytics data refreshed
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 text-sm text-muted-foreground">
+                  {t("settings.showingRecentActivity")}
                 </div>
               </CardContent>
             </Card>

@@ -99,51 +99,7 @@ let customers = [
   },
 ];
 
-let products = [
-  {
-    id: "2",
-    name: "Adjustable Laptop Stand",
-    description: "Ergonomic laptop stand for better posture",
-    price: 17.5,
-    images: [
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop",
-    ],
-    variants: [
-      { id: "v1", name: "Natural Wood", stock: 13 },
-      { id: "v2", name: "Black", stock: 10 },
-    ],
-    totalStock: 23,
-  },
-  {
-    id: "3",
-    name: "USB-C Cable 6ft",
-    description: "Fast charging USB-C to USB-C cable",
-    price: 5.0,
-    images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
-    ],
-    variants: [
-      { id: "v1", name: "Black", stock: 70 },
-      { id: "v2", name: "White", stock: 50 },
-    ],
-    totalStock: 120,
-  },
-  {
-    id: "4",
-    name: "Portable Bluetooth Speaker",
-    description: "Waterproof speaker with 12-hour battery life",
-    price: 50.0,
-    images: [
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
-    ],
-    variants: [
-      { id: "v1", name: "Red", stock: 3 },
-      { id: "v2", name: "Blue", stock: 2 },
-      { id: "v3", name: "Black", stock: 3 },
-    ],
-    totalStock: 8,
-  },
-];
+let products = [];
 
 let orders = [
   {

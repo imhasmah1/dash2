@@ -18,6 +18,7 @@ import {
   Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Footer from "./Footer";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -186,6 +187,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
         {/* Page content */}
         <main className="flex-1 overflow-auto p-6">{children}</main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );
