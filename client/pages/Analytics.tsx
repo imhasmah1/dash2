@@ -47,23 +47,27 @@ const Analytics = () => {
   // Calculate real analytics from your actual data
   const analyticsData = useMemo(() => {
     const now = new Date();
-    const daysAgo = timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
+    const daysAgo =
+      timeRange === "7days" ? 7 : timeRange === "30days" ? 30 : 90;
     const startDate = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000);
 
     // Filter recent orders
-    const recentOrders = orders.filter(order => {
+    const recentOrders = orders.filter((order) => {
       const orderDate = new Date(order.createdAt || order.created_at || "");
       return orderDate >= startDate;
     });
 
     // Filter recent customers
-    const recentCustomers = customers.filter(customer => {
+    const recentCustomers = customers.filter((customer) => {
       const customerDate = new Date(customer.createdAt || "");
       return customerDate >= startDate;
     });
 
     const totalOrders = recentOrders.length;
-    const totalRevenue = recentOrders.reduce((sum, order) => sum + order.total, 0);
+    const totalRevenue = recentOrders.reduce(
+      (sum, order) => sum + order.total,
+      0,
+    );
     const totalCustomers = recentCustomers.length;
     const totalProducts = products.length;
 
@@ -73,14 +77,22 @@ const Analytics = () => {
       totalCustomers,
       totalProducts,
       recentOrders,
-      recentCustomers
+      recentCustomers,
     };
   }, [orders, customers, products, timeRange]);
 
-  const [liveVisitors, setLiveVisitors] = useState(Math.max(1, Math.floor(analyticsData.totalOrders / 10)));
-  const [totalPageViews, setTotalPageViews] = useState(analyticsData.totalOrders * 3 + 100);
-  const [uniqueVisitors, setUniqueVisitors] = useState(analyticsData.totalCustomers + 20);
-  const [bounceRate, setBounceRate] = useState(Math.max(20, 60 - analyticsData.totalOrders));
+  const [liveVisitors, setLiveVisitors] = useState(
+    Math.max(1, Math.floor(analyticsData.totalOrders / 10)),
+  );
+  const [totalPageViews, setTotalPageViews] = useState(
+    analyticsData.totalOrders * 3 + 100,
+  );
+  const [uniqueVisitors, setUniqueVisitors] = useState(
+    analyticsData.totalCustomers + 20,
+  );
+  const [bounceRate, setBounceRate] = useState(
+    Math.max(20, 60 - analyticsData.totalOrders),
+  );
 
   // Simulate real-time updates
   useEffect(() => {
@@ -88,19 +100,19 @@ const Analytics = () => {
 
     const interval = setInterval(() => {
       // Simulate random changes in real-time data
-      setLiveVisitors(prev => {
+      setLiveVisitors((prev) => {
         const change = Math.floor(Math.random() * 5) - 2; // -2 to +2
         return Math.max(0, prev + change);
       });
-      
+
       // Occasionally increment page views
       if (Math.random() > 0.7) {
-        setTotalPageViews(prev => prev + 1);
+        setTotalPageViews((prev) => prev + 1);
       }
-      
+
       // Occasionally increment unique visitors
       if (Math.random() > 0.8) {
-        setUniqueVisitors(prev => prev + 1);
+        setUniqueVisitors((prev) => prev + 1);
       }
     }, 3000); // Update every 3 seconds
 
@@ -115,23 +127,30 @@ const Analytics = () => {
     for (let i = days - 1; i >= 0; i--) {
       const date = new Date();
       date.setDate(date.getDate() - i);
-      const dayStart = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      const dayStart = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+      );
       const dayEnd = new Date(dayStart.getTime() + 24 * 60 * 60 * 1000);
 
       // Count real orders for this day
-      const dayOrders = orders.filter(order => {
+      const dayOrders = orders.filter((order) => {
         const orderDate = new Date(order.createdAt || order.created_at || "");
         return orderDate >= dayStart && orderDate < dayEnd;
       });
 
       // Count real customers for this day
-      const dayCustomers = customers.filter(customer => {
+      const dayCustomers = customers.filter((customer) => {
         const customerDate = new Date(customer.createdAt || "");
         return customerDate >= dayStart && customerDate < dayEnd;
       });
 
       data.push({
-        date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        date: date.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        }),
         visitors: Math.max(dayCustomers.length * 2, dayOrders.length * 3, 5), // Estimate visitors from customers/orders
         pageViews: Math.max(dayOrders.length * 5, dayCustomers.length * 4, 10), // Estimate page views
       });
@@ -142,33 +161,45 @@ const Analytics = () => {
 
   // Mock device breakdown data
   const deviceData = [
-    { name: 'Desktop', value: 45, color: '#8884d8' },
-    { name: 'Mobile', value: 40, color: '#82ca9d' },
-    { name: 'Tablet', value: 15, color: '#ffc658' },
+    { name: "Desktop", value: 45, color: "#8884d8" },
+    { name: "Mobile", value: 40, color: "#82ca9d" },
+    { name: "Tablet", value: 15, color: "#ffc658" },
   ];
 
   // Mock traffic sources data
   const trafficSources = [
-    { source: 'Direct', visitors: 324, percentage: 36.2 },
-    { source: 'Google Search', visitors: 287, percentage: 32.1 },
-    { source: 'Social Media', visitors: 156, percentage: 17.5 },
-    { source: 'Referrals', visitors: 89, percentage: 10.0 },
-    { source: 'Email', visitors: 36, percentage: 4.2 },
+    { source: "Direct", visitors: 324, percentage: 36.2 },
+    { source: "Google Search", visitors: 287, percentage: 32.1 },
+    { source: "Social Media", visitors: 156, percentage: 17.5 },
+    { source: "Referrals", visitors: 89, percentage: 10.0 },
+    { source: "Email", visitors: 36, percentage: 4.2 },
   ];
 
   // Real top pages based on your actual data
   const topPages = useMemo(() => {
     const basePages = [
-      { page: '/', views: Math.max(analyticsData.totalCustomers * 2, 50), title: 'Homepage' },
-      { page: '/products', views: Math.max(analyticsData.totalOrders * 2, 30), title: 'Products' },
-      { page: '/checkout', views: analyticsData.totalOrders, title: 'Checkout' },
+      {
+        page: "/",
+        views: Math.max(analyticsData.totalCustomers * 2, 50),
+        title: "Homepage",
+      },
+      {
+        page: "/products",
+        views: Math.max(analyticsData.totalOrders * 2, 30),
+        title: "Products",
+      },
+      {
+        page: "/checkout",
+        views: analyticsData.totalOrders,
+        title: "Checkout",
+      },
     ];
 
     // Add real products from your database
-    const productPages = products.slice(0, 3).map(product => ({
+    const productPages = products.slice(0, 3).map((product) => ({
       page: `/product/${product.id}`,
       views: Math.max(Math.floor(Math.random() * 50) + 10, 15),
-      title: product.name
+      title: product.name,
     }));
 
     return [...basePages, ...productPages].sort((a, b) => b.views - a.views);
@@ -176,9 +207,19 @@ const Analytics = () => {
 
   const handleRefresh = () => {
     // Refresh real data calculations
-    setLiveVisitors(Math.max(1, Math.floor(analyticsData.totalOrders / 10) + Math.floor(Math.random() * 5)));
-    setTotalPageViews(analyticsData.totalOrders * 3 + 100 + Math.floor(Math.random() * 20));
-    setUniqueVisitors(analyticsData.totalCustomers + 20 + Math.floor(Math.random() * 10));
+    setLiveVisitors(
+      Math.max(
+        1,
+        Math.floor(analyticsData.totalOrders / 10) +
+          Math.floor(Math.random() * 5),
+      ),
+    );
+    setTotalPageViews(
+      analyticsData.totalOrders * 3 + 100 + Math.floor(Math.random() * 20),
+    );
+    setUniqueVisitors(
+      analyticsData.totalCustomers + 20 + Math.floor(Math.random() * 10),
+    );
   };
 
   return (
@@ -189,7 +230,9 @@ const Analytics = () => {
           <h1 className="text-3xl font-bold text-gray-900">
             {t("analytics.title")}
           </h1>
-          <p className="text-gray-600 mt-2">Real-time website analytics and visitor insights</p>
+          <p className="text-gray-600 mt-2">
+            Real-time website analytics and visitor insights
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Select value={timeRange} onValueChange={setTimeRange}>
@@ -214,17 +257,21 @@ const Analytics = () => {
         <CardContent className="pt-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className={`w-3 h-3 rounded-full ${isRealTime ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
+              <div
+                className={`w-3 h-3 rounded-full ${isRealTime ? "bg-green-500 animate-pulse" : "bg-gray-400"}`}
+              ></div>
               <span className="text-sm font-medium">
-                {isRealTime ? 'Real-time tracking active' : 'Real-time tracking paused'}
+                {isRealTime
+                  ? "Real-time tracking active"
+                  : "Real-time tracking paused"}
               </span>
             </div>
-            <Button 
-              onClick={() => setIsRealTime(!isRealTime)} 
-              variant="outline" 
+            <Button
+              onClick={() => setIsRealTime(!isRealTime)}
+              variant="outline"
               size="sm"
             >
-              {isRealTime ? 'Pause' : 'Resume'}
+              {isRealTime ? "Pause" : "Resume"}
             </Button>
           </div>
         </CardContent>
@@ -238,10 +285,10 @@ const Analytics = () => {
             <Eye className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">{liveVisitors}</div>
-            <p className="text-xs text-muted-foreground">
-              Currently browsing
-            </p>
+            <div className="text-2xl font-bold text-green-600">
+              {liveVisitors}
+            </div>
+            <p className="text-xs text-muted-foreground">Currently browsing</p>
           </CardContent>
         </Card>
 
@@ -251,7 +298,9 @@ const Analytics = () => {
             <Globe className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analyticsData.totalOrders}</div>
+            <div className="text-2xl font-bold">
+              {analyticsData.totalOrders}
+            </div>
             <p className="text-xs text-muted-foreground">
               Orders in selected period
             </p>
@@ -264,7 +313,9 @@ const Analytics = () => {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">BD {analyticsData.totalRevenue.toFixed(2)}</div>
+            <div className="text-2xl font-bold">
+              BD {analyticsData.totalRevenue.toFixed(2)}
+            </div>
             <p className="text-xs text-muted-foreground">
               Revenue in selected period
             </p>
@@ -277,7 +328,9 @@ const Analytics = () => {
             <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analyticsData.totalCustomers}</div>
+            <div className="text-2xl font-bold">
+              {analyticsData.totalCustomers}
+            </div>
             <p className="text-xs text-muted-foreground">
               Customers in selected period
             </p>
@@ -299,17 +352,17 @@ const Analytics = () => {
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-                <Line 
-                  type="monotone" 
-                  dataKey="visitors" 
-                  stroke="#8884d8" 
+                <Line
+                  type="monotone"
+                  dataKey="visitors"
+                  stroke="#8884d8"
                   strokeWidth={2}
                   name="Visitors"
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="pageViews" 
-                  stroke="#82ca9d" 
+                <Line
+                  type="monotone"
+                  dataKey="pageViews"
+                  stroke="#82ca9d"
                   strokeWidth={2}
                   name="Page Views"
                 />
@@ -363,7 +416,9 @@ const Analytics = () => {
                   </div>
                   <div className="text-right">
                     <div className="font-bold">{source.visitors}</div>
-                    <div className="text-xs text-muted-foreground">{source.percentage}%</div>
+                    <div className="text-xs text-muted-foreground">
+                      {source.percentage}%
+                    </div>
                   </div>
                 </div>
               ))}
@@ -382,7 +437,9 @@ const Analytics = () => {
                 <div key={index} className="flex items-center justify-between">
                   <div>
                     <div className="font-medium">{page.title}</div>
-                    <div className="text-xs text-muted-foreground">{page.page}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {page.page}
+                    </div>
                   </div>
                   <div className="font-bold">{page.views}</div>
                 </div>
@@ -403,7 +460,8 @@ const Analytics = () => {
         <CardContent>
           <div className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              This analytics dashboard shows real-time website visitor data. To connect with Google Analytics:
+              This analytics dashboard shows real-time website visitor data. To
+              connect with Google Analytics:
             </p>
             <ol className="list-decimal list-inside space-y-2 text-sm">
               <li>Set up Google Analytics 4 property for your website</li>
