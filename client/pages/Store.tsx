@@ -388,6 +388,9 @@ export default function Store() {
 
       {/* Cart Sidebar */}
       <CartSidebar open={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
